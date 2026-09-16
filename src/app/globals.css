@@ -1,0 +1,211 @@
+@import "tailwindcss";
+
+/* ===========================================================================
+   Design tokens — warm "clay" palette. Light is the primary mode; dark is a
+   deep ink version of the same material rather than a pure-black inversion.
+   =========================================================================== */
+:root {
+  --paper: #f3ede3;
+  --paper-2: #ece4d7;
+  --ink: #17140f;
+  --ink-soft: #4b443a;
+  --ink-faint: #8a8071;
+  --line: #d9cfbe;
+  --card: #fbf7f0;
+
+  --clay: #d0603a;
+  --sage: #6f8763;
+  --butter: #e0b354;
+  --lilac: #8f7fc0;
+
+  --grain-opacity: 0.5;
+  --shadow: 0 1px 2px rgba(23, 20, 15, 0.06), 0 12px 32px -12px rgba(23, 20, 15, 0.18);
+}
+
+:root[data-theme="dark"] {
+  --paper: #14120f;
+  --paper-2: #1b1813;
+  --ink: #f3ede3;
+  --ink-soft: #c2b8a8;
+  --ink-faint: #8a8071;
+  --line: #322c24;
+  --card: #1e1a15;
+
+  --clay: #e87b53;
+  --sage: #93ad85;
+  --butter: #e7c471;
+  --lilac: #a99add;
+
+  --grain-opacity: 0.28;
+  --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #14120f;
+    --paper-2: #1b1813;
+    --ink: #f3ede3;
+    --ink-soft: #c2b8a8;
+    --ink-faint: #8a8071;
+    --line: #322c24;
+    --card: #1e1a15;
+
+    --clay: #e87b53;
+    --sage: #93ad85;
+    --butter: #e7c471;
+    --lilac: #a99add;
+
+    --grain-opacity: 0.28;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+  }
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-paper-2: var(--paper-2);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-ink-faint: var(--ink-faint);
+  --color-line: var(--line);
+  --color-card: var(--card);
+  --color-clay: var(--clay);
+  --color-sage: var(--sage);
+  --color-butter: var(--butter);
+  --color-lilac: var(--lilac);
+
+  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+}
+
+/* ===========================================================================
+   Base
+   =========================================================================== */
+* {
+  border-color: var(--line);
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+::selection {
+  background: var(--clay);
+  color: var(--paper);
+}
+
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* ===========================================================================
+   Utilities
+   =========================================================================== */
+
+/* Film grain that sits above the background but below content. */
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: -50%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: var(--grain-opacity);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.42'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+:root[data-theme="dark"] .grain::after {
+  mix-blend-mode: screen;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .grain::after {
+    mix-blend-mode: screen;
+  }
+}
+
+.label {
+  font-family: var(--font-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.serif-em {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+/* Soft "clay" surface: slightly inflated, warm shadow, no hard edges. */
+.clay-surface {
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: var(--shadow);
+}
+
+/* Underline that draws itself on hover. */
+.link-draw {
+  position: relative;
+  display: inline-block;
+}
+.link-draw::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1.5px;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.link-draw:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+@keyframes marquee-slide {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.animate-marquee {
+  animation: marquee-slide 42s linear infinite;
+}
+
+@keyframes blob-drift {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -4%) scale(1.06); }
+  66% { transform: translate(-3%, 3%) scale(0.96); }
+}
+.animate-blob {
+  animation: blob-drift 22s ease-in-out infinite;
+}
+
+/* Respect users who ask for less motion. */
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .animate-marquee,
+  .animate-blob {
+    animation: none !important;
+  }
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+  }
+}
