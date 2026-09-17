@@ -56,10 +56,26 @@ export const site = {
   /* — Projects & campaigns ———————————————————————————————————————
      tone picks the card's hue from the spectrum. One of:
      "red" | "orange" | "amber" | "green" | "cyan" | "blue" | "violet" | "pink"
-     Reading down the page they run in spectrum order — worth keeping.     */
+     Reading down the page they run in spectrum order — worth keeping.
+
+     media (optional) attaches a still or a silent looping clip to the card:
+       poster  — always shown first; the card's resting state. Required.
+       sources — ordered best-first. Omit entirely for a poster-only card.
+       alt     — describes the poster for screen readers.
+     Drop files in public/work/. See "Project media" in the README for the
+     encode settings and the size at which to move to a streaming host.   */
   work: [
     {
       title: "Zero-to-8k community flywheel",
+      media: {
+        poster: "/work/community-flywheel.svg",
+        /* Add clips here once encoded, best format first:
+           sources: [
+             { src: "/work/community-flywheel.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+             { src: "/work/community-flywheel.mp4", type: "video/mp4" },
+           ], */
+        alt: "Discord server growing from empty to eight thousand members.",
+      },
       kicker: "Community · 2025",
       tone: "red" as const,
       summary:
@@ -74,6 +90,15 @@ export const site = {
     },
     {
       title: "Programmatic SEO for long-tail intent",
+      media: {
+        poster: "/work/programmatic-seo.svg",
+        /* Add clips here once encoded, best format first:
+           sources: [
+             { src: "/work/programmatic-seo.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+             { src: "/work/programmatic-seo.mp4", type: "video/mp4" },
+           ], */
+        alt: "Templated landing pages fanning out across a keyword map.",
+      },
       kicker: "Acquisition · 2025",
       tone: "amber" as const,
       summary:
@@ -88,6 +113,15 @@ export const site = {
     },
     {
       title: "Lifecycle rebuild that halved churn",
+      media: {
+        poster: "/work/lifecycle-rebuild.svg",
+        /* Add clips here once encoded, best format first:
+           sources: [
+             { src: "/work/lifecycle-rebuild.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+             { src: "/work/lifecycle-rebuild.mp4", type: "video/mp4" },
+           ], */
+        alt: "Onboarding email and in-app messaging flows side by side.",
+      },
       kicker: "Lifecycle · 2024",
       tone: "cyan" as const,
       summary:
@@ -102,6 +136,15 @@ export const site = {
     },
     {
       title: "Creator partnerships at 3.1x ROAS",
+      media: {
+        poster: "/work/creator-partners.svg",
+        /* Add clips here once encoded, best format first:
+           sources: [
+             { src: "/work/creator-partners.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+             { src: "/work/creator-partners.mp4", type: "video/mp4" },
+           ], */
+        alt: "A grid of creator video ads running in sequence.",
+      },
       kicker: "Paid & partnerships · 2024",
       tone: "violet" as const,
       summary:
