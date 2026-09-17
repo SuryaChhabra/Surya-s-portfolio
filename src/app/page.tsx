@@ -9,6 +9,7 @@ import { Timeline } from "@/components/Timeline";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
+import { DirectionSwitcher } from "@/components/DirectionSwitcher";
 
 export default function Home() {
   return (
@@ -26,6 +27,7 @@ export default function Home() {
         <Contact />
       </main>
       <Footer />
+      <DirectionSwitcher />
     </>
   );
 }

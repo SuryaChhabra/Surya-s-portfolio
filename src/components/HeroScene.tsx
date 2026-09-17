@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 import { useHoverCursor } from "./three/useHoverCursor";
+import { useDirection } from "./direction";
 
 /* three.js is a heavy dependency and useless to a server render, so the whole
    scene is split out and loaded only in the browser. Until it arrives (and
@@ -15,6 +16,7 @@ const ClayScene = dynamic(
 
 export function HeroScene() {
   const reduced = useReducedMotion();
+  const direction = useDirection();
   const host = useRef<HTMLDivElement>(null);
 
   const [compact, setCompact] = useState(false);
@@ -65,8 +67,8 @@ export function HeroScene() {
       className="absolute inset-0"
       style={{ cursor: hovering ? "grab" : undefined }}
     >
-      <Fallback dimmed={supported === true} />
-      {supported ? (
+      <Fallback dimmed={supported === true && direction.scene} />
+      {supported && direction.scene ? (
         <ClayScene
           still={Boolean(reduced)}
           compact={compact}

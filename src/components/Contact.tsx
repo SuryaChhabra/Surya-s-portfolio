@@ -33,14 +33,14 @@ export function Contact() {
         <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
           <a
             href={`mailto:${site.email}`}
-            className="rounded-full px-6 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
+            className="r-pill px-6 py-3 text-sm font-medium transition-transform hover:-translate-y-0.5"
             style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}
           >
             {site.email}
           </a>
           <a
             href={site.resumeUrl}
-            className="rounded-full border border-line px-6 py-3 text-sm font-medium transition-colors hover:bg-paper-2"
+            className="r-pill border border-line px-6 py-3 text-sm font-medium transition-colors hover:bg-paper-2"
           >
             Résumé
           </a>

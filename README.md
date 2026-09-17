@@ -78,6 +78,114 @@ Some deliberate choices worth keeping:
   fetched from a CDN at runtime.
 - If WebGL is missing, the hero falls back to the gradient with no error.
 
+## Design directions
+
+Five complete visual treatments ship behind a switcher in the bottom-right
+corner: **Prism** (the default — clay paper, full rainbow, 3D), **Bloom** (soft
+sage, very round), **Neon** (near-black techno), **Press** (editorial
+broadsheet) and **Mono** (Swiss grid).
+
+They are a decision-making tool, not a site feature. Each one retargets the same
+tokens — palette, type, radius, shadow, grain — so no component knows which is
+active. Definitions live in [`src/components/direction.tsx`](src/components/direction.tsx)
+and the generated tokens in `src/app/directions.css`.
+
+The `-ink` values in that file are **derived, not hand-picked**: 
+[`scripts/generate-directions.py`](scripts/generate-directions.py) walks each
+hue's lightness until it clears 4.5:1 against that direction's own paper, card
+and paper-2, in both themes. Edit the palettes there and re-run it:
+
+```bash
+python3 scripts/generate-directions.py
+```
+
+**Once you have picked one:** set it as the default in `direction.tsx`, delete
+the others, remove `<DirectionSwitcher />` from `src/app/page.tsx`, and fold the
+winning block from `directions.css` into `globals.css`. Shipping the switcher on
+a live portfolio invites visitors to redesign it for you.
+
+## Project media
+
+Cards take an optional `media` block in `src/content/site.ts`: a **poster**
+(required) and optional **sources** for a silent looping clip. Files live in
+`public/work/`. The posters shipped here are obvious placeholders — replace
+them.
+
+```ts
+media: {
+  poster: "/work/community-flywheel.webp",
+  sources: [
+    { src: "/work/community-flywheel.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
+    { src: "/work/community-flywheel.mp4", type: "video/mp4" },
+  ],
+  alt: "Discord server growing from empty to eight thousand members.",
+},
+```
+
+Omit `sources` and the card shows a still. That is a perfectly good answer for
+most projects — only use video where motion actually shows something.
+
+### How the loading works
+
+Video is the heaviest thing on a portfolio and the easiest to get wrong. The
+rule here is **nothing streams until someone shows interest**, in tiers:
+
+| Stage | What loads |
+| --- | --- |
+| Page load | Nothing. Not one video byte. |
+| Card approaches viewport (200px out) | `preload="metadata"` — one small range request, so the first hover starts instantly |
+| Hover / keyboard focus | The clip plays |
+| Card leaves the viewport | Paused and rewound |
+
+On **Save-Data, a 2g connection, or `prefers-reduced-motion`**, the metadata
+step is skipped too — those visitors fetch *zero* video bytes and get an
+explicit play button instead, so the footage is still reachable.
+
+Only one clip ever plays at a time. Four cards autoplaying in a grid means four
+decoders running, which is where scrolling starts to stutter on a laptop and a
+phone starts getting warm.
+
+Verified in a browser: 0 video requests on load; 1 metadata request once a card
+nears the viewport; 0 requests in either reduced-motion or Save-Data mode.
+
+### Encoding
+
+Keep clips **3–8 seconds, silent, and under ~2 MB**. Strip the audio track
+entirely — it is dead weight in a muted loop. 1280px wide is plenty for a card.
+
+```bash
+# H.264 — the universal fallback
+ffmpeg -i source.mov -an -vf "scale=1280:-2,fps=24" \
+  -c:v libx264 -crf 26 -preset slow -profile:v high -pix_fmt yuv420p \
+  -movflags +faststart work.mp4
+
+# AV1 — roughly 30–50% smaller, listed first so modern browsers prefer it
+ffmpeg -i source.mov -an -vf "scale=1280:-2,fps=24" \
+  -c:v libsvtav1 -crf 34 -preset 6 -pix_fmt yuv420p \
+  -movflags +faststart work.av1.mp4
+
+# Poster — pull a representative frame, not frame 0
+ffmpeg -i source.mov -ss 00:00:01.5 -frames:v 1 -vf "scale=1280:-2" -q:v 80 work.webp
+```
+
+`-movflags +faststart` matters: it moves the index to the front of the file so
+playback can begin before the whole clip arrives. Without it the metadata
+preload fetches from the *end* of the file and hover-to-play stalls.
+
+### When to stop self-hosting
+
+Files in `public/` are committed to git and served from your host's CDN. That is
+fine up to roughly **10 MB of video total**. Past that:
+
+- Git gets slow and heavy — the repo carries every version of every binary ever
+  committed. Use Git LFS, or keep the masters out of the repo.
+- On Vercel's free tier, bandwidth is metered and video eats it fastest.
+
+Beyond that point move to a video host (Cloudflare Stream, Mux, Bunny) and put
+its playback URL in `sources`. Their HLS/DASH output also gives you adaptive
+bitrate, which a plain `.mp4` cannot do — the same file is served to a phone on
+4G and a desktop on fibre.
+
 ### The rainbow system
 
 The page walks the spectrum as you scroll: stats red/amber/green/blue, work

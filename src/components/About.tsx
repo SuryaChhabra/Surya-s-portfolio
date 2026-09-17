@@ -39,13 +39,13 @@ export function About() {
           </div>
 
           <Reveal delay={0.1} className="lg:col-span-5">
-            <div className="rounded-3xl p-7 clay-surface sm:p-8">
+            <div className="r-card p-7 clay-surface sm:p-8">
               <div className="label">Toolkit</div>
               <div className="mt-5 flex flex-wrap gap-2.5">
                 {site.about.toolkit.map((tool, i) => (
                   <span
                     key={tool}
-                    className="rounded-full border px-3 py-1.5 text-sm transition-transform duration-300 hover:rotate-0 hover:-translate-y-0.5"
+                    className="r-pill border px-3 py-1.5 text-sm transition-transform duration-300 hover:rotate-0 hover:-translate-y-0.5"
                     style={{
                       backgroundColor: "var(--paper)",
                       borderColor: STICKER_HUES[i % STICKER_HUES.length],

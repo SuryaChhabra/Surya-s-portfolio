@@ -43,7 +43,8 @@ export function Hero() {
           {site.hero.availability}
         </motion.p>
 
-        <h1 className="pointer-events-auto w-fit max-w-4xl text-[clamp(2.75rem,10vw,7rem)] font-medium leading-[0.92] tracking-[-0.035em]">
+        <h1 className="pointer-events-auto w-fit max-w-4xl text-[clamp(2.75rem,10vw,7rem)] font-medium leading-[0.92]"
+          style={{ letterSpacing: "var(--display-tracking)" }}>
           {site.hero.lines.map((line, i) => (
             <motion.span
               key={i}
@@ -74,14 +75,14 @@ export function Hero() {
           <div className="flex flex-wrap items-center gap-3">
             <a
               href="#work"
-              className="rounded-full px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
+              className="r-pill px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
               style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}
             >
               See the work
             </a>
             <a
               href="#contact"
-              className="rounded-full border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-paper-2"
+              className="r-pill border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-paper-2"
             >
               Work with me
             </a>

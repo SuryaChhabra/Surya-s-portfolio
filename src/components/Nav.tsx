@@ -86,7 +86,7 @@ export function Nav() {
               <li key={s.id}>
                 <a
                   href={`#${s.id}`}
-                  className={`rounded-full px-3 py-1.5 text-sm transition-colors ${
+                  className={`r-pill px-3 py-1.5 text-sm transition-colors ${
                     active === s.id
                       ? "text-ink"
                       : "text-ink-faint hover:text-ink"
@@ -105,7 +105,7 @@ export function Nav() {
 
           <a
             href="#contact"
-            className="rounded-full px-4 py-1.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
+            className="r-pill px-4 py-1.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
             style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}
           >
             Get in touch

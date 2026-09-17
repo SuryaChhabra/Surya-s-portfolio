@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "./directions.css";
 
 /* ===========================================================================
    Design tokens — warm "clay" palette. Light is the primary mode; dark is a
@@ -17,6 +18,15 @@
   --sage: #6f8763;
   --butter: #e0b354;
   --lilac: #8f7fc0;
+
+  /* Type and shape are indirected through these so a design direction can
+     retarget them without touching a single component. */
+  --type-display: var(--ff-display);
+  --type-body: var(--ff-body);
+  --radius-card: 1.5rem;
+  --radius-pill: 9999px;
+  --surface-border: 1px;
+  --display-tracking: -0.035em;
 
   --grain-opacity: 0.5;
   --shadow: 0 1px 2px rgba(23, 20, 15, 0.06), 0 12px 32px -12px rgba(23, 20, 15, 0.18);
@@ -132,9 +142,9 @@
   --color-butter: var(--butter);
   --color-lilac: var(--lilac);
 
-  --font-sans: var(--font-body), ui-sans-serif, system-ui, sans-serif;
-  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
-  --font-mono: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace;
+  --font-sans: var(--type-body), ui-sans-serif, system-ui, sans-serif;
+  --font-display: var(--type-display), Georgia, "Times New Roman", serif;
+  --font-mono: var(--ff-mono), ui-monospace, "SF Mono", Menlo, monospace;
 }
 
 /* ===========================================================================
@@ -342,3 +352,9 @@ body {
     background-position: 30% 50%;
   }
 }
+
+/* ===========================================================================
+   Shape utilities — radius comes from the active direction, not the markup.
+   =========================================================================== */
+.r-card { border-radius: var(--radius-card); }
+.r-pill { border-radius: var(--radius-pill); }
