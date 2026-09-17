@@ -66,6 +66,42 @@ on every deploy, so `npm run media` enforces budgets:
 Target **3–8 seconds, silent, under 2.5 MB**. The encode script's settings hit
 that for typical screen-recording footage.
 
+## Too big for GitHub?
+
+GitHub rejects files over **100 MB** on push and over **25 MB** in the web
+uploader, and this repo fails the build over 10 MB. A raw phone or screen
+export is routinely 50-500 MB, so it will never go in — and shouldn't, since a
+committed binary is carried in git forever and shipped on every deploy.
+
+Almost always the fix is that **the card wants a 3-8 second loop, not the whole
+video**. At 1280px, 24fps and silent, that is 0.3-1.5 MB. Trim first, then
+encode:
+
+```bash
+# trim 6 seconds starting at 0:12, then encode as usual
+ffmpeg -i big-original.mov -ss 00:00:12 -t 6 -c copy public/work/_raw/trimmed.mov
+./scripts/encode-video.sh public/work/_raw/trimmed.mov community-flywheel
+```
+
+No ffmpeg? [HandBrake](https://handbrake.fr) is a free GUI that does the same
+job — set the preset to *Web > Gmail Medium 5 Minutes 720p30*, and check
+*Audio > None*.
+
+If you genuinely need long-form video on the site, host it elsewhere and point
+at it with `videoUrl` in `src/content/site.ts`:
+
+```ts
+media: {
+  slug: "community-flywheel",          // poster still comes from public/work/
+  alt: "...",
+  videoUrl: "https://pub-xxxx.r2.dev/community.mp4",
+}
+```
+
+That file never enters git or the deploy bundle, and the same lazy-loading
+rules apply to it. Cloudflare R2, Bunny and Mux all work; R2 has a free tier
+with no egress charges.
+
 ## When to stop self-hosting
 
 Past ~10 MB of video total, stop committing clips. Git carries every version of

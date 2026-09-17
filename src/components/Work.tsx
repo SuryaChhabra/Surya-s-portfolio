@@ -1,13 +1,21 @@
 "use client";
 
 import { useState } from "react";
-import { site } from "@/content/site";
+import { site, type ProjectMedia } from "@/content/site";
 import { mediaManifest } from "@/content/media.generated";
 import { LazyVideo } from "./LazyVideo";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
 type Project = (typeof site.work)[number];
+
+/** Maps a hosted clip's extension to a MIME type the browser can act on. */
+function guessVideoType(url: string) {
+  const path = url.split("?")[0].toLowerCase();
+  if (path.endsWith(".webm")) return "video/webm";
+  if (path.endsWith(".ogv")) return "video/ogg";
+  return "video/mp4";
+}
 
 export function Work() {
   return (
@@ -39,7 +47,23 @@ function WorkCard({ project }: { project: Project }) {
 
   /* Resolved from whatever is actually sitting in public/work/. A slug with no
      files yet simply renders no media block rather than a broken image. */
-  const entry = project.media ? mediaManifest[project.media.slug] : undefined;
+  const projectMedia: ProjectMedia | undefined = project.media;
+  const entry = projectMedia ? mediaManifest[projectMedia.slug] : undefined;
+
+  /* A videoUrl points at a clip hosted somewhere else and replaces the local
+     sources entirely — the poster still comes from public/work/, since it is
+     small enough to belong in the repo. This is the answer for anything too
+     big to commit: the file never enters git or your deploy bundle. */
+  const remote = projectMedia?.videoUrl;
+  const media = entry
+    ? {
+        poster: entry.poster,
+        sources: remote
+          ? [{ src: remote, type: guessVideoType(remote) }]
+          : entry.sources,
+        alt: projectMedia!.alt,
+      }
+    : undefined;
 
   return (
     <Wrapper
@@ -58,12 +82,7 @@ function WorkCard({ project }: { project: Project }) {
         style={{ backgroundColor: "var(--accent)" }}
       />
 
-      {entry && project.media ? (
-        <LazyVideo
-          media={{ ...entry, alt: project.media.alt }}
-          active={active}
-        />
-      ) : null}
+      {media ? <LazyVideo media={media} active={active} /> : null}
 
       <div className="relative flex flex-1 flex-col p-7 sm:p-9">
         {/* Accent wash that warms on hover. */}

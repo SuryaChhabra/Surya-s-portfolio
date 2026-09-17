@@ -62,6 +62,11 @@ export const site = {
        slug — matches the filenames there, e.g. "community-flywheel" picks up
               community-flywheel.webp plus any .mp4 / .av1.mp4 beside it.
        alt  — describes the footage for screen readers.
+       videoUrl (optional) — a clip hosted elsewhere, e.g.
+              "https://pub-xxxx.r2.dev/community.mp4". Use this when the file
+              is too big to commit; it replaces the local clips and never
+              enters git or the deploy bundle. The poster still comes from
+              public/work/, because a poster is small enough to belong here.
      Drop the files in, run `npm run media`, done — no code change. A slug
      with only a poster renders a still; add a clip and the same card starts
      playing on hover. See public/work/README.md.                          */
@@ -239,4 +244,15 @@ export const site = {
 } as const;
 
 export type Site = typeof site;
+
+/**
+ * The `as const` above narrows every media block to its exact literal shape,
+ * which hides optional fields nobody has used yet. Consumers read media
+ * through this widened type instead.
+ */
+export type ProjectMedia = {
+  readonly slug: string;
+  readonly alt: string;
+  readonly videoUrl?: string;
+};
 export type Tone = Site["work"][number]["tone"];
