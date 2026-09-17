@@ -104,6 +104,55 @@ the others, remove `<DirectionSwitcher />` from `src/app/page.tsx`, and fold the
 winning block from `directions.css` into `globals.css`. Shipping the switcher on
 a live portfolio invites visitors to redesign it for you.
 
+## The video section
+
+`src/content/site.ts` has a `videos` array driving a dedicated section. These
+are meant to be **watched**, not glanced at, so they get a real player — sound,
+scrubbing, fullscreen, keyboard support — using the browser's native controls
+rather than a custom skin.
+
+```ts
+videos: [
+  {
+    title: "Aurora — brand film",
+    note: "60s brand film. Generated sequences, hand-graded.",
+    tags: ["Runway", "Midjourney", "Resolve"],
+    poster: "/work/video-aurora.webp",              // small, lives in the repo
+    src: "https://pub-xxxx.r2.dev/aurora.mp4",      // hosted, never committed
+  },
+]
+```
+
+**Nothing loads until someone presses play.** Before the click there is no
+`<video>` element in the page at all — just the poster. Verified in a browser:
+0 requests to the host before the click, 1 after.
+
+Leave `src` empty and the tile shows its poster with no play control, so the
+layout is real before the files are hosted.
+
+### Hosting the files
+
+Do not commit these. GitHub rejects anything over 100 MB, and a committed
+binary is carried in git forever and shipped on every deploy. Put them on
+object storage and paste the URL into `src`:
+
+- **Cloudflare R2** — free tier, and crucially **no egress charges**, which is
+  what usually bites on video. Make the bucket public, upload, copy the URL.
+- **Bunny.net** — cheap, fast, simple CDN.
+- **Mux / Cloudflare Stream** — worth it only if you want adaptive bitrate,
+  i.e. a phone on 4G getting a different rendition from a desktop on fibre.
+
+Export at **1080p, H.264, AAC audio**, `-movflags +faststart` so playback can
+begin before the whole file arrives:
+
+```bash
+ffmpeg -i master.mov -c:v libx264 -crf 21 -preset slow -pix_fmt yuv420p \
+  -c:a aac -b:a 128k -movflags +faststart aurora.mp4
+
+# poster: grab a representative frame
+ffmpeg -i master.mov -ss 00:00:03 -frames:v 1 -q:v 82 public/work/video-aurora.webp
+```
+
 ## Project media
 
 Adding a video is a **file drop, not a code edit**. Put the files in

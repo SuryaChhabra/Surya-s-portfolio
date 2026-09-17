@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1920 1080" width="1920" height="1080">
+  <defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#ff4d3d"/><stop offset="100%" stop-color="#ff8a2b"/>
+  </linearGradient></defs>
+  <rect width="1920" height="1080" fill="url(#g)"/>
+  <rect width="1920" height="1080" fill="#000" opacity="0.10"/>
+  <text x="960" y="545" text-anchor="middle" fill="#fff" fill-opacity="0.94"
+        font-family="Inter, system-ui, sans-serif" font-size="66" font-weight="600">Kinetic type spot</text>
+  <text x="960" y="625" text-anchor="middle" fill="#fff" fill-opacity="0.66"
+        font-family="ui-monospace, monospace" font-size="30" letter-spacing="4">PLACEHOLDER POSTER</text>
+</svg>

@@ -133,6 +133,42 @@ export const site = {
     },
   ],
 
+  /* — Videos ————————————————————————————————————————————————————————
+     The video work. These are meant to be watched, not glanced at, so they
+     get a real player: sound, scrubbing, fullscreen, and nothing loaded at
+     all until someone presses play.
+
+       poster — a still from the video, in public/work/. Small, so it lives
+                in the repo. Shown before playback and while loading.
+       src    — the hosted file, e.g. "https://pub-xxxx.r2.dev/aurora.mp4".
+                Do NOT commit the video itself: GitHub rejects anything over
+                100 MB and a committed binary ships on every deploy. Leave it
+                empty and the tile shows the poster with no play button.
+       aspect — defaults to 16 / 9; set "9 / 16" for a vertical piece.       */
+  videos: [
+    {
+      title: "Aurora — brand film",
+      note: "60s brand film. Generated sequences, hand-graded and cut to a licensed track.",
+      tags: ["Runway", "Midjourney", "Resolve"],
+      poster: "/work/video-aurora.svg",
+      src: "",
+    },
+    {
+      title: "Kinetic type spot",
+      note: "Typographic promo built from generated plates, timed to the beat.",
+      tags: ["After Effects", "Kling"],
+      poster: "/work/video-kinetic.svg",
+      src: "",
+    },
+    {
+      title: "Product launch teaser",
+      note: "Fifteen-second teaser cut for paid social, shipped in three aspect ratios.",
+      tags: ["Sora", "Premiere"],
+      poster: "/work/video-product.svg",
+      src: "",
+    },
+  ],
+
   /* — Events ————————————————————————————————————————————————————— */
   events: [
     {
