@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { site } from "@/content/site";
+import { mediaManifest } from "@/content/media.generated";
 import { LazyVideo } from "./LazyVideo";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
@@ -36,6 +37,10 @@ function WorkCard({ project }: { project: Project }) {
   const [active, setActive] = useState(false);
   const Wrapper = project.link ? "a" : "div";
 
+  /* Resolved from whatever is actually sitting in public/work/. A slug with no
+     files yet simply renders no media block rather than a broken image. */
+  const entry = project.media ? mediaManifest[project.media.slug] : undefined;
+
   return (
     <Wrapper
       {...(project.link
@@ -53,8 +58,11 @@ function WorkCard({ project }: { project: Project }) {
         style={{ backgroundColor: "var(--accent)" }}
       />
 
-      {project.media ? (
-        <LazyVideo media={project.media} active={active} />
+      {entry && project.media ? (
+        <LazyVideo
+          media={{ ...entry, alt: project.media.alt }}
+          active={active}
+        />
       ) : null}
 
       <div className="relative flex flex-1 flex-col p-7 sm:p-9">

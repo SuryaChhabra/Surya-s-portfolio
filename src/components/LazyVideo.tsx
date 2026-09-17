@@ -3,13 +3,9 @@
 import { useEffect, useRef, useState } from "react";
 import { useReducedMotion } from "motion/react";
 
-export type Media = {
-  /** Always shown first. Cheap, static, and what the card looks like at rest. */
-  readonly poster: string;
-  /** Ordered best-first; the browser picks the first type it supports. */
-  readonly sources?: readonly { readonly src: string; readonly type: string }[];
-  readonly alt: string;
-};
+import type { MediaEntry } from "@/content/media.generated";
+
+export type Media = MediaEntry & { readonly alt: string };
 
 /* Only one clip plays at a time. Four cards autoplaying in a grid means four
    video decoders running, which is where scrolling starts to stutter on a

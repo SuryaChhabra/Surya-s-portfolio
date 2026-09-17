@@ -12,3 +12,9 @@ yarn-error.log*
 next-env.d.ts
 .vercel
 *.tsbuildinfo
+
+# Video masters — drop originals in public/work/_raw/ to encode from.
+# They must never be committed: they are huge and the web clips are derived.
+# The folder itself is kept so it exists on a fresh clone.
+public/work/_raw/*
+!public/work/_raw/.gitkeep

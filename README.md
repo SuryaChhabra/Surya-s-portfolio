@@ -106,85 +106,64 @@ a live portfolio invites visitors to redesign it for you.
 
 ## Project media
 
-Cards take an optional `media` block in `src/content/site.ts`: a **poster**
-(required) and optional **sources** for a silent looping clip. Files live in
-`public/work/`. The posters shipped here are obvious placeholders — replace
-them.
-
-```ts
-media: {
-  poster: "/work/community-flywheel.webp",
-  sources: [
-    { src: "/work/community-flywheel.av1.mp4", type: 'video/mp4; codecs="av01.0.05M.08"' },
-    { src: "/work/community-flywheel.mp4", type: "video/mp4" },
-  ],
-  alt: "Discord server growing from empty to eight thousand members.",
-},
-```
-
-Omit `sources` and the card shows a still. That is a perfectly good answer for
-most projects — only use video where motion actually shows something.
-
-### How the loading works
-
-Video is the heaviest thing on a portfolio and the easiest to get wrong. The
-rule here is **nothing streams until someone shows interest**, in tiers:
-
-| Stage | What loads |
-| --- | --- |
-| Page load | Nothing. Not one video byte. |
-| Card approaches viewport (200px out) | `preload="metadata"` — one small range request, so the first hover starts instantly |
-| Hover / keyboard focus | The clip plays |
-| Card leaves the viewport | Paused and rewound |
-
-On **Save-Data, a 2g connection, or `prefers-reduced-motion`**, the metadata
-step is skipped too — those visitors fetch *zero* video bytes and get an
-explicit play button instead, so the footage is still reachable.
-
-Only one clip ever plays at a time. Four cards autoplaying in a grid means four
-decoders running, which is where scrolling starts to stutter on a laptop and a
-phone starts getting warm.
-
-Verified in a browser: 0 video requests on load; 1 metadata request once a card
-nears the viewport; 0 requests in either reduced-motion or Save-Data mode.
-
-### Encoding
-
-Keep clips **3–8 seconds, silent, and under ~2 MB**. Strip the audio track
-entirely — it is dead weight in a muted loop. 1280px wide is plenty for a card.
+Adding a video is a **file drop, not a code edit**. Put the files in
+`public/work/`, run `npm run media`, and the card picks them up.
 
 ```bash
-# H.264 — the universal fallback
-ffmpeg -i source.mov -an -vf "scale=1280:-2,fps=24" \
-  -c:v libx264 -crf 26 -preset slow -profile:v high -pix_fmt yuv420p \
-  -movflags +faststart work.mp4
-
-# AV1 — roughly 30–50% smaller, listed first so modern browsers prefer it
-ffmpeg -i source.mov -an -vf "scale=1280:-2,fps=24" \
-  -c:v libsvtav1 -crf 34 -preset 6 -pix_fmt yuv420p \
-  -movflags +faststart work.av1.mp4
-
-# Poster — pull a representative frame, not frame 0
-ffmpeg -i source.mov -ss 00:00:01.5 -frames:v 1 -vf "scale=1280:-2" -q:v 80 work.webp
+./scripts/encode-video.sh public/work/_raw/my-clip.mov community-flywheel
+npm run media
 ```
 
-`-movflags +faststart` matters: it moves the index to the front of the file so
-playback can begin before the whole clip arrives. Without it the metadata
-preload fetches from the *end* of the file and hover-to-play stalls.
+Files are matched to projects by **slug** — the `media.slug` in
+`src/content/site.ts`. Everything sharing a slug belongs to one card:
 
-### When to stop self-hosting
+```
+community-flywheel.webp       poster   (required)
+community-flywheel.av1.mp4    AV1      (optional, offered first)
+community-flywheel.mp4        H.264    (optional, fallback)
+```
 
-Files in `public/` are committed to git and served from your host's CDN. That is
-fine up to roughly **10 MB of video total**. Past that:
+A slug with only a poster renders a still, and no video machinery loads at all.
+Only use motion where motion shows something a frame can't.
 
-- Git gets slow and heavy — the repo carries every version of every binary ever
-  committed. Use Git LFS, or keep the masters out of the repo.
-- On Vercel's free tier, bandwidth is metered and video eats it fastest.
+`npm run media` regenerates `src/content/media.generated.ts` and runs
+automatically before `dev` and `build`, so the manifest can never drift from
+what is actually on disk.
 
-Beyond that point move to a video host (Cloudflare Stream, Mux, Bunny) and put
-its playback URL in `sources`. Their HLS/DASH output also gives you adaptive
-bitrate, which a plain `.mp4` cannot do — the same file is served to a phone on
-4G and a desktop on fibre.
+### Keeping it light
+
+Two separate problems. **What the browser downloads** — nothing streams until
+someone shows interest:
+
+| Stage | Loads |
+| --- | --- |
+| Page load | nothing, not one video byte |
+| Card nears the viewport | `preload="metadata"`, one small range request |
+| Hover / keyboard focus | the clip plays |
+| Card leaves the viewport | paused and rewound |
+
+On Save-Data, 2g or `prefers-reduced-motion`, even the metadata step is skipped
+— those visitors fetch **zero** video bytes and get a play button instead, so
+the footage stays reachable. Only one clip plays at a time; four decoders in a
+card grid is where scrolling starts to stutter and phones get warm. Verified in
+a browser: 0 requests on load, 0 in either reduced-motion or Save-Data mode.
+
+**What the repo carries** — anything committed is in git forever and shipped on
+every deploy, so the manifest enforces budgets rather than trusting discipline:
+
+| Limit | Behaviour |
+| --- | --- |
+| clip > 2.5 MB | warning |
+| clip > 10 MB | **build fails** |
+| all clips > 10 MB | warning to move to a streaming host |
+| video without a poster | **build fails** |
+
+Masters go in `public/work/_raw/`, which is gitignored — encode from there and
+never commit the originals.
+
+Target 3–8 seconds, silent, under 2.5 MB. Full encode settings and the
+streaming-host threshold are in
+[`public/work/README.md`](public/work/README.md).
 
 ### The rainbow system
 
