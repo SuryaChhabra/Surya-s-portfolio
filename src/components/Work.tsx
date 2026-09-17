@@ -1,18 +1,13 @@
 import { site } from "@/content/site";
-import type { Tone } from "@/content/site";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
-const toneVar: Record<Tone, string> = {
-  clay: "var(--clay)",
-  sage: "var(--sage)",
-  butter: "var(--butter)",
-  lilac: "var(--lilac)",
-};
-
 export function Work() {
   return (
-    <section id="work" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section
+      id="work"
+      className="hue-orange mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28"
+    >
       <SectionHeading
         index="01 / Work"
         title="Campaigns, loops and the numbers behind them."
@@ -21,7 +16,6 @@ export function Work() {
 
       <div className="grid gap-5 lg:grid-cols-2">
         {site.work.map((project, i) => {
-          const accent = toneVar[project.tone];
           const Wrapper = project.link ? "a" : "div";
 
           return (
@@ -34,17 +28,24 @@ export function Work() {
                       rel: "noopener noreferrer",
                     }
                   : {})}
-                className="group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-transform duration-500 hover:-translate-y-1 sm:p-9 clay-surface"
+                /* The hue class rebinds --accent for everything in this card. */
+                className={`hue-${project.tone} group relative flex h-full flex-col overflow-hidden rounded-3xl p-7 transition-transform duration-500 hover:-translate-y-1 sm:p-9 clay-surface`}
               >
                 {/* Accent wash that warms on hover. */}
                 <span
                   aria-hidden="true"
                   className="pointer-events-none absolute -right-16 -top-16 h-52 w-52 rounded-full opacity-45 blur-3xl transition-opacity duration-500 group-hover:opacity-80"
-                  style={{ backgroundColor: accent }}
+                  style={{ backgroundColor: "var(--accent)" }}
+                />
+
+                <span
+                  aria-hidden="true"
+                  className="absolute inset-x-0 top-0 h-1"
+                  style={{ backgroundColor: "var(--accent)" }}
                 />
 
                 <div className="relative flex items-center justify-between gap-4">
-                  <span className="label" style={{ color: accent }}>
+                  <span className="label" style={{ color: "var(--accent-ink)" }}>
                     {project.kicker}
                   </span>
                   {project.link ? (
@@ -70,7 +71,7 @@ export function Work() {
                     <div key={metric.label}>
                       <div
                         className="text-xl font-medium tracking-[-0.03em] sm:text-2xl"
-                        style={{ color: accent }}
+                        style={{ color: "var(--accent-ink)" }}
                       >
                         {metric.value}
                       </div>

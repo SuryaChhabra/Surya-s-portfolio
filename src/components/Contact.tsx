@@ -5,22 +5,24 @@ export function Contact() {
   return (
     <section
       id="contact"
-      className="relative overflow-hidden px-4 py-24 sm:px-6 sm:py-36"
+      className="hue-pink relative overflow-hidden px-4 py-24 sm:px-6 sm:py-36"
     >
       <div
         aria-hidden="true"
         className="animate-blob pointer-events-none absolute left-1/2 top-1/2 h-[34rem] w-[34rem] -translate-x-1/2 -translate-y-1/2 rounded-full blur-[100px]"
         style={{
           background:
-            "radial-gradient(circle, color-mix(in srgb, var(--clay) 34%, transparent), transparent 66%)",
+            "conic-gradient(from 0deg, color-mix(in srgb, var(--sp-red) 30%, transparent), color-mix(in srgb, var(--sp-amber) 30%, transparent), color-mix(in srgb, var(--sp-green) 30%, transparent), color-mix(in srgb, var(--sp-cyan) 30%, transparent), color-mix(in srgb, var(--sp-violet) 30%, transparent), color-mix(in srgb, var(--sp-pink) 30%, transparent), color-mix(in srgb, var(--sp-red) 30%, transparent))",
         }}
       />
 
       <Reveal className="relative z-10 mx-auto max-w-3xl text-center">
-        <p className="label">05 / Contact</p>
+        <p className="label" style={{ color: "var(--accent-ink)" }}>
+          05 / Contact
+        </p>
 
         <h2 className="mt-6 text-[clamp(2.25rem,7vw,4.5rem)] font-medium leading-[1] tracking-[-0.04em]">
-          Let&apos;s make something <span className="serif-em" style={{ color: "var(--clay)" }}>grow</span>.
+          Let&apos;s make something <span className="serif-em rainbow-text">grow</span>.
         </h2>
 
         <p className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-ink-soft sm:text-lg">

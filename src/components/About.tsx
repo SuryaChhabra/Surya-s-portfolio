@@ -5,11 +5,23 @@ import { SectionHeading } from "./SectionHeading";
 /* Stickers get a small deterministic tilt so the row feels hand-placed. */
 const tilts = [-2.5, 1.8, -1.2, 2.4, -1.9, 1.1, -2.2, 1.5, -1.4, 2.1];
 
+/* Stickers walk the whole spectrum, so the toolkit reads as a colour swatch. */
+const STICKER_HUES = [
+  "var(--sp-red)",
+  "var(--sp-orange)",
+  "var(--sp-amber)",
+  "var(--sp-green)",
+  "var(--sp-cyan)",
+  "var(--sp-blue)",
+  "var(--sp-violet)",
+  "var(--sp-pink)",
+];
+
 export function About() {
   return (
     <section
       id="about"
-      className="border-y"
+      className="hue-violet border-y"
       style={{ backgroundColor: "var(--paper-2)" }}
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
@@ -33,9 +45,10 @@ export function About() {
                 {site.about.toolkit.map((tool, i) => (
                   <span
                     key={tool}
-                    className="rounded-full border border-line px-3 py-1.5 text-sm transition-transform duration-300 hover:rotate-0 hover:-translate-y-0.5"
+                    className="rounded-full border px-3 py-1.5 text-sm transition-transform duration-300 hover:rotate-0 hover:-translate-y-0.5"
                     style={{
                       backgroundColor: "var(--paper)",
+                      borderColor: STICKER_HUES[i % STICKER_HUES.length],
                       transform: `rotate(${tilts[i % tilts.length]}deg)`,
                     }}
                   >

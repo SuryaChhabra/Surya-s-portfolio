@@ -6,7 +6,7 @@ export function Events() {
   return (
     <section
       id="events"
-      className="border-y"
+      className="hue-green border-y"
       style={{ backgroundColor: "var(--paper-2)" }}
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
@@ -29,7 +29,7 @@ export function Events() {
                   <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
                     {event.name}
                   </h3>
-                  <div className="mt-1.5 text-sm" style={{ color: "var(--clay)" }}>
+                  <div className="mt-1.5 text-sm" style={{ color: "var(--accent-ink)" }}>
                     {event.role}
                   </div>
                 </div>

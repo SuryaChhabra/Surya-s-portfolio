@@ -22,6 +22,43 @@
   --shadow: 0 1px 2px rgba(23, 20, 15, 0.06), 0 12px 32px -12px rgba(23, 20, 15, 0.18);
 }
 
+
+/* ===========================================================================
+   Spectrum — the rainbow system.
+
+   Two values per hue. `--sp-*` is the vivid version, used for fills, rules,
+   dots and large display numbers. `--sp-*-ink` is a darkened version that
+   stays readable as small text on the paper background; never set body-sized
+   text in the vivid one.
+
+   A section (or card) picks a hue by adding a `.hue-*` class, which rebinds
+   `--accent` / `--accent-ink` for everything inside it. That is the whole
+   mechanism — no JavaScript, and it inverts for dark mode for free.
+   =========================================================================== */
+:root {
+  --sp-red: #ff4d3d;
+  --sp-orange: #ff8a2b;
+  --sp-amber: #f5b301;
+  --sp-green: #34c77b;
+  --sp-cyan: #22d3ee;
+  --sp-blue: #3b82f6;
+  --sp-violet: #7c5cff;
+  --sp-pink: #ff4d8d;
+
+  --sp-red-ink: #bc301e;
+  --sp-orange-ink: #985300;
+  --sp-amber-ink: #7d5a00;
+  --sp-green-ink: #197346;
+  --sp-cyan-ink: #0d6e89;
+  --sp-blue-ink: #1d4ed8;
+  --sp-violet-ink: #5b3fd6;
+  --sp-pink-ink: #c21e58;
+
+  /* Default accent, overridden per section by the .hue-* classes. */
+  --accent: var(--sp-red);
+  --accent-ink: var(--sp-red-ink);
+}
+
 :root[data-theme="dark"] {
   --paper: #14120f;
   --paper-2: #1b1813;
@@ -38,6 +75,17 @@
 
   --grain-opacity: 0.28;
   --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+
+  --sp-amber: #ffc53d;
+
+  --sp-red-ink: #ff8a7a;
+  --sp-orange-ink: #ffa85c;
+  --sp-amber-ink: #ffd470;
+  --sp-green-ink: #5fe0a0;
+  --sp-cyan-ink: #67e8f9;
+  --sp-blue-ink: #93b4ff;
+  --sp-violet-ink: #b7a6ff;
+  --sp-pink-ink: #ff8fb5;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -57,6 +105,17 @@
 
     --grain-opacity: 0.28;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px -12px rgba(0, 0, 0, 0.6);
+
+    --sp-amber: #ffc53d;
+
+    --sp-red-ink: #ff8a7a;
+    --sp-orange-ink: #ffa85c;
+    --sp-amber-ink: #ffd470;
+    --sp-green-ink: #5fe0a0;
+    --sp-cyan-ink: #67e8f9;
+    --sp-blue-ink: #93b4ff;
+    --sp-violet-ink: #b7a6ff;
+    --sp-pink-ink: #ff8fb5;
   }
 }
 
@@ -207,5 +266,79 @@ body {
   *::before,
   *::after {
     transition-duration: 0.01ms !important;
+  }
+}
+
+/* ===========================================================================
+   Spectrum utilities
+   =========================================================================== */
+
+/* Each class rebinds the accent pair for its whole subtree. */
+.hue-red { --accent: var(--sp-red); --accent-ink: var(--sp-red-ink); }
+.hue-orange { --accent: var(--sp-orange); --accent-ink: var(--sp-orange-ink); }
+.hue-amber { --accent: var(--sp-amber); --accent-ink: var(--sp-amber-ink); }
+.hue-green { --accent: var(--sp-green); --accent-ink: var(--sp-green-ink); }
+.hue-cyan { --accent: var(--sp-cyan); --accent-ink: var(--sp-cyan-ink); }
+.hue-blue { --accent: var(--sp-blue); --accent-ink: var(--sp-blue-ink); }
+.hue-violet { --accent: var(--sp-violet); --accent-ink: var(--sp-violet-ink); }
+.hue-pink { --accent: var(--sp-pink); --accent-ink: var(--sp-pink-ink); }
+
+/* The full arc, used for rules, bars and gradient text. */
+.rainbow-bg {
+  background-image: linear-gradient(
+    90deg,
+    var(--sp-red),
+    var(--sp-orange),
+    var(--sp-amber),
+    var(--sp-green),
+    var(--sp-cyan),
+    var(--sp-blue),
+    var(--sp-violet),
+    var(--sp-pink)
+  );
+}
+
+/* Gradient text. The oversized background plus a slow slide keeps the hue
+   moving through the letterforms instead of sitting static. */
+.rainbow-text {
+  /* Built from the -ink scale, not the vivid one. On the cream background the
+     vivid yellows, greens and cyans drop under 2:1 and the word stops being
+     readable; the ink scale clears large-text contrast at every stop and
+     flips to the bright variants in dark mode automatically. */
+  background-image: linear-gradient(
+    100deg,
+    var(--sp-red-ink),
+    var(--sp-orange-ink),
+    var(--sp-amber-ink),
+    var(--sp-green-ink),
+    var(--sp-cyan-ink),
+    var(--sp-blue-ink),
+    var(--sp-violet-ink),
+    var(--sp-pink-ink),
+    var(--sp-red-ink)
+  );
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow-slide 14s linear infinite;
+}
+
+@keyframes rainbow-slide {
+  from { background-position: 0% 50%; }
+  to { background-position: 250% 50%; }
+}
+
+/* Thin spectrum rule used to separate sections. */
+.rainbow-rule {
+  height: 2px;
+  border: 0;
+  opacity: 0.85;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .rainbow-text {
+    animation: none;
+    background-position: 30% 50%;
   }
 }

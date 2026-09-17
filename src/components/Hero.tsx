@@ -11,7 +11,7 @@ function Line({ text }: { text: string }) {
     <>
       {parts.map((part, i) =>
         part.startsWith("*") && part.endsWith("*") ? (
-          <span key={i} className="serif-em" style={{ color: "var(--clay)" }}>
+          <span key={i} className="serif-em rainbow-text">
             {part.slice(1, -1)}
           </span>
         ) : (
@@ -38,7 +38,7 @@ export function Hero() {
         >
           <span
             className="inline-block h-1.5 w-1.5 rounded-full"
-            style={{ backgroundColor: "var(--sage)" }}
+            style={{ backgroundColor: "var(--sp-green)" }}
           />
           {site.hero.availability}
         </motion.p>

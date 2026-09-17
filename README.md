@@ -78,6 +78,36 @@ Some deliberate choices worth keeping:
   fetched from a CDN at runtime.
 - If WebGL is missing, the hero falls back to the gradient with no error.
 
+### The rainbow system
+
+The page walks the spectrum as you scroll: stats red/amber/green/blue, work
+orange, events green, path blue, about violet, contact pink — with the hero and
+the scroll bar carrying the full arc.
+
+It is driven entirely by CSS custom properties, no JavaScript. Every hue has
+**two** values in [`src/app/globals.css`](src/app/globals.css):
+
+| token | use |
+| --- | --- |
+| `--sp-<hue>` | vivid — fills, rules, dots, 3D shapes, large display numbers |
+| `--sp-<hue>-ink` | darkened — anything set at body text size |
+
+A section or card picks a hue by adding a class — `hue-red`, `hue-orange`,
+`hue-amber`, `hue-green`, `hue-cyan`, `hue-blue`, `hue-violet`, `hue-pink` —
+which rebinds `--accent` and `--accent-ink` for its whole subtree. To recolour a
+section, change one class name.
+
+**Use `--accent-ink` for text and `--accent` for everything else.** This is not
+a style preference: on the cream background six of the eight vivid hues fall
+below even the 3:1 large-text contrast floor (amber lands at 1.6:1). The ink
+scale clears 4.5:1 at every stop, and both scales invert for dark mode, so the
+rule holds in both themes. `.rainbow-text` is built from the ink scale for the
+same reason.
+
+Helpers: `.rainbow-bg` (the full arc as a background, used by the scroll bar,
+monogram and footer rule) and `.rainbow-text` (animated gradient type, which
+holds still under `prefers-reduced-motion`).
+
 ### Colours & type
 
 Design tokens are CSS custom properties at the top of

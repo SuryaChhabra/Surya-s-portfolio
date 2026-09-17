@@ -11,10 +11,12 @@ export function SectionHeading({ index, title, lead }: Props) {
   return (
     <Reveal className="mb-12 sm:mb-16">
       <div className="flex items-baseline gap-4">
-        <span className="label">{index}</span>
+        <span className="label" style={{ color: "var(--accent-ink)" }}>
+          {index}
+        </span>
         <span
-          className="h-px flex-1"
-          style={{ backgroundColor: "var(--line)" }}
+          className="h-[2px] flex-1 rounded-full opacity-70"
+          style={{ backgroundColor: "var(--accent)" }}
         />
       </div>
       <h2 className="mt-5 text-[clamp(2rem,5.5vw,3.5rem)] font-medium leading-[1.02] tracking-[-0.035em]">

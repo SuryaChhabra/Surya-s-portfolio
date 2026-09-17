@@ -2,30 +2,45 @@ import { site } from "@/content/site";
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 
+const ENTRY_HUES = ["hue-blue", "hue-violet", "hue-pink"];
+
 export function Timeline() {
   return (
-    <section id="path" className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
+    <section
+      id="path"
+      className="hue-blue mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28"
+    >
       <SectionHeading index="03 / Path" title="How I got here." />
 
       <div className="relative">
-        {/* The spine the markers hang from. */}
+        {/* The spine the markers hang from — a vertical slice of the spectrum. */}
         <span
           aria-hidden="true"
-          className="absolute left-[7px] top-2 bottom-2 w-px sm:left-[calc(11rem+7px)]"
-          style={{ backgroundColor: "var(--line)" }}
+          className="absolute left-[7px] top-2 bottom-2 w-[2px] rounded-full opacity-80 sm:left-[calc(11rem+7px)]"
+          style={{
+            backgroundImage:
+              "linear-gradient(to bottom, var(--sp-blue), var(--sp-violet), var(--sp-pink))",
+          }}
         />
 
         <ol className="space-y-10">
           {site.timeline.map((item, i) => (
             <Reveal key={`${item.org}-${item.period}`} delay={i * 0.08}>
-              <li className="relative flex flex-col gap-2 pl-8 sm:flex-row sm:gap-0 sm:pl-0">
-                <div className="label shrink-0 sm:w-44">{item.period}</div>
+              <li
+                className={`${ENTRY_HUES[i % ENTRY_HUES.length]} relative flex flex-col gap-2 pl-8 sm:flex-row sm:gap-0 sm:pl-0`}
+              >
+                <div
+                  className="label shrink-0 sm:w-44"
+                  style={{ color: "var(--accent-ink)" }}
+                >
+                  {item.period}
+                </div>
 
                 <span
                   aria-hidden="true"
                   className="absolute left-0 top-1.5 h-[15px] w-[15px] rounded-full border-4 sm:left-44"
                   style={{
-                    backgroundColor: "var(--clay)",
+                    backgroundColor: "var(--accent)",
                     borderColor: "var(--paper)",
                   }}
                 />

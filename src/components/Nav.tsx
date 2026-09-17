@@ -74,10 +74,7 @@ export function Nav() {
           href="#top"
           className="flex items-center gap-2.5 text-sm font-medium tracking-tight"
         >
-          <span
-            className="grid h-8 w-8 place-items-center rounded-full text-[11px] font-semibold tracking-wider text-paper"
-            style={{ backgroundColor: "var(--clay)" }}
-          >
+          <span className="rainbow-bg grid h-8 w-8 place-items-center rounded-full text-[11px] font-semibold tracking-wider text-white">
             {site.initials}
           </span>
           <span className="hidden sm:inline">{site.name}</span>

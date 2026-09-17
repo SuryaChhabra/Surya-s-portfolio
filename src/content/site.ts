@@ -54,12 +54,14 @@ export const site = {
   ],
 
   /* — Projects & campaigns ———————————————————————————————————————
-     tone: "clay" | "sage" | "butter" | "lilac"  (card colour)            */
+     tone picks the card's hue from the spectrum. One of:
+     "red" | "orange" | "amber" | "green" | "cyan" | "blue" | "violet" | "pink"
+     Reading down the page they run in spectrum order — worth keeping.     */
   work: [
     {
       title: "Zero-to-8k community flywheel",
       kicker: "Community · 2025",
-      tone: "clay" as const,
+      tone: "red" as const,
       summary:
         "Built a Discord-first community from an empty server into the top acquisition channel, with rituals, moderation ladders and a weekly content engine that ran itself.",
       metrics: [
@@ -73,7 +75,7 @@ export const site = {
     {
       title: "Programmatic SEO for long-tail intent",
       kicker: "Acquisition · 2025",
-      tone: "sage" as const,
+      tone: "amber" as const,
       summary:
         "Shipped 1,400 templated pages off a cleaned keyword set, with internal linking and schema. Went from a standing start to six figures of monthly organic sessions.",
       metrics: [
@@ -87,7 +89,7 @@ export const site = {
     {
       title: "Lifecycle rebuild that halved churn",
       kicker: "Lifecycle · 2024",
-      tone: "lilac" as const,
+      tone: "cyan" as const,
       summary:
         "Rewrote onboarding email and in-app messaging around a single activation metric. Cut day-30 churn nearly in half by moving the aha moment three steps earlier.",
       metrics: [
@@ -101,7 +103,7 @@ export const site = {
     {
       title: "Creator partnerships at 3.1x ROAS",
       kicker: "Paid & partnerships · 2024",
-      tone: "butter" as const,
+      tone: "violet" as const,
       summary:
         "Sourced and ran 34 micro-creator partnerships with a briefing system that kept creative fresh. Beat paid social CAC by a wide margin and kept it there for two quarters.",
       metrics: [

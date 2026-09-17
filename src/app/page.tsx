@@ -1,4 +1,5 @@
 import { Nav } from "@/components/Nav";
+import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Stats } from "@/components/Stats";
@@ -12,6 +13,7 @@ import { Footer } from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <ScrollProgress />
       <Nav />
       <main className="relative z-10">
         <Hero />
