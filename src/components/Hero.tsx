@@ -2,6 +2,7 @@
 
 import { motion, useReducedMotion } from "motion/react";
 import { site } from "@/content/site";
+import { HeroScene } from "./HeroScene";
 
 /** Renders *starred* words in the display serif italic. */
 function Line({ text }: { text: string }) {
@@ -26,11 +27,11 @@ export function Hero() {
 
   return (
     <section id="top" className="relative overflow-hidden px-4 sm:px-6">
-      <Blobs />
+      <HeroScene />
 
-      <div className="relative z-10 mx-auto flex min-h-[86svh] max-w-6xl flex-col justify-center py-20">
+      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[86svh] max-w-6xl flex-col justify-center py-20">
         <motion.p
-          className="label mb-8 flex items-center gap-2"
+          className="label pointer-events-auto mb-8 flex w-fit items-center gap-2"
           initial={reduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6 }}
@@ -42,7 +43,7 @@ export function Hero() {
           {site.hero.availability}
         </motion.p>
 
-        <h1 className="max-w-4xl text-[clamp(2.75rem,10vw,7rem)] font-medium leading-[0.92] tracking-[-0.035em]">
+        <h1 className="pointer-events-auto w-fit max-w-4xl text-[clamp(2.75rem,10vw,7rem)] font-medium leading-[0.92] tracking-[-0.035em]">
           {site.hero.lines.map((line, i) => (
             <motion.span
               key={i}
@@ -61,7 +62,7 @@ export function Hero() {
         </h1>
 
         <motion.div
-          className="mt-10 flex max-w-xl flex-col gap-7"
+          className="pointer-events-auto mt-10 flex max-w-xl flex-col gap-7"
           initial={reduced ? false : { opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
@@ -91,37 +92,6 @@ export function Hero() {
 
       <ScrollCue />
     </section>
-  );
-}
-
-/** Soft drifting colour fields — the "clay" texture behind the type. */
-function Blobs() {
-  return (
-    <div aria-hidden="true" className="pointer-events-none absolute inset-0">
-      <div
-        className="animate-blob absolute -right-[10%] -top-[20%] h-[36rem] w-[36rem] rounded-full blur-[90px]"
-        style={{
-          background:
-            "radial-gradient(circle at 35% 35%, color-mix(in srgb, var(--clay) 42%, transparent), transparent 68%)",
-        }}
-      />
-      <div
-        className="animate-blob absolute -left-[16%] top-[28%] h-[30rem] w-[30rem] rounded-full blur-[90px]"
-        style={{
-          background:
-            "radial-gradient(circle at 60% 40%, color-mix(in srgb, var(--lilac) 38%, transparent), transparent 68%)",
-          animationDelay: "-7s",
-        }}
-      />
-      <div
-        className="animate-blob absolute bottom-[2%] right-[22%] h-[26rem] w-[26rem] rounded-full blur-[90px]"
-        style={{
-          background:
-            "radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--butter) 40%, transparent), transparent 68%)",
-          animationDelay: "-14s",
-        }}
-      />
-    </div>
   );
 }
 
