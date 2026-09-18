@@ -24,9 +24,9 @@ export function Work() {
       className="hue-orange mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28"
     >
       <SectionHeading
-        index="01 / Work"
-        title="Campaigns, loops and the numbers behind them."
-        lead="A few projects where the result was measurable and the method was repeatable."
+        index="01 / Projects"
+        title="Things I've built."
+        lead="Side projects, shipped and live. Click through to any of them."
       />
 
       <div className="grid gap-5 lg:grid-cols-2">
@@ -47,7 +47,9 @@ function WorkCard({ project }: { project: Project }) {
 
   /* Resolved from whatever is actually sitting in public/work/. A slug with no
      files yet simply renders no media block rather than a broken image. */
-  const projectMedia: ProjectMedia | undefined = project.media;
+  const projectMedia: ProjectMedia | undefined = (
+    project as { media?: ProjectMedia }
+  ).media;
   const entry = projectMedia ? mediaManifest[projectMedia.slug] : undefined;
 
   /* A videoUrl points at a clip hosted somewhere else and replaces the local
@@ -107,15 +109,18 @@ function WorkCard({ project }: { project: Project }) {
           {project.title}
         </h3>
 
-        <p className="relative mt-4 text-[0.95rem] leading-relaxed text-ink-soft">
-          {project.summary}
-        </p>
+        {project.summary ? (
+          <p className="relative mt-4 text-[0.95rem] leading-relaxed text-ink-soft">
+            {project.summary}
+          </p>
+        ) : null}
 
+        {project.metrics.length ? (
         <div
           className="relative mt-7 grid grid-cols-3 gap-4 border-t pt-6"
           style={{ borderColor: "var(--line)" }}
         >
-          {project.metrics.map((metric) => (
+          {project.metrics.map((metric: { value: string; label: string }) => (
             <div key={metric.label}>
               <div
                 className="text-xl font-medium tracking-[-0.03em] sm:text-2xl"
@@ -129,9 +134,11 @@ function WorkCard({ project }: { project: Project }) {
             </div>
           ))}
         </div>
+        ) : null}
 
+        {project.tags.length ? (
         <div className="relative mt-6 flex flex-wrap gap-2">
-          {project.tags.map((tag) => (
+          {project.tags.map((tag: string) => (
             <span
               key={tag}
               className="r-pill border border-line px-2.5 py-1 text-xs text-ink-soft"
@@ -140,6 +147,18 @@ function WorkCard({ project }: { project: Project }) {
             </span>
           ))}
         </div>
+        ) : null}
+
+        {/* Without metrics or tags the card would collapse to nothing below
+            the title, so the link acts as the closing line. */}
+        {project.link ? (
+          <span
+            className="relative mt-6 block text-sm"
+            style={{ color: "var(--accent-ink)" }}
+          >
+            {project.link.replace(/^https?:\/\//, "").replace(/\/$/, "")}
+          </span>
+        ) : null}
       </div>
     </Wrapper>
   );

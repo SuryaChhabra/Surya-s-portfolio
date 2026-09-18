@@ -53,83 +53,40 @@ export const site = {
     "Content",
   ],
 
-  /* — Projects & campaigns ———————————————————————————————————————
-     tone picks the card's hue from the spectrum. One of:
+  /* — Side projects ————————————————————————————————————————————————
+     Real, shipped, linked. tone picks the card's hue from the spectrum:
      "red" | "orange" | "amber" | "green" | "cyan" | "blue" | "violet" | "pink"
-     Reading down the page they run in spectrum order — worth keeping.
 
-     media (optional) points the card at a slug in public/work/:
-       slug — matches the filenames there, e.g. "community-flywheel" picks up
-              community-flywheel.webp plus any .mp4 / .av1.mp4 beside it.
-       alt  — describes the footage for screen readers.
-       videoUrl (optional) — a clip hosted elsewhere, e.g.
-              "https://pub-xxxx.r2.dev/community.mp4". Use this when the file
-              is too big to commit; it replaces the local clips and never
-              enters git or the deploy bundle. The poster still comes from
-              public/work/, because a poster is small enough to belong here.
-     Drop the files in, run `npm run media`, done — no code change. A slug
-     with only a poster renders a still; add a clip and the same card starts
-     playing on hover. See public/work/README.md.                          */
+     ⚠️ summary, metrics and tags are intentionally empty. Fill them with
+     what each project actually is — a card with no description still reads
+     as honest; an invented one does not. Empty fields render nothing.     */
   work: [
     {
-      title: "Zero-to-8k community flywheel",
-      media: { slug: "community-flywheel", alt: "Discord server growing from empty to eight thousand members." },
-      kicker: "Community · 2025",
-      tone: "red" as const,
-      summary:
-        "Built a Discord-first community from an empty server into the top acquisition channel, with rituals, moderation ladders and a weekly content engine that ran itself.",
-      metrics: [
-        { value: "8.4k", label: "members" },
-        { value: "31%", label: "weekly active" },
-        { value: "#1", label: "signup source" },
-      ],
-      tags: ["Community", "Retention", "Content"],
-      link: "",
-    },
-    {
-      title: "Programmatic SEO for long-tail intent",
-      media: { slug: "programmatic-seo", alt: "Templated landing pages fanning out across a keyword map." },
-      kicker: "Acquisition · 2025",
-      tone: "amber" as const,
-      summary:
-        "Shipped 1,400 templated pages off a cleaned keyword set, with internal linking and schema. Went from a standing start to six figures of monthly organic sessions.",
-      metrics: [
-        { value: "1.2M", label: "impressions" },
-        { value: "1,400", label: "pages shipped" },
-        { value: "4.9%", label: "CTR" },
-      ],
-      tags: ["SEO", "Automation", "Analytics"],
-      link: "",
-    },
-    {
-      title: "Lifecycle rebuild that halved churn",
-      media: { slug: "lifecycle-rebuild", alt: "Onboarding email and in-app messaging flows side by side." },
-      kicker: "Lifecycle · 2024",
-      tone: "cyan" as const,
-      summary:
-        "Rewrote onboarding email and in-app messaging around a single activation metric. Cut day-30 churn nearly in half by moving the aha moment three steps earlier.",
-      metrics: [
-        { value: "-47%", label: "d30 churn" },
-        { value: "+62%", label: "activation" },
-        { value: "11", label: "flows shipped" },
-      ],
-      tags: ["Lifecycle", "Onboarding", "Experimentation"],
-      link: "",
-    },
-    {
-      title: "Creator partnerships at 3.1x ROAS",
-      media: { slug: "creator-partners", alt: "A grid of creator video ads running in sequence." },
-      kicker: "Paid & partnerships · 2024",
+      title: "Lumiere",
+      kicker: "Side project",
       tone: "violet" as const,
-      summary:
-        "Sourced and ran 34 micro-creator partnerships with a briefing system that kept creative fresh. Beat paid social CAC by a wide margin and kept it there for two quarters.",
-      metrics: [
-        { value: "3.1x", label: "ROAS" },
-        { value: "34", label: "creators" },
-        { value: "-38%", label: "blended CAC" },
-      ],
-      tags: ["Partnerships", "Paid", "Creative"],
-      link: "",
+      summary: "",
+      metrics: [],
+      tags: [],
+      link: "https://lumiere-flax.vercel.app/",
+    },
+    {
+      title: "Offbeat",
+      kicker: "Side project",
+      tone: "orange" as const,
+      summary: "",
+      metrics: [],
+      tags: [],
+      link: "https://off-beat-choosing-the-creator.vercel.app/",
+    },
+    {
+      title: "Karmic Connections",
+      kicker: "Side project",
+      tone: "green" as const,
+      summary: "",
+      metrics: [],
+      tags: [],
+      link: "https://karmicconnections.co.in",
     },
   ],
 
