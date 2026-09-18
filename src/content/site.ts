@@ -118,7 +118,6 @@ export const site = {
       tags: ["Suno", "Runway", "CapCut"],
       poster: "/work/video-offbeat.svg",
       file: "offbeat.mp4",
-      link: "https://lnkd.in/p/g6eXxFDd",
     },
     {
       title: "Permute",
@@ -194,35 +193,25 @@ export const site = {
     ],
   },
 
-  /* — Events ————————————————————————————————————————————————————— */
+  /* — Events ————————————————————————————————————————————————————————
+     Real events only. An entry with no `name` is skipped, and the section
+     removes itself while none are filled — the four events that used to
+     live here never happened.
+
+       role   — what you actually did: organiser, host, speaker, attendee
+       people — scale, e.g. "40 founders"
+       note   — one line on what it was or what came of it
+       link   — the post or page about it
+       images — optional photos, from public/events/                      */
   events: [
     {
-      name: "Buildathon — 48h product sprint",
-      role: "Lead organiser",
-      date: "Mar 2026",
-      people: "220 attendees",
-      note: "Ran sponsorship, venue, judging and the whole comms arc. Sold out in nine days.",
-    },
-    {
-      name: "Growth Roundtable (monthly)",
-      role: "Host",
-      date: "2025 — present",
-      people: "40 per session",
-      note: "Invite-only operator dinners. Became the top-of-funnel for three later hires.",
-    },
-    {
-      name: "Campus Launch Tour",
-      role: "Programme lead",
-      date: "Sep 2025",
-      people: "6 cities",
-      note: "Six campuses in three weeks, with a repeatable playbook local teams could run alone.",
-    },
-    {
-      name: "Demo Night",
-      role: "Co-organiser",
-      date: "Jun 2025",
-      people: "150 attendees",
-      note: "Founder showcase with live judging; clipped to short-form that outperformed paid.",
+      name: "Antler — founders event",
+      role: "",
+      date: "",
+      people: "",
+      note: "",
+      link: "https://lnkd.in/p/g6eXxFDd",
+      images: [] as string[],
     },
   ],
 
