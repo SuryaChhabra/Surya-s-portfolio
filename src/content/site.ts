@@ -8,16 +8,16 @@ export const site = {
   /* — Identity ———————————————————————————————————————————————————— */
   name: "Surya Chhabra",
   initials: "SC",
-  role: "Growth",
+  role: "Growth & creative",
   location: "New Delhi, IN",
   email: "hello@example.com",
   resumeUrl: "/resume.pdf",
 
   /* Shown in the browser tab + link previews */
   meta: {
-    title: "Surya Chhabra — Growth",
+    title: "Surya Chhabra",
     description:
-      "Growth portfolio: campaigns, community, events and the numbers behind them.",
+      "Growth and creative work, AI video, astronomy research and competitive archery.",
     url: "https://example.com",
   },
 
@@ -25,18 +25,23 @@ export const site = {
   hero: {
     /* Each string is a line. Wrap a word in *asterisks* to render it in the
        accent serif italic, e.g. "I build *momentum*" */
-    lines: ["I build", "*momentum*", "for products"],
+    /* Drawn from your own LinkedIn post — edit freely, it is your voice. */
+    lines: ["I jump in,", "*figure it out,*", "and ship v1"],
     blurb:
-      "Growth generalist working across acquisition, community and content. I like the unglamorous middle of the funnel, the spreadsheet that explains why, and the event that makes 200 people care.",
-    availability: "Open to growth roles & freelance sprints",
+      "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
+    availability: "Looking for growth & creative startup work",
   },
 
-  /* — Headline numbers (keep 3–4) ———————————————————————————————— */
+  /* — Headline numbers ——————————————————————————————————————————
+     All four are from LinkedIn's own analytics on the OFF/BEAT
+     application-video post. Labels say "one post" on purpose — these are
+     one piece of work, not a career total, and claiming otherwise is the
+     kind of thing that falls apart in an interview.                      */
   stats: [
-    { value: "1.2M", label: "organic impressions driven" },
-    { value: "40+", label: "events run end-to-end" },
-    { value: "8.4k", label: "community members grown" },
-    { value: "3.1x", label: "best campaign ROAS" },
+    { value: "310K", label: "impressions, one post" },
+    { value: "208K", label: "people reached" },
+    { value: "120K", label: "video views" },
+    { value: "99%", label: "of reach outside my network" },
   ],
 
   /* — Scrolling marquee words ————————————————————————————————————— */
@@ -108,9 +113,9 @@ export const site = {
       file: "Twinmind.mp4",
     },
     {
-      title: "Offbeat",
-      note: "",
-      tags: [],
+      title: "OFF/BEAT — application video",
+      note: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead, to show how my brain actually works. Built with Suno, Runway and CapCut. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
+      tags: ["Suno", "Runway", "CapCut"],
       poster: "/work/video-offbeat.svg",
       file: "offbeat.mp4",
     },
@@ -258,8 +263,12 @@ export const site = {
      (Writing lived here too; those three posts were fabricated and are
      gone. Add real ones to `writing` if you have any.)                 */
   about: {
-    paragraphs: [] as string[],
-    toolkit: [] as string[],
+    paragraphs: [
+      "I'm trying to find my way into growth and creative startup work. The thing I actually value in myself is knowing how to combine tools, taste and storytelling to make something feel alive — not being an expert in any one of them yet.",
+      "That shows up across everything here: AI video made with whatever gets the idea across, side projects shipped rather than planned, molecular-line astronomy, and the discipline that competitive archery beats into you.",
+      "Expert nahi, par ready hoon.",
+    ],
+    toolkit: ["Suno", "Runway", "CapCut", "Next.js", "Python", "CARTA"],
   },
 
   /* — Links ——————————————————————————————————————————————————————— */
