@@ -177,6 +177,10 @@ export const site = {
        result   — e.g. "Gold", "2nd", "Qualified", "Personal best 612"  */
   archery: {
     blurb: "",
+    /* Set image to "" to drop the photo. alt is read by screen readers. */
+    image: "/archery/at-full-draw.png",
+    imageAlt:
+      "At full draw with a recurve bow on an outdoor archery ground, target butts in the background.",
     results: [
       { date: "", event: "", level: "", category: "", result: "" },
       { date: "", event: "", level: "", category: "", result: "" },
