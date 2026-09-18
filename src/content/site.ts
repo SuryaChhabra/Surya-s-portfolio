@@ -205,13 +205,13 @@ export const site = {
        images — optional photos, from public/events/                      */
   events: [
     {
-      name: "Antler — founders event",
+      name: "Antler Founders — Illinois Entrepreneurs",
       role: "",
       date: "",
       people: "",
       note: "",
       link: "https://lnkd.in/p/g6eXxFDd",
-      images: [] as string[],
+      images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
   ],
 
