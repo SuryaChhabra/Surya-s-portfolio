@@ -25,7 +25,7 @@ export function About() {
       style={{ backgroundColor: "var(--paper-2)" }}
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <SectionHeading index="05 / About" title="The short version." />
+        <SectionHeading index="06 / About" title="The short version." />
 
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-7">

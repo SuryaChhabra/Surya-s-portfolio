@@ -130,6 +130,27 @@ export const site = {
     },
   ],
 
+  /* — Research ——————————————————————————————————————————————————————
+     Astronomy work. Images live in public/research/ — they are small enough
+     to belong in the repo, and Next optimises them automatically (resizes,
+     serves AVIF/WebP, lazy-loads below the fold).
+
+     Each image needs a caption and an alt. The caption is what makes a
+     research image readable to someone outside the field — what the object
+     is, which instrument, what the plot shows.
+
+     ⚠️ blurb and captions below are empty. Fill them in; empty ones render
+     nothing rather than something invented.                                */
+  research: {
+    blurb: "",
+    images: [
+      { src: "/research/plate-01.svg", caption: "", alt: "Placeholder plate" },
+      { src: "/research/plate-02.svg", caption: "", alt: "Placeholder plate" },
+      { src: "/research/plate-03.svg", caption: "", alt: "Placeholder plate" },
+      { src: "/research/plate-04.svg", caption: "", alt: "Placeholder plate" },
+    ],
+  },
+
   /* — Events ————————————————————————————————————————————————————— */
   events: [
     {

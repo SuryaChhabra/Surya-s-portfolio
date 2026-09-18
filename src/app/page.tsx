@@ -5,6 +5,7 @@ import { Marquee } from "@/components/Marquee";
 import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
 import { Videos } from "@/components/Videos";
+import { Research } from "@/components/Research";
 import { Events } from "@/components/Events";
 import { Timeline } from "@/components/Timeline";
 import { About } from "@/components/About";
@@ -23,6 +24,7 @@ export default function Home() {
         <Stats />
         <Work />
         <Videos />
+        <Research />
         <Events />
         <Timeline />
         <About />
