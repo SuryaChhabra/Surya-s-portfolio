@@ -28,8 +28,15 @@ export function Videos() {
                   poster: video.poster,
                   /* An empty src renders the poster with no play control,
                      so the layout is real before the files are hosted. */
-                  sources: video.src
-                    ? [{ src: video.src, type: guessType(video.src) }]
+                  sources: video.file
+                    ? [
+                        {
+                          /* encodeURIComponent keeps spaces and odd
+                             characters in a filename from breaking the URL. */
+                          src: `${site.videoBase}/${encodeURIComponent(video.file)}`,
+                          type: guessType(video.file),
+                        },
+                      ]
                     : [],
                   alt: `Still from ${video.title}`,
                 }}
@@ -40,11 +47,13 @@ export function Videos() {
                 <h3 className="text-xl font-medium tracking-[-0.02em] sm:text-2xl">
                   {video.title}
                 </h3>
-                <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
-                  {video.note}
-                </p>
+                {video.note ? (
+                  <p className="mt-2 text-[0.95rem] leading-relaxed text-ink-soft">
+                    {video.note}
+                  </p>
+                ) : null}
                 <div className="mt-4 flex flex-wrap gap-2">
-                  {video.tags.map((tag) => (
+                  {video.tags.map((tag: string) => (
                     <span
                       key={tag}
                       className="r-pill border px-2.5 py-1 text-xs"

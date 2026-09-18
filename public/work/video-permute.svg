@@ -5,7 +5,7 @@
   <rect width="1920" height="1080" fill="url(#g)"/>
   <rect width="1920" height="1080" fill="#000" opacity="0.10"/>
   <text x="960" y="545" text-anchor="middle" fill="#fff" fill-opacity="0.94"
-        font-family="Inter, system-ui, sans-serif" font-size="66" font-weight="600">Product launch teaser</text>
-  <text x="960" y="625" text-anchor="middle" fill="#fff" fill-opacity="0.66"
-        font-family="ui-monospace, monospace" font-size="30" letter-spacing="4">PLACEHOLDER POSTER</text>
+        font-family="Inter, system-ui, sans-serif" font-size="72" font-weight="600">Permute</text>
+  <text x="960" y="630" text-anchor="middle" fill="#fff" fill-opacity="0.6"
+        font-family="ui-monospace, monospace" font-size="28" letter-spacing="4">REPLACE WITH A REAL FRAME</text>
 </svg>
