@@ -176,9 +176,12 @@ export const site = {
   },
 
   /* — Archery ———————————————————————————————————————————————————————
-     Competitive results. Fill a row per competition; rows with no `event`
-     are skipped, and the whole section disappears while none are filled,
-     so nothing half-written ever ships.
+     The record, then the detail.
+
+     `honours` is the headline — the three or four things worth knowing
+     before anything else. `award` is a single named honour, or null.
+     `results` is optional per-competition detail: fill a row per
+     competition and the table appears, leave them empty and it does not.
 
        date     — "Mar 2026" or just "2025"
        event    — the competition name
@@ -191,6 +194,18 @@ export const site = {
     image: "/archery/at-full-draw.png",
     imageAlt:
       "At full draw with a recurve bow on an outdoor archery ground, target butts in the background.",
+
+    honours: [
+      { value: "5×", label: "National player" },
+      { value: "3×", label: "Delhi State champion" },
+      { value: "150K+", label: "Arrows shot" },
+    ],
+
+    award: {
+      name: "Shri M.N. Kapoor Award for Excellence in Sports",
+      note: "My school's highest sporting honour.",
+    },
+
     results: [
       { date: "", event: "", level: "", category: "", result: "" },
       { date: "", event: "", level: "", category: "", result: "" },

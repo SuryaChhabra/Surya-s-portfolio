@@ -380,20 +380,21 @@ export function ResearchBand() {
 export function SportBand() {
   const band = BAND_BY_ID.sport;
   const t = tones(band);
+  const { honours, award, image, imageAlt } = site.archery;
   const results = site.archery.results.filter((r) => r.event);
-  /* Nothing to put beside the photo once the author notes are gone, so the
-     layout drops to one column rather than leaving a hole in the grid. */
-  const aside = results.length > 0 || SHOW_NOTES;
 
   return (
     <BandSection band={band} index={5}>
-      <div className={aside ? "grid gap-10 lg:grid-cols-[0.9fr_1.1fr]" : "max-w-md"}>
-        {site.archery.image ? (
-          <Reveal>
+      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
+        {/* On a phone the photo is a full screen on its own, which pushes
+            the record — the strongest claim on the page — under the fold.
+            The numbers go first there and beside it on a wide screen. */}
+        {image ? (
+          <Reveal className="order-2 lg:order-1">
             <div className={`relative aspect-[4/5] overflow-hidden ${t.pane}`}>
               <Image
-                src={site.archery.image}
-                alt={site.archery.imageAlt}
+                src={image}
+                alt={imageAlt}
                 fill
                 sizes="(max-width: 1024px) 100vw, 40vw"
                 className="object-cover"
@@ -402,45 +403,95 @@ export function SportBand() {
           </Reveal>
         ) : null}
 
-        {aside ? (
-        <Reveal delay={0.1}>
+        <div className="order-1 space-y-10 lg:order-2">
+          {/* The record first, in the size it deserves. Five nationals and
+              three state titles are the strongest single claim on this page,
+              and they were sitting in an empty table. */}
+          <Reveal delay={0.08}>
+            <dl className="grid grid-cols-3 gap-6">
+              {honours.map((h) => (
+                <div key={h.label}>
+                  <dt className="sr-only">{h.label}</dt>
+                  <dd>
+                    <span
+                      className="block text-[clamp(2rem,4.4vw,3rem)] font-medium leading-none tracking-[-0.045em]"
+                      style={{ color: band.accent }}
+                    >
+                      {h.value}
+                    </span>
+                    <span
+                      className="mt-2 block text-sm leading-snug"
+                      style={{ color: t.body }}
+                    >
+                      {h.label}
+                    </span>
+                  </dd>
+                </div>
+              ))}
+            </dl>
+          </Reveal>
+
+          {award?.name ? (
+            <Reveal delay={0.16}>
+              <div className={`px-6 py-6 ${t.pane}`}>
+                <p className="label" style={{ color: t.muted }}>
+                  Award
+                </p>
+                <p
+                  className="mt-2 text-lg font-medium leading-snug"
+                  style={{ color: t.ink }}
+                >
+                  {award.name}
+                </p>
+                {award.note ? (
+                  <p className="mt-2 text-sm" style={{ color: t.body }}>
+                    {award.note}
+                  </p>
+                ) : null}
+              </div>
+            </Reveal>
+          ) : null}
+
+          {/* Per-competition detail, if it is ever filled in. The record
+              above already stands on its own without it. */}
           {results.length ? (
-            <table className="w-full text-left text-sm">
-              <thead>
-                <tr className="border-b" style={{ borderColor: t.rule, color: t.muted }}>
-                  <th className="py-3 font-normal">Date</th>
-                  <th className="py-3 font-normal">Competition</th>
-                  <th className="py-3 font-normal">Category</th>
-                  <th className="py-3 font-normal">Result</th>
-                </tr>
-              </thead>
-              <tbody>
-                {results.map((r) => (
-                  <tr key={`${r.date}-${r.event}`} className="border-b" style={{ borderColor: t.rule }}>
-                    <td className="py-3" style={{ color: t.muted }}>{r.date}</td>
-                    <td className="py-3" style={{ color: t.ink }}>
-                      {r.event}
-                      {r.level ? (
-                        <span style={{ color: t.muted }}> · {r.level}</span>
-                      ) : null}
-                    </td>
-                    <td className="py-3" style={{ color: t.body }}>{r.category}</td>
-                    <td className="py-3 font-medium" style={{ color: band.accent }}>
-                      {r.result}
-                    </td>
+            <Reveal delay={0.24}>
+              <table className="w-full text-left text-sm">
+                <thead>
+                  <tr className="border-b" style={{ borderColor: t.rule, color: t.muted }}>
+                    <th className="py-3 font-normal">Date</th>
+                    <th className="py-3 font-normal">Competition</th>
+                    <th className="py-3 font-normal">Category</th>
+                    <th className="py-3 font-normal">Result</th>
                   </tr>
-                ))}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {results.map((r) => (
+                    <tr key={`${r.date}-${r.event}`} className="border-b" style={{ borderColor: t.rule }}>
+                      <td className="py-3" style={{ color: t.muted }}>{r.date}</td>
+                      <td className="py-3" style={{ color: t.ink }}>
+                        {r.event}
+                        {r.level ? (
+                          <span style={{ color: t.muted }}> · {r.level}</span>
+                        ) : null}
+                      </td>
+                      <td className="py-3" style={{ color: t.body }}>{r.category}</td>
+                      <td className="py-3 font-medium" style={{ color: band.accent }}>
+                        {r.result}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </Reveal>
           ) : (
             <Pending band={band}>
-              Competitions, categories and placings go here — date, event,
-              level, result, one row each. The photo is real; the record is
-              yours to fill in.
+              Optional: a row per competition in `archery.results` — date,
+              event, level, category, result — adds a table under the record
+              above. The section reads fine without one.
             </Pending>
           )}
-        </Reveal>
-        ) : null}
+        </div>
       </div>
     </BandSection>
   );
