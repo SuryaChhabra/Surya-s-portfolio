@@ -144,10 +144,24 @@ export const site = {
   research: {
     blurb: "",
     images: [
-      { src: "/research/plate-01.svg", caption: "", alt: "Placeholder plate" },
-      { src: "/research/plate-02.svg", caption: "", alt: "Placeholder plate" },
-      { src: "/research/plate-03.svg", caption: "", alt: "Placeholder plate" },
-      { src: "/research/plate-04.svg", caption: "", alt: "Placeholder plate" },
+      {
+        src: "/research/continuum-stokes-i.webp",
+        caption:
+          "Continuum image (Stokes I) centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left. Synthesised beam at lower left.",
+        alt: "Millimetre continuum image showing a bright compact double source within a fainter extended envelope.",
+      },
+      {
+        src: "/research/pv-keplerian.webp",
+        caption:
+          "Position–velocity diagram through the source. The cyan curve is a Keplerian rotation profile overlaid on the line emission, used to constrain the mass of the central object.",
+        alt: "Position-velocity diagram with a Keplerian rotation curve overlaid on molecular line emission.",
+      },
+      {
+        src: "/research/moment-maps-fit.webp",
+        caption:
+          "Kinematic fit. Top: integrated intensity (moment 0) and the mask applied to it. Bottom: the observed velocity field (moment 1) and the residual after subtracting a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s.",
+        alt: "Four-panel figure: moment 0 map, mask, observed moment 1 velocity field, and observed-minus-model residual.",
+      },
     ],
   },
 

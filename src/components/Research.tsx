@@ -67,13 +67,17 @@ export function Research() {
                   className="group block w-full overflow-hidden r-card text-left clay-surface"
                   aria-label={`Open ${image.alt}`}
                 >
-                  <span className="relative block aspect-[4/3] w-full overflow-hidden">
+                  <span
+                    className="relative block aspect-[4/3] w-full overflow-hidden"
+                    style={{ backgroundColor: "var(--paper)" }}
+                  >
                     <Image
                       src={image.src}
                       alt={image.alt}
                       fill
                       sizes="(max-width: 640px) 100vw, 50vw"
-                      className="object-cover transition-transform duration-700 group-hover:scale-[1.03]"
+                      /* contain, not cover: cropping a plot cuts data off. */
+                      className="object-contain transition-transform duration-700 group-hover:scale-[1.02]"
                     />
                   </span>
                   {image.caption ? (
