@@ -18,3 +18,6 @@ next-env.d.ts
 # The folder itself is kept so it exists on a fresh clone.
 public/work/_raw/*
 !public/work/_raw/.gitkeep
+
+# static export output (npm run export)
+/out/
