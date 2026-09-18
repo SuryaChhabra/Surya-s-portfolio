@@ -4,37 +4,29 @@ import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { site } from "@/content/site";
 
-/* three.js is heavy and useless to a server render. */
-const PrismScene = dynamic(
-  () => import("@/components/prism/PrismScene").then((m) => m.PrismScene),
+const BurstScene = dynamic(
+  () => import("@/components/prism/BurstScene").then((m) => m.BurstScene),
   { ssr: false },
 );
 
-/* Copy pinned to the beat of the scroll it belongs to. */
 const BEATS = [
   {
-    at: 0.02,
+    at: 0,
     kicker: "One source",
     line: "I keep ending up somewhere new.",
-    body: "Growth, AI video, molecular-line astronomy, competitive archery. It looks like scatter from the outside.",
+    body: "Growth, AI video, molecular-line astronomy, competitive archery. From outside it looks like scatter.",
   },
   {
-    at: 0.3,
+    at: 0.26,
+    kicker: "The prism",
+    line: "Same light, turned.",
+    body: "Every one of them took the same thing: learn the tools, apply taste, ship version one before I felt ready.",
+  },
+  {
+    at: 0.62,
     kicker: "Dispersion",
-    line: "Same light, different wavelengths.",
-    body: "Each one took the same thing: learn the tools, apply taste, ship version one before I felt ready.",
-  },
-  {
-    at: 0.6,
-    kicker: "The points",
-    line: "Every piece is real, and linked.",
-    body: "Twelve of them — a music video that reached 208,000 people, a Keplerian fit, three shipped apps, a competition line.",
-  },
-  {
-    at: 0.86,
-    kicker: "The shape",
-    line: "Connect them and it's a path.",
-    body: "Not an accident and not a detour. This is what looking for the right room actually looks like.",
+    line: "Each part gets its own wavelength.",
+    body: "Six directions out of one beam. The colours below are not decoration — they are what came out of here.",
   },
 ];
 
@@ -62,11 +54,9 @@ export default function PrismPage() {
       const t = scrollable > 0 ? window.scrollY / scrollable : 0;
       progress.current = t;
 
-      /* The copy is React state; the 3D reads the ref directly so the frame
-         loop never waits on a render. */
       let next = 0;
       BEATS.forEach((b, i) => {
-        if (t >= b.at - 0.08) next = i;
+        if (t >= b.at - 0.04) next = i;
       });
       setBeat(next);
     };
@@ -88,31 +78,28 @@ export default function PrismPage() {
   const active = BEATS[beat];
 
   return (
-    <div style={{ backgroundColor: "#07080c" }}>
-      {supported ? <PrismScene progress={progress} /> : null}
+    <div style={{ backgroundColor: "#05060a" }}>
+      {supported ? <BurstScene progress={progress} /> : null}
 
-      {/* Scroll runway. The scene is fixed; this gives it distance to play out. */}
-      <div style={{ height: "420vh" }} />
+      {/* Runway: the scene is fixed, this gives it distance to play out. */}
+      <div style={{ height: "380vh" }} />
 
-      {/* Copy sits over the scene, pinned, swapping with the beat. */}
-      <div className="pointer-events-none fixed inset-0 z-10 flex items-end sm:items-center">
-        <div className="mx-auto w-full max-w-6xl px-5 pb-24 sm:px-8 sm:pb-0">
-          <div className="max-w-md">
-            <p
-              className="label"
-              style={{ color: "rgba(255,255,255,0.5)" }}
-            >
+      {/* Copy sits low-left so the burst owns the centre. */}
+      <div className="pointer-events-none fixed inset-x-0 bottom-0 z-10">
+        <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-8 sm:pb-16">
+          <div className="max-w-sm">
+            <p className="label" style={{ color: "rgba(255,255,255,0.45)" }}>
               {active.kicker}
             </p>
             <h2
-              className="mt-3 text-[clamp(1.9rem,4.4vw,3rem)] font-medium leading-[1.05] tracking-[-0.03em]"
+              className="mt-2 text-[clamp(1.6rem,3.4vw,2.4rem)] font-medium leading-[1.08] tracking-[-0.03em]"
               style={{ color: "#fff" }}
             >
               {active.line}
             </h2>
             <p
-              className="mt-4 text-[0.95rem] leading-relaxed"
-              style={{ color: "rgba(255,255,255,0.68)" }}
+              className="mt-3 text-sm leading-relaxed"
+              style={{ color: "rgba(255,255,255,0.62)" }}
             >
               {active.body}
             </p>
@@ -120,7 +107,6 @@ export default function PrismPage() {
         </div>
       </div>
 
-      {/* Name and a way out, always present. */}
       <header className="pointer-events-none fixed inset-x-0 top-0 z-20">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-8">
           <span className="text-sm font-medium" style={{ color: "#fff" }}>
@@ -129,19 +115,12 @@ export default function PrismPage() {
           <a
             href="/"
             className="pointer-events-auto r-pill border px-4 py-2 text-sm"
-            style={{ borderColor: "rgba(255,255,255,0.3)", color: "#fff" }}
+            style={{ borderColor: "rgba(255,255,255,0.28)", color: "#fff" }}
           >
-            Skip to the work
+            Enter the work
           </a>
         </div>
       </header>
-
-      <div
-        className="pointer-events-none fixed bottom-5 left-1/2 z-20 -translate-x-1/2 text-xs"
-        style={{ color: "rgba(255,255,255,0.4)" }}
-      >
-        scroll
-      </div>
     </div>
   );
 }
