@@ -11,8 +11,25 @@ export type Band = {
   id: string;
   /** The wavelength itself: the ray out of the prism, and the section accent. */
   color: string;
-  /** The same colour taken almost to black — what the section sits on. */
+  /**
+   * The field the section sits on. Deep enough for white text at 7:1 or
+   * better, and no deeper — the point is that the page is unmistakably this
+   * colour, not that it is black with a hint of one.
+   */
   deep: string;
+  /**
+   * The wavelength again, adjusted until it can be *read* on `deep`. The
+   * vivid colour manages about 2.3:1 on its own field, so it can fill a
+   * shape but never carry a word.
+   */
+  accent: string;
+  /**
+   * Whether `deep` is dark enough for white text. Yellow is the one hue that
+   * cannot be both dark and recognisably itself, so it inverts: a bright gold
+   * field with near-black ink, which is also what the middle of a real
+   * spectrum looks like.
+   */
+  tone: "dark" | "light";
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
   kicker: string;
@@ -24,7 +41,9 @@ export const BANDS: Band[] = [
   {
     id: "intro",
     color: "#ff3b30",
-    deep: "#1a0605",
+    deep: "#8f1109",
+    accent: "#ffa7a2",
+    tone: "dark",
     angle: -10,
     kicker: "Red",
     line: "I keep ending up somewhere new.",
@@ -33,7 +52,9 @@ export const BANDS: Band[] = [
   {
     id: "experience",
     color: "#ff8a2b",
-    deep: "#1b0d03",
+    deep: "#8a3a02",
+    accent: "#ffc393",
+    tone: "dark",
     angle: -19,
     kicker: "Orange",
     line: "Work experience.",
@@ -42,7 +63,9 @@ export const BANDS: Band[] = [
   {
     id: "video",
     color: "#ffd23d",
-    deep: "#191202",
+    deep: "#ffd23d",
+    accent: "#6b4a00",
+    tone: "light",
     angle: -28,
     kicker: "Yellow",
     line: "AI video.",
@@ -51,7 +74,9 @@ export const BANDS: Band[] = [
   {
     id: "built",
     color: "#4ade80",
-    deep: "#04160c",
+    deep: "#0d5c2e",
+    accent: "#65e393",
+    tone: "dark",
     angle: -37,
     kicker: "Green",
     line: "Things I've shipped.",
@@ -60,7 +85,9 @@ export const BANDS: Band[] = [
   {
     id: "research",
     color: "#38bdf8",
-    deep: "#02121f",
+    deep: "#0d4677",
+    accent: "#54c6f9",
+    tone: "dark",
     angle: -46,
     kicker: "Blue",
     line: "Astronomy.",
@@ -69,7 +96,9 @@ export const BANDS: Band[] = [
   {
     id: "sport",
     color: "#a78bfa",
-    deep: "#0d0720",
+    deep: "#412e88",
+    accent: "#bba6fb",
+    tone: "dark",
     angle: -55,
     kicker: "Violet",
     line: "Competitive archery.",
@@ -77,8 +106,40 @@ export const BANDS: Band[] = [
   },
 ];
 
-/** What the page sits on before the light is out, and again at the end. */
+/**
+ * What the page sits on before the light is out, and again at the end.
+ *
+ * The opening stays near-black on purpose: the prism act is the serious part
+ * and it needs the dark to read as glass in space at all. Everything after it
+ * is the colour the glass produced, which is where the page gets loud.
+ */
 export const VOID_DEEP = "#05060a";
 
 export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
   Record<string, Band>;
+
+/**
+ * How to paint on a band.
+ *
+ * Every colour below is checked against its own field: headings clear 9:1,
+ * body copy clears 6:1 and the accent clears 5:1. That is what lets a band
+ * invert without anything else in the page having to know it did.
+ */
+export function tones(band: Band) {
+  const light = band.tone === "light";
+  return {
+    /** Headings and anything that has to be unmissable. */
+    ink: light ? "#241a00" : "#ffffff",
+    /** Body copy. */
+    body: light ? "rgba(36,26,0,0.82)" : "rgba(255,255,255,0.82)",
+    /** Labels, captions, anything deliberately quiet. */
+    muted: light ? "rgba(36,26,0,0.62)" : "rgba(255,255,255,0.64)",
+    /** A pane of the same glass the light came through. */
+    pane: light
+      ? "rounded-2xl border border-black/15 bg-white/30 backdrop-blur-[2px]"
+      : "rounded-2xl border border-white/20 bg-black/25 backdrop-blur-[2px]",
+    /** Hairlines and dividers. */
+    rule: light ? "rgba(36,26,0,0.22)" : "rgba(255,255,255,0.20)",
+    hover: light ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
+  };
+}

@@ -41,10 +41,19 @@ type Props = {
   progress: React.RefObject<number>;
   /** Which band the scroll is currently on. */
   active: React.RefObject<number>;
+  /** The glass's current rotation about Y, in radians. */
+  spin?: React.RefObject<number>;
   length?: number;
 };
 
-export function SpectrumFan({ progress, active, length = 9.5 }: Props) {
+/* Half the prism's on-screen width as it turns: the triangle is 3.6 across
+   and 1.9 deep, so the silhouette narrows to roughly the depth when it goes
+   edge-on and the exit edge travels a long way in. */
+function exitX(spin: number) {
+  return 1.7 + Math.abs(Math.cos(spin)) * 1.75 + Math.abs(Math.sin(spin)) * 0.95 - 0.5;
+}
+
+export function SpectrumFan({ progress, active, spin, length = 9.5 }: Props) {
   const texture = useStreakTexture();
   const group = useRef<THREE.Group>(null);
 
@@ -58,6 +67,16 @@ export function SpectrumFan({ progress, active, length = 9.5 }: Props) {
     /* At the end every wavelength is out at full strength: the spectrum is
        complete before the page hands over to the sections. */
     const flood = THREE.MathUtils.clamp((t - 0.82) / 0.18, 0, 1);
+
+    /* Follow the exit edge, or the rainbow detaches from the glass every
+       time the prism turns far enough to change its silhouette. */
+    if (group.current) {
+      group.current.position.x = THREE.MathUtils.lerp(
+        group.current.position.x,
+        exitX(spin?.current ?? 0),
+        0.2,
+      );
+    }
 
     group.current?.children.forEach((child, i) => {
       const pivot = child as THREE.Group;

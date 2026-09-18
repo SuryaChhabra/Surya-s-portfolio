@@ -6,19 +6,19 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
-import { BAND_BY_ID } from "@/components/prism/bands";
+import { BAND_BY_ID, tones } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
-/* Every card on this page is the same object: a pane of the same glass the
-   light came through, tinted by whichever wavelength it is sitting in. */
-const PANE =
-  "rounded-2xl border border-white/12 bg-white/[0.04] backdrop-blur-[2px]";
+/* Cards, rules and text colours all come from `tones(band)`. A band only
+   has to declare whether its field is dark or light and everything on it
+   follows — which is what lets yellow invert without any of this knowing. */
 
 
 /* — 01 Red — who this is ————————————————————————————————————————— */
 
 export function IntroBand() {
   const band = BAND_BY_ID.intro;
+  const t = tones(band);
 
   return (
     <BandSection band={band} index={0}>
@@ -26,7 +26,7 @@ export function IntroBand() {
         <Reveal>
           <div className="space-y-5">
             {site.about.paragraphs.map((p) => (
-              <p key={p} className="text-[1.02rem] leading-relaxed text-white/75">
+              <p key={p} className="text-[1.02rem] leading-relaxed" style={{ color: t.body }}>
                 {p}
               </p>
             ))}
@@ -36,7 +36,7 @@ export function IntroBand() {
                 <span
                   key={tool}
                   className="r-pill border px-3 py-1 text-xs"
-                  style={{ borderColor: `${band.color}66`, color: band.color }}
+                  style={{ borderColor: `${band.accent}59`, color: band.accent }}
                 >
                   {tool}
                 </span>
@@ -47,18 +47,18 @@ export function IntroBand() {
 
         {/* The numbers are from one post, and the labels say so. */}
         <Reveal delay={0.1}>
-          <dl className={`grid grid-cols-2 gap-px overflow-hidden ${PANE}`}>
+          <dl className={`grid grid-cols-2 gap-px overflow-hidden ${t.pane}`}>
             {site.stats.map((stat) => (
               <div key={stat.label} className="px-5 py-7">
                 <dt className="sr-only">{stat.label}</dt>
                 <dd>
                   <span
                     className="block text-[clamp(1.8rem,4vw,2.6rem)] font-medium tracking-[-0.04em]"
-                    style={{ color: band.color }}
+                    style={{ color: band.accent }}
                   >
                     {stat.value}
                   </span>
-                  <span className="mt-1 block text-xs leading-snug text-white/55">
+                  <span className="mt-1 block text-xs leading-snug" style={{ color: t.muted }}>
                     {stat.label}
                   </span>
                 </dd>
@@ -88,6 +88,7 @@ export function ExperienceBand() {
         line: "Rooms I've been in.",
         body: "",
       };
+  const t = tones(band);
 
   return (
     <BandSection band={band} index={1}>
@@ -96,16 +97,16 @@ export function ExperienceBand() {
           <ol className="space-y-px">
             {roles.map((role) => (
               <Reveal key={`${role.org}-${role.title}`}>
-                <li className={`flex flex-col gap-2 px-5 py-6 sm:flex-row sm:gap-8 ${PANE}`}>
-                  <span className="label shrink-0 pt-1 text-white/45 sm:w-40">
+                <li className={`flex flex-col gap-2 px-5 py-6 sm:flex-row sm:gap-8 ${t.pane}`}>
+                  <span className="label shrink-0 pt-1 sm:w-40" style={{ color: t.muted }}>
                     {role.period}
                   </span>
                   <div>
-                    <h3 className="text-lg font-medium text-white">
+                    <h3 className="text-lg font-medium" style={{ color: t.ink }}>
                       {role.title}
-                      <span style={{ color: band.color }}> · {role.org}</span>
+                      <span style={{ color: band.accent }}> · {role.org}</span>
                     </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-white/65">
+                    <p className="mt-1.5 text-sm leading-relaxed" style={{ color: t.body }}>
                       {role.detail}
                     </p>
                   </div>
@@ -115,7 +116,7 @@ export function ExperienceBand() {
           </ol>
         ) : (
           <Reveal>
-            <Pending>
+            <Pending band={band}>
               Roles, dates and what you actually did go here. Nothing is filled
               in yet, and inventing it would be the one thing on this page that
               could not survive a follow-up question. Until then this band
@@ -127,12 +128,12 @@ export function ExperienceBand() {
         {events.length ? (
           <div>
             {roles.length ? (
-              <h3 className="label text-white/45">In the room</h3>
+              <h3 className="label" style={{ color: t.muted }}>In the room</h3>
             ) : null}
             <ul className={`grid gap-6 sm:grid-cols-2 ${roles.length ? "mt-5" : ""}`}>
               {events.map((event, i) => (
                 <Reveal key={event.name} delay={(i % 2) * 0.08}>
-                  <li className={`overflow-hidden ${PANE}`}>
+                  <li className={`overflow-hidden ${t.pane}`}>
                     {event.images?.length ? (
                       <div className="grid grid-cols-2 gap-px">
                         {event.images.map((src) => (
@@ -150,15 +151,15 @@ export function ExperienceBand() {
                     ) : null}
 
                     <div className="px-5 py-5">
-                      <h4 className="text-base font-medium text-white">
+                      <h4 className="text-base font-medium" style={{ color: t.ink }}>
                         {event.name}
                       </h4>
                       {event.note ? (
-                        <p className="mt-2 text-sm leading-relaxed text-white/65">
+                        <p className="mt-2 text-sm leading-relaxed" style={{ color: t.body }}>
                           {event.note}
                         </p>
                       ) : (
-                        <Note>Date, role and what came of it still to add.</Note>
+                        <Note band={band}>Date, role and what came of it still to add.</Note>
                       )}
                       {event.link ? (
                         <a
@@ -166,7 +167,7 @@ export function ExperienceBand() {
                           target="_blank"
                           rel="noopener noreferrer"
                           className="mt-3 inline-block text-sm underline-offset-4 hover:underline"
-                          style={{ color: band.color }}
+                          style={{ color: band.accent }}
                         >
                           See the post ↗
                         </a>
@@ -187,6 +188,7 @@ export function ExperienceBand() {
 
 export function VideoBand() {
   const band = BAND_BY_ID.video;
+  const t = tones(band);
 
   return (
     <BandSection band={band} index={2}>
@@ -197,7 +199,7 @@ export function VideoBand() {
               {/* VideoPlayer paints its own shell from --paper-2; on this page
                   that token needs to be dark or the card glows white while a
                   poster loads. */}
-              <div style={{ ["--paper-2" as string]: "rgba(255,255,255,0.05)" }}>
+              <div style={{ ["--paper-2" as string]: band.tone === "light" ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.05)" }}>
                 <VideoPlayer
                   media={{
                     poster: video.poster,
@@ -218,15 +220,15 @@ export function VideoBand() {
               </div>
 
               <figcaption className="mt-5">
-                <h3 className="text-lg font-medium tracking-[-0.02em] text-white sm:text-xl">
+                <h3 className="text-lg font-medium tracking-[-0.02em] sm:text-xl" style={{ color: t.ink }}>
                   {video.title}
                 </h3>
                 {video.note ? (
-                  <p className="mt-2 text-sm leading-relaxed text-white/65">
+                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.body }}>
                     {video.note}
                   </p>
                 ) : (
-                  <Note>One line on what this is and who it was for.</Note>
+                  <Note band={band}>One line on what this is and who it was for.</Note>
                 )}
                 {video.tags.length ? (
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -234,7 +236,7 @@ export function VideoBand() {
                       <span
                         key={tag}
                         className="r-pill border px-2.5 py-1 text-xs"
-                        style={{ borderColor: `${band.color}66`, color: band.color }}
+                        style={{ borderColor: `${band.accent}59`, color: band.accent }}
                       >
                         {tag}
                       </span>
@@ -247,7 +249,7 @@ export function VideoBand() {
         ))}
       </div>
 
-      <p className="mt-10 text-sm text-white/45">
+      <p className="mt-10 text-sm" style={{ color: t.muted }}>
         Nothing downloads until you press play.
       </p>
     </BandSection>
@@ -265,6 +267,7 @@ function guessType(url: string) {
 
 export function BuiltBand() {
   const band = BAND_BY_ID.built;
+  const t = tones(band);
 
   return (
     <BandSection band={band} index={3}>
@@ -276,21 +279,21 @@ export function BuiltBand() {
                 href={project.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={`group flex flex-col gap-3 px-5 py-7 transition-colors hover:bg-white/[0.08] sm:flex-row sm:items-baseline sm:gap-8 ${PANE}`}
+                className={`group flex flex-col gap-3 px-5 py-7 transition-colors sm:flex-row sm:items-baseline sm:gap-8 ${t.pane}`}
               >
-                <span className="label shrink-0 text-white/40 sm:w-28">
+                <span className="label shrink-0 sm:w-28" style={{ color: t.muted }}>
                   {project.kicker}
                 </span>
                 <span className="flex-1">
-                  <span className="block text-xl font-medium tracking-[-0.02em] text-white sm:text-2xl">
+                  <span className="block text-xl font-medium tracking-[-0.02em] sm:text-2xl" style={{ color: t.ink }}>
                     {project.title}
                   </span>
                   {project.summary ? (
-                    <span className="mt-2 block text-sm leading-relaxed text-white/65">
+                    <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
                       {project.summary}
                     </span>
                   ) : SHOW_NOTES ? (
-                    <span className="mt-2 block text-sm italic text-white/40">
+                    <span className="mt-2 block text-sm italic" style={{ color: t.muted }}>
                       <span className="mr-1.5 opacity-60">✎</span>
                       One line on what it does still to add.
                     </span>
@@ -298,7 +301,7 @@ export function BuiltBand() {
                 </span>
                 <span
                   className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
-                  style={{ color: band.color }}
+                  style={{ color: band.accent }}
                 >
                   Open ↗
                 </span>
@@ -317,6 +320,7 @@ type ResearchImage = { src: string; title: string; caption: string; alt: string 
 
 export function ResearchBand() {
   const band = BAND_BY_ID.research;
+  const t = tones(band);
   const images = site.research.images as readonly ResearchImage[];
   const [open, setOpen] = useState<number | null>(null);
 
@@ -325,7 +329,7 @@ export function ResearchBand() {
       <ul className="grid gap-6 sm:grid-cols-2">
         {images.map((image, i) => (
           <Reveal key={image.src} delay={(i % 2) * 0.08}>
-            <li className={`overflow-hidden ${PANE}`}>
+            <li className={`overflow-hidden ${t.pane}`}>
               <button
                 type="button"
                 onClick={() => setOpen(i)}
@@ -345,11 +349,11 @@ export function ResearchBand() {
                 <span className="block px-5 py-5">
                   <span
                     className="label block"
-                    style={{ color: band.color }}
+                    style={{ color: band.accent }}
                   >
                     {image.title}
                   </span>
-                  <span className="mt-2 block text-sm leading-relaxed text-white/65">
+                  <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
                     {image.caption}
                   </span>
                 </span>
@@ -375,6 +379,7 @@ export function ResearchBand() {
 
 export function SportBand() {
   const band = BAND_BY_ID.sport;
+  const t = tones(band);
   const results = site.archery.results.filter((r) => r.event);
   /* Nothing to put beside the photo once the author notes are gone, so the
      layout drops to one column rather than leaving a hole in the grid. */
@@ -385,7 +390,7 @@ export function SportBand() {
       <div className={aside ? "grid gap-10 lg:grid-cols-[0.9fr_1.1fr]" : "max-w-md"}>
         {site.archery.image ? (
           <Reveal>
-            <div className={`relative aspect-[4/5] overflow-hidden ${PANE}`}>
+            <div className={`relative aspect-[4/5] overflow-hidden ${t.pane}`}>
               <Image
                 src={site.archery.image}
                 alt={site.archery.imageAlt}
@@ -402,7 +407,7 @@ export function SportBand() {
           {results.length ? (
             <table className="w-full text-left text-sm">
               <thead>
-                <tr className="border-b border-white/15 text-white/45">
+                <tr className="border-b" style={{ borderColor: t.rule, color: t.muted }}>
                   <th className="py-3 font-normal">Date</th>
                   <th className="py-3 font-normal">Competition</th>
                   <th className="py-3 font-normal">Category</th>
@@ -411,16 +416,16 @@ export function SportBand() {
               </thead>
               <tbody>
                 {results.map((r) => (
-                  <tr key={`${r.date}-${r.event}`} className="border-b border-white/8">
-                    <td className="py-3 text-white/55">{r.date}</td>
-                    <td className="py-3 text-white">
+                  <tr key={`${r.date}-${r.event}`} className="border-b" style={{ borderColor: t.rule }}>
+                    <td className="py-3" style={{ color: t.muted }}>{r.date}</td>
+                    <td className="py-3" style={{ color: t.ink }}>
                       {r.event}
                       {r.level ? (
-                        <span className="text-white/45"> · {r.level}</span>
+                        <span style={{ color: t.muted }}> · {r.level}</span>
                       ) : null}
                     </td>
-                    <td className="py-3 text-white/70">{r.category}</td>
-                    <td className="py-3 font-medium" style={{ color: band.color }}>
+                    <td className="py-3" style={{ color: t.body }}>{r.category}</td>
+                    <td className="py-3 font-medium" style={{ color: band.accent }}>
                       {r.result}
                     </td>
                   </tr>
@@ -428,7 +433,7 @@ export function SportBand() {
               </tbody>
             </table>
           ) : (
-            <Pending>
+            <Pending band={band}>
               Competitions, categories and placings go here — date, event,
               level, result, one row each. The photo is real; the record is
               yours to fill in.

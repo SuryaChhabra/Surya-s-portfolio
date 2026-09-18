@@ -29,13 +29,18 @@ export default function Home() {
         <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-10">
           <a
             href="#top"
-            className="pointer-events-auto text-sm font-medium text-white"
+            className="pointer-events-auto text-sm font-medium"
+            style={{ color: "var(--band-ink, #ffffff)" }}
           >
             {site.name}
           </a>
           <a
             href="#contact"
-            className="pointer-events-auto r-pill border border-white/25 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10"
+            className="pointer-events-auto r-pill border px-4 py-2 text-sm transition-colors"
+            style={{
+              color: "var(--band-ink, #ffffff)",
+              borderColor: "var(--band-rule, rgba(255,255,255,0.25))",
+            }}
           >
             Get in touch
           </a>
@@ -54,7 +59,14 @@ export default function Home() {
       </main>
 
       <footer className="relative z-10 px-5 pb-10 sm:px-10">
-        <div className="mx-auto max-w-6xl border-t border-white/10 pt-6 text-sm text-white/40">
+        <div
+          className="mx-auto max-w-6xl border-t pt-6 text-sm"
+          style={{
+            borderColor: "var(--band-rule, rgba(255,255,255,0.12))",
+            color: "var(--band-ink, #ffffff)",
+            opacity: 0.55,
+          }}
+        >
           © {new Date().getFullYear()} {site.name}
         </div>
       </footer>

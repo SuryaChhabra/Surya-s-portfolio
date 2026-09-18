@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
-import type { Band } from "@/components/prism/bands";
+import { tones, type Band } from "@/components/prism/bands";
 
 /**
  * One wavelength's worth of page.
@@ -21,6 +21,8 @@ export function BandSection({
   index: number;
   children?: ReactNode;
 }) {
+  const t = tones(band);
+
   return (
     <section
       id={band.id}
@@ -36,18 +38,32 @@ export function BandSection({
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
           <header className="max-w-2xl">
-            <p className="label flex items-center gap-3" style={{ color: band.color }}>
+            {/* The accent carries the words, the vivid colour carries the
+                rule: one has to be read on this field, the other only has to
+                be seen. */}
+            <p className="label flex items-center gap-3" style={{ color: band.accent }}>
+              {/* On a light field the vivid colour *is* the field, so the
+                  rule would disappear into it. */}
               <span
-                className="block h-[2px] w-8 rounded-full"
-                style={{ backgroundColor: band.color }}
+                className="block h-[3px] w-10 rounded-full"
+                style={{
+                  backgroundColor:
+                    band.tone === "light" ? band.accent : band.color,
+                }}
               />
               {String(index + 1).padStart(2, "0")} — {band.kicker}
             </p>
-            <h2 className="mt-4 text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em] text-white">
+            <h2
+              className="mt-4 text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
+              style={{ color: t.ink }}
+            >
               {band.line}
             </h2>
             {band.body ? (
-              <p className="mt-5 text-[1.02rem] leading-relaxed text-white/70">
+              <p
+                className="mt-5 text-[1.02rem] leading-relaxed"
+                style={{ color: t.body }}
+              >
                 {band.body}
               </p>
             ) : null}
@@ -72,20 +88,37 @@ export function BandSection({
 export const SHOW_NOTES = process.env.NODE_ENV !== "production";
 
 /** A block-level note to the author. Renders nothing in a built site. */
-export function Pending({ children }: { children: ReactNode }) {
+export function Pending({
+  children,
+  band,
+}: {
+  children: ReactNode;
+  band?: Band;
+}) {
   if (!SHOW_NOTES) return null;
+  const t = band ? tones(band) : null;
   return (
-    <p className="max-w-xl rounded-xl border border-dashed border-white/20 px-5 py-4 text-sm italic leading-relaxed text-white/45">
+    <p
+      className="max-w-xl rounded-xl border border-dashed px-5 py-4 text-sm italic leading-relaxed"
+      style={{
+        borderColor: t?.rule ?? "rgba(255,255,255,0.20)",
+        color: t?.muted ?? "rgba(255,255,255,0.45)",
+      }}
+    >
       {children}
     </p>
   );
 }
 
 /** The same thing inline, under a card. */
-export function Note({ children }: { children: ReactNode }) {
+export function Note({ children, band }: { children: ReactNode; band?: Band }) {
   if (!SHOW_NOTES) return null;
+  const t = band ? tones(band) : null;
   return (
-    <p className="mt-2 text-sm italic text-white/40">
+    <p
+      className="mt-2 text-sm italic"
+      style={{ color: t?.muted ?? "rgba(255,255,255,0.4)" }}
+    >
       <span className="mr-1.5 opacity-60">✎</span>
       {children}
     </p>
