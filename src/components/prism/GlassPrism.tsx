@@ -10,7 +10,16 @@ import * as THREE from "three";
  * light along every edge, and a hard-edged extrusion reads as a flat shape
  * no matter how good the material is.
  */
-export function GlassPrism({ size = 2.6, depth = 1.9 }: { size?: number; depth?: number }) {
+export function GlassPrism({
+  size = 2.6,
+  depth = 1.9,
+  lite = false,
+}: {
+  size?: number;
+  depth?: number;
+  /** Halves the refraction pass on phones, where it is the whole frame budget. */
+  lite?: boolean;
+}) {
   const geometry = useMemo(() => {
     const h = size * Math.sqrt(3) / 2;
     const shape = new THREE.Shape();
@@ -37,8 +46,8 @@ export function GlassPrism({ size = 2.6, depth = 1.9 }: { size?: number; depth?:
           page worth spending it on. Samples kept low — the effect is in the
           distortion and the edges, not in sample count. */}
       <MeshTransmissionMaterial
-        samples={6}
-        resolution={256}
+        samples={lite ? 4 : 6}
+        resolution={lite ? 192 : 256}
         transmission={1}
         thickness={1.6}
         ior={1.62}
@@ -47,7 +56,7 @@ export function GlassPrism({ size = 2.6, depth = 1.9 }: { size?: number; depth?:
         roughness={0.02}
         distortion={0.1}
         distortionScale={0.2}
-        temporalDistortion={0.05}
+        temporalDistortion={lite ? 0 : 0.05}
         clearcoat={1}
         attenuationDistance={12}
         attenuationColor="#f2f7ff"

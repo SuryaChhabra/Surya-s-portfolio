@@ -1,29 +1,63 @@
-import { Nav } from "@/components/Nav";
-import { ScrollProgress } from "@/components/ScrollProgress";
-import { Hero } from "@/components/Hero";
-import { Marquee } from "@/components/Marquee";
-import { Stats } from "@/components/Stats";
-import { WorkIndex } from "@/components/WorkIndex";
-import { About } from "@/components/About";
-import { Contact } from "@/components/Contact";
-import { Footer } from "@/components/Footer";
-import { DirectionSwitcher } from "@/components/DirectionSwitcher";
+import { PrismAct } from "@/components/spectrum/PrismAct";
+import { SpectrumBackground } from "@/components/spectrum/SpectrumBackground";
+import {
+  IntroBand,
+  ExperienceBand,
+  VideoBand,
+  BuiltBand,
+  ResearchBand,
+  SportBand,
+  CloseBand,
+} from "@/components/spectrum/Sections";
+import { site } from "@/content/site";
 
+/**
+ * White light in, a spectrum out, and then one section per wavelength.
+ *
+ * The prism holds the top of the page while you scroll through it; the glass
+ * turns, the beam gets through, the colours come out. Once they are out the
+ * act releases the scroll and each section takes its own colour as the page's
+ * background. The argument is the structure: one beam, one person, six very
+ * different-looking things that all came out of the same source.
+ */
 export default function Home() {
   return (
-    <>
-      <ScrollProgress />
-      <Nav />
-      <main className="relative z-10">
-        <Hero />
-        <Marquee />
-        <Stats />
-        <WorkIndex />
-        <About />
-        <Contact />
+    <div className="spectrum-page relative">
+      <SpectrumBackground />
+
+      <header className="pointer-events-none fixed inset-x-0 top-0 z-30">
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-10">
+          <a
+            href="#top"
+            className="pointer-events-auto text-sm font-medium text-white"
+          >
+            {site.name}
+          </a>
+          <a
+            href="#contact"
+            className="pointer-events-auto r-pill border border-white/25 px-4 py-2 text-sm text-white transition-colors hover:bg-white/10"
+          >
+            Get in touch
+          </a>
+        </div>
+      </header>
+
+      <main id="top" className="relative z-10">
+        <PrismAct />
+        <IntroBand />
+        <ExperienceBand />
+        <VideoBand />
+        <BuiltBand />
+        <ResearchBand />
+        <SportBand />
+        <CloseBand />
       </main>
-      <Footer />
-      <DirectionSwitcher />
-    </>
+
+      <footer className="relative z-10 px-5 pb-10 sm:px-10">
+        <div className="mx-auto max-w-6xl border-t border-white/10 pt-6 text-sm text-white/40">
+          © {new Date().getFullYear()} {site.name}
+        </div>
+      </footer>
+    </div>
   );
 }

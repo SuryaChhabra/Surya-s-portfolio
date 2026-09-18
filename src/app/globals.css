@@ -358,3 +358,13 @@ body {
    =========================================================================== */
 .r-card { border-radius: var(--radius-card); }
 .r-pill { border-radius: var(--radius-pill); }
+
+/* ---------------------------------------------------------------------------
+ * The spectrum page paints its own sky. The paper background underneath it
+ * would otherwise flash cream on overscroll, at the bounce at either end of
+ * the scroll, and behind the fixed colour layer before it mounts.
+ * ------------------------------------------------------------------------- */
+body:has(.spectrum-page) {
+  background-color: #05060a;
+  color: #ffffff;
+}

@@ -44,7 +44,7 @@ type Props = {
   length?: number;
 };
 
-export function SpectrumFan({ progress, active, length = 11 }: Props) {
+export function SpectrumFan({ progress, active, length = 9.5 }: Props) {
   const texture = useStreakTexture();
   const group = useRef<THREE.Group>(null);
 
@@ -53,8 +53,11 @@ export function SpectrumFan({ progress, active, length = 11 }: Props) {
     const current = active.current ?? 0;
     const time = state.clock.elapsedTime;
 
-    /* The fan opens as the beam gets through the glass. */
-    const emerge = THREE.MathUtils.clamp((t - 0.08) / 0.3, 0, 1);
+    /* The fan opens once the beam is through the glass. */
+    const emerge = THREE.MathUtils.clamp((t - 0.18) / 0.32, 0, 1);
+    /* At the end every wavelength is out at full strength: the spectrum is
+       complete before the page hands over to the sections. */
+    const flood = THREE.MathUtils.clamp((t - 0.82) / 0.18, 0, 1);
 
     group.current?.children.forEach((child, i) => {
       const pivot = child as THREE.Group;
@@ -64,7 +67,7 @@ export function SpectrumFan({ progress, active, length = 11 }: Props) {
       /* Every band is present once the light is through — the active one
          simply burns brighter, so the spectrum stays whole while the scroll
          picks out which wavelength is speaking. */
-      const focus = i === current ? 1 : 0.28;
+      const focus = THREE.MathUtils.lerp(i === current ? 1 : 0.28, 1, flood);
       const shimmer = 1 + Math.sin(time * 1.4 + i * 0.7) * 0.06;
       mat.opacity = emerge * focus * shimmer;
 
@@ -72,17 +75,18 @@ export function SpectrumFan({ progress, active, length = 11 }: Props) {
          the band swings from the glass rather than about its own midpoint. */
       const spread = THREE.MathUtils.lerp(0.25, 1, emerge);
       pivot.rotation.z = THREE.MathUtils.degToRad(BANDS[i].angle) * spread;
+      pivot.scale.setScalar(1 + flood * 0.35);
     });
   });
 
   return (
-    <group ref={group} position={[1.15, 0.1, 0]}>
+    <group ref={group} position={[3.05, 0.6, 0]}>
       {BANDS.map((b) => (
         /* Pivot sits at the exit face; the plane is offset half its length
            inside it, so the fan opens from the glass. */
         <group key={b.id}>
           <mesh position={[length / 2, 0, 0]}>
-            <planeGeometry args={[length, 0.85]} />
+            <planeGeometry args={[length, 0.62]} />
             <meshBasicMaterial
               map={texture}
               color={b.color}
