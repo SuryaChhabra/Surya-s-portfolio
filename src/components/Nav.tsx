@@ -8,12 +8,7 @@ import { ThemeToggle } from "./ThemeToggle";
    so the nav filters this down to what is actually on the page — a link to
    a section that no longer exists scrolls nowhere. */
 const ALL_SECTIONS = [
-  { id: "work", label: "Work" },
-  { id: "video", label: "Video" },
-  { id: "research", label: "Research" },
-  { id: "archery", label: "Archery" },
-  { id: "events", label: "Events" },
-  { id: "path", label: "Path" },
+  { id: "index", label: "Work" },
   { id: "about", label: "About" },
 ];
 

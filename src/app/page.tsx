@@ -3,12 +3,7 @@ import { ScrollProgress } from "@/components/ScrollProgress";
 import { Hero } from "@/components/Hero";
 import { Marquee } from "@/components/Marquee";
 import { Stats } from "@/components/Stats";
-import { Work } from "@/components/Work";
-import { Videos } from "@/components/Videos";
-import { Research } from "@/components/Research";
-import { Archery } from "@/components/Archery";
-import { Events } from "@/components/Events";
-import { Timeline } from "@/components/Timeline";
+import { WorkIndex } from "@/components/WorkIndex";
 import { About } from "@/components/About";
 import { Contact } from "@/components/Contact";
 import { Footer } from "@/components/Footer";
@@ -23,12 +18,7 @@ export default function Home() {
         <Hero />
         <Marquee />
         <Stats />
-        <Work />
-        <Videos />
-        <Research />
-        <Archery />
-        <Events />
-        <Timeline />
+        <WorkIndex />
         <About />
         <Contact />
       </main>
