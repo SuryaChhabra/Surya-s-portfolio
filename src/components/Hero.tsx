@@ -3,6 +3,7 @@
 import { motion, useReducedMotion } from "motion/react";
 import { site } from "@/content/site";
 import { HeroScene } from "./HeroScene";
+import { HeroVideo } from "./HeroVideo";
 
 /** Renders *starred* words in the display serif italic. */
 function Line({ text }: { text: string }) {
@@ -24,12 +25,17 @@ function Line({ text }: { text: string }) {
 
 export function Hero() {
   const reduced = useReducedMotion();
+  const hasVideo = site.videos.some((v) => v.file);
 
   return (
     <section id="top" className="relative overflow-hidden px-4 sm:px-6">
-      <HeroScene />
+      {/* Video when there is one; the 3D cluster is the fallback. */}
+      {hasVideo ? <HeroVideo /> : <HeroScene />}
 
-      <div className="pointer-events-none relative z-10 mx-auto flex min-h-[86svh] max-w-6xl flex-col justify-center py-20">
+      <div
+        className="pointer-events-none relative z-10 mx-auto flex min-h-[92svh] max-w-6xl flex-col justify-center py-20"
+        style={hasVideo ? { color: "#fff" } : undefined}
+      >
         <motion.p
           className="label pointer-events-auto mb-8 flex w-fit items-center gap-2"
           initial={reduced ? false : { opacity: 0 }}
@@ -68,7 +74,10 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.45 }}
         >
-          <p className="text-base leading-relaxed text-ink-soft sm:text-lg">
+          <p
+            className="text-base leading-relaxed sm:text-lg"
+            style={{ color: hasVideo ? "rgba(255,255,255,0.82)" : "var(--ink-soft)" }}
+          >
             {site.hero.blurb}
           </p>
 
@@ -76,13 +85,17 @@ export function Hero() {
             <a
               href="#work"
               className="r-pill px-5 py-2.5 text-sm font-medium transition-transform hover:-translate-y-0.5"
-              style={{ backgroundColor: "var(--ink)", color: "var(--paper)" }}
+              style={{ backgroundColor: "#fff", color: "#111" }}
             >
               See the work
             </a>
             <a
               href="#contact"
-              className="r-pill border border-line px-5 py-2.5 text-sm font-medium transition-colors hover:bg-paper-2"
+              className="r-pill border px-5 py-2.5 text-sm font-medium transition-colors"
+              style={{
+                borderColor: hasVideo ? "rgba(255,255,255,0.45)" : "var(--line)",
+                color: hasVideo ? "#fff" : "var(--ink)",
+              }}
             >
               Work with me
             </a>

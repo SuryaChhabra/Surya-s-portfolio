@@ -11,6 +11,7 @@ import {
 import { Reveal } from "./Reveal";
 import { SectionHeading } from "./SectionHeading";
 import { VideoPlayer } from "./VideoPlayer";
+import { LazyVideo } from "./LazyVideo";
 import { Lightbox } from "./Lightbox";
 
 export function WorkIndex() {
@@ -97,100 +98,135 @@ function Tile({
   onOpenImage: () => void;
 }) {
   const meta = DOMAIN_META[item.domain];
+  /* Hovering previews the clip in place — a wall of still thumbnails behind
+     play buttons is a poor advert for someone who makes video. */
+  const [hovered, setHovered] = useState(false);
 
-  const body = (
-    <>
-      <span
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 z-10 h-1"
-        style={{ backgroundColor: "var(--accent)" }}
-      />
-
-      {item.open === "video" && playing ? (
-        <VideoPlayer
+  const media =
+    item.open === "video" ? (
+      <div className={`relative ${item.wide ? "aspect-[2.4/1]" : "aspect-[16/10]"}`}>
+        <span
+          aria-hidden="true"
+          className="absolute bottom-3 right-3 z-10 rounded-full px-2.5 py-1 text-[11px] font-medium opacity-0 transition-opacity duration-300 group-hover:opacity-100"
+          style={{ backgroundColor: "rgba(0,0,0,0.6)", color: "#fff" }}
+        >
+          hover to preview
+        </span>
+        <LazyVideo
           media={{
             poster: item.thumb,
             sources: [{ src: item.videoSrc!, type: "video/mp4" }],
             alt: item.title,
           }}
-          title={item.title}
+          active={hovered}
         />
-      ) : (
-        <span
-          /* A wide tile spans two columns, so it needs a wider ratio or it
-             becomes a tower that swallows the row. */
-          className={`relative block w-full overflow-hidden ${
-            item.wide ? "aspect-[2.4/1]" : "aspect-[16/10]"
-          }`}
-          style={{ backgroundColor: "var(--paper-2)" }}
-        >
-          {item.thumb ? (
-            <Image
-              src={item.thumb}
-              alt={item.title}
-              fill
-              sizes="(max-width: 640px) 100vw, 33vw"
-              className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
-            />
-          ) : null}
-
-          {item.open === "video" ? (
-            <span
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 grid h-14 w-14 -translate-x-1/2 -translate-y-1/2 place-items-center rounded-full transition-transform duration-300 group-hover:scale-110"
-              style={{ backgroundColor: "rgba(255,255,255,0.92)" }}
-            >
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="#111">
-                <path d="M8 5.5v13l11-6.5z" />
-              </svg>
-            </span>
-          ) : null}
-        </span>
-      )}
-
-      <span className="relative block p-5">
-        <span className="label" style={{ color: "var(--accent-ink)" }}>
-          {meta.label}
-        </span>
-        <span className="mt-2 block text-lg font-medium leading-snug tracking-[-0.02em]">
-          {item.title}
-        </span>
-        {item.note ? (
-          <span className="mt-2 block text-sm leading-relaxed text-ink-soft">
-            {item.note}
-          </span>
+      </div>
+    ) : (
+      <div
+        className={`relative ${item.wide ? "aspect-[2.4/1]" : "aspect-[16/10]"} overflow-hidden`}
+        style={{ backgroundColor: "var(--paper-2)" }}
+      >
+        {item.thumb ? (
+          <Image
+            src={item.thumb}
+            alt={item.title}
+            fill
+            sizes="(max-width: 640px) 100vw, 33vw"
+            className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+          />
         ) : null}
-      </span>
-    </>
+      </div>
+    );
+
+  const caption = (
+    <div className="relative p-5">
+      <div className="label" style={{ color: "var(--accent-ink)" }}>
+        {meta.label}
+      </div>
+      <div className="mt-2 text-lg font-medium leading-snug tracking-[-0.02em]">
+        {item.title}
+      </div>
+      {item.note ? (
+        <p className="mt-2 text-sm leading-relaxed text-ink-soft">{item.note}</p>
+      ) : null}
+    </div>
+  );
+
+  const accent = (
+    <span
+      aria-hidden="true"
+      className="absolute inset-x-0 top-0 z-10 h-1"
+      style={{ backgroundColor: "var(--accent)" }}
+    />
   );
 
   const className = `${meta.hue} group relative flex h-full w-full flex-col overflow-hidden r-card text-left transition-transform duration-500 hover:-translate-y-1 clay-surface`;
+  const hoverProps = {
+    onMouseEnter: () => setHovered(true),
+    onMouseLeave: () => setHovered(false),
+    onFocus: () => setHovered(true),
+    onBlur: () => setHovered(false),
+  };
+
+  /* Video: a plain container, because LazyVideo and the sound button are both
+     interactive and nesting them inside a button is invalid HTML — which is
+     what broke hydration the first time. */
+  if (item.open === "video") {
+    return (
+      <div className={className} {...hoverProps}>
+        {accent}
+        {playing ? (
+          <VideoPlayer
+            media={{
+              poster: item.thumb,
+              sources: [{ src: item.videoSrc!, type: "video/mp4" }],
+              alt: item.title,
+            }}
+            title={item.title}
+          />
+        ) : (
+          media
+        )}
+        {caption}
+        {!playing ? (
+          <div className="relative px-5 pb-5">
+            <button
+              type="button"
+              onClick={onPlay}
+              className="r-pill border px-4 py-2 text-sm font-medium transition-colors"
+              style={{ borderColor: "var(--accent)", color: "var(--accent-ink)" }}
+            >
+              ▶ Play with sound
+            </button>
+          </div>
+        ) : null}
+      </div>
+    );
+  }
 
   if (item.open === "link" && item.link) {
     return (
-      <a href={item.link} target="_blank" rel="noopener noreferrer" className={className}>
-        {body}
+      <a
+        href={item.link}
+        target="_blank"
+        rel="noopener noreferrer"
+        className={className}
+        {...hoverProps}
+      >
+        {accent}
+        {media}
+        {caption}
       </a>
     );
   }
 
-  if (item.open === "video" && !playing) {
-    return (
-      <button type="button" onClick={onPlay} className={className}>
-        {body}
-      </button>
-    );
-  }
-
-  if (item.open === "image") {
-    return (
-      <button type="button" onClick={onOpenImage} className={className}>
-        {body}
-      </button>
-    );
-  }
-
-  return <div className={className}>{body}</div>;
+  return (
+    <button type="button" onClick={onOpenImage} className={className} {...hoverProps}>
+      {accent}
+      {media}
+      {caption}
+    </button>
+  );
 }
 
 function FilterChip({
