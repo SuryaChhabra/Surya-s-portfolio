@@ -52,6 +52,18 @@ export function Videos() {
                     {video.note}
                   </p>
                 ) : null}
+                {(video as { link?: string }).link ? (
+                  <a
+                    href={(video as { link?: string }).link}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="link-draw mt-3 inline-block text-sm"
+                    style={{ color: "var(--accent-ink)" }}
+                  >
+                    See the post ↗
+                  </a>
+                ) : null}
+
                 <div className="mt-4 flex flex-wrap gap-2">
                   {video.tags.map((tag: string) => (
                     <span

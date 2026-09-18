@@ -118,6 +118,7 @@ export const site = {
       tags: ["Suno", "Runway", "CapCut"],
       poster: "/work/video-offbeat.svg",
       file: "offbeat.mp4",
+      link: "https://lnkd.in/p/g6eXxFDd",
     },
     {
       title: "Permute",
