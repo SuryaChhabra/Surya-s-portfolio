@@ -18,7 +18,7 @@ export function Contact() {
 
       <Reveal className="relative z-10 mx-auto max-w-3xl text-center">
         <p className="label" style={{ color: "var(--accent-ink)" }}>
-          07 / Contact
+          08 / Contact
         </p>
 
         <h2 className="mt-6 text-[clamp(2.25rem,7vw,4.5rem)] font-medium leading-[1] tracking-[-0.04em]">

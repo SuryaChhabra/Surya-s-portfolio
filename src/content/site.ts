@@ -165,6 +165,25 @@ export const site = {
     ],
   },
 
+  /* — Archery ———————————————————————————————————————————————————————
+     Competitive results. Fill a row per competition; rows with no `event`
+     are skipped, and the whole section disappears while none are filled,
+     so nothing half-written ever ships.
+
+       date     — "Mar 2026" or just "2025"
+       event    — the competition name
+       level    — e.g. "National", "State", "University", "Club"
+       category — e.g. "Recurve, 70m" / "Compound" / "Barebow"
+       result   — e.g. "Gold", "2nd", "Qualified", "Personal best 612"  */
+  archery: {
+    blurb: "",
+    results: [
+      { date: "", event: "", level: "", category: "", result: "" },
+      { date: "", event: "", level: "", category: "", result: "" },
+      { date: "", event: "", level: "", category: "", result: "" },
+    ],
+  },
+
   /* — Events ————————————————————————————————————————————————————— */
   events: [
     {
@@ -222,48 +241,21 @@ export const site = {
     },
   ],
 
-  /* — Writing / notes ————————————————————————————————————————————— */
-  writing: [
-    {
-      title: "The event is the funnel",
-      note: "Why in-person still beats a landing page for high-intent signups.",
-      date: "Aug 2026",
-      link: "",
-    },
-    {
-      title: "Stop A/B testing your headline",
-      note: "A case for testing offers and audiences before copy.",
-      date: "May 2026",
-      link: "",
-    },
-    {
-      title: "Community metrics that aren't vanity",
-      note: "Three numbers I actually report on.",
-      date: "Feb 2026",
-      link: "",
-    },
-  ],
+  /* — Writing / notes ————————————————————————————————————————————
+     Fabricated entries removed. Add real posts here if you have them. */
+  writing: [] as { title: string; note: string; date: string; link: string }[],
 
-  /* — About ——————————————————————————————————————————————————————— */
+  /* — About ——————————————————————————————————————————————————————
+     Was invented placeholder text and has been emptied. Write what is
+     actually true — one paragraph per entry. An empty array hides the
+     section entirely rather than showing a heading with nothing under it.
+
+     toolkit — the software you genuinely use.
+     (Writing lived here too; those three posts were fabricated and are
+     gone. Add real ones to `writing` if you have any.)                 */
   about: {
-    paragraphs: [
-      "I'm a growth generalist. In practice that means I'm equally happy writing the ad, cleaning the data behind it, and standing at the door of an event at 7am counting people in.",
-      "Most of my work sits where distribution meets product: finding the loop that already wants to happen and removing whatever is in its way. I care about compounding channels over spiky ones.",
-      "Outside work I run a monthly operator dinner, take too many photos of buildings, and am slowly learning to cook things that take four hours.",
-    ],
-    /* Small tags shown as stickers */
-    toolkit: [
-      "GA4",
-      "Amplitude",
-      "Webflow",
-      "Figma",
-      "Customer.io",
-      "SQL",
-      "Notion",
-      "Meta Ads",
-      "Ahrefs",
-      "Framer",
-    ],
+    paragraphs: [] as string[],
+    toolkit: [] as string[],
   },
 
   /* — Links ——————————————————————————————————————————————————————— */

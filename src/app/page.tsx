@@ -6,6 +6,7 @@ import { Stats } from "@/components/Stats";
 import { Work } from "@/components/Work";
 import { Videos } from "@/components/Videos";
 import { Research } from "@/components/Research";
+import { Archery } from "@/components/Archery";
 import { Events } from "@/components/Events";
 import { Timeline } from "@/components/Timeline";
 import { About } from "@/components/About";
@@ -25,6 +26,7 @@ export default function Home() {
         <Work />
         <Videos />
         <Research />
+        <Archery />
         <Events />
         <Timeline />
         <About />

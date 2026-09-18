@@ -18,6 +18,16 @@ const STICKER_HUES = [
 ];
 
 export function About() {
+  /* Nothing invented ships: with no paragraphs, toolkit or writing there is
+     no section at all, rather than a heading over empty space. */
+  if (
+    !site.about.paragraphs.length &&
+    !site.about.toolkit.length &&
+    !site.writing.length
+  ) {
+    return null;
+  }
+
   return (
     <section
       id="about"
@@ -25,11 +35,11 @@ export function About() {
       style={{ backgroundColor: "var(--paper-2)" }}
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
-        <SectionHeading index="06 / About" title="The short version." />
+        <SectionHeading index="07 / About" title="The short version." />
 
         <div className="grid gap-12 lg:grid-cols-12">
           <div className="space-y-5 lg:col-span-7">
-            {site.about.paragraphs.map((p, i) => (
+            {site.about.paragraphs.map((p: string, i: number) => (
               <Reveal key={i} delay={i * 0.06}>
                 <p className="text-base leading-relaxed text-ink-soft sm:text-lg">
                   {p}
@@ -40,9 +50,11 @@ export function About() {
 
           <Reveal delay={0.1} className="lg:col-span-5">
             <div className="r-card p-7 clay-surface sm:p-8">
-              <div className="label">Toolkit</div>
-              <div className="mt-5 flex flex-wrap gap-2.5">
-                {site.about.toolkit.map((tool, i) => (
+              {site.about.toolkit.length ? (
+                <>
+                  <div className="label">Toolkit</div>
+                  <div className="mt-5 flex flex-wrap gap-2.5">
+                    {site.about.toolkit.map((tool: string, i: number) => (
                   <span
                     key={tool}
                     className="r-pill border px-3 py-1.5 text-sm transition-transform duration-300 hover:rotate-0 hover:-translate-y-0.5"
@@ -55,13 +67,15 @@ export function About() {
                     {tool}
                   </span>
                 ))}
-              </div>
+                  </div>
+                </>
+              ) : null}
 
               {site.writing.length > 0 ? (
                 <div className="mt-9 border-t pt-7" style={{ borderColor: "var(--line)" }}>
                   <div className="label">Writing</div>
                   <ul className="mt-4 space-y-4">
-                    {site.writing.map((post) => {
+                    {site.writing.map((post: { title: string; note: string; date: string; link: string }) => {
                       const Item = post.link ? "a" : "div";
                       return (
                         <li key={post.title}>

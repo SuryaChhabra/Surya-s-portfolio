@@ -11,7 +11,7 @@ export function Events() {
     >
       <div className="mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28">
         <SectionHeading
-          index="04 / Events"
+          index="05 / Events"
           title="Rooms I've filled."
           lead="Events are a channel. These were run end-to-end — sponsorship, comms, run-of-show and the follow-up that actually converts."
         />

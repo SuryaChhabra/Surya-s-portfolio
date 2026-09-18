@@ -4,10 +4,14 @@ import { useEffect, useState } from "react";
 import { site } from "@/content/site";
 import { ThemeToggle } from "./ThemeToggle";
 
-const sections = [
+/* The full set. Sections hide themselves when they have no real content,
+   so the nav filters this down to what is actually on the page — a link to
+   a section that no longer exists scrolls nowhere. */
+const ALL_SECTIONS = [
   { id: "work", label: "Work" },
   { id: "video", label: "Video" },
   { id: "research", label: "Research" },
+  { id: "archery", label: "Archery" },
   { id: "events", label: "Events" },
   { id: "path", label: "Path" },
   { id: "about", label: "About" },
@@ -17,6 +21,11 @@ export function Nav() {
   const [lifted, setLifted] = useState(false);
   const [active, setActive] = useState<string>("");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [sections, setSections] = useState(ALL_SECTIONS);
+
+  useEffect(() => {
+    setSections(ALL_SECTIONS.filter((s) => document.getElementById(s.id)));
+  }, []);
 
   useEffect(() => {
     const onScroll = () => setLifted(window.scrollY > 24);
@@ -59,7 +68,7 @@ export function Nav() {
       if (el) observer.observe(el);
     }
     return () => observer.disconnect();
-  }, []);
+  }, [sections]);
 
   return (
     <header

@@ -10,7 +10,7 @@ export function Timeline() {
       id="path"
       className="hue-blue mx-auto max-w-6xl px-4 py-20 sm:px-6 sm:py-28"
     >
-      <SectionHeading index="05 / Path" title="How I got here." />
+      <SectionHeading index="06 / Path" title="How I got here." />
 
       <div className="relative">
         {/* The spine the markers hang from — a vertical slice of the spectrum. */}
