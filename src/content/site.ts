@@ -29,7 +29,9 @@ export const site = {
     lines: ["I jump in,", "*figure it out,*", "and ship v1"],
     blurb:
       "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
-    availability: "Looking for growth & creative startup work",
+    /* Stated, not requested. "Looking for work" as a headline reads as
+       asking; naming the work you do reads as choosing. Same fact. */
+    availability: "Growth and creative work, at startups.",
   },
 
   /* — Headline numbers ——————————————————————————————————————————
@@ -237,14 +239,17 @@ export const site = {
      gone. Add real ones to `writing` if you have any.)                 */
   about: {
     paragraphs: [
-      "I'm trying to find my way into growth and creative startup work. The thing I actually value in myself is knowing how to combine tools, taste and storytelling to make something feel alive — not being an expert in any one of them yet.",
-      "That shows up across everything here: AI video made with whatever gets the idea across, side projects shipped rather than planned, molecular-line astronomy, and the discipline that competitive archery beats into you.",
+      "I combine tools, taste and storytelling to make things feel alive. That is the actual skill — not any single tool, and not waiting until I am an expert in one.",
+      "It shows up across everything here: AI video made with whatever gets the idea across, side projects shipped instead of planned, molecular-line astronomy, and the discipline competitive archery beats into you.",
       "Expert nahi, par ready hoon.",
     ],
     toolkit: ["Suno", "Runway", "CapCut", "Next.js", "Python", "CARTA"],
   },
 
   /* — Links ——————————————————————————————————————————————————————— */
+  /* ⚠️ Anything still pointing at example.com or /username is scaffold and
+     is hidden on the live site rather than rendered as a dead link. Replace
+     the href and it appears. */
   socials: [
     { label: "Email", href: "mailto:hello@example.com" },
     { label: "LinkedIn", href: "https://linkedin.com/in/username" },

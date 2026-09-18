@@ -7,12 +7,13 @@ import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
 import { BAND_BY_ID } from "@/components/prism/bands";
-import { BandSection, Pending } from "./BandSection";
+import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
 /* Every card on this page is the same object: a pane of the same glass the
    light came through, tinted by whichever wavelength it is sitting in. */
 const PANE =
   "rounded-2xl border border-white/12 bg-white/[0.04] backdrop-blur-[2px]";
+
 
 /* — 01 Red — who this is ————————————————————————————————————————— */
 
@@ -73,15 +74,27 @@ export function IntroBand() {
 /* — 02 Orange — work and the rooms it happened in ————————————————— */
 
 export function ExperienceBand() {
-  const band = BAND_BY_ID.experience;
   const events = site.events.filter((e) => e.name);
+  const roles = site.timeline;
+
+  /* Until there are roles to list, the orange band leads with the events
+     instead. A section headed "Work experience." with no work experience
+     under it is the one thing on this page that actively costs something,
+     and it repairs itself the moment `timeline` has an entry. */
+  const band = roles.length
+    ? BAND_BY_ID.experience
+    : {
+        ...BAND_BY_ID.experience,
+        line: "Rooms I've been in.",
+        body: "",
+      };
 
   return (
     <BandSection band={band} index={1}>
       <div className="space-y-14">
-        {site.timeline.length ? (
+        {roles.length ? (
           <ol className="space-y-px">
-            {site.timeline.map((role) => (
+            {roles.map((role) => (
               <Reveal key={`${role.org}-${role.title}`}>
                 <li className={`flex flex-col gap-2 px-5 py-6 sm:flex-row sm:gap-8 ${PANE}`}>
                   <span className="label shrink-0 pt-1 text-white/45 sm:w-40">
@@ -105,15 +118,18 @@ export function ExperienceBand() {
             <Pending>
               Roles, dates and what you actually did go here. Nothing is filled
               in yet, and inventing it would be the one thing on this page that
-              could not survive a follow-up question.
+              could not survive a follow-up question. Until then this band
+              leads with the events instead.
             </Pending>
           </Reveal>
         )}
 
         {events.length ? (
           <div>
-            <h3 className="label text-white/45">In the room</h3>
-            <ul className="mt-5 grid gap-6 sm:grid-cols-2">
+            {roles.length ? (
+              <h3 className="label text-white/45">In the room</h3>
+            ) : null}
+            <ul className={`grid gap-6 sm:grid-cols-2 ${roles.length ? "mt-5" : ""}`}>
               {events.map((event, i) => (
                 <Reveal key={event.name} delay={(i % 2) * 0.08}>
                   <li className={`overflow-hidden ${PANE}`}>
@@ -142,9 +158,7 @@ export function ExperienceBand() {
                           {event.note}
                         </p>
                       ) : (
-                        <p className="mt-2 text-sm italic text-white/40">
-                          Date, your role and what came of it still to add.
-                        </p>
+                        <Note>Date, role and what came of it still to add.</Note>
                       )}
                       {event.link ? (
                         <a
@@ -212,9 +226,7 @@ export function VideoBand() {
                     {video.note}
                   </p>
                 ) : (
-                  <p className="mt-2 text-sm italic text-white/40">
-                    One line on what this is and who it was for.
-                  </p>
+                  <Note>One line on what this is and who it was for.</Note>
                 )}
                 {video.tags.length ? (
                   <div className="mt-3 flex flex-wrap gap-2">
@@ -277,11 +289,12 @@ export function BuiltBand() {
                     <span className="mt-2 block text-sm leading-relaxed text-white/65">
                       {project.summary}
                     </span>
-                  ) : (
+                  ) : SHOW_NOTES ? (
                     <span className="mt-2 block text-sm italic text-white/40">
+                      <span className="mr-1.5 opacity-60">✎</span>
                       One line on what it does still to add.
                     </span>
-                  )}
+                  ) : null}
                 </span>
                 <span
                   className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
@@ -363,10 +376,13 @@ export function ResearchBand() {
 export function SportBand() {
   const band = BAND_BY_ID.sport;
   const results = site.archery.results.filter((r) => r.event);
+  /* Nothing to put beside the photo once the author notes are gone, so the
+     layout drops to one column rather than leaving a hole in the grid. */
+  const aside = results.length > 0 || SHOW_NOTES;
 
   return (
     <BandSection band={band} index={5}>
-      <div className="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div className={aside ? "grid gap-10 lg:grid-cols-[0.9fr_1.1fr]" : "max-w-md"}>
         {site.archery.image ? (
           <Reveal>
             <div className={`relative aspect-[4/5] overflow-hidden ${PANE}`}>
@@ -381,6 +397,7 @@ export function SportBand() {
           </Reveal>
         ) : null}
 
+        {aside ? (
         <Reveal delay={0.1}>
           {results.length ? (
             <table className="w-full text-left text-sm">
@@ -418,6 +435,7 @@ export function SportBand() {
             </Pending>
           )}
         </Reveal>
+        ) : null}
       </div>
     </BandSection>
   );
@@ -425,21 +443,39 @@ export function SportBand() {
 
 /* — Close — the light recombines ——————————————————————————————————— */
 
+/**
+ * A link that is still the scaffold it shipped with — example.com, or a
+ * /username path nobody replaced.
+ */
+const PLACEHOLDER_LINK = /example\.com|\/username(\/|$)/;
+
 export function CloseBand() {
+  /* A dead contact link is worse than a missing one: it reads as real, gets
+     clicked, and fails in front of exactly the person you wanted. Anything
+     still holding scaffold does not render. */
+  const socials = site.socials.filter((s) => !PLACEHOLDER_LINK.test(s.href));
+
   return (
     <section
       id="contact"
       className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36"
     >
-      <div className="mx-auto max-w-6xl">
+      <div className="mx-auto w-full max-w-6xl">
         <Reveal>
           <p className="label text-white/45">All six, back together</p>
+          {/* The close states what the work is and invites the next move.
+              A portfolio that ends by asking for a job has spent the whole
+              page earning the right not to. */}
           <h2 className="mt-4 max-w-2xl text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em] text-white">
-            {site.hero.availability}
+            Tell me what you&rsquo;re building.
           </h2>
+          <p className="mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/70">
+            {site.hero.availability} If something here looks like the kind of
+            thing you need made, I am one message away.
+          </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
-            {site.socials.map((s) => (
+            {socials.map((s) => (
               <a
                 key={s.label}
                 href={s.href}
@@ -451,6 +487,17 @@ export function CloseBand() {
               </a>
             ))}
           </div>
+
+          {socials.length < site.socials.length ? (
+            <div className="mt-6">
+              <Pending>
+                {site.socials.length - socials.length} of {site.socials.length}{" "}
+                links in `site.socials` are still example.com / username
+                placeholders and are hidden until they are real. Same for
+                `site.email` and `site.meta.url`.
+              </Pending>
+            </div>
+          ) : null}
         </Reveal>
       </div>
     </section>

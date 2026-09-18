@@ -29,7 +29,11 @@ export function BandSection({
          actually owns the frame for a moment rather than flashing past. */
       className="relative flex min-h-[100svh] scroll-mt-8 flex-col justify-center px-5 py-24 sm:px-10 sm:py-32"
     >
-      <div className="mx-auto max-w-6xl">
+      {/* w-full matters: `mx-auto` sets auto margins, and a flex item with
+          auto margins on the cross axis is not stretched — it shrinks to its
+          content, so a sparse section would sit narrower and further right
+          than a full one and nothing would line up down the page. */}
+      <div className="mx-auto w-full max-w-6xl">
         <Reveal>
           <header className="max-w-2xl">
             <p className="label flex items-center gap-3" style={{ color: band.color }}>
@@ -57,13 +61,32 @@ export function BandSection({
 }
 
 /**
- * Stands in for content that is genuinely not written yet. It says so rather
- * than inventing something, because a section that admits a gap is worth more
- * in an interview than one that quietly makes a claim up.
+ * Whether to show the reminders about content that is not written yet.
+ *
+ * They are notes to the author, so they belong in `npm run dev` and nowhere
+ * near a visitor. A built site drops them: an empty space says "nothing here
+ * yet" quietly, while "roles and dates go here" says it out loud, in the
+ * author's own voice, to whoever is deciding whether to hire them. Empty
+ * still beats invented — this only changes who the admission is addressed to.
  */
+export const SHOW_NOTES = process.env.NODE_ENV !== "production";
+
+/** A block-level note to the author. Renders nothing in a built site. */
 export function Pending({ children }: { children: ReactNode }) {
+  if (!SHOW_NOTES) return null;
   return (
     <p className="max-w-xl rounded-xl border border-dashed border-white/20 px-5 py-4 text-sm italic leading-relaxed text-white/45">
+      {children}
+    </p>
+  );
+}
+
+/** The same thing inline, under a card. */
+export function Note({ children }: { children: ReactNode }) {
+  if (!SHOW_NOTES) return null;
+  return (
+    <p className="mt-2 text-sm italic text-white/40">
+      <span className="mr-1.5 opacity-60">✎</span>
       {children}
     </p>
   );
