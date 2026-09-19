@@ -2,7 +2,7 @@
 
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
-import { tones, type Band } from "@/components/prism/bands";
+import { BANDS, tones, type Band } from "@/components/prism/bands";
 
 /**
  * One wavelength's worth of page.
@@ -14,14 +14,16 @@ import { tones, type Band } from "@/components/prism/bands";
  */
 export function BandSection({
   band,
-  index,
   children,
 }: {
   band: Band;
-  index: number;
   children?: ReactNode;
 }) {
   const t = tones(band);
+  /* Derived, not passed. Moving a subject to another wavelength is a one-line
+     edit in bands.ts, and the numbering has to follow it without anyone
+     remembering to renumber seven call sites. */
+  const index = BANDS.findIndex((x) => x.id === band.id);
 
   return (
     <section

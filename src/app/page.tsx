@@ -3,9 +3,9 @@ import { SpectrumBackground } from "@/components/spectrum/SpectrumBackground";
 import { TopBar } from "@/components/spectrum/TopBar";
 import {
   GrowthBand,
+  VideoBand,
   EducationBand,
   LeadingBand,
-  VideoBand,
   BuiltBand,
   ResearchBand,
   SportBand,
@@ -32,9 +32,9 @@ export default function Home() {
       <main id="top" className="relative z-10">
         <PrismAct />
         <GrowthBand />
+        <VideoBand />
         <EducationBand />
         <LeadingBand />
-        <VideoBand />
         <BuiltBand />
         <ResearchBand />
         <SportBand />

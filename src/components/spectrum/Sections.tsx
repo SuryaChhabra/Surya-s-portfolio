@@ -40,19 +40,13 @@ function RoleCard({ role, band }: { role: Role; band: Band }) {
 
   return (
     <li className={`flex gap-4 px-6 py-6 sm:gap-5 sm:px-7 sm:py-7 ${t.pane}`}>
-      {/* Each mark sits on its own white tile rather than bare on the field:
-          one of these is a black line drawing and two carry their own
-          background, and a row of logos only reads as a row if they share a
-          shape. */}
+      {/* Full bleed. Each file is already a square carrying its own
+          background — blue, teal, or white for the one mark that is a black
+          line drawing — so the tile is the logo rather than a frame with a
+          logo inside it leaking white at the corners. */}
       {role.logo ? (
-        <span className="relative mt-0.5 block h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-white sm:h-12 sm:w-12">
-          <Image
-            src={role.logo}
-            alt=""
-            fill
-            sizes="48px"
-            className="object-contain p-1"
-          />
+        <span className="relative mt-0.5 block h-16 w-16 shrink-0 overflow-hidden rounded-2xl sm:h-[72px] sm:w-[72px]">
+          <Image src={role.logo} alt="" fill sizes="72px" className="object-cover" />
         </span>
       ) : null}
 
@@ -142,7 +136,7 @@ export function GrowthBand() {
   const roles = site.experience.growth as readonly Role[];
 
   return (
-    <BandSection band={band} index={0}>
+    <BandSection band={band}>
       <ul className="space-y-4">
         {roles.map((role, i) => (
           <Reveal key={`${role.org}-${role.title}`} delay={i * 0.06}>
@@ -177,7 +171,7 @@ export function EducationBand() {
   const band: Band = { ...base, line: institution || "Education.", body: note };
 
   return (
-    <BandSection band={band} index={1}>
+    <BandSection band={band}>
       {institution ? (
         <div className="space-y-9">
           <Reveal>
@@ -283,7 +277,7 @@ export function LeadingBand() {
   const events = site.events.filter((e) => e.name);
 
   return (
-    <BandSection band={band} index={2}>
+    <BandSection band={band}>
       <div className="space-y-14">
         {roles.length ? (
           <ul className="space-y-4">
@@ -361,7 +355,7 @@ export function VideoBand() {
   const t = tones(band);
 
   return (
-    <BandSection band={band} index={3}>
+    <BandSection band={band}>
       {/* The numbers live here rather than in the opening: beside the thing
           they describe they are evidence, and at the top of the page they
           would just be a claim. */}
@@ -471,7 +465,7 @@ export function BuiltBand() {
   const t = tones(band);
 
   return (
-    <BandSection band={band} index={4}>
+    <BandSection band={band}>
       <ul className="space-y-px">
         {site.work.map((project, i) => (
           <Reveal key={project.title} delay={i * 0.06}>
@@ -529,7 +523,7 @@ export function ResearchBand() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <BandSection band={band} index={5}>
+    <BandSection band={band}>
       <ul className="grid gap-6 sm:grid-cols-2">
         {images.map((image, i) => (
           <Reveal key={image.src} delay={(i % 2) * 0.08}>
@@ -585,7 +579,7 @@ export function SportBand() {
   const results = site.archery.results.filter((r) => r.event);
 
   return (
-    <BandSection band={band} index={6}>
+    <BandSection band={band}>
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
         {/* On a phone the photo is a full screen by itself, which pushes the
             record — the strongest claim on the page — under the fold. The
