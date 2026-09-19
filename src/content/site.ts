@@ -329,6 +329,27 @@ export const site = {
         skills: [] as string[],
       },
       {
+        /* ⚠️ Descriptive, not official — replace with the title Illinois
+           actually gives the role (peer instructor, course assistant,
+           whichever it is). An invented job title is the one thing on this
+           page that cannot survive being asked about. */
+        title: "Section lead — LAS 101",
+        org: "University of Illinois Urbana-Champaign",
+        kind: "",
+        /* ⚠️ Which term? */
+        period: "",
+        place: "",
+        context:
+          "LAS 101 is the college's first-year experience course: the one that gets new students through the first semester on a campus of 56,000.",
+        detail:
+          "Taught a section of 25 first-year students, running it start to finish — the sessions, the material and the part that actually matters, which is the students working out how to live somewhere new.",
+        metrics: [{ value: "25", label: "students in my section" }] as {
+          value: string;
+          label: string;
+        }[],
+        skills: [] as string[],
+      },
+      {
         title: "Head of Exploration",
         org: "Founders — Illinois Entrepreneurs",
         kind: "",
