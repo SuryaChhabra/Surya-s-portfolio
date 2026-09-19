@@ -194,8 +194,10 @@ export function PrismAct() {
         {/* The cue gets the floor to itself. It is the only instruction on
             the page, and the one thing a visitor has to act on for any of
             the rest to happen, so it is not a footnote under the buttons.
-            The indicator is a bead of white light falling down a spectrum
-            track — the same movement the page is about to make. */}
+
+            The spectrum bar does more work here than any icon: it is the
+            six colours, at a size you cannot miss, directly under the words
+            that promise them. The arrow only says which way. */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0"
           style={{
@@ -207,29 +209,26 @@ export function PrismAct() {
             <div className="flex items-center gap-5">
               <span
                 aria-hidden="true"
-                className="relative flex h-[60px] w-[30px] shrink-0 justify-center overflow-hidden rounded-full border pt-2.5"
+                className="grid h-14 w-14 shrink-0 place-items-center rounded-full border"
                 style={{
-                  borderColor: "rgba(255,255,255,0.35)",
+                  borderColor: "rgba(255,255,255,0.32)",
                   background:
-                    "linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0))",
+                    "linear-gradient(to bottom, rgba(255,255,255,0.07), rgba(255,255,255,0))",
                 }}
               >
-                {/* The track, in the six colours, behind the bead. */}
-                <span className="absolute inset-y-3 left-1/2 w-[3px] -translate-x-1/2 overflow-hidden rounded-full opacity-45">
-                  {BANDS.map((b) => (
-                    <span
-                      key={b.id}
-                      className="block w-full"
-                      style={{ height: `${100 / BANDS.length}%`, backgroundColor: b.color }}
-                    />
-                  ))}
-                </span>
-                <span
-                  className={`relative block h-2 w-2 rounded-full bg-white ${
-                    mode === "still" ? "" : "cue-bead"
-                  }`}
-                  style={{ boxShadow: "0 0 10px 2px rgba(255,255,255,0.65)" }}
-                />
+                <svg
+                  className={mode === "still" ? undefined : "cue-arrow"}
+                  width="19"
+                  height="21"
+                  viewBox="0 0 16 18"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8 1v15M2 10l6 6 6-6" />
+                </svg>
               </span>
 
               <span className="min-w-0">
@@ -238,9 +237,27 @@ export function PrismAct() {
                 </span>
                 <span
                   className="mt-1.5 block text-[clamp(0.95rem,1.2vw,1.1rem)] leading-snug"
-                  style={{ color: "rgba(255,255,255,0.65)" }}
+                  style={{ color: "rgba(255,255,255,0.68)" }}
                 >
                   {site.hero.cueSub}
+                </span>
+
+                {/* Six colours, shown rather than named, with a sheen
+                    travelling along them so the instruction moves. */}
+                <span
+                  aria-hidden="true"
+                  className="relative mt-3.5 flex h-2 w-[min(22rem,60vw)] overflow-hidden rounded-full"
+                >
+                  {BANDS.map((b) => (
+                    <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
+                  ))}
+                  <span
+                    className={`absolute inset-y-0 w-1/3 ${mode === "still" ? "" : "cue-sweep"}`}
+                    style={{
+                      background:
+                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent)",
+                    }}
+                  />
                 </span>
               </span>
             </div>

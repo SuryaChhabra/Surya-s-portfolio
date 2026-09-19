@@ -370,23 +370,29 @@ body:has(.spectrum-page) {
 }
 
 /* ---------------------------------------------------------------------------
- * The scroll cue's arrow. A short, slow fall rather than a bounce — the
- * page below is a beam of light travelling downward, and the cue should
- * look like the same movement, not like a notification.
+ * The scroll cue.
+ *
+ * The arrow falls rather than bounces: what is below is a beam of light
+ * travelling down the page, and the cue should read as the same movement,
+ * not as a notification. The spectrum bar carries a slow sheen for the same
+ * reason — it is the instruction, so it has to catch the eye on its own.
  * ------------------------------------------------------------------------- */
 @keyframes cue-fall {
-  0%   { transform: translateY(0);    opacity: 0; }
-  18%  { opacity: 1; }
-  72%  { opacity: 1; }
-  100% { transform: translateY(26px); opacity: 0; }
+  0%, 100% { transform: translateY(-16%); opacity: 0.5; }
+  50%      { transform: translateY(24%);  opacity: 1; }
 }
 
-/* A bead of white light falling down the track — the same thing the page
-   below is about to do, at the size of a thumb. */
-.cue-bead {
-  animation: cue-fall 2.2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
+@keyframes cue-sweep {
+  0%   { transform: translateX(-100%); }
+  55%  { transform: translateX(200%); }
+  100% { transform: translateX(200%); }
 }
+
+.cue-arrow { animation: cue-fall 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+.cue-sweep { animation: cue-sweep 3.4s cubic-bezier(0.5, 0, 0.3, 1) infinite; }
 
 @media (prefers-reduced-motion: reduce) {
-  .cue-bead { animation: none; opacity: 1; }
+  .cue-arrow,
+  .cue-sweep { animation: none; }
+  .cue-sweep { opacity: 0; }
 }
