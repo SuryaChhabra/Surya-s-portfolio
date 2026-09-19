@@ -128,12 +128,13 @@ export const BANDS: Band[] = [
     angle: -50,
     nav: "Research",
     line: "Astronomy.",
-    /* No ALMA, no IRS3B, no CASA. They opened the previous version and are
-       three proper nouns spent before anyone has been given a reason to
-       care — and this band is read by the same people as the other six.
-       The captions carry every one of them, where the panels have earned
-       them. What belongs up here is the question. */
-    body: "Gravity predicts how gas should spin around a forming star. Subtract that from what the telescope actually sees, and whatever refuses to cancel out is the interesting part.",
+    /* Question first, instruments second. An earlier version opened on
+       ALMA, IRS3B and CASA, which spends three proper nouns before anyone
+       has a reason to care; this keeps the idea in front and lets the
+       specifics land once they mean something. CASA is still left out —
+       four proper nouns in one paragraph is where the first version went
+       wrong, and the imaging craft belongs beside the panels, not here. */
+    body: "Gravity predicts how gas should spin around a forming star. Subtract that from what the telescope sees, and whatever refuses to cancel out is the interesting part. I track that residual with Python and statistics, on ALMA radio-interferometry data for IRS3B — a triple protostar system.",
   },
   {
     id: "sport",
