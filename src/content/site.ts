@@ -280,7 +280,7 @@ export const site = {
       {
         title: "Founding Growth",
         org: "TwinMind",
-        kind: "Internship",
+        kind: "",
         period: "Jul – Aug 2026",
         place: "San Francisco Bay Area",
         /* ⚠️ LinkedIn only carries TwinMind's own tagline here, which is
