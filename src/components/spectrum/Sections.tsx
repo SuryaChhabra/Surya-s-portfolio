@@ -172,23 +172,14 @@ export function EducationBand() {
   const band: Band = { ...base, line: institution || "Education.", body: note };
 
   return (
-    <BandSection band={band}>
+    <BandSection band={band} mark={logo || undefined}>
       {institution ? (
         <div className="space-y-9">
           <Reveal>
             <div
               className={`flex flex-col gap-2 px-6 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 sm:px-7 sm:py-7 ${t.pane}`}
             >
-              <div className="flex items-center gap-4 sm:gap-5">
-                {/* Full bleed in a rounded square, exactly as the role cards
-                    carry theirs — the file is a white tile with the mark on
-                    it, so there is no frame leaking white at the corners. */}
-                {logo ? (
-                  <span className="relative block h-14 w-14 shrink-0 overflow-hidden rounded-2xl sm:h-16 sm:w-16">
-                    <Image src={logo} alt="" fill sizes="64px" className="object-cover" />
-                  </span>
-                ) : null}
-                <div className="min-w-0">
+              <div className="min-w-0">
                 <p
                   className="text-[clamp(1.15rem,2vw,1.5rem)] font-medium tracking-[-0.025em]"
                   style={{ color: t.ink }}
@@ -200,7 +191,6 @@ export function EducationBand() {
                     {majors}
                   </p>
                 ) : null}
-                </div>
               </div>
               {period || place ? (
                 <p className="label shrink-0" style={{ color: t.muted }}>

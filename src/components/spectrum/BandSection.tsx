@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import type { ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { BANDS, tones, type Band } from "@/components/prism/bands";
@@ -14,9 +15,17 @@ import { BANDS, tones, type Band } from "@/components/prism/bands";
  */
 export function BandSection({
   band,
+  mark,
   children,
 }: {
   band: Band;
+  /**
+   * A square mark to set beside the heading, for a band whose subject is an
+   * institution rather than a theme. It sits in the header rather than in
+   * the content below, which is the whole point: at this size it is read
+   * with the title, not as one more item in a list.
+   */
+  mark?: string;
   children?: ReactNode;
 }) {
   const t = tones(band);
@@ -46,7 +55,9 @@ export function BandSection({
           than a full one and nothing would line up down the page. */}
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
-          <header className="max-w-2xl">
+          {/* A heading with a mark beside it needs the extra column width,
+              or the title wraps to three lines to make room for it. */}
+          <header className={mark ? "max-w-4xl" : "max-w-2xl"}>
             {/* The accent carries the words, the vivid colour carries the
                 rule: one has to be read on this field, the other only has to
                 be seen. */}
@@ -62,12 +73,19 @@ export function BandSection({
               />
               {String(index + 1).padStart(2, "0")}
             </p>
-            <h2
-              className="mt-4 text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
-              style={{ color: t.ink }}
-            >
-              {band.line}
-            </h2>
+            <div className="mt-4 flex items-center gap-5 sm:gap-7">
+              {mark ? (
+                <span className="relative block h-20 w-20 shrink-0 overflow-hidden rounded-[1.25rem] sm:h-28 sm:w-28">
+                  <Image src={mark} alt="" fill sizes="112px" className="object-cover" />
+                </span>
+              ) : null}
+              <h2
+                className="text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
+                style={{ color: t.ink }}
+              >
+                {band.line}
+              </h2>
+            </div>
             {band.body ? (
               <p
                 className="mt-5 text-[1.02rem] leading-relaxed"
