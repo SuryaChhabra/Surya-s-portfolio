@@ -114,12 +114,20 @@ export const site = {
       link: "",
     },
     {
+      /* The mirror of the Creator to Business row. There the company's name
+         had to come off, because the project was not theirs. Here it goes
+         on, because the whole point is who it was made for.
+         "A lot of time" is deliberately not written down: effort claimed is
+         worth nothing, effort shown is worth something, so the line counts
+         the screens instead. Seven is the count in the prototype's own nav
+         — Home, Matching, Chat, Dashboard, Parent Dashboard, Trust & Safety,
+         How It Works. */
       title: "Lumiere",
-      kicker: "Side project",
+      kicker: "Spec build",
       tone: "violet" as const,
       image: "/work/shot-lumiere.webp",
       summary:
-        "Matches ambitious high-school students into small research teams with expert mentors — with the matching, the moderated team chat and the parent view all built out.",
+        "Built for Lumiere Education without being asked, to show the founders what I would bring to it. Seven screens of working prototype — student–mentor team matching, a moderated team chat, the parent view, and the trust-and-safety rules underneath them.",
       metrics: [],
       tags: [],
       link: "https://lumiere-flax.vercel.app/",
