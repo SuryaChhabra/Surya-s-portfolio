@@ -63,7 +63,7 @@ export const BANDS: Band[] = [
        and so do the audiences, and a storefront's shoppers, a health
        movement's followers and a craft studio's buyers are not reached by
        one playbook. Claiming they are makes three roles look like one. */
-    body: "Three growth roles, not the same job three times. A Bay Area AI startup, India's largest health movement, an early-stage craft studio — no two share an audience, and the work followed the audience.",
+    body: "Three growth roles, not the same job three times. A Bay Area startup, India's largest health movement, an early-stage craft studio — no two share an audience, and the work followed the audience.",
   },
   {
     id: "video",

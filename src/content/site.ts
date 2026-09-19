@@ -290,41 +290,52 @@ export const site = {
   experience: {
     growth: [
       {
+        /* ⚠️ Your CV says "Growth intern" here and this says "Founding
+           Growth". The intern mark comes off every role on this page by
+           your own instruction, but those two are different claims, not
+           the same claim with a word removed — pick the one you want to
+           be asked about in an interview. */
         title: "Founding Growth",
         org: "TwinMind",
         logo: "/logos/twinmind.webp",
         kind: "",
-        period: "Jul – Aug 2026",
+        period: "Jul – Sep 2026",
         place: "San Francisco Bay Area",
-        /* ⚠️ LinkedIn only carries TwinMind's own tagline here, which is
-           their copy and not your work. Say what the remit actually was. */
-        detail: "",
+        /* GEO is in the CV bullet and deliberately not here: you asked for
+           SEO only, so the acronym goes and the substance stays as plain
+           discoverability. */
+        detail:
+          "Led growth across SEO, content, web and brand, making TwinMind easier to find. Ran experiments and launches end to end — website, creative campaigns, product storytelling, video, social distribution and user research.",
         metrics: [] as { value: string; label: string }[],
-        skills: [] as string[],
+        skills: ["SEO", "Content", "Brand", "User Research"],
       },
       {
         title: "Growth",
+        /* The org spells itself Satvic; the CV has Satvik in one place. */
         org: "Satvic Movement",
         logo: "/logos/satvic.webp",
         kind: "",
         period: "Mar – May 2026",
         place: "",
         detail:
-          "Helped scale e-commerce for India's largest community-led health movement by building high-conversion shopping experiences with an AI-native design stack.",
-        metrics: [] as { value: string; label: string }[],
-        skills: ["Web Design", "Shopify"],
+          "Drove e-commerce setup and growth strategy for India's largest community-driven health platform, designing high-conversion Shopify pages in Replo, Shogun and Figma to turn audience scale into revenue.",
+        metrics: [{ value: "8M+", label: "subscriber base" }] as {
+          value: string;
+          label: string;
+        }[],
+        skills: ["Shopify", "Replo", "Shogun", "Figma"],
       },
       {
-        title: "Growth",
+        title: "Business & Growth",
         org: "Ocher Studio",
         logo: "/logos/ocher.webp",
         kind: "",
-        period: "Jan – Mar 2026",
+        period: "Jan – May 2026",
         place: "",
         detail:
-          "Worked to make artisan livelihoods more sustainable by helping an early-stage craft startup grow through ethical markets, partnerships, and community-centered storytelling.",
+          "Worked at the intersection of entrepreneurship and community impact, arguing for revenue-driven models to support artisan livelihoods rather than charity. Grew an early-stage studio through market research, new revenue channels, partnerships and brand storytelling.",
         metrics: [] as { value: string; label: string }[],
-        skills: ["Marketing", "Marketing Strategy"],
+        skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
     ],
 
