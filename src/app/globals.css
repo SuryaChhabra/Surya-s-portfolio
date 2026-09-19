@@ -375,14 +375,18 @@ body:has(.spectrum-page) {
  * look like the same movement, not like a notification.
  * ------------------------------------------------------------------------- */
 @keyframes cue-fall {
-  0%, 100% { transform: translateY(-14%); opacity: 0.55; }
-  50%      { transform: translateY(22%);  opacity: 1; }
+  0%   { transform: translateY(0);    opacity: 0; }
+  18%  { opacity: 1; }
+  72%  { opacity: 1; }
+  100% { transform: translateY(26px); opacity: 0; }
 }
 
-.cue-arrow {
-  animation: cue-fall 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+/* A bead of white light falling down the track — the same thing the page
+   below is about to do, at the size of a thumb. */
+.cue-bead {
+  animation: cue-fall 2.2s cubic-bezier(0.45, 0, 0.3, 1) infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .cue-arrow { animation: none; }
+  .cue-bead { animation: none; opacity: 1; }
 }

@@ -147,7 +147,7 @@ export function PrismAct() {
         >
           {/* The cue is pinned to the floor now, so the copy has to clear it
                 rather than sit where it used to. */}
-            <div className="mx-auto w-full max-w-6xl px-5 pb-36 sm:px-10 sm:pb-[22vh]">
+            <div className="mx-auto w-full max-w-6xl px-5 pb-40 sm:px-10 sm:pb-[25vh]">
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
@@ -193,7 +193,9 @@ export function PrismAct() {
 
         {/* The cue gets the floor to itself. It is the only instruction on
             the page, and the one thing a visitor has to act on for any of
-            the rest to happen, so it is not a footnote under the buttons. */}
+            the rest to happen, so it is not a footnote under the buttons.
+            The indicator is a bead of white light falling down a spectrum
+            track — the same movement the page is about to make. */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0"
           style={{
@@ -201,40 +203,44 @@ export function PrismAct() {
             transition: "opacity 500ms linear",
           }}
         >
-          <div className="mx-auto w-full max-w-6xl px-5 pb-8 sm:px-10 sm:pb-10">
-            <div className="flex items-center gap-4">
+          <div className="mx-auto w-full max-w-6xl px-5 pb-9 sm:px-10 sm:pb-12">
+            <div className="flex items-center gap-5">
               <span
                 aria-hidden="true"
-                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border"
-                style={{ borderColor: "rgba(255,255,255,0.3)" }}
+                className="relative flex h-[60px] w-[30px] shrink-0 justify-center overflow-hidden rounded-full border pt-2.5"
+                style={{
+                  borderColor: "rgba(255,255,255,0.35)",
+                  background:
+                    "linear-gradient(to bottom, rgba(255,255,255,0.06), rgba(255,255,255,0))",
+                }}
               >
-                <svg
-                  className={mode === "still" ? undefined : "cue-arrow"}
-                  width="16"
-                  height="18"
-                  viewBox="0 0 16 18"
-                  fill="none"
-                  stroke="#ffffff"
-                  strokeWidth="1.6"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M8 1v15M2 10l6 6 6-6" />
-                </svg>
+                {/* The track, in the six colours, behind the bead. */}
+                <span className="absolute inset-y-3 left-1/2 w-[3px] -translate-x-1/2 overflow-hidden rounded-full opacity-45">
+                  {BANDS.map((b) => (
+                    <span
+                      key={b.id}
+                      className="block w-full"
+                      style={{ height: `${100 / BANDS.length}%`, backgroundColor: b.color }}
+                    />
+                  ))}
+                </span>
+                <span
+                  className={`relative block h-2 w-2 rounded-full bg-white ${
+                    mode === "still" ? "" : "cue-bead"
+                  }`}
+                  style={{ boxShadow: "0 0 10px 2px rgba(255,255,255,0.65)" }}
+                />
               </span>
 
               <span className="min-w-0">
-                <span className="block text-[clamp(1.05rem,1.5vw,1.3rem)] font-medium leading-snug text-white">
+                <span className="block text-[clamp(1.25rem,2vw,1.65rem)] font-medium leading-tight tracking-[-0.025em] text-white">
                   {mode === "still" ? site.hero.cueStill : site.hero.cue}
                 </span>
-                {/* Six colours, shown rather than named. */}
                 <span
-                  aria-hidden="true"
-                  className="mt-2.5 flex h-1.5 w-40 overflow-hidden rounded-full"
+                  className="mt-1.5 block text-[clamp(0.95rem,1.2vw,1.1rem)] leading-snug"
+                  style={{ color: "rgba(255,255,255,0.65)" }}
                 >
-                  {BANDS.map((b) => (
-                    <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
-                  ))}
+                  {site.hero.cueSub}
                 </span>
               </span>
             </div>

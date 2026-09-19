@@ -44,8 +44,9 @@ export const site = {
        just a nice object; with it, the whole page has a premise before
        anyone has scrolled a pixel. `cueStill` is the same thing for
        visitors who have motion turned off and never see it happen. */
-    cue: "Scroll to split the light — six colours, one for each side of what I do.",
-    cueStill: "Six colours below, one for each side of what I do.",
+    cue: "Scroll to split the light",
+    cueStill: "Six colours, six sections",
+    cueSub: "Six colours, one for each side of what I do.",
     blurb:
       "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
     /* Stated, not requested. "Looking for work" as a headline reads as
