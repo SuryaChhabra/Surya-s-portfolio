@@ -125,17 +125,17 @@ export const site = {
       link: "https://lumiere-flax.vercel.app/",
     },
     {
-      /* ⚠️ This shares a name with OFF/BEAT, the company two sections up
-         that the application video was made for — and it is not their
-         project, it is yours. The summary says so in the first three words
-         because the row cannot rely on the title to do it. Rename the row
-         and the collision goes away entirely; say the word. */
-      title: "Offbeat",
+      /* Was titled "Offbeat", which is a brand — the company two sections
+         up that the application video was made for. A row carrying their
+         name reads as their project however the summary is worded, so it
+         is named for what it does instead. The URL still says off-beat;
+         only the visible title changed. */
+      title: "Creator to Business",
       kicker: "Side project",
       tone: "orange" as const,
       image: "/work/shot-offbeat.webp",
       summary:
-        "Mine, built end to end. Drop in any YouTube creator and it maps their audience, scores the categories that audience actually buys, and surfaces brand concepts grounded in evidence rather than vibes.",
+        "Drop in any YouTube creator and it maps their audience, scores the categories that audience actually buys, and surfaces brand concepts grounded in evidence rather than vibes.",
       metrics: [],
       tags: [],
       link: "https://off-beat-choosing-the-creator.vercel.app/",
