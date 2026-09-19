@@ -267,6 +267,8 @@ export const site = {
        kind    — "Internship" / "Contract" / "" for a normal role
        period  — "Jul – Aug 2026"
        place   — "San Francisco Bay Area" or "" to omit
+       context — optional: what the organisation is, in its own terms. Only
+                 where that frames the work rather than padding it out.
        detail  — what you actually did. One or two sentences.
        metrics — optional: { value, label } that you can stand behind
        skills  — optional tags                                            */
@@ -316,6 +318,8 @@ export const site = {
         /* ⚠️ Which academic year? */
         period: "",
         place: "",
+        context:
+          "Hindu YUVA runs on four P's — preserve, practice, promote and protect Hindu Dharma — bringing Hindu students together on campuses across North America.",
         detail:
           "Ran all internal and external communications for the year, and led events end to end — a Ganesha celebration that drew over 500 people, where I handled food, decor and the programme, plus Hindu New Year and Guru Vandana, the teachers' appreciation evening.",
         metrics: [{ value: "500+", label: "at the Ganesha celebration" }] as {

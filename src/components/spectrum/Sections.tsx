@@ -19,6 +19,8 @@ type Role = {
   kind: string;
   period: string;
   place: string;
+  /** What the organisation is, when that is the point rather than padding. */
+  context?: string;
   detail: string;
   metrics: readonly { value: string; label: string }[];
   skills: readonly string[];
@@ -50,6 +52,17 @@ function RoleCard({ role, band }: { role: Role; band: Band }) {
       {role.place ? (
         <p className="mt-1 text-sm" style={{ color: t.muted }}>
           {role.place}
+        </p>
+      ) : null}
+
+      {/* The organisation's own frame, marked as theirs by the rule and
+          kept off the same line as what you did in it. */}
+      {role.context ? (
+        <p
+          className="mt-3 border-l-2 pl-3.5 text-[0.92rem] leading-relaxed"
+          style={{ borderColor: `${band.accent}66`, color: t.muted }}
+        >
+          {role.context}
         </p>
       ) : null}
 
