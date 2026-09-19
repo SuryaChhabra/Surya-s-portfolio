@@ -79,7 +79,10 @@ export function TopBar() {
               <span
                 aria-hidden="true"
                 className="block h-2 w-2 rounded-full transition-transform group-hover:scale-150"
-                style={{ backgroundColor: b.color }}
+                style={{
+                  backgroundColor: b.color,
+                  boxShadow: "0 0 0 1px var(--band-rule, rgba(255,255,255,0.28))",
+                }}
               />
               {b.nav}
             </a>

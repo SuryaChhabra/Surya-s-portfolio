@@ -172,7 +172,10 @@ function SpectrumRail({ active }: { active: Band | null }) {
                 width: 6,
                 height: on ? 26 : 6,
                 backgroundColor: on ? b.accent : b.color,
-                opacity: on ? 1 : 0.55,
+                /* Same reason as the nav: on its own field a band's colour
+                   is invisible, so every mark carries a hairline. */
+                boxShadow: `0 0 0 1px ${t?.rule ?? "rgba(255,255,255,0.2)"}`,
+                opacity: on ? 1 : 0.6,
               }}
             />
           </a>

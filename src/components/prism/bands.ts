@@ -64,9 +64,14 @@ export const BANDS: Band[] = [
   {
     id: "video",
     color: "#ff8a2b",
-    deep: "#8a3a02",
-    accent: "#ffc393",
-    tone: "dark",
+    /* Orange is the second hue that cannot be dark and still be itself: at
+       the luminance white text needs, orange is brown, and sitting directly
+       under the red band it read as another red. So it inverts too — a
+       bright orange field with near-black ink. The warm middle of a real
+       spectrum is its brightest part, which is what this now looks like. */
+    deep: "#ff8a2b",
+    accent: "#5c2600",
+    tone: "light",
     angle: -18,
     kicker: "Orange",
     nav: "Video",
@@ -159,17 +164,17 @@ export function tones(band: Band) {
   const light = band.tone === "light";
   return {
     /** Headings and anything that has to be unmissable. */
-    ink: light ? "#241a00" : "#ffffff",
+    ink: light ? "#281700" : "#ffffff",
     /** Body copy. */
-    body: light ? "rgba(36,26,0,0.82)" : "rgba(255,255,255,0.82)",
+    body: light ? "rgba(40,23,0,0.84)" : "rgba(255,255,255,0.82)",
     /** Labels, captions, anything deliberately quiet. */
-    muted: light ? "rgba(36,26,0,0.62)" : "rgba(255,255,255,0.64)",
+    muted: light ? "rgba(40,23,0,0.66)" : "rgba(255,255,255,0.64)",
     /** A pane of the same glass the light came through. */
     pane: light
       ? "rounded-2xl border border-black/15 bg-white/30 backdrop-blur-[2px]"
       : "rounded-2xl border border-white/20 bg-black/25 backdrop-blur-[2px]",
     /** Hairlines and dividers. */
-    rule: light ? "rgba(36,26,0,0.22)" : "rgba(255,255,255,0.20)",
+    rule: light ? "rgba(40,23,0,0.24)" : "rgba(255,255,255,0.20)",
     hover: light ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
   };
 }
