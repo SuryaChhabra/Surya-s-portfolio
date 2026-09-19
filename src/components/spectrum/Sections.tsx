@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import type { ReactNode } from "react";
 import { useState } from "react";
 import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
@@ -481,6 +482,24 @@ export function VideoBand() {
   );
 }
 
+/** An anchor when there is somewhere to go, a div when there is not. */
+function Row({
+  href,
+  className,
+  children,
+}: {
+  href?: string;
+  className?: string;
+  children: ReactNode;
+}) {
+  if (!href) return <div className={className}>{children}</div>;
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" className={className}>
+      {children}
+    </a>
+  );
+}
+
 function guessType(url: string) {
   const path = url.split("?")[0].toLowerCase();
   if (path.endsWith(".webm")) return "video/webm";
@@ -500,12 +519,10 @@ export function BuiltBand() {
         {site.work.map((project, i) => (
           <Reveal key={project.title} delay={i * 0.06}>
             <li>
-              <a
-                href={project.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={`group flex flex-col gap-3 px-5 py-7 transition-colors sm:flex-row sm:items-baseline sm:gap-8 ${t.pane}`}
-              >
+              {/* A row without a link is a plain block, not an anchor that
+                  goes nowhere: every other row here ends in "Open" and a
+                  dead one would be the only promise the page breaks. */}
+              <Row href={project.link} className={`group flex flex-col gap-3 px-5 py-7 transition-colors sm:flex-row sm:items-baseline sm:gap-8 ${t.pane}`}>
                 <span className="label shrink-0 sm:w-28" style={{ color: t.muted }}>
                   {project.kicker}
                 </span>
@@ -527,13 +544,15 @@ export function BuiltBand() {
                     </span>
                   ) : null}
                 </span>
-                <span
-                  className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
-                  style={{ color: band.accent }}
-                >
-                  Open ↗︎
-                </span>
-              </a>
+                {project.link ? (
+                  <span
+                    className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
+                    style={{ color: band.accent }}
+                  >
+                    Open ↗︎
+                  </span>
+                ) : null}
+              </Row>
             </li>
           </Reveal>
         ))}

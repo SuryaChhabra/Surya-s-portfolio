@@ -117,7 +117,11 @@ export const BANDS: Band[] = [
     angle: -42,
     nav: "Built",
     line: "Things I've shipped.",
-    body: "Lumiere, Offbeat and Karmic Connections — built, deployed, live. Version one beats a plan every time.",
+    /* Not a list of the rows underneath, which is what it was before
+       Collectiv arrived and immediately made it wrong. The split it names
+       now — one thing judged, three things nobody asked for — is the thing
+       the rows cannot say for themselves. */
+    body: "First place at a product hackathon, and three things nobody asked me to make. Built, deployed, live — version one beats a plan every time.",
   },
   {
     id: "research",

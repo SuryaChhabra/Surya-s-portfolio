@@ -99,6 +99,20 @@ export const site = {
      as honest; an invented one does not. Empty fields render nothing.     */
   work: [
     {
+      /* First, because it is the only thing in this section somebody else
+         judged. The rest are all things you decided to make. */
+      title: "Collectiv",
+      kicker: "Hackathon",
+      tone: "blue" as const,
+      summary:
+        "First place at the UIUC Product Space Hackathon. An AI platform for community shopping in the suburbs: pool orders across a neighbourhood and delivery stops being the cost that keeps small local stores off the internet. Built in 24 hours with no-code tools, with two teammates I had met the day before.",
+      metrics: [],
+      tags: [],
+      /* ⚠️ No link yet. The LinkedIn post announcing it would do — without
+         one this row is the only project on the page that opens nothing. */
+      link: "",
+    },
+    {
       title: "Lumiere",
       kicker: "Side project",
       tone: "violet" as const,
