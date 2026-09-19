@@ -141,7 +141,9 @@ function SpectrumRail({ active }: { active: Band | null }) {
   return (
     <nav
       aria-label="Sections"
-      className="fixed right-3 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-2 sm:flex"
+      /* right-6, not right-3: at 12px the rail sat on top of the scrollbar,
+         so reaching for the scrollbar caught the rail instead. */
+      className="fixed right-6 top-1/2 z-30 hidden -translate-y-1/2 flex-col gap-2 sm:flex"
       style={{
         opacity: active ? 1 : 0,
         pointerEvents: active ? "auto" : "none",
@@ -154,11 +156,19 @@ function SpectrumRail({ active }: { active: Band | null }) {
           <a
             key={b.id}
             href={`#${b.id}`}
-            className="group flex items-center justify-end gap-2 py-1 pr-1"
+            /* h-7 so the active marker, which grows to 26px, sits inside
+               its own link rather than overflowing it. */
+            className="group relative flex h-7 w-6 items-center justify-end"
             title={b.line}
           >
+            {/* Absolute, so the label does not widen the link. It is only
+                opacity-0 when idle, and opacity does not remove layout: the
+                rail was 95px of invisible clickable strip down the right
+                edge of every page, which is what was swallowing the scroll.
+                Out of flow it costs nothing, and pointer-events-none keeps
+                it from catching anything on the way past. */}
             <span
-              className="text-[0.68rem] uppercase tracking-[0.14em] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
+              className="pointer-events-none absolute right-full mr-2 whitespace-nowrap text-[0.68rem] uppercase tracking-[0.14em] opacity-0 transition-opacity group-hover:opacity-100 group-focus-visible:opacity-100"
               style={{ color: t?.ink ?? "#ffffff" }}
             >
               {b.id}
