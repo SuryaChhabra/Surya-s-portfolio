@@ -104,6 +104,7 @@ export const site = {
       title: "Collectiv",
       kicker: "Hackathon",
       tone: "blue" as const,
+      image: "/work/shot-collectiv.webp",
       summary:
         "First place at the UIUC Product Space Hackathon. An AI platform for community shopping in the suburbs: pool orders across a neighbourhood and delivery stops being the cost that keeps small local stores off the internet. Built in 24 hours with no-code tools, with two teammates I had met the day before.",
       metrics: [],
@@ -116,16 +117,25 @@ export const site = {
       title: "Lumiere",
       kicker: "Side project",
       tone: "violet" as const,
-      summary: "",
+      image: "/work/shot-lumiere.webp",
+      summary:
+        "Matches ambitious high-school students into small research teams with expert mentors — with the matching, the moderated team chat and the parent view all built out.",
       metrics: [],
       tags: [],
       link: "https://lumiere-flax.vercel.app/",
     },
     {
+      /* ⚠️ This shares a name with OFF/BEAT, the company two sections up
+         that the application video was made for — and it is not their
+         project, it is yours. The summary says so in the first three words
+         because the row cannot rely on the title to do it. Rename the row
+         and the collision goes away entirely; say the word. */
       title: "Offbeat",
       kicker: "Side project",
       tone: "orange" as const,
-      summary: "",
+      image: "/work/shot-offbeat.webp",
+      summary:
+        "Mine, built end to end. Drop in any YouTube creator and it maps their audience, scores the categories that audience actually buys, and surfaces brand concepts grounded in evidence rather than vibes.",
       metrics: [],
       tags: [],
       link: "https://off-beat-choosing-the-creator.vercel.app/",
@@ -134,7 +144,9 @@ export const site = {
       title: "Karmic Connections",
       kicker: "Side project",
       tone: "green" as const,
-      summary: "",
+      image: "/work/shot-karmic.webp",
+      summary:
+        "A site for a hypnotherapy and past-life-regression practice — the one project here built for somebody else to use with their own clients.",
       metrics: [],
       tags: [],
       link: "https://karmicconnections.co.in",

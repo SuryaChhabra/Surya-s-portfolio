@@ -538,29 +538,37 @@ function guessType(url: string) {
 export function BuiltBand() {
   const band = BAND_BY_ID.built;
   const t = tones(band);
+  /* Alternating tilt, so the four do not look stamped from one template. */
+  const tilt = ["-4deg", "3.5deg", "-3deg", "4.5deg"];
 
   return (
     <BandSection band={band}>
-      <ul className="space-y-px">
+      <ul className="space-y-6">
         {site.work.map((project, i) => (
           <Reveal key={project.title} delay={i * 0.06}>
             <li>
               {/* A row without a link is a plain block, not an anchor that
                   goes nowhere: every other row here ends in "Open" and a
                   dead one would be the only promise the page breaks. */}
-              <Row href={project.link} className={`group flex flex-col gap-3 px-5 py-7 transition-colors sm:flex-row sm:items-baseline sm:gap-8 ${t.pane}`}>
-                <span className="label shrink-0 sm:w-28" style={{ color: t.muted }}>
-                  {project.kicker}
-                </span>
-                <span className="flex-1">
-                  <span
-                    className="block text-xl font-medium tracking-[-0.02em] sm:text-2xl"
-                    style={{ color: t.ink }}
-                  >
-                    {project.title}
+              <Row
+                href={project.link}
+                className={`group flex flex-col gap-5 px-5 py-6 transition-colors sm:flex-row sm:items-center sm:gap-8 sm:py-7 ${t.pane}`}
+              >
+                <span className="min-w-0 flex-1">
+                  <span className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:gap-5">
+                    <span className="label shrink-0" style={{ color: t.muted }}>
+                      {project.kicker}
+                    </span>
+                    <span
+                      className="block text-xl font-medium tracking-[-0.02em] sm:text-2xl"
+                      style={{ color: t.ink }}
+                    >
+                      {project.title}
+                    </span>
                   </span>
+
                   {project.summary ? (
-                    <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
+                    <span className="mt-2.5 block max-w-2xl text-sm leading-relaxed" style={{ color: t.body }}>
                       {project.summary}
                     </span>
                   ) : SHOW_NOTES ? (
@@ -569,13 +577,32 @@ export function BuiltBand() {
                       One line on what it does still to add.
                     </span>
                   ) : null}
+
+                  {project.link ? (
+                    <span
+                      className="mt-3 inline-block text-sm transition-transform group-hover:translate-x-1"
+                      style={{ color: band.accent }}
+                    >
+                      Open ↗︎
+                    </span>
+                  ) : null}
                 </span>
-                {project.link ? (
-                  <span
-                    className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
-                    style={{ color: band.accent }}
+
+                {/* The screenshot, half-tucked. Fixed width so the row height
+                    never depends on which project it is. */}
+                {project.image ? (
+                  <span className="peek relative block w-full shrink-0 overflow-hidden rounded-xl sm:w-[16rem] lg:w-[19rem]"
+                    style={{ ["--peek-tilt" as string]: tilt[i % tilt.length] }}
                   >
-                    Open ↗︎
+                    <span className="relative block aspect-[16/10]">
+                      <Image
+                        src={project.image}
+                        alt={`${project.title} screenshot`}
+                        fill
+                        sizes="(max-width: 640px) 100vw, 19rem"
+                        className="object-cover"
+                      />
+                    </span>
                   </span>
                 ) : null}
               </Row>

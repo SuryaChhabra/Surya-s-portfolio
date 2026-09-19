@@ -410,6 +410,55 @@ body {
 }
 
 /* ---------------------------------------------------------------------------
+ * The shipped things, tucked in at an angle.
+ *
+ * These are quick builds and the section should not pretend otherwise: a
+ * carousel or a gallery would stage them like case studies. Instead each row
+ * keeps a screenshot half-tucked under it, rotated a few degrees, and pokes
+ * out straight when you hover. The section stays four short rows tall and
+ * the interaction does the talking — a thing that flicks out when prodded
+ * reads like something made in a weekend, which is what these are.
+ *
+ * Everything moves via transform and opacity only, so it stays on the
+ * compositor and never reflows the list.
+ * ------------------------------------------------------------------------- */
+.peek {
+  transform: rotate(var(--peek-tilt, -4deg)) translateY(8%) scale(0.94);
+  transform-origin: 80% 100%;
+  opacity: 0.72;
+  transition:
+    transform 420ms cubic-bezier(0.2, 0.7, 0.2, 1),
+    opacity 420ms linear,
+    box-shadow 420ms linear;
+  box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8);
+}
+
+.group:hover .peek,
+.group:focus-visible .peek,
+.group:focus-within .peek {
+  transform: rotate(0deg) translateY(0) scale(1);
+  opacity: 1;
+  box-shadow: 0 26px 60px -24px rgba(0, 0, 0, 0.85);
+}
+
+@media (hover: none) {
+  /* No hover to discover, so it simply sits straight and visible. Nothing
+     is hidden behind a gesture nobody was told about. */
+  .peek {
+    transform: none;
+    opacity: 1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .peek {
+    transition: none;
+    transform: none;
+    opacity: 1;
+  }
+}
+
+/* ---------------------------------------------------------------------------
  * The spectrum page paints its own sky. The paper background underneath it
  * would otherwise flash cream on overscroll, at the bounce at either end of
  * the scroll, and behind the fixed colour layer before it mounts.
