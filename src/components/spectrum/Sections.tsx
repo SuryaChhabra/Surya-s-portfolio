@@ -7,6 +7,7 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
+import { Parallax } from "@/components/Parallax";
 import { BANDS, BAND_BY_ID, CLOSING, tones, type Band } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
@@ -711,7 +712,11 @@ export function SportBand() {
             and, at 4:5, the archer's head. */}
         {image ? (
           <Reveal>
-            <div
+            {/* Camera movement, not motion in the subject. The frame slides
+                over the photograph as you pass it, which is honest about
+                what a still is; a drawn arrow or a zoom on the release
+                would claim something the frame does not show. */}
+            <Parallax
               className={`relative aspect-[3/2] overflow-hidden sm:aspect-[16/9] ${t.pane}`}
             >
               <Image
@@ -721,7 +726,7 @@ export function SportBand() {
                 sizes="(max-width: 1152px) 100vw, 1152px"
                 className="object-cover"
               />
-            </div>
+            </Parallax>
           </Reveal>
         ) : null}
 
