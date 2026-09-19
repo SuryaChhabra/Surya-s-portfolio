@@ -139,44 +139,54 @@ export function GrowthBand() {
 export function EducationBand() {
   const base = BAND_BY_ID.education;
   const t = tones(base);
-  const { institution, degree, period, place, note, highlights } = site.education;
+  const {
+    institution,
+    degree,
+    majors,
+    period,
+    place,
+    note,
+    highlights,
+    coursework,
+  } = site.education;
 
   /* Nothing to show and no notes to show either: the band would be a
      heading over empty colour, which is the one thing worse than a gap. */
   if (!institution && !SHOW_NOTES) return null;
 
-  const band: Band = {
-    ...base,
-    line: institution || "Education.",
-    body: note || (degree ? "" : ""),
-  };
+  const band: Band = { ...base, line: institution || "Education.", body: note };
 
   return (
     <BandSection band={band} index={1}>
       {institution ? (
-        <div className="space-y-8">
+        <div className="space-y-9">
           <Reveal>
             <div
               className={`flex flex-col gap-2 px-6 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 sm:px-7 sm:py-7 ${t.pane}`}
             >
-              <p
-                className="text-[clamp(1.15rem,2vw,1.5rem)] font-medium tracking-[-0.025em]"
-                style={{ color: t.ink }}
-              >
-                {degree}
-              </p>
+              <div>
+                <p
+                  className="text-[clamp(1.15rem,2vw,1.5rem)] font-medium tracking-[-0.025em]"
+                  style={{ color: t.ink }}
+                >
+                  {degree}
+                </p>
+                {majors ? (
+                  <p className="mt-1.5 text-[0.98rem]" style={{ color: band.accent }}>
+                    {majors}
+                  </p>
+                ) : null}
+              </div>
               {period || place ? (
                 <p className="label shrink-0" style={{ color: t.muted }}>
                   {[period, place].filter(Boolean).join(" · ")}
                 </p>
-              ) : (
-                <Note band={band}>Years still to add.</Note>
-              )}
+              ) : null}
             </div>
           </Reveal>
 
           {highlights.length ? (
-            <Reveal delay={0.08}>
+            <Reveal delay={0.06}>
               <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
                 {highlights.map((h) => (
                   <li key={h.label} className="flex gap-3">
@@ -201,6 +211,35 @@ export function EducationBand() {
                   </li>
                 ))}
               </ul>
+            </Reveal>
+          ) : null}
+
+          {/* The two halves of the degree, side by side, because the pairing
+              is the interesting part — the statistics is why the growth work
+              has numbers behind it, and the astronomy is where the research
+              band comes from. */}
+          {coursework.length ? (
+            <Reveal delay={0.12}>
+              <div className="grid gap-8 sm:grid-cols-2">
+                {coursework.map((group) => (
+                  <div key={group.area}>
+                    <h3 className="label" style={{ color: t.muted }}>
+                      {group.area}
+                    </h3>
+                    <ul className="mt-3 flex flex-wrap gap-2">
+                      {group.courses.map((course) => (
+                        <li
+                          key={course}
+                          className="r-pill border px-3 py-1.5 text-[0.82rem]"
+                          style={{ borderColor: `${band.accent}4d`, color: t.body }}
+                        >
+                          {course}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
             </Reveal>
           ) : null}
         </div>

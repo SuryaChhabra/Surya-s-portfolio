@@ -355,10 +355,12 @@ export const site = {
                       { label, detail } — detail can be ""              */
   education: {
     institution: "University of Illinois Urbana-Champaign",
-    /* ⚠️ Confirm the exact wording — "BS" vs "BSc", and whether the second
-       major is "Statistics & Data Science" or two separate majors. */
-    degree: "Double major — Astronomy, Statistics & Data Science",
-    period: "",
+    degree: "BS Liberal Arts & Sciences",
+    /* Two majors, as the transcript records them. */
+    majors: "Astronomy + Data Science · Statistics",
+    /* ⚠️ The transcript runs to Fall 2026 in progress. Add the expected
+       graduation date when you want it stated. */
+    period: "2023 – present",
     place: "",
     note: "",
     highlights: [
@@ -367,6 +369,38 @@ export const site = {
         detail: "Illinois' honours programme for undergraduates.",
       },
     ] as { label: string; detail: string }[],
+
+    /* Coursework, grouped so the two halves of the degree argue for each
+       other. Not the whole transcript — the courses someone hiring for
+       growth or research would actually care about. No grades: a portfolio
+       is not a transcript, and a number invites a conversation about the
+       number instead of about the work. */
+    coursework: [
+      {
+        area: "Statistics & data science",
+        courses: [
+          "Basics of Statistical Learning",
+          "Statistical Modeling I & II",
+          "Statistics and Probability I & II",
+          "Modeling & Learning in Data Science",
+          "Algorithms & Data Structures for Data Science",
+          "Data Science Discovery & Exploration",
+          "Statistical Data Management",
+          "Ethics & Policy for Data Science",
+        ],
+      },
+      {
+        area: "Astronomy",
+        courses: [
+          "Radio Astronomy",
+          "Computing in Astronomy",
+          "Introduction to Astrophysics",
+          "Planetary Systems",
+          "Galaxies and the Universe",
+          "Individual Study",
+        ],
+      },
+    ] as { area: string; courses: string[] }[],
   },
 
   /* — Writing / notes ————————————————————————————————————————————
