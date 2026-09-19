@@ -357,6 +357,27 @@ export function VideoBand() {
 
   return (
     <BandSection band={band}>
+      {/* Stated once, at the top, because these three made all four films.
+          On a single card they read as that card's stack. */}
+      <Reveal>
+        <div className="mb-10 flex flex-wrap items-center gap-x-5 gap-y-3">
+          <span className="label" style={{ color: t.muted }}>
+            Made with, on all of them
+          </span>
+          <div className="flex flex-wrap gap-2.5">
+            {site.videoToolkit.map((tool) => (
+              <span
+                key={tool}
+                className="r-pill border px-4 py-2 text-[0.95rem]"
+                style={{ borderColor: `${band.accent}59`, color: band.accent }}
+              >
+                {tool}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Reveal>
+
       {/* The numbers live here rather than in the opening: beside the thing
           they describe they are evidence, and at the top of the page they
           would just be a claim. */}

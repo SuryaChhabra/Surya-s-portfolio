@@ -138,12 +138,15 @@ export const site = {
      who it was for; invented descriptions are worse than none.            */
   videoBase: "https://pub-5db4afe057a34843946065c529eba471.r2.dev",
 
+  /* The three behind every film here. They belong to the section, not to
+     one card — listing them under OFF/BEAT made them look like that film's
+     stack and left the other three looking like they were made with
+     nothing. A card's own `tags` are now only for what is unique to it. */
+  videoToolkit: ["Suno", "Runway", "CapCut"],
+
   videos: [
     {
       title: "TwinMind — animated short",
-      /* ⚠️ tags are empty because you have not said what this was built
-         with. The OFF/BEAT card lists its tools and this one will look
-         thin beside it until it can too. */
       note: "TwinMind needed explaining in a way anyone could follow, a small child included. I took that on as an AI-animated short film. It follows Sam through a day that will change the course of his life, on one condition: he has to listen to what the people around him are saying. He doesn't — so the twin does.",
       tags: [],
       poster: "/work/video-twinmind.webp",
@@ -154,8 +157,8 @@ export const site = {
       /* "Got appreciation from a ton of people" is deliberately not written
          out: the four numbers under this say it with evidence, and the
          sentence would only say it again, weaker. */
-      note: "My first experiment with AI video, and basically my portfolio in 55 seconds — OFF/BEAT asked for an application video and got a mini music-video. It is also how I found out how much I like doing this. Built with Suno, Runway and CapCut. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
-      tags: ["Suno", "Runway", "CapCut"],
+      note: "My first experiment with AI video, and basically my portfolio in 55 seconds — OFF/BEAT asked for an application video and got a mini music-video. It is also how I found out how much I like doing this. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
+      tags: [],
       poster: "/work/video-offbeat.webp",
       file: "offbeat.mp4",
     },
