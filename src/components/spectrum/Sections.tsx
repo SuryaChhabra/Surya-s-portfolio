@@ -580,25 +580,29 @@ export function SportBand() {
 
   return (
     <BandSection band={band}>
-      <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-        {/* On a phone the photo is a full screen by itself, which pushes the
-            record — the strongest claim on the page — under the fold. The
-            numbers go first there and beside it on a wide screen. */}
+      <div className="space-y-12 sm:space-y-14">
+        {/* Full width, and landscape, because that is the shape of the
+            photograph: the archer is hard left and the rest of the frame is
+            the empty ground the arrow has to cross. Cropping it to a portrait
+            card to sit beside the numbers would take out both the distance
+            and, at 4:5, the archer's head. */}
         {image ? (
-          <Reveal className="order-2 lg:order-1">
-            <div className={`relative aspect-[4/5] overflow-hidden ${t.pane}`}>
+          <Reveal>
+            <div
+              className={`relative aspect-[3/2] overflow-hidden sm:aspect-[16/9] ${t.pane}`}
+            >
               <Image
                 src={image}
                 alt={imageAlt}
                 fill
-                sizes="(max-width: 1024px) 100vw, 40vw"
+                sizes="(max-width: 1152px) 100vw, 1152px"
                 className="object-cover"
               />
             </div>
           </Reveal>
         ) : null}
 
-        <div className="order-1 space-y-10 lg:order-2">
+        <div className="space-y-10">
           <Reveal delay={0.08}>
             <dl className="grid grid-cols-3 gap-6">
               {honours.map((h) => (

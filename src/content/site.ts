@@ -224,9 +224,9 @@ export const site = {
   archery: {
     blurb: "",
     /* Set image to "" to drop the photo. alt is read by screen readers. */
-    image: "/archery/at-full-draw.png",
+    image: "/archery/at-full-draw.webp",
     imageAlt:
-      "At full draw with a recurve bow on an outdoor archery ground, target butts in the background.",
+      "At full draw with a recurve bow on an outdoor range, target butts at the left of frame.",
 
     honours: [
       { value: "5×", label: "National player" },
