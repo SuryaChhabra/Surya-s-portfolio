@@ -23,20 +23,20 @@ export const mediaManifest: Readonly<Record<string, MediaEntry>> = {
     "poster": "/work/programmatic-seo.svg",
     "sources": []
   },
-  "video-0712": {
-    "poster": "/work/video-0712.svg",
-    "sources": []
-  },
   "video-offbeat": {
-    "poster": "/work/video-offbeat.svg",
+    "poster": "/work/video-offbeat.webp",
     "sources": []
   },
   "video-permute": {
-    "poster": "/work/video-permute.svg",
+    "poster": "/work/video-permute.webp",
     "sources": []
   },
   "video-twinmind": {
-    "poster": "/work/video-twinmind.svg",
+    "poster": "/work/video-twinmind.webp",
+    "sources": []
+  },
+  "video-vybe": {
+    "poster": "/work/video-vybe.webp",
     "sources": []
   }
 } as const;
