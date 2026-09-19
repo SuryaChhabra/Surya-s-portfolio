@@ -52,7 +52,7 @@ export function TopBar() {
       <div className="mx-auto flex max-w-6xl items-center gap-6 px-5 py-4 sm:px-10">
         <a
           href="#top"
-          className="pointer-events-auto flex shrink-0 items-center gap-2.5 text-sm font-medium tracking-[-0.01em]"
+          className="pointer-events-auto flex shrink-0 items-center gap-2.5 text-[0.95rem] font-medium tracking-[-0.01em]"
           style={{ color: "var(--band-ink, #ffffff)" }}
         >
           {/* The whole spectrum, stacked, as the mark. */}
@@ -73,12 +73,12 @@ export function TopBar() {
             <a
               key={b.id}
               href={`#${b.id}`}
-              className="group flex items-center gap-1.5 rounded-full px-2 py-1.5 text-[0.78rem] transition-opacity hover:opacity-100 xl:px-2.5 xl:text-[0.85rem]"
-              style={{ color: "var(--band-ink, #ffffff)", opacity: 0.68 }}
+              className="group flex items-center gap-1.5 rounded-full px-2 py-1.5 text-[0.88rem] transition-opacity hover:opacity-100 xl:px-3 xl:text-[0.95rem]"
+              style={{ color: "var(--band-ink, #ffffff)", opacity: 0.85 }}
             >
               <span
                 aria-hidden="true"
-                className="block h-1.5 w-1.5 rounded-full transition-transform group-hover:scale-150"
+                className="block h-[7px] w-[7px] rounded-full transition-transform group-hover:scale-150"
                 style={{ backgroundColor: b.color }}
               />
               {b.nav}
@@ -88,7 +88,7 @@ export function TopBar() {
 
         <a
           href="#contact"
-          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-sm transition-colors lg:ml-2"
+          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-[0.92rem] transition-colors lg:ml-2"
           style={{
             color: "var(--band-ink, #ffffff)",
             borderColor: "var(--band-rule, rgba(255,255,255,0.28))",
