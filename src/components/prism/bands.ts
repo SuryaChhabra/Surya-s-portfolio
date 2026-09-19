@@ -36,7 +36,6 @@ export type Band = {
   tone: "dark" | "light";
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
-  kicker: string;
   /** What this band is called in the nav — the subject, not the wavelength. */
   nav: string;
   line: string;
@@ -53,7 +52,6 @@ export const BANDS: Band[] = [
     accent: "#ffa7a2",
     tone: "dark",
     angle: -10,
-    kicker: "Red",
     nav: "Growth",
     line: "Growth.",
     /* Not a list of the three companies — the three cards under this are
@@ -73,7 +71,6 @@ export const BANDS: Band[] = [
     accent: "#5c2600",
     tone: "light",
     angle: -18,
-    kicker: "Orange",
     nav: "Video",
     line: "AI video.",
     body: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead — Suno, Runway, CapCut.",
@@ -85,7 +82,6 @@ export const BANDS: Band[] = [
     accent: "#6b4a00",
     tone: "light",
     angle: -26,
-    kicker: "Yellow",
     nav: "Education",
     line: "",
     body: "",
@@ -98,7 +94,6 @@ export const BANDS: Band[] = [
     accent: "#65e393",
     tone: "dark",
     angle: -34,
-    kicker: "Green",
     nav: "Leading",
     line: "Leading, and the rooms it happened in.",
     body: "",
@@ -110,7 +105,6 @@ export const BANDS: Band[] = [
     accent: "#5fd0fb",
     tone: "dark",
     angle: -42,
-    kicker: "Blue",
     nav: "Built",
     line: "Things I've shipped.",
     body: "Lumiere, Offbeat and Karmic Connections — built, deployed, live. Version one beats a plan every time.",
@@ -122,7 +116,6 @@ export const BANDS: Band[] = [
     accent: "#a9abf7",
     tone: "dark",
     angle: -50,
-    kicker: "Indigo",
     nav: "Research",
     line: "Astronomy.",
     body: "Continuum imaging, position–velocity diagrams and rotating-disk fits — measuring the mass of a young star from how the gas around it turns.",
@@ -134,7 +127,6 @@ export const BANDS: Band[] = [
     accent: "#e5b3ff",
     tone: "dark",
     angle: -58,
-    kicker: "Violet",
     nav: "Archery",
     line: "Competitive archery.",
     body: "The discipline underneath everything else here. Same draw, same anchor, every arrow.",

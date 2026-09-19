@@ -60,7 +60,7 @@ export function BandSection({
                     band.tone === "light" ? band.accent : band.color,
                 }}
               />
-              {String(index + 1).padStart(2, "0")} — {band.kicker}
+              {String(index + 1).padStart(2, "0")}
             </p>
             <h2
               className="mt-4 text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
