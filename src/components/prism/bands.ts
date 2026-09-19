@@ -128,10 +128,12 @@ export const BANDS: Band[] = [
     angle: -50,
     nav: "Research",
     line: "Astronomy.",
-    /* The old line said this was about measuring a star's mass. The mass is
-       a means: the Keplerian fit exists so it can be subtracted, and the
-       result of the project is what refuses to subtract away. */
-    body: "ALMA data for IRS3B, a young multiple star system, imaged in CASA. Observed gas motion minus the rotation gravity predicts leaves whatever else is going on — that residual is the result.",
+    /* No ALMA, no IRS3B, no CASA. They opened the previous version and are
+       three proper nouns spent before anyone has been given a reason to
+       care — and this band is read by the same people as the other six.
+       The captions carry every one of them, where the panels have earned
+       them. What belongs up here is the question. */
+    body: "Gravity predicts how gas should spin around a forming star. Subtract that from what the telescope actually sees, and whatever refuses to cancel out is the interesting part.",
   },
   {
     id: "sport",
