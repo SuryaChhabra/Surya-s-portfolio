@@ -48,7 +48,7 @@ export const site = {
          "I'd rather make it than wait until I know how."
          "I don't specialise. I finish."                                */
     lead: "Growth & creative for startups.",
-    sub: "I figure things out by making them — moving between brand, video and product, picking up whatever tool each one needs. Most of what is on this page started as something nobody asked me to build.",
+    sub: "I figure things out by making them, moving between brand, video and product, picking up whatever tool each one needs. Most of what is on this page started as something nobody asked me to build.",
 
     /* The line that says what the prism is for. Without it the glass is
        just a nice object; with it, the whole page has a premise before
@@ -58,7 +58,7 @@ export const site = {
     cueStill: "Seven colours, seven sections",
     cueSub: "Seven colours, one for each side of what I do.",
     blurb:
-      "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
+      "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive, and I would rather make version one happen than wait until I know everything.",
     /* Stated, not requested. "Looking for work" as a headline reads as
        asking; naming the work you do reads as choosing. Same fact. */
     availability: "Growth and creative work, at startups.",
@@ -130,7 +130,7 @@ export const site = {
       tone: "violet" as const,
       image: "/work/shot-lumiere.webp",
       summary:
-        "Matches high-school students into research teams. The chat grades what it catches — slurs and contact details blocked, rudeness only nudged. Built for Lumiere Education, unasked.",
+        "Matches high-school students into research teams. The chat grades what it catches: slurs and contact details blocked, rudeness only nudged. Built for Lumiere Education, unasked.",
       metrics: [],
       tags: [],
       link: "https://lumiere-flax.vercel.app/",
@@ -157,7 +157,7 @@ export const site = {
       tone: "green" as const,
       image: "/work/shot-karmic.webp",
       summary:
-        "A site for a hypnotherapy and past-life-regression practice — the one project here built for somebody else to use with their own clients.",
+        "A site for a hypnotherapy and past-life-regression practice. The one project here built for somebody else to use with their own clients.",
       metrics: [],
       tags: [],
       link: "https://karmicconnections.co.in",
@@ -189,32 +189,32 @@ export const site = {
 
   videos: [
     {
-      title: "TwinMind — animated short",
-      note: "TwinMind needed explaining in a way anyone could follow, a small child included. I took that on as an AI-animated short film. It follows Sam through a day that will change the course of his life, on one condition: he has to listen to what the people around him are saying. He doesn't — so the twin does.",
+      title: "TwinMind: animated short",
+      note: "TwinMind needed explaining in a way anyone could follow, a small child included. I took that on as an AI-animated short film. It follows Sam through a day that will change the course of his life, on one condition: he has to listen to what the people around him are saying. He doesn't, so the twin does.",
       tags: [],
       poster: "/work/video-twinmind.webp",
       file: "Twinmind.mp4",
     },
     {
-      title: "OFF/BEAT — application video",
+      title: "OFF/BEAT: application video",
       /* "Got appreciation from a ton of people" is deliberately not written
          out: the four numbers under this say it with evidence, and the
          sentence would only say it again, weaker. */
-      note: "My first experiment with AI video, and basically my portfolio in 55 seconds — OFF/BEAT asked for an application video and got a mini music-video. It is also how I found out how much I like doing this. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
+      note: "My first experiment with AI video, and basically my portfolio in 55 seconds. OFF/BEAT asked for an application video and got a mini music-video. It is also how I found out how much I like doing this. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
       tags: [],
       poster: "/work/video-offbeat.webp",
       file: "offbeat.mp4",
     },
     {
-      title: "Permute — product demo",
-      note: "A UIUC alum's startup, and my first B2B SaaS video. It opens in a different style of AI animation, then becomes a product demo built with Claude — the right features, pitched with the right movements.",
+      title: "Permute: product demo",
+      note: "A UIUC alum's startup, and my first B2B SaaS video. It opens in a different style of AI animation, then becomes a product demo built with Claude: the right features, pitched with the right movements.",
       tags: ["Claude"],
       poster: "/work/video-permute.webp",
       file: "permute.mp4",
     },
     {
       /* The file is named 0712.mp4; the piece is the Soulful Vybes spot. */
-      title: "Soulful Vybes — car perfume",
+      title: "Soulful Vybes: car perfume",
       note: "My first freelance job: a spot for an Indian brand about to move into a new segment, car perfumes.",
       tags: [],
       poster: "/work/video-vybe.webp",
@@ -241,25 +241,25 @@ export const site = {
         caption:
           "The dust around the system: two bright cores inside a wider envelope, with a stream of material reaching off to one side.",
         detail:
-          "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left — the dust morphology the gas kinematics are read against. Synthesised beam at lower left.",
+          "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left. That dust morphology is what the gas kinematics are read against. Synthesised beam at lower left.",
         alt: "Millimetre continuum image of IRS3B showing a bright compact double source within a fainter extended envelope.",
       },
       {
         src: "/research/pv-keplerian.webp",
         title: "Position–velocity diagram",
         caption:
-          "How fast the gas is moving, against where it is. The blue curve is what gravity alone would produce — the shape everything else gets measured against.",
+          "How fast the gas is moving, against where it is. The blue curve is what gravity alone would produce, the shape everything else gets measured against.",
         detail:
-          "Position–velocity diagram through the source. The cyan curve is the Keplerian rotation profile — the baseline Reynolds et al. establish for IRS3B from molecular-line kinematics, and the component modelled away first, because anything gravity already accounts for is not the part worth looking at.",
+          "Position–velocity diagram through the source. The cyan curve is the Keplerian rotation profile, the baseline Reynolds et al. establish for IRS3B from molecular-line kinematics, and the component modelled away first, because anything gravity already accounts for is not the part worth looking at.",
         alt: "Position-velocity diagram with a Keplerian rotation curve overlaid on molecular line emission.",
       },
       {
         src: "/research/moment-maps-fit.webp",
         title: "Kinematic fit",
         caption:
-          "The answer. Take away the motion gravity explains, and the bottom-right panel is what is left over — the part gravity does not account for.",
+          "The answer. Take away the motion gravity explains, and the bottom-right panel is what is left over: the part gravity does not account for.",
         detail:
-          "Top: integrated intensity (moment 0) and its mask. Bottom: the observed velocity field (moment 1) and what survives a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s. Residuals near zero mean gravity explained the motion; red and blue patterns that survive mean something else is doing it, which is the evidence for the \"badminton-birdie\" infall pattern.",
+          "Top: integrated intensity (moment 0) and its mask. Bottom: the observed velocity field (moment 1) and what survives a rotating-disk model at inclination 30°, position angle 35°, systemic velocity 4.675 km/s. Residuals near zero mean gravity explained the motion; red and blue patterns that survive mean something else is doing it, which is the evidence for the \"badminton-birdie\" infall pattern.",
         alt: "Four-panel figure: moment 0 map, mask, observed moment 1 velocity field, and the observed-minus-model residual.",
       },
     ],
@@ -314,7 +314,7 @@ export const site = {
        images — optional photos, from public/events/                      */
   events: [
     {
-      name: "Antler Founders — Illinois Entrepreneurs",
+      name: "Antler Founders: Illinois Entrepreneurs",
       role: "",
       date: "",
       people: "",
@@ -361,7 +361,7 @@ export const site = {
            SEO only, so the acronym goes and the substance stays as plain
            discoverability. */
         detail:
-          "Led growth across SEO, content, web and brand, making TwinMind easier to find. Ran experiments and launches end to end — website, creative campaigns, product storytelling, video, social distribution and user research.",
+          "Led growth across SEO, content, web and brand, making TwinMind easier to find. Ran experiments and launches end to end: website, creative campaigns, product storytelling, video, social distribution and user research.",
         metrics: [] as { value: string; label: string }[],
         skills: ["SEO", "Content", "Brand", "User Research"],
       },
@@ -404,9 +404,9 @@ export const site = {
         period: "",
         place: "",
         context:
-          "Hindu YUVA runs on four P's — preserve, practice, promote and protect Hindu Dharma — bringing Hindu students together on campuses across North America.",
+          "Hindu YUVA runs on four P's: preserve, practice, promote and protect Hindu Dharma. It brings Hindu students together on campuses across North America.",
         detail:
-          "Ran all internal and external communications for the year, and led events end to end — a Ganesha celebration that drew over 500 people, where I handled food, decor and the programme, plus Hindu New Year and Guru Vandana, the teachers' appreciation evening.",
+          "Ran all internal and external communications for the year, and led events end to end: a Ganesha celebration that drew over 500 people, where I handled food, decor and the programme, plus Hindu New Year and Guru Vandana, the teachers' appreciation evening.",
         metrics: [{ value: "500+", label: "at the Ganesha celebration" }] as {
           value: string;
           label: string;
@@ -418,7 +418,7 @@ export const site = {
            actually gives the role (peer instructor, course assistant,
            whichever it is). An invented job title is the one thing on this
            page that cannot survive being asked about. */
-        title: "Section lead — LAS 101",
+        title: "Section lead, LAS 101",
         org: "University of Illinois Urbana-Champaign",
         kind: "",
         /* ⚠️ Which term? */
@@ -427,7 +427,7 @@ export const site = {
         context:
           "LAS 101 is the college's first-year experience course: the one that gets new students through the first semester on a campus of 56,000.",
         detail:
-          "Taught a section of 25 first-year students, running it start to finish — the sessions, the material and the part that actually matters, which is the students working out how to live somewhere new.",
+          "Taught a section of 25 first-year students, running it start to finish: the sessions, the material and the part that actually matters, which is the students working out how to live somewhere new.",
         metrics: [{ value: "25", label: "students in my section" }] as {
           value: string;
           label: string;
@@ -436,7 +436,7 @@ export const site = {
       },
       {
         title: "Head of Exploration",
-        org: "Founders — Illinois Entrepreneurs",
+        org: "Founders, Illinois Entrepreneurs",
         kind: "",
         period: "Sep 2024 – Dec 2025",
         place: "",
@@ -530,7 +530,7 @@ export const site = {
      gone. Add real ones to `writing` if you have any.)                 */
   about: {
     paragraphs: [
-      "I combine tools, taste and storytelling to make things feel alive. That is the actual skill — not any single tool, and not waiting until I am an expert in one.",
+      "I combine tools, taste and storytelling to make things feel alive. That is the actual skill, not any single tool, and not waiting until I am an expert in one.",
       "It shows up across everything here: AI video made with whatever gets the idea across, side projects shipped instead of planned, molecular-line astronomy, and the discipline competitive archery beats into you.",
       "Expert nahi, par ready hoon.",
     ],

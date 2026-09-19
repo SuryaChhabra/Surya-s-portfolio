@@ -797,8 +797,8 @@ export function SportBand() {
             </Reveal>
           ) : (
             <Pending band={band}>
-              Optional: a row per competition in `archery.results` — date,
-              event, level, category, result — adds a table under the record
+              Optional: a row per competition in `archery.results` with
+              date, event, level, category and result adds a table under the record
               above. The section reads fine without one.
             </Pending>
           )}
