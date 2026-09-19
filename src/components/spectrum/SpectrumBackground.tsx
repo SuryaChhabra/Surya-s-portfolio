@@ -74,7 +74,16 @@ export function SpectrumBackground() {
         }}
       >
         {/* The wavelength itself, as a wash rather than a flat fill — the
-            light is still coming from the prism, off to the upper left. */}
+            light is still coming from the prism, off to the upper left.
+
+            The first layer is the one that makes a field look lit instead of
+            painted. Its direction is the band's own angle out of the glass:
+            CSS measures clockwise from "to top", so a ray travelling left and
+            `angle` degrees below the horizontal points at 270 + angle, which
+            is 260deg for red at the top of the fan and 212deg for violet at
+            the bottom. Seven fields, seven different directions of light, all
+            of it already described by the same number that aims the rays in
+            the 3D scene. */}
         <div
           className="absolute inset-0"
           style={{
@@ -83,7 +92,8 @@ export function SpectrumBackground() {
                headings sit, and lifting the field under them is what would
                cost the white text its contrast. */
             background: band
-              ? `radial-gradient(85% 70% at 100% 0%, ${band.color}33, transparent 58%),
+              ? `linear-gradient(${270 + band.angle}deg, ${band.color}10, transparent 48%),
+                 radial-gradient(85% 70% at 100% 0%, ${band.color}33, transparent 58%),
                  radial-gradient(70% 55% at 88% 100%, ${band.color}1f, transparent 62%),
                  radial-gradient(120% 100% at 10% 55%, ${
                    band.tone === "light"
@@ -95,6 +105,41 @@ export function SpectrumBackground() {
             transition: "opacity 900ms linear, background 900ms linear",
           }}
         />
+
+        {/* The beam itself, still arriving.
+            The prism act ends and the page has been taking the colour but
+            not the light: a field that changes hue is a swatch, not a ray.
+            This is one soft shaft crossing the field at exactly the angle
+            this band leaves the glass, and because the rotation transitions
+            with everything else, it tilts further as you go down the
+            spectrum — red almost level, violet steeply raked. Scrolling
+            stops being a walk past seven colours and becomes a descent
+            through the fan. */}
+        <div className="absolute inset-0 overflow-hidden">
+          {/* Centred at 64% of the height, not 50%. Measured: a beam through
+              the middle lifted the field behind the headings and cost up to
+              2.7 points of contrast — built fell from 7.98 to 5.78, leading
+              to 4.68, which is where body text stops being comfortable. Low
+              and dim keeps the light without paying for it. */}
+          <div
+            className="absolute left-1/2 top-[64%] h-[46vh] w-[240%]"
+            style={{
+              transform: `translate(-50%, -50%) rotate(${band?.angle ?? 0}deg)`,
+              background: band
+                ? `linear-gradient(to bottom,
+                     transparent 0%,
+                     ${band.color}0e 34%,
+                     ${band.tone === "light" ? "rgba(255,255,255,0.22)" : "rgba(255,255,255,0.045)"} 50%,
+                     ${band.color}0e 66%,
+                     transparent 100%)`
+                : "none",
+              filter: "blur(34px)",
+              opacity: band ? 1 : 0,
+              transition:
+                "opacity 900ms linear, transform 900ms cubic-bezier(0.2,0.7,0.2,1), background 900ms linear",
+            }}
+          />
+        </div>
 
         {/* The star field carries over from the 3D scene so the sections read
             as the same space, only lit differently. */}

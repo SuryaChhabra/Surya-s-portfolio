@@ -158,7 +158,7 @@ export function PrismAct() {
               {/* Two lines and nothing else. The first says what the work
                   is, because that is what someone is here to find out; the
                   second says how it gets done. The range is the page's job
-                  to show — six sections, six colours — not this paragraph's
+                  to show — seven sections, seven colours — not this paragraph's
                   job to list, and a list here would read as a CV anyway. */}
               <p className="mt-5 text-[clamp(1.55rem,2.7vw,2.15rem)] font-medium leading-[1.15] tracking-[-0.03em] text-white">
                 {site.hero.lead}
@@ -196,7 +196,7 @@ export function PrismAct() {
             the rest to happen, so it is not a footnote under the buttons.
 
             The spectrum bar does more work here than any icon: it is the
-            six colours, at a size you cannot miss, directly under the words
+            seven colours, at a size you cannot miss, directly under the words
             that promise them. The arrow only says which way. */}
         <div
           className="pointer-events-none absolute inset-x-0 bottom-0"
@@ -242,7 +242,7 @@ export function PrismAct() {
                   {site.hero.cueSub}
                 </span>
 
-                {/* Six colours, shown rather than named, with a sheen
+                {/* Seven colours, shown rather than named, with a sheen
                     travelling along them so the instruction moves. */}
                 <span
                   aria-hidden="true"
