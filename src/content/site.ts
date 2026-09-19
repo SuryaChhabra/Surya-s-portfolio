@@ -13,6 +13,16 @@ export const site = {
   email: "suryachhabra@gmail.com",
   resumeUrl: "/resume.pdf",
 
+  /* The photo at the end of the page. It is the one place a face belongs:
+     the seven colours have just come back together into white, and the
+     thing they recombine into is a person. Cropped 3:4 rather than to a
+     circle on purpose — a circle would take the castle out, and the
+     background is half of why this photo is this photo. */
+  portrait: {
+    src: "/me/portrait.webp",
+    alt: "Surya Chhabra, with the Sleeping Beauty castle in the background.",
+  },
+
   /* Shown in the browser tab + link previews */
   meta: {
     title: "Surya Chhabra",

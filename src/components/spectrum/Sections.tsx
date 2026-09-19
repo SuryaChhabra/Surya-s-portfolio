@@ -705,7 +705,12 @@ export function CloseBand() {
       data-band={band.id}
       className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36"
     >
-      <div className="mx-auto w-full max-w-6xl">
+      {/* Two columns, and the photo is the right one. Everything above this
+          point has been colour; the page ends by saying the colours belong
+          to somebody. On a narrow screen the same thing happens vertically:
+          the words, then the face, in that order, because the email is what
+          the section is for. */}
+      <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:gap-20">
         <Reveal>
           {/* The seven, recombined. The page opened on white light going into
               glass; it closes by putting the colours back where they came
@@ -771,6 +776,40 @@ export function CloseBand() {
               </Pending>
             </div>
           ) : null}
+        </Reveal>
+
+        <Reveal>
+          {/* A tall card, not a circle: the crop is 3:4 because the castle
+              behind the shoulder is half of why this is the photo, and a
+              circle would take it out entirely. */}
+          <figure className="mx-auto w-full max-w-[17rem] lg:max-w-none">
+            <div
+              className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] border"
+              style={{
+                borderColor: t.rule,
+                boxShadow: "0 24px 60px -28px rgba(20,20,24,0.45)",
+              }}
+            >
+              <Image
+                src={site.portrait.src}
+                alt={site.portrait.alt}
+                fill
+                sizes="(min-width: 1024px) 21rem, 17rem"
+                className="object-cover"
+              />
+              {/* The spectrum runs along the bottom edge, so the light the
+                  page spent seven sections splitting ends up underneath the
+                  person it belongs to. */}
+              <span
+                aria-hidden="true"
+                className="absolute inset-x-0 bottom-0 flex h-[6px]"
+              >
+                {BANDS.map((b) => (
+                  <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
+                ))}
+              </span>
+            </div>
+          </figure>
         </Reveal>
       </div>
     </section>
