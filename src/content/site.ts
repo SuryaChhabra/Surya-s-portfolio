@@ -38,7 +38,7 @@ export const site = {
          "I'd rather make it than wait until I know how."
          "I don't specialise. I finish."                                */
     lead: "Growth & creative for startups.",
-    sub: "I figure things out by making them, learning whatever tool it takes on the way. Most of what is on this page started as something nobody asked me to build.",
+    sub: "I figure things out by making them — moving between brand, video and product, picking up whatever tool each one needs. Most of what is on this page started as something nobody asked me to build.",
 
     /* The line that says what the prism is for. Without it the glass is
        just a nice object; with it, the whole page has a premise before

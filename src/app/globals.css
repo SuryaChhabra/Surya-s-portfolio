@@ -368,3 +368,21 @@ body:has(.spectrum-page) {
   background-color: #05060a;
   color: #ffffff;
 }
+
+/* ---------------------------------------------------------------------------
+ * The scroll cue's arrow. A short, slow fall rather than a bounce — the
+ * page below is a beam of light travelling downward, and the cue should
+ * look like the same movement, not like a notification.
+ * ------------------------------------------------------------------------- */
+@keyframes cue-fall {
+  0%, 100% { transform: translateY(-14%); opacity: 0.55; }
+  50%      { transform: translateY(22%);  opacity: 1; }
+}
+
+.cue-arrow {
+  animation: cue-fall 2.1s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cue-arrow { animation: none; }
+}

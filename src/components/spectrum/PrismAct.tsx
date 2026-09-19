@@ -145,7 +145,9 @@ export function PrismAct() {
             transition: "opacity 500ms linear, transform 500ms linear",
           }}
         >
-          <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-[16vh]">
+          {/* The cue is pinned to the floor now, so the copy has to clear it
+                rather than sit where it used to. */}
+            <div className="mx-auto w-full max-w-6xl px-5 pb-36 sm:px-10 sm:pb-[22vh]">
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
@@ -185,28 +187,56 @@ export function PrismAct() {
                 </a>
               </div>
 
-              {/* The premise, said once, at the size of something that
-                  matters. The spectrum sits beside it rather than in the
-                  sentence: six colours shown is a shorter way of saying
-                  six colours than listing what each one is. */}
-              <p
-                className="mt-8 flex items-start gap-3 text-[clamp(0.95rem,1.2vw,1.1rem)] leading-snug"
-                style={{ color: "rgba(255,255,255,0.68)" }}
+            </div>
+          </div>
+        </div>
+
+        {/* The cue gets the floor to itself. It is the only instruction on
+            the page, and the one thing a visitor has to act on for any of
+            the rest to happen, so it is not a footnote under the buttons. */}
+        <div
+          className="pointer-events-none absolute inset-x-0 bottom-0"
+          style={{
+            opacity: 1 - introOut,
+            transition: "opacity 500ms linear",
+          }}
+        >
+          <div className="mx-auto w-full max-w-6xl px-5 pb-8 sm:px-10 sm:pb-10">
+            <div className="flex items-center gap-4">
+              <span
+                aria-hidden="true"
+                className="grid h-12 w-12 shrink-0 place-items-center rounded-full border"
+                style={{ borderColor: "rgba(255,255,255,0.3)" }}
               >
+                <svg
+                  className={mode === "still" ? undefined : "cue-arrow"}
+                  width="16"
+                  height="18"
+                  viewBox="0 0 16 18"
+                  fill="none"
+                  stroke="#ffffff"
+                  strokeWidth="1.6"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M8 1v15M2 10l6 6 6-6" />
+                </svg>
+              </span>
+
+              <span className="min-w-0">
+                <span className="block text-[clamp(1.05rem,1.5vw,1.3rem)] font-medium leading-snug text-white">
+                  {mode === "still" ? site.hero.cueStill : site.hero.cue}
+                </span>
+                {/* Six colours, shown rather than named. */}
                 <span
                   aria-hidden="true"
-                  className="mt-[0.5em] flex h-1.5 w-16 shrink-0 overflow-hidden rounded-full"
+                  className="mt-2.5 flex h-1.5 w-40 overflow-hidden rounded-full"
                 >
                   {BANDS.map((b) => (
-                    <span
-                      key={b.id}
-                      className="flex-1"
-                      style={{ backgroundColor: b.color }}
-                    />
+                    <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
                   ))}
                 </span>
-                {mode === "still" ? site.hero.cueStill : site.hero.cue}
-              </p>
+              </span>
             </div>
           </div>
         </div>
