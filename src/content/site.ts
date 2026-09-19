@@ -66,11 +66,11 @@ export const site = {
 
   /* — Headline numbers ——————————————————————————————————————————
      All four are from LinkedIn's own analytics on the OFF/BEAT
-     application-video post. Labels say "one post" on purpose — these are
-     one piece of work, not a career total, and claiming otherwise is the
-     kind of thing that falls apart in an interview.                      */
+     application-video post — one piece of work, not a career total. The
+     labels no longer say so, but the section they sit in does: they are
+     inside the video band, directly above the film they came from.     */
   stats: [
-    { value: "310K", label: "impressions, one post" },
+    { value: "310K", label: "impressions" },
     { value: "208K", label: "people reached" },
     { value: "120K", label: "video views" },
     { value: "99%", label: "of reach outside my network" },
