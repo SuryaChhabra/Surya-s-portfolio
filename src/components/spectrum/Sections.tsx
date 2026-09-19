@@ -19,6 +19,8 @@ type Role = {
   kind: string;
   period: string;
   place: string;
+  /** A square mark for the organisation, or nothing. */
+  logo?: string;
   /** What the organisation is, when that is the point rather than padding. */
   context?: string;
   detail: string;
@@ -37,7 +39,24 @@ function RoleCard({ role, band }: { role: Role; band: Band }) {
   const t = tones(band);
 
   return (
-    <li className={`px-6 py-6 sm:px-7 sm:py-7 ${t.pane}`}>
+    <li className={`flex gap-4 px-6 py-6 sm:gap-5 sm:px-7 sm:py-7 ${t.pane}`}>
+      {/* Each mark sits on its own white tile rather than bare on the field:
+          one of these is a black line drawing and two carry their own
+          background, and a row of logos only reads as a row if they share a
+          shape. */}
+      {role.logo ? (
+        <span className="relative mt-0.5 block h-11 w-11 shrink-0 overflow-hidden rounded-xl bg-white sm:h-12 sm:w-12">
+          <Image
+            src={role.logo}
+            alt=""
+            fill
+            sizes="48px"
+            className="object-contain p-1"
+          />
+        </span>
+      ) : null}
+
+      <div className="min-w-0 flex-1">
       <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
         <h3 className="text-lg font-medium tracking-[-0.02em] sm:text-xl" style={{ color: t.ink }}>
           {role.title}
@@ -111,6 +130,7 @@ function RoleCard({ role, band }: { role: Role; band: Band }) {
           ))}
         </div>
       ) : null}
+      </div>
     </li>
   );
 }

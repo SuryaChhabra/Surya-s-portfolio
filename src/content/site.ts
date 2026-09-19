@@ -270,6 +270,8 @@ export const site = {
        kind    — "Internship" / "Contract" / "" for a normal role
        period  — "Jul – Aug 2026"
        place   — "San Francisco Bay Area" or "" to omit
+       logo    — optional: a square mark in public/logos/. Omit and the
+                 card simply has no logo; nothing else changes.
        context — optional: what the organisation is, in its own terms. Only
                  where that frames the work rather than padding it out.
        detail  — what you actually did. One or two sentences.
@@ -280,6 +282,7 @@ export const site = {
       {
         title: "Founding Growth",
         org: "TwinMind",
+        logo: "/logos/twinmind.webp",
         kind: "",
         period: "Jul – Aug 2026",
         place: "San Francisco Bay Area",
@@ -292,6 +295,7 @@ export const site = {
       {
         title: "Growth",
         org: "Satvic Movement",
+        logo: "/logos/satvic.webp",
         kind: "",
         period: "Mar – May 2026",
         place: "",
@@ -303,6 +307,7 @@ export const site = {
       {
         title: "Growth",
         org: "Ocher Studio",
+        logo: "/logos/ocher.webp",
         kind: "",
         period: "Jan – Mar 2026",
         place: "",
