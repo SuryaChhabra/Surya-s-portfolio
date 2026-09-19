@@ -10,7 +10,7 @@ export const site = {
   initials: "SC",
   role: "Growth & creative",
   location: "New Delhi, IN",
-  email: "hello@example.com",
+  email: "suryachhabra@gmail.com",
   resumeUrl: "/resume.pdf",
 
   /* Shown in the browser tab + link previews */
@@ -266,10 +266,9 @@ export const site = {
      is hidden on the live site rather than rendered as a dead link. Replace
      the href and it appears. */
   socials: [
-    { label: "Email", href: "mailto:hello@example.com" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/username" },
-    { label: "X", href: "https://x.com/username" },
-    { label: "GitHub", href: "https://github.com/suryachhabra" },
+    { label: "Email", href: "mailto:suryachhabra@gmail.com" },
+    { label: "LinkedIn", href: "https://www.linkedin.com/in/surya-chhabra/" },
+    { label: "GitHub", href: "https://github.com/SuryaChhabra" },
   ],
 } as const;
 
