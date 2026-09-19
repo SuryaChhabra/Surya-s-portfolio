@@ -415,6 +415,12 @@ export const site = {
                       { label, detail } — detail can be ""              */
   education: {
     institution: "University of Illinois Urbana-Champaign",
+    /* The Block I, on white, the same way the three company marks are
+       squares carrying their own background. The auditorium sticker is
+       deliberately not here: it is a drawing, and every other image on
+       this page is a real thing — a photograph, a plot, a company's own
+       mark. One illustration would read as clip art beside them. */
+    logo: "/logos/illinois.webp",
     degree: "BS Liberal Arts & Sciences",
     /* Two majors, as the transcript records them. */
     majors: "Astronomy + Data Science · Statistics",
