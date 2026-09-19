@@ -310,6 +310,21 @@ export const site = {
 
     leadership: [
       {
+        title: "Secretary",
+        org: "Hindu YUVA, UIUC",
+        kind: "",
+        /* ⚠️ Which academic year? */
+        period: "",
+        place: "",
+        detail:
+          "Ran all internal and external communications for the year, and led events end to end — a Ganesha celebration that drew over 500 people, where I handled food, decor and the programme, plus Hindu New Year and Guru Vandana, the teachers' appreciation evening.",
+        metrics: [{ value: "500+", label: "at the Ganesha celebration" }] as {
+          value: string;
+          label: string;
+        }[],
+        skills: [] as string[],
+      },
+      {
         title: "Head of Exploration",
         org: "Founders — Illinois Entrepreneurs",
         kind: "",
@@ -335,12 +350,19 @@ export const site = {
        highlights   — clubs, roles, awards, scholarships, coursework.
                       { label, detail } — detail can be ""              */
   education: {
-    institution: "",
-    degree: "",
+    institution: "University of Illinois Urbana-Champaign",
+    /* ⚠️ Confirm the exact wording — "BS" vs "BSc", and whether the second
+       major is "Statistics & Data Science" or two separate majors. */
+    degree: "Double major — Astronomy, Statistics & Data Science",
     period: "",
     place: "",
     note: "",
-    highlights: [] as { label: string; detail: string }[],
+    highlights: [
+      {
+        label: "James Scholar",
+        detail: "Illinois' honours programme for undergraduates.",
+      },
+    ] as { label: string; detail: string }[],
   },
 
   /* — Writing / notes ————————————————————————————————————————————

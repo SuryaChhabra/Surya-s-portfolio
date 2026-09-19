@@ -135,7 +135,7 @@ export function EducationBand() {
   const band: Band = {
     ...base,
     line: institution || "Education.",
-    body: note,
+    body: note || (degree ? "" : ""),
   };
 
   return (
@@ -143,17 +143,22 @@ export function EducationBand() {
       {institution ? (
         <div className="space-y-8">
           <Reveal>
-            <div className={`px-6 py-6 sm:px-7 sm:py-7 ${t.pane}`}>
+            <div
+              className={`flex flex-col gap-2 px-6 py-6 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8 sm:px-7 sm:py-7 ${t.pane}`}
+            >
               <p
                 className="text-[clamp(1.15rem,2vw,1.5rem)] font-medium tracking-[-0.025em]"
                 style={{ color: t.ink }}
               >
                 {degree}
               </p>
-              <p className="mt-2 text-[0.98rem]" style={{ color: t.body }}>
-                {period}
-                {place ? ` · ${place}` : ""}
-              </p>
+              {period || place ? (
+                <p className="label shrink-0" style={{ color: t.muted }}>
+                  {[period, place].filter(Boolean).join(" · ")}
+                </p>
+              ) : (
+                <Note band={band}>Years still to add.</Note>
+              )}
             </div>
           </Reveal>
 
