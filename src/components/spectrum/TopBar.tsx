@@ -64,14 +64,16 @@ export function TopBar() {
           {site.name}
         </a>
 
-        {/* Seven links plus a name plus a button needs the room — below xl
-            the nav gives way and the rail on the right carries navigation. */}
-        <nav className="pointer-events-auto ml-auto hidden items-center gap-0.5 xl:flex">
+        {/* Seven links, a name and a button is a lot of bar, so the labels
+            tighten as the screen narrows rather than vanishing at the first
+            sign of pressure — a nav that disappears on a 13-inch laptop is
+            not a nav. Below lg the rail on the right takes over. */}
+        <nav className="pointer-events-auto ml-auto hidden items-center gap-0 lg:flex xl:gap-0.5">
           {links.map((b) => (
             <a
               key={b.id}
               href={`#${b.id}`}
-              className="group flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[0.82rem] transition-opacity hover:opacity-100"
+              className="group flex items-center gap-1.5 rounded-full px-2 py-1.5 text-[0.78rem] transition-opacity hover:opacity-100 xl:px-2.5 xl:text-[0.85rem]"
               style={{ color: "var(--band-ink, #ffffff)", opacity: 0.68 }}
             >
               <span
@@ -86,7 +88,7 @@ export function TopBar() {
 
         <a
           href="#contact"
-          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-sm transition-colors xl:ml-2"
+          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-sm transition-colors lg:ml-2"
           style={{
             color: "var(--band-ink, #ffffff)",
             borderColor: "var(--band-rule, rgba(255,255,255,0.28))",
