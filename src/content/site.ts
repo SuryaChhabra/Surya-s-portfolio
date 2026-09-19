@@ -193,6 +193,8 @@ export const site = {
         src: "/research/continuum-stokes-i.webp",
         title: "Continuum image",
         caption:
+          "The dust around the system: two bright cores inside a wider envelope, with a stream of material reaching off to one side.",
+        detail:
           "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left — the dust morphology the gas kinematics are read against. Synthesised beam at lower left.",
         alt: "Millimetre continuum image of IRS3B showing a bright compact double source within a fainter extended envelope.",
       },
@@ -200,6 +202,8 @@ export const site = {
         src: "/research/pv-keplerian.webp",
         title: "Position–velocity diagram",
         caption:
+          "How fast the gas is moving, against where it is. The blue curve is what gravity alone would produce — the shape everything else gets measured against.",
+        detail:
           "Position–velocity diagram through the source. The cyan curve is the Keplerian rotation profile — the baseline Reynolds et al. establish for IRS3B from molecular-line kinematics, and the component modelled away first, because anything gravity already accounts for is not the part worth looking at.",
         alt: "Position-velocity diagram with a Keplerian rotation curve overlaid on molecular line emission.",
       },
@@ -207,7 +211,9 @@ export const site = {
         src: "/research/moment-maps-fit.webp",
         title: "Kinematic fit",
         caption:
-          "Where the question gets answered. Top: integrated intensity (moment 0) and its mask. Bottom: the observed velocity field (moment 1) and what survives a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s. Residuals near zero mean gravity explained the motion; red and blue patterns that survive mean something else is doing it, which is the evidence for the \"badminton-birdie\" infall pattern.",
+          "The answer. Take away the motion gravity explains, and the bottom-right panel is what is left over — the part gravity does not account for.",
+        detail:
+          "Top: integrated intensity (moment 0) and its mask. Bottom: the observed velocity field (moment 1) and what survives a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s. Residuals near zero mean gravity explained the motion; red and blue patterns that survive mean something else is doing it, which is the evidence for the \"badminton-birdie\" infall pattern.",
         alt: "Four-panel figure: moment 0 map, mask, observed moment 1 velocity field, and the observed-minus-model residual.",
       },
     ],

@@ -514,7 +514,14 @@ export function BuiltBand() {
 
 /* — 06 Indigo — astronomy ——————————————————————————————————————————— */
 
-type ResearchImage = { src: string; title: string; caption: string; alt: string };
+type ResearchImage = {
+  src: string;
+  title: string;
+  caption: string;
+  /** The version for someone who works in this field. Opened, not printed. */
+  detail?: string;
+  alt: string;
+};
 
 export function ResearchBand() {
   const band = BAND_BY_ID.research;
@@ -551,6 +558,19 @@ export function ResearchBand() {
                   <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
                     {image.caption}
                   </span>
+                  {/* This is not an astronomy portfolio, so the card says
+                      what you are looking at in plain words and the
+                      technical reading waits behind a click for the one
+                      visitor in twenty who wants it. Without this line
+                      nobody would know it was there. */}
+                  {image.detail ? (
+                    <span
+                      className="mt-3 block text-[0.78rem] uppercase tracking-[0.12em]"
+                      style={{ color: band.accent }}
+                    >
+                      Technical detail
+                    </span>
+                  ) : null}
                 </span>
               </button>
             </li>
@@ -563,6 +583,7 @@ export function ResearchBand() {
           src={images[open].src}
           alt={images[open].alt}
           caption={images[open].caption}
+          detail={images[open].detail}
           onClose={() => setOpen(null)}
         />
       ) : null}
