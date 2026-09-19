@@ -2,17 +2,32 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
+import { createPortal } from "react-dom";
 
-/** Full-screen image view, shared by the index and the research gallery. */
+/**
+ * Full-screen image view, shared by the index and the research gallery.
+ *
+ * Rendered into document.body, not where it is written. The page's <main>
+ * carries `relative z-10`, which makes it a stacking context, so a z-index
+ * set inside it only ever competes with other things inside it — this
+ * dialog's z-80 was being read against main's z-10 and losing to the
+ * fixed header at z-40. The nav then sat on top of a full-screen image
+ * viewer: legible, clickable, and it scrolled the page behind the modal
+ * without closing it. A portal takes the dialog out of main entirely, so
+ * its z-index means what it says however the page is nested later.
+ */
 export function Lightbox({
   src,
   alt,
   caption,
+  detail,
   onClose,
 }: {
   src: string;
   alt: string;
   caption?: string;
+  /** The technical reading, for whoever opened the image wanting it. */
+  detail?: string;
   onClose: () => void;
 }) {
   useEffect(() => {
@@ -30,7 +45,7 @@ export function Lightbox({
     };
   }, [onClose]);
 
-  return (
+  return createPortal(
     <div
       role="dialog"
       aria-modal="true"
@@ -60,6 +75,12 @@ export function Lightbox({
         </p>
       ) : null}
 
+      {detail ? (
+        <p className="mt-3 max-w-2xl text-center text-[0.8rem] leading-relaxed text-white/55">
+          {detail}
+        </p>
+      ) : null}
+
       <button
         type="button"
         onClick={onClose}
@@ -68,6 +89,7 @@ export function Lightbox({
       >
         ✕
       </button>
-    </div>
+    </div>,
+    document.body,
   );
 }
