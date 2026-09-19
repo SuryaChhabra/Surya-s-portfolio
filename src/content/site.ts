@@ -151,7 +151,10 @@ export const site = {
     },
     {
       title: "OFF/BEAT — application video",
-      note: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead, to show how my brain actually works. Built with Suno, Runway and CapCut. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
+      /* "Got appreciation from a ton of people" is deliberately not written
+         out: the four numbers under this say it with evidence, and the
+         sentence would only say it again, weaker. */
+      note: "My first experiment with AI video, and basically my portfolio in 55 seconds — OFF/BEAT asked for an application video and got a mini music-video. It is also how I found out how much I like doing this. Built with Suno, Runway and CapCut. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
       tags: ["Suno", "Runway", "CapCut"],
       poster: "/work/video-offbeat.webp",
       file: "offbeat.mp4",
@@ -166,7 +169,7 @@ export const site = {
     {
       /* The file is named 0712.mp4; the piece is the Soulful Vybes spot. */
       title: "Soulful Vybes — car perfume",
-      note: "",
+      note: "My first freelance job: a spot for an Indian brand about to move into a new segment, car perfumes.",
       tags: [],
       poster: "/work/video-vybe.webp",
       file: "0712.mp4",

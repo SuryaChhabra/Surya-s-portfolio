@@ -79,7 +79,11 @@ export const BANDS: Band[] = [
     angle: -18,
     nav: "Video",
     line: "AI video.",
-    body: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead — Suno, Runway, CapCut.",
+    /* This used to be OFF/BEAT's story, which was fine while OFF/BEAT was
+       the only card with any copy on it. It is not any more: the section
+       now opens with a client brief, so a heading describing the second
+       card was introducing the wrong film. */
+    body: "It started as an experiment — one application video, made with tools I had not used before. Now it is how I make the case for a thing, whether that thing is a product, a brand or me.",
   },
   {
     id: "education",
