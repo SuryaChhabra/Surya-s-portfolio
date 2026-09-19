@@ -160,9 +160,9 @@ export const site = {
       file: "offbeat.mp4",
     },
     {
-      title: "Permute",
-      note: "",
-      tags: [],
+      title: "Permute — product demo",
+      note: "A UIUC alum's startup, and my first B2B SaaS video. It opens in a different style of AI animation, then becomes a product demo built with Claude — the right features, pitched with the right movements.",
+      tags: ["Claude"],
       poster: "/work/video-permute.webp",
       file: "permute.mp4",
     },
