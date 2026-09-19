@@ -55,8 +55,11 @@ export const BANDS: Band[] = [
     angle: -10,
     kicker: "Red",
     nav: "Growth",
-    line: "Growth, three times over.",
-    body: "The same job in three very different rooms — a Bay Area startup, India's largest community-led health movement, and a craft studio in Bastar.",
+    line: "Growth.",
+    /* Not a list of the three companies — the three cards under this are
+       already that. The body's job is the thing the cards cannot say, which
+       is what the three have in common. */
+    body: "Three companies that look nothing alike. In each one the job was the same: work out what gets people to show up, then go and build it.",
   },
   {
     id: "education",
