@@ -56,8 +56,13 @@ export const BANDS: Band[] = [
     line: "Growth.",
     /* Not a list of the three companies — the three cards under this are
        already that. The body's job is the thing the cards cannot say, which
-       is what the three have in common. */
-    body: "Three companies that look nothing alike. In each one the job was the same: work out what gets people to show up, then go and build it.",
+       is how far apart the three are.
+       Deliberately not "what gets people to show up": that is attendance
+       language, and it belongs to the leadership band, where 500 people
+       really did show up to a Ganesha celebration. Neither growth role on
+       this page was about turnout — one was a storefront and its conversion,
+       the other partnerships and ethical markets. */
+    body: "An AI startup, India's largest health movement, an early-stage craft studio. Nothing in common except the job: growth, done from the inside — building the thing that brings people in.",
   },
   {
     id: "video",
