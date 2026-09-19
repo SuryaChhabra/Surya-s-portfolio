@@ -475,9 +475,11 @@ export function VideoBand() {
         ))}
       </div>
 
-      <p className="mt-10 text-sm" style={{ color: t.muted }}>
-        Nothing downloads until you press play.
-      </p>
+      {/* No "nothing downloads until you press play" line here any more.
+          The behaviour is real — VideoPlayer holds the poster and fetches
+          nothing until the control is pressed — but a visitor who never
+          feared the opposite does not need telling, and a site explaining
+          its own good manners is a site making a claim out of a default. */}
     </BandSection>
   );
 }
