@@ -236,8 +236,8 @@ export function PrismAct() {
                   {mode === "still" ? site.hero.cueStill : site.hero.cue}
                 </span>
                 <span
-                  className="mt-1.5 block text-[clamp(0.95rem,1.2vw,1.1rem)] leading-snug"
-                  style={{ color: "rgba(255,255,255,0.68)" }}
+                  className="mt-2 block text-[clamp(1.05rem,1.45vw,1.28rem)] leading-snug"
+                  style={{ color: "rgba(255,255,255,0.82)" }}
                 >
                   {site.hero.cueSub}
                 </span>
