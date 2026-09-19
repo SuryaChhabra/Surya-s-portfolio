@@ -146,6 +146,32 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
   Record<string, Band>;
 
 /**
+ * The closing field: white, because that is what the seven make when you put
+ * them back together.
+ *
+ * Deliberately not in BANDS. It is not a wavelength, so it gets no ray out
+ * of the prism, no nav link and no dot on the rail — only a field, which is
+ * why the background looks here as well as in the spectrum.
+ */
+export const CLOSING: Band = {
+  id: "close",
+  color: "#ffffff",
+  deep: "#f6f5f1",
+  accent: "#1a1a1f",
+  tone: "light",
+  angle: 0,
+  nav: "Close",
+  line: "",
+  body: "",
+};
+
+/** Every field the page can sit on, wavelength or not. */
+export const FIELD_BY_ID: Record<string, Band> = {
+  ...BAND_BY_ID,
+  [CLOSING.id]: CLOSING,
+};
+
+/**
  * How to paint on a band.
  *
  * Every colour below is checked against its own field: headings clear 7.8:1,
@@ -154,19 +180,23 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
  */
 export function tones(band: Band) {
   const light = band.tone === "light";
+  /* The warm near-black is right on orange and gold and wrong on white,
+     where it reads as a printing error rather than a colour. */
+  const neutral = band.id === "close";
+  const inkRgb = neutral ? "20,20,24" : "40,23,0";
   return {
     /** Headings and anything that has to be unmissable. */
-    ink: light ? "#281700" : "#ffffff",
+    ink: light ? (neutral ? "#14141a" : "#281700") : "#ffffff",
     /** Body copy. */
-    body: light ? "rgba(40,23,0,0.84)" : "rgba(255,255,255,0.82)",
+    body: light ? `rgba(${inkRgb},0.84)` : "rgba(255,255,255,0.82)",
     /** Labels, captions, anything deliberately quiet. */
-    muted: light ? "rgba(40,23,0,0.66)" : "rgba(255,255,255,0.64)",
+    muted: light ? `rgba(${inkRgb},0.6)` : "rgba(255,255,255,0.64)",
     /** A pane of the same glass the light came through. */
     pane: light
       ? "rounded-2xl border border-black/15 bg-white/30 backdrop-blur-[2px]"
       : "rounded-2xl border border-white/20 bg-black/25 backdrop-blur-[2px]",
     /** Hairlines and dividers. */
-    rule: light ? "rgba(40,23,0,0.24)" : "rgba(255,255,255,0.20)",
+    rule: light ? `rgba(${inkRgb},0.18)` : "rgba(255,255,255,0.20)",
     hover: light ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
   };
 }

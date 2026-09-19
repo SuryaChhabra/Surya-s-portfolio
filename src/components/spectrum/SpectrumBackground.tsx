@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BANDS, VOID_DEEP, tones, visibleBands, type Band } from "@/components/prism/bands";
+import { BANDS, FIELD_BY_ID, VOID_DEEP, tones, visibleBands, type Band } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
@@ -31,7 +31,7 @@ export function SpectrumBackground() {
         (el) => mid >= el.offsetTop && mid < el.offsetTop + el.offsetHeight,
       );
       const id = hit?.dataset.band;
-      const next = id ? (BANDS.find((b) => b.id === id) ?? null) : null;
+      const next = id ? (FIELD_BY_ID[id] ?? null) : null;
       setBand((current) => (current?.id === next?.id ? current : next));
     };
 

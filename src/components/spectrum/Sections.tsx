@@ -6,7 +6,7 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
-import { BAND_BY_ID, tones, type Band } from "@/components/prism/bands";
+import { BANDS, BAND_BY_ID, CLOSING, tones, type Band } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
 /* Cards, rules and text colours all come from `tones(band)`. A band only
@@ -333,7 +333,7 @@ export function LeadingBand() {
                           className="mt-3 inline-block text-sm underline-offset-4 hover:underline"
                           style={{ color: band.accent }}
                         >
-                          See the post ↗
+                          See the post ↗︎
                         </a>
                       ) : null}
                     </div>
@@ -501,7 +501,7 @@ export function BuiltBand() {
                   className="shrink-0 text-sm transition-transform group-hover:translate-x-1"
                   style={{ color: band.accent }}
                 >
-                  Open ↗
+                  Open ↗︎
                 </span>
               </a>
             </li>
@@ -690,44 +690,80 @@ export function SportBand() {
 const PLACEHOLDER_LINK = /example\.com|\/username(\/|$)/;
 
 export function CloseBand() {
+  const band = CLOSING;
+  const t = tones(band);
   /* A dead contact link is worse than a missing one: it reads as real, gets
      clicked, and fails in front of exactly the person you wanted. Anything
      still holding scaffold does not render. */
   const socials = site.socials.filter((s) => !PLACEHOLDER_LINK.test(s.href));
+  const email = socials.find((s) => s.href.startsWith("mailto:"));
+  const rest = socials.filter((s) => s !== email);
 
   return (
-    <section id="contact" className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36">
+    <section
+      id="contact"
+      data-band={band.id}
+      className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36"
+    >
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
-          <p className="label text-white/45">All seven, back together</p>
-          {/* The close states what the work is and invites the next move.
-              A portfolio that ends by asking for a job has spent the whole
-              page earning the right not to. */}
-          <h2 className="mt-4 max-w-2xl text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em] text-white">
+          {/* The seven, recombined. The page opened on white light going into
+              glass; it closes by putting the colours back where they came
+              from, which is the one thing the spectrum has not said yet. */}
+          <span aria-hidden="true" className="flex h-2 w-40 overflow-hidden rounded-full">
+            {BANDS.map((b) => (
+              <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
+            ))}
+          </span>
+          <p className="label mt-4" style={{ color: t.muted }}>
+            All seven, back together
+          </p>
+
+          <h2
+            className="mt-4 max-w-2xl text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
+            style={{ color: t.ink }}
+          >
             Tell me what you&rsquo;re building.
           </h2>
-          <p className="mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/70">
+          <p
+            className="mt-5 max-w-xl text-[1.02rem] leading-relaxed"
+            style={{ color: t.body }}
+          >
             {site.hero.lead} If something here looks like the kind of thing you
             need made, I am one message away.
           </p>
 
-          <div className="mt-8 flex flex-wrap gap-3">
-            {socials.map((s) => (
-              <a
-                key={s.label}
-                href={s.href}
-                target={s.href.startsWith("http") ? "_blank" : undefined}
-                rel="noopener noreferrer"
-                className="r-pill border border-white/25 px-5 py-2.5 text-sm text-white transition-colors hover:bg-white/10"
-              >
-                {s.label}
-              </a>
-            ))}
-          </div>
+          {/* The address at the size of the thing the page is for. */}
+          {email ? (
+            <a
+              href={email.href}
+              className="mt-10 inline-block max-w-full break-words text-[clamp(1.5rem,4.2vw,2.6rem)] font-medium leading-tight tracking-[-0.035em] underline decoration-[0.06em] underline-offset-[0.18em] transition-colors"
+              style={{ color: t.ink, textDecorationColor: "rgba(20,20,24,0.25)" }}
+            >
+              {email.href.replace("mailto:", "")}
+            </a>
+          ) : null}
+
+          {rest.length ? (
+            <div className="mt-7 flex flex-wrap gap-3">
+              {rest.map((s) => (
+                <a
+                  key={s.label}
+                  href={s.href}
+                  target={s.href.startsWith("http") ? "_blank" : undefined}
+                  rel="noopener noreferrer"
+                  className="r-pill border px-5 py-2.5 text-sm transition-colors"
+                  style={{ borderColor: t.rule, color: t.ink }}
+                >
+                  {s.label} ↗︎
+                </a>
+              ))}
+            </div>
+          ) : null}
 
           {socials.length < site.socials.length ? (
             <div className="mt-6">
-              <Pending>
+              <Pending band={band}>
                 {site.socials.length - socials.length} of {site.socials.length}{" "}
                 links in `site.socials` are still example.com / username
                 placeholders and are hidden until they are real. Same for
