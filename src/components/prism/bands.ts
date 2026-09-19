@@ -55,14 +55,15 @@ export const BANDS: Band[] = [
     nav: "Growth",
     line: "Growth.",
     /* Not a list of the three companies — the three cards under this are
-       already that. The body's job is the thing the cards cannot say, which
-       is how far apart the three are.
-       Deliberately not "what gets people to show up": that is attendance
-       language, and it belongs to the leadership band, where 500 people
-       really did show up to a Ganesha celebration. Neither growth role on
-       this page was about turnout — one was a storefront and its conversion,
-       the other partnerships and ethical markets. */
-    body: "An AI startup, India's largest health movement, an early-stage craft studio. Nothing in common except the job: growth, done from the inside — building the thing that brings people in.",
+       already that. The body's job is the thing the cards cannot say.
+       That thing is the difference, not the overlap. Two earlier versions
+       tried to name one job all three shared — first "what gets people to
+       show up", then "building the thing that brings people in" — and both
+       were wrong the same way: only the title repeats. The remits differ
+       and so do the audiences, and a storefront's shoppers, a health
+       movement's followers and a craft studio's buyers are not reached by
+       one playbook. Claiming they are makes three roles look like one. */
+    body: "Three growth roles, not the same job three times. A Bay Area AI startup, India's largest health movement, an early-stage craft studio — no two share an audience, and the work followed the audience.",
   },
   {
     id: "video",
