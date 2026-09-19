@@ -121,38 +121,41 @@ export const site = {
      Files live in the R2 bucket, not the repo. src is the public URL.
      poster is a still in public/work/ — small enough to belong in git.
 
-     ⚠️ The titles below come from the filenames and the notes are empty
-     prompts. Replace them with what each piece actually is and who it was
-     for; invented descriptions are worse than none.                       */
+     Posters are real frames you picked, cropped to 16:9 and re-encoded.
+     Replace one by dropping a new file in public/work/ and pointing at it.
+
+     ⚠️ Three of the four notes are still empty. Say what each piece is and
+     who it was for; invented descriptions are worse than none.            */
   videoBase: "https://pub-5db4afe057a34843946065c529eba471.r2.dev",
 
   videos: [
     {
-      title: "Twinmind",
+      title: "TwinMind",
       note: "",
       tags: [],
-      poster: "/work/video-twinmind.svg",
+      poster: "/work/video-twinmind.webp",
       file: "Twinmind.mp4",
     },
     {
       title: "OFF/BEAT — application video",
       note: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead, to show how my brain actually works. Built with Suno, Runway and CapCut. It reached 208K people, 99% of them outside my network, and held an 18-second average watch time.",
       tags: ["Suno", "Runway", "CapCut"],
-      poster: "/work/video-offbeat.svg",
+      poster: "/work/video-offbeat.webp",
       file: "offbeat.mp4",
     },
     {
       title: "Permute",
       note: "",
       tags: [],
-      poster: "/work/video-permute.svg",
+      poster: "/work/video-permute.webp",
       file: "permute.mp4",
     },
     {
-      title: "0712",
+      /* The file is named 0712.mp4; the piece is the Soulful Vybes spot. */
+      title: "Soulful Vybes — car perfume",
       note: "",
       tags: [],
-      poster: "/work/video-0712.svg",
+      poster: "/work/video-vybe.webp",
       file: "0712.mp4",
     },
   ],
