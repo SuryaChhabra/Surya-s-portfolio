@@ -38,7 +38,7 @@ export const site = {
          "I'd rather make it than wait until I know how."
          "I don't specialise. I finish."                                */
     lead: "Growth & creative for startups.",
-    sub: "I figure things out by making them.",
+    sub: "I figure things out by making them, learning whatever tool it takes on the way. Most of what is on this page started as something nobody asked me to build.",
     blurb:
       "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
     /* Stated, not requested. "Looking for work" as a headline reads as

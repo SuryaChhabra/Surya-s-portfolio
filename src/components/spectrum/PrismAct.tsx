@@ -145,7 +145,7 @@ export function PrismAct() {
             transition: "opacity 500ms linear, transform 500ms linear",
           }}
         >
-          <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-20">
+          <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-[16vh]">
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
@@ -162,8 +162,8 @@ export function PrismAct() {
                 {site.hero.lead}
               </p>
               <p
-                className="mt-3 text-[1.08rem] leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.82)" }}
+                className="mt-4 text-[clamp(1.08rem,1.4vw,1.28rem)] leading-[1.5]"
+                style={{ color: "rgba(255,255,255,0.84)" }}
               >
                 {site.hero.sub}
               </p>
