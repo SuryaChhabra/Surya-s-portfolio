@@ -433,9 +433,10 @@ export const site = {
     degree: "BS Liberal Arts & Sciences",
     /* Two majors, as the transcript records them. */
     majors: "Astronomy + Data Science · Statistics",
-    /* ⚠️ The transcript runs to Fall 2026 in progress. Add the expected
-       graduation date when you want it stated. */
-    period: "2023 – present",
+    /* Deliberately blank. "2023 – present" dates you on a page whose whole
+       case is the work, and the pane reads cleaner without a lone label
+       floating on the right. Put a range back here and it renders again. */
+    period: "",
     place: "",
     note: "",
     highlights: [
