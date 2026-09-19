@@ -360,18 +360,26 @@ export function VideoBand() {
       {/* Stated once, at the top, because these three made all four films.
           On a single card they read as that card's stack. */}
       <Reveal>
-        <div className="mb-10 flex flex-wrap items-center gap-x-5 gap-y-3">
-          <span className="label" style={{ color: t.muted }}>
-            Made with, on all of them
-          </span>
-          <div className="flex flex-wrap gap-2.5">
+        <div className="mb-12">
+          <p className="label" style={{ color: t.muted }}>
+            On every film here
+          </p>
+          {/* Filled, not outlined, and set at body size rather than caption
+              size: these are three of the four things this section is
+              actually about, and an outlined chip reads as metadata. */}
+          <div className="mt-4 flex flex-wrap gap-3">
             {site.videoToolkit.map((tool) => (
               <span
-                key={tool}
-                className="r-pill border px-4 py-2 text-[0.95rem]"
-                style={{ borderColor: `${band.accent}59`, color: band.accent }}
+                key={tool.name}
+                className="flex items-center gap-2.5 rounded-full border border-white/50 bg-white/80 px-5 py-3 text-[1.02rem] font-medium"
+                style={{ color: t.ink, boxShadow: "0 6px 18px -10px rgba(60,30,0,0.45)" }}
               >
-                {tool}
+                {tool.logo ? (
+                  <span className="relative block h-6 w-6 shrink-0 overflow-hidden rounded-[6px]">
+                    <Image src={tool.logo} alt="" fill sizes="24px" className="object-contain" />
+                  </span>
+                ) : null}
+                {tool.name}
               </span>
             ))}
           </div>

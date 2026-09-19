@@ -142,7 +142,13 @@ export const site = {
      one card — listing them under OFF/BEAT made them look like that film's
      stack and left the other three looking like they were made with
      nothing. A card's own `tags` are now only for what is unique to it. */
-  videoToolkit: ["Suno", "Runway", "CapCut"],
+  videoToolkit: [
+    /* Drop a square mark in public/logos/ and set it here; without one the
+       pill is just the name, which still reads fine. */
+    { name: "Suno", logo: "" },
+    { name: "Runway", logo: "" },
+    { name: "CapCut", logo: "" },
+  ] as { name: string; logo?: string }[],
 
   videos: [
     {
