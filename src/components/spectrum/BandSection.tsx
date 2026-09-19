@@ -28,8 +28,15 @@ export function BandSection({
       id={band.id}
       data-band={band.id}
       /* A full screen minimum: the idea only works if each wavelength
-         actually owns the frame for a moment rather than flashing past. */
-      className="relative flex min-h-[100svh] scroll-mt-8 flex-col justify-center px-5 py-24 sm:px-10 sm:py-32"
+         actually owns the frame for a moment rather than flashing past.
+         A `compact` band settles for most of one — enough to own the middle
+         of the screen and hold its colour, without padding thin content out
+         to fill a frame it cannot fill honestly. */
+      className={`relative flex scroll-mt-8 flex-col justify-center px-5 sm:px-10 ${
+        band.compact
+          ? "min-h-[72svh] py-20 sm:py-24"
+          : "min-h-[100svh] py-24 sm:py-32"
+      }`}
     >
       {/* w-full matters: `mx-auto` sets auto margins, and a flex item with
           auto margins on the cross axis is not stretched — it shrinks to its

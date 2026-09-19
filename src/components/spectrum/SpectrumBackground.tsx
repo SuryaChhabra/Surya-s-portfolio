@@ -1,7 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BANDS, VOID_DEEP, tones, type Band } from "@/components/prism/bands";
+import { BANDS, VOID_DEEP, tones, visibleBands, type Band } from "@/components/prism/bands";
+import { site } from "@/content/site";
 
 /**
  * The page's one background, and the rail that says where you are in it.
@@ -135,6 +136,7 @@ function SpectrumRail({ active }: { active: Band | null }) {
   /* The rail sits on whichever field is current, so its own text takes that
      field's ink rather than any one band's colour. */
   const t = active ? tones(active) : null;
+  const links = visibleBands(site.education.institution ? [] : ["education"]);
 
   return (
     <nav
@@ -146,7 +148,7 @@ function SpectrumRail({ active }: { active: Band | null }) {
         transition: "opacity 500ms linear",
       }}
     >
-      {BANDS.map((b) => {
+      {links.map((b) => {
         const on = b.id === active?.id;
         return (
           <a

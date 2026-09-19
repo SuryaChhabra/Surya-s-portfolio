@@ -255,10 +255,93 @@ export const site = {
     },
   ],
 
-  /* — Experience timeline ————————————————————————————————————————
-     The three roles that lived here were fabricated and are gone. Add real
-     ones if you want a timeline back; nothing renders it right now.      */
-  timeline: [] as { period: string; title: string; org: string; detail: string }[],
+  /* — Work ————————————————————————————————————————————————————————
+     Two bands, because they are two different jobs.
+
+     `growth` is the red band: the same role in three rooms. `leadership` is
+     the yellow one: leading people and building a scene rather than a
+     funnel. Both take the same shape.
+
+       title   — your role, as it reads on LinkedIn
+       org     — who it was for
+       kind    — "Internship" / "Contract" / "" for a normal role
+       period  — "Jul – Aug 2026"
+       place   — "San Francisco Bay Area" or "" to omit
+       detail  — what you actually did. One or two sentences.
+       metrics — optional: { value, label } that you can stand behind
+       skills  — optional tags                                            */
+  experience: {
+    growth: [
+      {
+        title: "Founding Growth",
+        org: "TwinMind",
+        kind: "Internship",
+        period: "Jul – Aug 2026",
+        place: "San Francisco Bay Area",
+        /* ⚠️ LinkedIn only carries TwinMind's own tagline here, which is
+           their copy and not your work. Say what the remit actually was. */
+        detail: "",
+        metrics: [] as { value: string; label: string }[],
+        skills: [] as string[],
+      },
+      {
+        title: "Growth",
+        org: "Satvic Movement",
+        kind: "",
+        period: "Mar – May 2026",
+        place: "",
+        detail:
+          "Helped scale e-commerce for India's largest community-led health movement by building high-conversion shopping experiences with an AI-native design stack.",
+        metrics: [] as { value: string; label: string }[],
+        skills: ["Web Design", "Shopify"],
+      },
+      {
+        title: "Growth",
+        org: "Ocher Studio",
+        kind: "",
+        period: "Jan – Mar 2026",
+        place: "",
+        detail:
+          "Worked to make artisan livelihoods more sustainable by helping an early-stage craft startup grow through ethical markets, partnerships, and community-centered storytelling.",
+        metrics: [] as { value: string; label: string }[],
+        skills: ["Marketing", "Marketing Strategy"],
+      },
+    ],
+
+    leadership: [
+      {
+        title: "Head of Exploration",
+        org: "Founders — Illinois Entrepreneurs",
+        kind: "",
+        period: "Sep 2024 – Dec 2025",
+        place: "",
+        detail:
+          "Led a student innovation team focused on strengthening the campus startup ecosystem through speaker events, founder conversations, and a podcast for student entrepreneurs.",
+        metrics: [] as { value: string; label: string }[],
+        skills: [] as string[],
+      },
+    ],
+  },
+
+  /* — Education ——————————————————————————————————————————————————
+     The orange band, second on the page. It is a compact section by
+     design — it does not need a full screen, it needs to be high up.
+
+       institution  — the university, as you would write it
+       degree       — exact wording, e.g. "BSc Astrophysics"
+       period       — "2023 – 2027"
+       place        — optional
+       note         — one line, if there is something worth saying
+       highlights   — clubs, roles, awards, scholarships, coursework.
+                      { label, detail } — detail can be ""              */
+  education: {
+    institution: "",
+    degree: "",
+    period: "",
+    place: "",
+    note: "",
+    highlights: [] as { label: string; detail: string }[],
+  },
 
   /* — Writing / notes ————————————————————————————————————————————
      Fabricated entries removed. Add real posts here if you have them. */

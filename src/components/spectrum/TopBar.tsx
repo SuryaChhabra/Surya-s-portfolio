@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BANDS } from "@/components/prism/bands";
+import { BANDS, visibleBands } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
@@ -17,6 +17,9 @@ import { site } from "@/content/site";
  */
 export function TopBar() {
   const [lifted, setLifted] = useState(false);
+  /* Education is second on the page and renders nothing until it has
+     content, so it is not a link until then either. */
+  const links = visibleBands(site.education.institution ? [] : ["education"]);
 
   /* Transparent over the opening, backed once there is content behind it. */
   useEffect(() => {
@@ -61,12 +64,14 @@ export function TopBar() {
           {site.name}
         </a>
 
-        <nav className="pointer-events-auto ml-auto hidden items-center gap-1 lg:flex">
-          {BANDS.map((b) => (
+        {/* Seven links plus a name plus a button needs the room — below xl
+            the nav gives way and the rail on the right carries navigation. */}
+        <nav className="pointer-events-auto ml-auto hidden items-center gap-0.5 xl:flex">
+          {links.map((b) => (
             <a
               key={b.id}
               href={`#${b.id}`}
-              className="group flex items-center gap-2 rounded-full px-3 py-1.5 text-sm transition-opacity hover:opacity-100"
+              className="group flex items-center gap-1.5 rounded-full px-2.5 py-1.5 text-[0.82rem] transition-opacity hover:opacity-100"
               style={{ color: "var(--band-ink, #ffffff)", opacity: 0.68 }}
             >
               <span
@@ -81,7 +86,7 @@ export function TopBar() {
 
         <a
           href="#contact"
-          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-sm transition-colors lg:ml-2"
+          className="pointer-events-auto ml-auto shrink-0 r-pill border px-4 py-2 text-sm transition-colors xl:ml-2"
           style={{
             color: "var(--band-ink, #ffffff)",
             borderColor: "var(--band-rule, rgba(255,255,255,0.28))",

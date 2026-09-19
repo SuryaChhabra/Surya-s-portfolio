@@ -6,131 +6,224 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
-import { BAND_BY_ID, tones } from "@/components/prism/bands";
+import { BAND_BY_ID, tones, type Band } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
 /* Cards, rules and text colours all come from `tones(band)`. A band only
    has to declare whether its field is dark or light and everything on it
    follows — which is what lets yellow invert without any of this knowing. */
 
+type Role = {
+  title: string;
+  org: string;
+  kind: string;
+  period: string;
+  place: string;
+  detail: string;
+  metrics: readonly { value: string; label: string }[];
+  skills: readonly string[];
+};
 
-/* — 01 Red — who this is ————————————————————————————————————————— */
-
-export function IntroBand() {
-  const band = BAND_BY_ID.intro;
+/**
+ * One job, in the shape a job actually has: when, where, what.
+ *
+ * Shared by the red band and the yellow one because they are the same
+ * object — what differs between growth work and leading a team is the
+ * content, not the card.
+ */
+function RoleCard({ role, band }: { role: Role; band: Band }) {
   const t = tones(band);
 
   return (
-    <BandSection band={band} index={0}>
-      <div className="grid gap-12 lg:grid-cols-[1.1fr_0.9fr]">
-        <Reveal>
-          <div className="space-y-5">
-            {site.about.paragraphs.map((p) => (
-              <p key={p} className="text-[1.02rem] leading-relaxed" style={{ color: t.body }}>
-                {p}
-              </p>
-            ))}
-
-            <div className="flex flex-wrap gap-2 pt-2">
-              {site.about.toolkit.map((tool) => (
-                <span
-                  key={tool}
-                  className="r-pill border px-3 py-1 text-xs"
-                  style={{ borderColor: `${band.accent}59`, color: band.accent }}
-                >
-                  {tool}
-                </span>
-              ))}
-            </div>
-          </div>
-        </Reveal>
-
-        {/* The numbers are from one post, and the labels say so. */}
-        <Reveal delay={0.1}>
-          <dl className={`grid grid-cols-2 gap-px overflow-hidden ${t.pane}`}>
-            {site.stats.map((stat) => (
-              <div key={stat.label} className="px-5 py-7">
-                <dt className="sr-only">{stat.label}</dt>
-                <dd>
-                  <span
-                    className="block text-[clamp(1.8rem,4vw,2.6rem)] font-medium tracking-[-0.04em]"
-                    style={{ color: band.accent }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span className="mt-1 block text-xs leading-snug" style={{ color: t.muted }}>
-                    {stat.label}
-                  </span>
-                </dd>
-              </div>
-            ))}
-          </dl>
-        </Reveal>
+    <li className={`px-6 py-6 sm:px-7 sm:py-7 ${t.pane}`}>
+      <div className="flex flex-col gap-1.5 sm:flex-row sm:items-baseline sm:justify-between sm:gap-8">
+        <h3 className="text-lg font-medium tracking-[-0.02em] sm:text-xl" style={{ color: t.ink }}>
+          {role.title}
+          <span style={{ color: band.accent }}> · {role.org}</span>
+        </h3>
+        <p className="label shrink-0" style={{ color: t.muted }}>
+          {role.period}
+          {role.kind ? ` · ${role.kind}` : ""}
+        </p>
       </div>
+
+      {role.place ? (
+        <p className="mt-1 text-sm" style={{ color: t.muted }}>
+          {role.place}
+        </p>
+      ) : null}
+
+      {role.detail ? (
+        <p className="mt-3 text-[0.98rem] leading-relaxed" style={{ color: t.body }}>
+          {role.detail}
+        </p>
+      ) : (
+        <Note band={band}>
+          What the remit actually was — two or three specifics beat one
+          adjective.
+        </Note>
+      )}
+
+      {role.metrics.length ? (
+        <dl className="mt-4 flex flex-wrap gap-x-7 gap-y-2">
+          {role.metrics.map((m) => (
+            <div key={m.label} className="flex items-baseline gap-2">
+              <dt className="sr-only">{m.label}</dt>
+              <dd className="flex items-baseline gap-2">
+                <span
+                  className="text-lg font-medium tracking-[-0.03em]"
+                  style={{ color: band.accent }}
+                >
+                  {m.value}
+                </span>
+                <span className="text-sm" style={{ color: t.muted }}>
+                  {m.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      ) : null}
+
+      {role.skills.length ? (
+        <div className="mt-4 flex flex-wrap gap-2">
+          {role.skills.map((skill) => (
+            <span
+              key={skill}
+              className="r-pill border px-2.5 py-1 text-xs"
+              style={{ borderColor: `${band.accent}59`, color: band.accent }}
+            >
+              {skill}
+            </span>
+          ))}
+        </div>
+      ) : null}
+    </li>
+  );
+}
+
+/* — 01 Red — the growth work ——————————————————————————————————————— */
+
+export function GrowthBand() {
+  const band = BAND_BY_ID.growth;
+  const roles = site.experience.growth as readonly Role[];
+
+  return (
+    <BandSection band={band} index={0}>
+      <ul className="space-y-4">
+        {roles.map((role, i) => (
+          <Reveal key={`${role.org}-${role.title}`} delay={i * 0.06}>
+            <RoleCard role={role} band={band} />
+          </Reveal>
+        ))}
+      </ul>
     </BandSection>
   );
 }
 
-/* — 02 Orange — work and the rooms it happened in ————————————————— */
+/* — 02 Orange — education ——————————————————————————————————————————— */
 
-export function ExperienceBand() {
-  const events = site.events.filter((e) => e.name);
-  const roles = site.timeline;
+export function EducationBand() {
+  const base = BAND_BY_ID.education;
+  const t = tones(base);
+  const { institution, degree, period, place, note, highlights } = site.education;
 
-  /* Until there are roles to list, the orange band leads with the events
-     instead. A section headed "Work experience." with no work experience
-     under it is the one thing on this page that actively costs something,
-     and it repairs itself the moment `timeline` has an entry. */
-  const band = roles.length
-    ? BAND_BY_ID.experience
-    : {
-        ...BAND_BY_ID.experience,
-        line: "Rooms I've been in.",
-        body: "",
-      };
-  const t = tones(band);
+  /* Nothing to show and no notes to show either: the band would be a
+     heading over empty colour, which is the one thing worse than a gap. */
+  if (!institution && !SHOW_NOTES) return null;
+
+  const band: Band = {
+    ...base,
+    line: institution || "Education.",
+    body: note,
+  };
 
   return (
     <BandSection band={band} index={1}>
+      {institution ? (
+        <div className="space-y-8">
+          <Reveal>
+            <div className={`px-6 py-6 sm:px-7 sm:py-7 ${t.pane}`}>
+              <p
+                className="text-[clamp(1.15rem,2vw,1.5rem)] font-medium tracking-[-0.025em]"
+                style={{ color: t.ink }}
+              >
+                {degree}
+              </p>
+              <p className="mt-2 text-[0.98rem]" style={{ color: t.body }}>
+                {period}
+                {place ? ` · ${place}` : ""}
+              </p>
+            </div>
+          </Reveal>
+
+          {highlights.length ? (
+            <Reveal delay={0.08}>
+              <ul className="grid gap-x-10 gap-y-4 sm:grid-cols-2">
+                {highlights.map((h) => (
+                  <li key={h.label} className="flex gap-3">
+                    <span
+                      aria-hidden="true"
+                      className="mt-[0.55em] block h-1.5 w-1.5 shrink-0 rounded-full"
+                      style={{ backgroundColor: band.accent }}
+                    />
+                    <span>
+                      <span className="block font-medium" style={{ color: t.ink }}>
+                        {h.label}
+                      </span>
+                      {h.detail ? (
+                        <span
+                          className="mt-0.5 block text-sm leading-relaxed"
+                          style={{ color: t.body }}
+                        >
+                          {h.detail}
+                        </span>
+                      ) : null}
+                    </span>
+                  </li>
+                ))}
+              </ul>
+            </Reveal>
+          ) : null}
+        </div>
+      ) : (
+        <Pending band={band}>
+          `site.education` is empty — institution, degree, period, and the
+          clubs, roles and awards under `highlights`. This band is second on
+          the page and renders nothing at all until it has them.
+        </Pending>
+      )}
+    </BandSection>
+  );
+}
+
+/* — 03 Yellow — leading, and the rooms it happened in ———————————————— */
+
+export function LeadingBand() {
+  const band = BAND_BY_ID.leading;
+  const t = tones(band);
+  const roles = site.experience.leadership as readonly Role[];
+  const events = site.events.filter((e) => e.name);
+
+  return (
+    <BandSection band={band} index={2}>
       <div className="space-y-14">
         {roles.length ? (
-          <ol className="space-y-px">
+          <ul className="space-y-4">
             {roles.map((role) => (
               <Reveal key={`${role.org}-${role.title}`}>
-                <li className={`flex flex-col gap-2 px-5 py-6 sm:flex-row sm:gap-8 ${t.pane}`}>
-                  <span className="label shrink-0 pt-1 sm:w-40" style={{ color: t.muted }}>
-                    {role.period}
-                  </span>
-                  <div>
-                    <h3 className="text-lg font-medium" style={{ color: t.ink }}>
-                      {role.title}
-                      <span style={{ color: band.accent }}> · {role.org}</span>
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed" style={{ color: t.body }}>
-                      {role.detail}
-                    </p>
-                  </div>
-                </li>
+                <RoleCard role={role} band={band} />
               </Reveal>
             ))}
-          </ol>
-        ) : (
-          <Reveal>
-            <Pending band={band}>
-              Roles, dates and what you actually did go here. Nothing is filled
-              in yet, and inventing it would be the one thing on this page that
-              could not survive a follow-up question. Until then this band
-              leads with the events instead.
-            </Pending>
-          </Reveal>
-        )}
+          </ul>
+        ) : null}
 
         {events.length ? (
           <div>
-            {roles.length ? (
-              <h3 className="label" style={{ color: t.muted }}>In the room</h3>
-            ) : null}
-            <ul className={`grid gap-6 sm:grid-cols-2 ${roles.length ? "mt-5" : ""}`}>
+            <h3 className="label" style={{ color: t.muted }}>
+              In the room
+            </h3>
+            <ul className="mt-5 grid gap-6 sm:grid-cols-2">
               {events.map((event, i) => (
                 <Reveal key={event.name} delay={(i % 2) * 0.08}>
                   <li className={`overflow-hidden ${t.pane}`}>
@@ -140,7 +233,7 @@ export function ExperienceBand() {
                           <div key={src} className="relative aspect-[4/3] bg-black/40">
                             <Image
                               src={src}
-                              alt={`${event.name}`}
+                              alt={event.name}
                               fill
                               sizes="(max-width: 640px) 50vw, 25vw"
                               className="object-cover"
@@ -184,22 +277,50 @@ export function ExperienceBand() {
   );
 }
 
-/* — 03 Yellow — AI video ——————————————————————————————————————————— */
+/* — 04 Green — AI video ————————————————————————————————————————————— */
 
 export function VideoBand() {
   const band = BAND_BY_ID.video;
   const t = tones(band);
 
   return (
-    <BandSection band={band} index={2}>
+    <BandSection band={band} index={3}>
+      {/* The numbers live here rather than in the opening: beside the thing
+          they describe they are evidence, and at the top of the page they
+          would just be a claim. */}
+      <Reveal>
+        <dl className={`mb-12 grid grid-cols-2 gap-px overflow-hidden sm:grid-cols-4 ${t.pane}`}>
+          {site.stats.map((stat) => (
+            <div key={stat.label} className="px-5 py-6">
+              <dt className="sr-only">{stat.label}</dt>
+              <dd>
+                <span
+                  className="block text-[clamp(1.6rem,3.4vw,2.3rem)] font-medium tracking-[-0.04em]"
+                  style={{ color: band.accent }}
+                >
+                  {stat.value}
+                </span>
+                <span className="mt-1 block text-xs leading-snug" style={{ color: t.muted }}>
+                  {stat.label}
+                </span>
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </Reveal>
+
       <div className="grid gap-10 lg:grid-cols-2">
         {site.videos.map((video, i) => (
           <Reveal key={video.title} delay={(i % 2) * 0.08}>
             <figure>
-              {/* VideoPlayer paints its own shell from --paper-2; on this page
-                  that token needs to be dark or the card glows white while a
-                  poster loads. */}
-              <div style={{ ["--paper-2" as string]: band.tone === "light" ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.05)" }}>
+              {/* VideoPlayer paints its own shell from --paper-2; it has to
+                  follow the field or the card glows while a poster loads. */}
+              <div
+                style={{
+                  ["--paper-2" as string]:
+                    band.tone === "light" ? "rgba(0,0,0,0.12)" : "rgba(255,255,255,0.05)",
+                }}
+              >
                 <VideoPlayer
                   media={{
                     poster: video.poster,
@@ -220,7 +341,10 @@ export function VideoBand() {
               </div>
 
               <figcaption className="mt-5">
-                <h3 className="text-lg font-medium tracking-[-0.02em] sm:text-xl" style={{ color: t.ink }}>
+                <h3
+                  className="text-lg font-medium tracking-[-0.02em] sm:text-xl"
+                  style={{ color: t.ink }}
+                >
                   {video.title}
                 </h3>
                 {video.note ? (
@@ -263,14 +387,14 @@ function guessType(url: string) {
   return "video/mp4";
 }
 
-/* — 04 Green — shipped ————————————————————————————————————————————— */
+/* — 05 Blue — shipped ——————————————————————————————————————————————— */
 
 export function BuiltBand() {
   const band = BAND_BY_ID.built;
   const t = tones(band);
 
   return (
-    <BandSection band={band} index={3}>
+    <BandSection band={band} index={4}>
       <ul className="space-y-px">
         {site.work.map((project, i) => (
           <Reveal key={project.title} delay={i * 0.06}>
@@ -285,7 +409,10 @@ export function BuiltBand() {
                   {project.kicker}
                 </span>
                 <span className="flex-1">
-                  <span className="block text-xl font-medium tracking-[-0.02em] sm:text-2xl" style={{ color: t.ink }}>
+                  <span
+                    className="block text-xl font-medium tracking-[-0.02em] sm:text-2xl"
+                    style={{ color: t.ink }}
+                  >
                     {project.title}
                   </span>
                   {project.summary ? (
@@ -314,7 +441,7 @@ export function BuiltBand() {
   );
 }
 
-/* — 05 Blue — astronomy ——————————————————————————————————————————— */
+/* — 06 Indigo — astronomy ——————————————————————————————————————————— */
 
 type ResearchImage = { src: string; title: string; caption: string; alt: string };
 
@@ -325,7 +452,7 @@ export function ResearchBand() {
   const [open, setOpen] = useState<number | null>(null);
 
   return (
-    <BandSection band={band} index={4}>
+    <BandSection band={band} index={5}>
       <ul className="grid gap-6 sm:grid-cols-2">
         {images.map((image, i) => (
           <Reveal key={image.src} delay={(i % 2) * 0.08}>
@@ -347,10 +474,7 @@ export function ResearchBand() {
                   />
                 </span>
                 <span className="block px-5 py-5">
-                  <span
-                    className="label block"
-                    style={{ color: band.accent }}
-                  >
+                  <span className="label block" style={{ color: band.accent }}>
                     {image.title}
                   </span>
                   <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
@@ -375,7 +499,7 @@ export function ResearchBand() {
   );
 }
 
-/* — 06 Violet — archery ——————————————————————————————————————————— */
+/* — 07 Violet — archery ————————————————————————————————————————————— */
 
 export function SportBand() {
   const band = BAND_BY_ID.sport;
@@ -384,11 +508,11 @@ export function SportBand() {
   const results = site.archery.results.filter((r) => r.event);
 
   return (
-    <BandSection band={band} index={5}>
+    <BandSection band={band} index={6}>
       <div className="grid gap-10 lg:grid-cols-[0.85fr_1.15fr] lg:gap-14">
-        {/* On a phone the photo is a full screen on its own, which pushes
-            the record — the strongest claim on the page — under the fold.
-            The numbers go first there and beside it on a wide screen. */}
+        {/* On a phone the photo is a full screen by itself, which pushes the
+            record — the strongest claim on the page — under the fold. The
+            numbers go first there and beside it on a wide screen. */}
         {image ? (
           <Reveal className="order-2 lg:order-1">
             <div className={`relative aspect-[4/5] overflow-hidden ${t.pane}`}>
@@ -404,9 +528,6 @@ export function SportBand() {
         ) : null}
 
         <div className="order-1 space-y-10 lg:order-2">
-          {/* The record first, in the size it deserves. Five nationals and
-              three state titles are the strongest single claim on this page,
-              and they were sitting in an empty table. */}
           <Reveal delay={0.08}>
             <dl className="grid grid-cols-3 gap-6">
               {honours.map((h) => (
@@ -419,10 +540,7 @@ export function SportBand() {
                     >
                       {h.value}
                     </span>
-                    <span
-                      className="mt-2 block text-sm leading-snug"
-                      style={{ color: t.body }}
-                    >
+                    <span className="mt-2 block text-sm leading-snug" style={{ color: t.body }}>
                       {h.label}
                     </span>
                   </dd>
@@ -437,10 +555,7 @@ export function SportBand() {
                 <p className="label" style={{ color: t.muted }}>
                   Award
                 </p>
-                <p
-                  className="mt-2 text-lg font-medium leading-snug"
-                  style={{ color: t.ink }}
-                >
+                <p className="mt-2 text-lg font-medium leading-snug" style={{ color: t.ink }}>
                   {award.name}
                 </p>
                 {award.note ? (
@@ -471,9 +586,7 @@ export function SportBand() {
                       <td className="py-3" style={{ color: t.muted }}>{r.date}</td>
                       <td className="py-3" style={{ color: t.ink }}>
                         {r.event}
-                        {r.level ? (
-                          <span style={{ color: t.muted }}> · {r.level}</span>
-                        ) : null}
+                        {r.level ? <span style={{ color: t.muted }}> · {r.level}</span> : null}
                       </td>
                       <td className="py-3" style={{ color: t.body }}>{r.category}</td>
                       <td className="py-3 font-medium" style={{ color: band.accent }}>
@@ -512,13 +625,10 @@ export function CloseBand() {
   const socials = site.socials.filter((s) => !PLACEHOLDER_LINK.test(s.href));
 
   return (
-    <section
-      id="contact"
-      className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36"
-    >
+    <section id="contact" className="relative scroll-mt-8 px-5 py-28 sm:px-10 sm:py-36">
       <div className="mx-auto w-full max-w-6xl">
         <Reveal>
-          <p className="label text-white/45">All six, back together</p>
+          <p className="label text-white/45">All seven, back together</p>
           {/* The close states what the work is and invites the next move.
               A portfolio that ends by asking for a job has spent the whole
               page earning the right not to. */}
@@ -526,8 +636,8 @@ export function CloseBand() {
             Tell me what you&rsquo;re building.
           </h2>
           <p className="mt-5 max-w-xl text-[1.02rem] leading-relaxed text-white/70">
-            {site.hero.availability} If something here looks like the kind of
-            thing you need made, I am one message away.
+            {site.hero.lead} If something here looks like the kind of thing you
+            need made, I am one message away.
           </p>
 
           <div className="mt-8 flex flex-wrap gap-3">
@@ -550,7 +660,7 @@ export function CloseBand() {
                 {site.socials.length - socials.length} of {site.socials.length}{" "}
                 links in `site.socials` are still example.com / username
                 placeholders and are hidden until they are real. Same for
-                `site.email` and `site.meta.url`.
+                `site.meta.url`.
               </Pending>
             </div>
           ) : null}

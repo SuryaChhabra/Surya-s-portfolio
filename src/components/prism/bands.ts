@@ -1,11 +1,15 @@
 /**
  * The spectrum, in order, with the section each wavelength carries.
  *
- * One list drives three things, which is the whole point: the colours that
- * come out of the prism, the order you meet the sections in, and the colour
- * each section paints the page once the light has landed. Scrolling travels
- * down the rainbow — red first, then orange, and so on. No labels are drawn
- * in the 3D scene; only light. Every word lives in ordinary HTML.
+ * Seven, not six: a prism gives ROYGBIV, and the seventh band is what makes
+ * room for education without pushing anything off the page. The cool end is
+ * deliberately spaced wide — blue leans cyan, indigo stays true blue-violet
+ * and violet leans magenta — because three adjacent cool fields that look
+ * alike read as a rendering fault rather than a spectrum.
+ *
+ * One list drives four things: the colours out of the prism, the order you
+ * meet the sections in, the colour each section paints the page, and the
+ * nav. No labels are drawn in the 3D scene; only light.
  */
 export type Band = {
   id: string;
@@ -37,76 +41,91 @@ export type Band = {
   nav: string;
   line: string;
   body: string;
+  /** Sections that say their piece in less than a screen. */
+  compact?: boolean;
 };
 
 export const BANDS: Band[] = [
   {
-    id: "intro",
+    id: "growth",
     color: "#ff3b30",
     deep: "#8f1109",
     accent: "#ffa7a2",
     tone: "dark",
     angle: -10,
     kicker: "Red",
-    nav: "About",
-    line: "I keep ending up somewhere new.",
-    body: "Growth and creative work, AI video, molecular-line astronomy, competitive archery. From outside it looks like scatter. It isn't.",
+    nav: "Growth",
+    line: "Growth, three times over.",
+    body: "The same job in three very different rooms — a Bay Area startup, India's largest community-led health movement, and a craft studio in Bastar.",
   },
   {
-    id: "experience",
+    id: "education",
     color: "#ff8a2b",
     deep: "#8a3a02",
     accent: "#ffc393",
     tone: "dark",
-    angle: -19,
+    angle: -18,
     kicker: "Orange",
-    nav: "Experience",
-    line: "Work experience.",
+    nav: "Education",
+    line: "",
     body: "",
+    compact: true,
   },
   {
-    id: "video",
+    id: "leading",
     color: "#ffd23d",
     deep: "#ffd23d",
     accent: "#6b4a00",
     tone: "light",
-    angle: -28,
+    angle: -26,
     kicker: "Yellow",
-    nav: "Video",
-    line: "AI video.",
-    body: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead — Suno, Runway, CapCut. 208,000 people reached, 99% of them outside my network.",
+    nav: "Leading",
+    line: "Leading, and the rooms it happened in.",
+    body: "",
   },
   {
-    id: "built",
+    id: "video",
     color: "#4ade80",
     deep: "#0d5c2e",
     accent: "#65e393",
     tone: "dark",
-    angle: -37,
+    angle: -34,
     kicker: "Green",
+    nav: "Video",
+    line: "AI video.",
+    body: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead — Suno, Runway, CapCut.",
+  },
+  {
+    id: "built",
+    color: "#38bdf8",
+    deep: "#0a4a6b",
+    accent: "#5fd0fb",
+    tone: "dark",
+    angle: -42,
+    kicker: "Blue",
     nav: "Built",
     line: "Things I've shipped.",
     body: "Lumiere, Offbeat and Karmic Connections — built, deployed, live. Version one beats a plan every time.",
   },
   {
     id: "research",
-    color: "#38bdf8",
-    deep: "#0d4677",
-    accent: "#54c6f9",
+    color: "#6366f1",
+    deep: "#262a7a",
+    accent: "#a9abf7",
     tone: "dark",
-    angle: -46,
-    kicker: "Blue",
+    angle: -50,
+    kicker: "Indigo",
     nav: "Research",
     line: "Astronomy.",
     body: "Continuum imaging, position–velocity diagrams and rotating-disk fits — measuring the mass of a young star from how the gas around it turns.",
   },
   {
     id: "sport",
-    color: "#a78bfa",
-    deep: "#412e88",
-    accent: "#bba6fb",
+    color: "#c084fc",
+    deep: "#5c2478",
+    accent: "#e5b3ff",
     tone: "dark",
-    angle: -55,
+    angle: -58,
     kicker: "Violet",
     nav: "Archery",
     line: "Competitive archery.",
@@ -129,8 +148,8 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
 /**
  * How to paint on a band.
  *
- * Every colour below is checked against its own field: headings clear 9:1,
- * body copy clears 6:1 and the accent clears 5:1. That is what lets a band
+ * Every colour below is checked against its own field: headings clear 7.8:1,
+ * body copy clears 5.8:1 and the accent clears 5:1. That is what lets a band
  * invert without anything else in the page having to know it did.
  */
 export function tones(band: Band) {
@@ -150,4 +169,15 @@ export function tones(band: Band) {
     rule: light ? "rgba(36,26,0,0.22)" : "rgba(255,255,255,0.20)",
     hover: light ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
   };
+}
+
+/**
+ * Bands the page will actually render.
+ *
+ * The spectrum always has seven colours — the prism does not care what has
+ * been written yet — but a nav link or a rail dot pointing at a section that
+ * returns null is a dead end. `empty` names the ids to skip.
+ */
+export function visibleBands(empty: readonly string[]) {
+  return BANDS.filter((b) => !empty.includes(b.id));
 }
