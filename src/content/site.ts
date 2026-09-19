@@ -140,8 +140,11 @@ export const site = {
 
   videos: [
     {
-      title: "TwinMind",
-      note: "",
+      title: "TwinMind — animated short",
+      /* ⚠️ tags are empty because you have not said what this was built
+         with. The OFF/BEAT card lists its tools and this one will look
+         thin beside it until it can too. */
+      note: "TwinMind needed explaining in a way anyone could follow, a small child included. I took that on as an AI-animated short film. It follows Sam through a day that will change the course of his life, on one condition: he has to listen to what the people around him are saying. He doesn't — so the twin does.",
       tags: [],
       poster: "/work/video-twinmind.webp",
       file: "Twinmind.mp4",
