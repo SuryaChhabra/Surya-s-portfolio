@@ -1,5 +1,6 @@
 import { PrismAct } from "@/components/spectrum/PrismAct";
 import { SpectrumBackground } from "@/components/spectrum/SpectrumBackground";
+import { TopBar } from "@/components/spectrum/TopBar";
 import {
   IntroBand,
   ExperienceBand,
@@ -25,27 +26,7 @@ export default function Home() {
     <div className="spectrum-page relative">
       <SpectrumBackground />
 
-      <header className="pointer-events-none fixed inset-x-0 top-0 z-30">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-5 sm:px-10">
-          <a
-            href="#top"
-            className="pointer-events-auto text-sm font-medium"
-            style={{ color: "var(--band-ink, #ffffff)" }}
-          >
-            {site.name}
-          </a>
-          <a
-            href="#contact"
-            className="pointer-events-auto r-pill border px-4 py-2 text-sm transition-colors"
-            style={{
-              color: "var(--band-ink, #ffffff)",
-              borderColor: "var(--band-rule, rgba(255,255,255,0.25))",
-            }}
-          >
-            Get in touch
-          </a>
-        </div>
-      </header>
+      <TopBar />
 
       <main id="top" className="relative z-10">
         <PrismAct />

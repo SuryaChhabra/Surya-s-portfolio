@@ -33,6 +33,8 @@ export type Band = {
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
   kicker: string;
+  /** What this band is called in the nav — the subject, not the wavelength. */
+  nav: string;
   line: string;
   body: string;
 };
@@ -46,6 +48,7 @@ export const BANDS: Band[] = [
     tone: "dark",
     angle: -10,
     kicker: "Red",
+    nav: "About",
     line: "I keep ending up somewhere new.",
     body: "Growth and creative work, AI video, molecular-line astronomy, competitive archery. From outside it looks like scatter. It isn't.",
   },
@@ -57,6 +60,7 @@ export const BANDS: Band[] = [
     tone: "dark",
     angle: -19,
     kicker: "Orange",
+    nav: "Experience",
     line: "Work experience.",
     body: "",
   },
@@ -68,6 +72,7 @@ export const BANDS: Band[] = [
     tone: "light",
     angle: -28,
     kicker: "Yellow",
+    nav: "Video",
     line: "AI video.",
     body: "OFF/BEAT asked for a 60-second application video. I made a mini music-video instead — Suno, Runway, CapCut. 208,000 people reached, 99% of them outside my network.",
   },
@@ -79,6 +84,7 @@ export const BANDS: Band[] = [
     tone: "dark",
     angle: -37,
     kicker: "Green",
+    nav: "Built",
     line: "Things I've shipped.",
     body: "Lumiere, Offbeat and Karmic Connections — built, deployed, live. Version one beats a plan every time.",
   },
@@ -90,6 +96,7 @@ export const BANDS: Band[] = [
     tone: "dark",
     angle: -46,
     kicker: "Blue",
+    nav: "Research",
     line: "Astronomy.",
     body: "Continuum imaging, position–velocity diagrams and rotating-disk fits — measuring the mass of a young star from how the gas around it turns.",
   },
@@ -101,6 +108,7 @@ export const BANDS: Band[] = [
     tone: "dark",
     angle: -55,
     kicker: "Violet",
+    nav: "Archery",
     line: "Competitive archery.",
     body: "The discipline underneath everything else here. Same draw, same anchor, every arrow.",
   },

@@ -128,11 +128,11 @@ function Stage({ progress, active, lite = false }: Props) {
        a large card off to the left — turns its whole face into a mirror and
        it stops reading as glass at all. */
     state.camera.position.x =
-      (narrow ? 1.75 : -0.4) + Math.sin(time * 0.1) * 0.18;
+      (narrow ? 2.05 : -0.4) + Math.sin(time * 0.1) * 0.18;
     state.camera.position.y =
-      (narrow ? 0.25 : 0) + Math.cos(time * 0.08) * 0.12;
-    state.camera.position.z = narrow ? 14.5 : 9.5;
-    state.camera.lookAt(narrow ? 1.7 : 0.3, narrow ? 0.3 : 0, 0);
+      (narrow ? -3.2 : 0) + Math.cos(time * 0.08) * 0.12;
+    state.camera.position.z = narrow ? 16.5 : 9.5;
+    state.camera.lookAt(narrow ? 2 : 0.3, narrow ? -3.2 : 0, 0);
   });
 
   return (
@@ -160,7 +160,7 @@ function Stage({ progress, active, lite = false }: Props) {
         </mesh>
       </group>
 
-      <group ref={prism} position={[1.7, 0.3, 0]}>
+      <group ref={prism} position={[2, 0.3, 0]}>
         <GlassPrism size={3.6} depth={1.9} lite={lite} />
       </group>
 

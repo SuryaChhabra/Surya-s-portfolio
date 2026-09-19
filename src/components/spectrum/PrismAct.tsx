@@ -14,6 +14,18 @@ const PrismIntro = dynamic(
 const RUNWAY_VH = 420;
 
 /**
+ * The opening's three claims. Each one is evidenced further down the page —
+ * the reach by the LinkedIn analytics on the OFF/BEAT post, the projects by
+ * three live links, the archery by the record in the violet band. Nothing
+ * here is a round number someone would have to take on trust.
+ */
+const PROOF = [
+  { value: "208K", label: "reached, one post", color: "#ffd23d" },
+  { value: "3", label: "shipped side projects", color: "#4ade80" },
+  { value: "5\u00d7", label: "national archer", color: "#a78bfa" },
+];
+
+/**
  * The opening act: a glass prism held in the frame while you scroll through
  * it. The scroll does three things in order — the prism turns, a white beam
  * arrives and gets through the glass, and the spectrum opens out. When the
@@ -134,7 +146,9 @@ export function PrismAct() {
             rather than animated, and the page below is unchanged. */}
         {mode === "still" ? <StillSpectrum /> : null}
 
-        {/* Opening copy: name, one line, and the invitation to scroll. */}
+        {/* The opening has to do the whole job on its own: who, what, and
+            two ways to act on it. The glass is the argument, but nobody
+            hires a prism. */}
         <div
           className="pointer-events-none absolute inset-0 flex items-end"
           style={{
@@ -143,23 +157,78 @@ export function PrismAct() {
             transition: "opacity 500ms linear, transform 500ms linear",
           }}
         >
-          <div className="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-10 sm:pb-24">
+          <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-20">
+            {/* Narrow on purpose: the glass owns the right of the
+                frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
-              <p className="label" style={{ color: "rgba(255,255,255,0.55)" }}>
-                {site.role}
+              <p
+                className="label flex items-center gap-2.5"
+                style={{ color: "rgba(255,255,255,0.6)" }}
+              >
+                <span
+                  aria-hidden="true"
+                  className="block h-1.5 w-1.5 rounded-full"
+                  style={{ backgroundColor: "#4ade80" }}
+                />
+                {site.hero.availability}
               </p>
-              <h1 className="mt-3 text-[clamp(2.4rem,6vw,4.2rem)] font-medium leading-[0.98] tracking-[-0.045em] text-white">
+
+              <h1 className="mt-4 text-[clamp(2.6rem,6.4vw,4.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white">
                 {site.name}
               </h1>
+
               <p
-                className="mt-5 text-[1.02rem] leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.68)" }}
+                className="mt-5 text-[clamp(1.05rem,1.5vw,1.25rem)] leading-[1.55]"
+                style={{ color: "rgba(255,255,255,0.82)" }}
               >
-                One person, six colours. White light goes in; everything I do
-                comes out the other side.
+                I combine tools, taste and storytelling to make things feel
+                alive — brand growth, AI video, molecular-line astronomy and
+                the discipline competitive archery beats into you. I would
+                rather ship version one than wait until I know everything.
               </p>
+
+              {/* Three claims, all of them checkable further down the page. */}
+              <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
+                {PROOF.map((item) => (
+                  <div key={item.label} className="flex items-baseline gap-2">
+                    <dt className="sr-only">{item.label}</dt>
+                    <dd className="flex items-baseline gap-2">
+                      <span
+                        className="text-lg font-medium tracking-[-0.03em]"
+                        style={{ color: item.color }}
+                      >
+                        {item.value}
+                      </span>
+                      <span
+                        className="text-sm"
+                        style={{ color: "rgba(255,255,255,0.6)" }}
+                      >
+                        {item.label}
+                      </span>
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
+                <a
+                  href="#video"
+                  className="r-pill px-7 py-3.5 text-[0.95rem] font-medium text-[#0b0b10] transition-transform hover:-translate-y-0.5"
+                  style={{ backgroundColor: "#ffffff" }}
+                >
+                  See the work
+                </a>
+                <a
+                  href="#contact"
+                  className="r-pill border px-7 py-3.5 text-[0.95rem] font-medium text-white transition-colors hover:bg-white/10"
+                  style={{ borderColor: "rgba(255,255,255,0.35)" }}
+                >
+                  Get in touch
+                </a>
+              </div>
+
               <p
-                className="mt-8 flex items-center gap-2 text-sm"
+                className="mt-7 flex items-center gap-2 text-sm"
                 style={{ color: "rgba(255,255,255,0.45)" }}
               >
                 <span

@@ -50,7 +50,7 @@ type Props = {
    and 1.9 deep, so the silhouette narrows to roughly the depth when it goes
    edge-on and the exit edge travels a long way in. */
 function exitX(spin: number) {
-  return 1.7 + Math.abs(Math.cos(spin)) * 1.75 + Math.abs(Math.sin(spin)) * 0.95 - 0.5;
+  return 2 + Math.abs(Math.cos(spin)) * 1.75 + Math.abs(Math.sin(spin)) * 0.95 - 0.5;
 }
 
 export function SpectrumFan({ progress, active, spin, length = 9.5 }: Props) {
