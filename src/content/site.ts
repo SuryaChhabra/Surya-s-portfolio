@@ -120,13 +120,17 @@ export const site = {
          actually shows the work, because nobody builds four tiers of
          language handling for a weekend demo. Who it was for still matters
          and still gets said — at the end, where it lands as context rather
-         than as the pitch. */
+         than as the pitch.
+         Kept to one line, like every other row. The full ladder — four
+         tiers, the explanation shown on a blocked message, escalation to a
+         parent — is on the site itself; the row's job is to make someone
+         want to look, not to be the documentation. */
       title: "Lumiere",
       kicker: "Spec build",
       tone: "violet" as const,
       image: "/work/shot-lumiere.webp",
       summary:
-        "Matches high-school students into research teams of three to five, balanced across grade, skill and research interest. The moderated team chat is where the care went: profanity, slurs and contact details are blocked outright, rudeness gets a gentler nudge, a blocked message stays in the box with an explanation so it can be fixed and resent, and repeated attempts escalate to a parent. Built for Lumiere Education unasked, to show the founders what I would bring.",
+        "Matches high-school students into research teams. The chat grades what it catches — slurs and contact details blocked, rudeness only nudged. Built for Lumiere Education, unasked.",
       metrics: [],
       tags: [],
       link: "https://lumiere-flax.vercel.app/",
