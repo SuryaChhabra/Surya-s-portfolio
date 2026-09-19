@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import type { ReactNode } from "react";
+import type { CSSProperties, ReactNode } from "react";
 import { Reveal } from "@/components/Reveal";
 import { BANDS, tones, type Band } from "@/components/prism/bands";
 
@@ -48,6 +48,18 @@ export function BandSection({
           ? "min-h-[72svh] py-20 sm:py-24"
           : "min-h-[100svh] py-24 sm:py-32"
       }`}
+      /* Every pane inside this section inherits where its light is coming
+         from. Set here rather than published globally because a pane belongs
+         to its own band: during a crossfade the section above is still on
+         screen, and a global value would briefly light it from the wrong
+         direction with the wrong tone's colours. */
+      style={
+        {
+          "--beam-deg": `${270 + band.angle}deg`,
+          "--edge-hi": t.edgeHi,
+          "--edge-lo": t.edgeLo,
+        } as CSSProperties
+      }
     >
       {/* w-full matters: `mx-auto` sets auto margins, and a flex item with
           auto margins on the cross axis is not stretched — it shrinks to its

@@ -359,6 +359,57 @@ body {
 .r-pill { border-radius: var(--radius-pill); }
 
 /* ---------------------------------------------------------------------------
+ * Glass in a beam has one bright edge: the one facing the light.
+ *
+ * Every pane on the spectrum page takes its edge from `--beam-deg`, which
+ * BandSection sets from the band's own angle out of the prism — the same
+ * number that aims the rays in the 3D scene, lights the field and tilts the
+ * shaft. So the highlight sits high and right on red and rotates round as
+ * the page descends to violet. Three expressions of one fact rather than
+ * three separate decorations.
+ *
+ * It is a ring rather than a border because `border-image` ignores
+ * `border-radius`, which would square off every rounded corner on the page.
+ * The mask pair punches the middle out of a filled, rounded rectangle and
+ * leaves a 1px gradient outline: the standard way to get a gradient border
+ * that still has corners.
+ * ------------------------------------------------------------------------- */
+.pane-lit {
+  position: relative;
+}
+
+.pane-lit::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    var(--beam-deg, 260deg),
+    var(--edge-hi, rgba(255, 255, 255, 0.5)) 0%,
+    var(--edge-lo, rgba(255, 255, 255, 0.18)) 42%,
+    var(--edge-lo, rgba(255, 255, 255, 0.18)) 100%
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  /* Above `fill` images, which are absolutely positioned and would otherwise
+     paint over a ring that comes first in tree order. */
+  z-index: 1;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  /* The ring itself is static; only the rotation between bands moves. */
+  .pane-lit::before { transition: none; }
+}
+
+/* ---------------------------------------------------------------------------
  * The spectrum page paints its own sky. The paper background underneath it
  * would otherwise flash cream on overscroll, at the bounce at either end of
  * the scroll, and behind the fixed colour layer before it mounts.

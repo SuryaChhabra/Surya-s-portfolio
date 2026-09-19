@@ -211,10 +211,20 @@ export function tones(band: Band) {
     body: light ? `rgba(${inkRgb},0.84)` : "rgba(255,255,255,0.82)",
     /** Labels, captions, anything deliberately quiet. */
     muted: light ? `rgba(${inkRgb},0.6)` : "rgba(255,255,255,0.64)",
-    /** A pane of the same glass the light came through. */
+    /**
+     * A pane of the same glass the light came through.
+     *
+     * No `border`: the edge is drawn by `.pane-lit`, which carries a
+     * gradient so the side facing the beam is brighter than the rest. The
+     * translucency is unchanged from when the field contrasts were last
+     * measured — the point here is the edge, not more frost.
+     */
     pane: light
-      ? "rounded-2xl border border-black/15 bg-white/30 backdrop-blur-[2px]"
-      : "rounded-2xl border border-white/20 bg-black/25 backdrop-blur-[2px]",
+      ? "rounded-2xl pane-lit bg-white/30 backdrop-blur-[2px]"
+      : "rounded-2xl pane-lit bg-black/25 backdrop-blur-[2px]",
+    /** The lit side of the edge, and the rest of the way round. */
+    edgeHi: light ? "rgba(255,255,255,0.95)" : "rgba(255,255,255,0.46)",
+    edgeLo: light ? `rgba(${inkRgb},0.15)` : "rgba(255,255,255,0.18)",
     /** Hairlines and dividers. */
     rule: light ? `rgba(${inkRgb},0.18)` : "rgba(255,255,255,0.20)",
     hover: light ? "rgba(255,255,255,0.35)" : "rgba(255,255,255,0.08)",
