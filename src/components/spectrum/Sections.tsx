@@ -280,66 +280,90 @@ export function LeadingBand() {
 
   return (
     <BandSection band={band}>
-      <div className="space-y-14">
-        {roles.length ? (
-          <ul className="space-y-4">
-            {roles.map((role) => (
-              <Reveal key={`${role.org}-${role.title}`}>
-                <RoleCard role={role} band={band} />
+      <div className="space-y-16">
+        {/* The rooms come first, at full width.
+            They were a half-width card in a two-column grid at the bottom of
+            the section, under three text cards — which is where you put a
+            footnote, not a photograph of the thing you are claiming. A
+            section about leading should open with evidence of it. */}
+        {events.length ? (
+          <ul className="space-y-10">
+            {events.map((event) => (
+              <Reveal key={event.name}>
+                <li className={`overflow-hidden ${t.pane}`}>
+                  {event.images?.length ? (
+                    <div
+                      className={`grid gap-px ${
+                        event.images.length > 1 ? "sm:grid-cols-2" : ""
+                      }`}
+                    >
+                      {event.images.map((src) => (
+                        <div
+                          key={src}
+                          className="relative aspect-[16/10] bg-black/40"
+                        >
+                          <Image
+                            src={src}
+                            alt={event.name}
+                            fill
+                            sizes="(max-width: 640px) 100vw, 50vw"
+                            className="object-cover"
+                          />
+                        </div>
+                      ))}
+                    </div>
+                  ) : null}
+
+                  <div className="px-6 py-7 sm:px-8 sm:py-8">
+                    <h3
+                      className="text-xl font-medium tracking-[-0.02em] sm:text-2xl"
+                      style={{ color: t.ink }}
+                    >
+                      {event.name}
+                    </h3>
+                    {event.note ? (
+                      <p
+                        className="mt-3 max-w-3xl text-[1.02rem] leading-relaxed"
+                        style={{ color: t.body }}
+                      >
+                        {event.note}
+                      </p>
+                    ) : (
+                      <div className="mt-3">
+                        <Note band={band}>
+                          Date, role and what came of it still to add.
+                        </Note>
+                      </div>
+                    )}
+                    {event.link ? (
+                      <a
+                        href={event.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="mt-4 inline-block text-sm underline-offset-4 hover:underline"
+                        style={{ color: band.accent }}
+                      >
+                        See the post ↗︎
+                      </a>
+                    ) : null}
+                  </div>
+                </li>
               </Reveal>
             ))}
           </ul>
         ) : null}
 
-        {events.length ? (
+        {/* The roles follow, and keep a label now that they are no longer
+            the first thing in the section. */}
+        {roles.length ? (
           <div>
             <h3 className="label" style={{ color: t.muted }}>
-              In the room
+              Roles
             </h3>
-            <ul className="mt-5 grid gap-6 sm:grid-cols-2">
-              {events.map((event, i) => (
-                <Reveal key={event.name} delay={(i % 2) * 0.08}>
-                  <li className={`overflow-hidden ${t.pane}`}>
-                    {event.images?.length ? (
-                      <div className="grid grid-cols-2 gap-px">
-                        {event.images.map((src) => (
-                          <div key={src} className="relative aspect-[4/3] bg-black/40">
-                            <Image
-                              src={src}
-                              alt={event.name}
-                              fill
-                              sizes="(max-width: 640px) 50vw, 25vw"
-                              className="object-cover"
-                            />
-                          </div>
-                        ))}
-                      </div>
-                    ) : null}
-
-                    <div className="px-5 py-5">
-                      <h4 className="text-base font-medium" style={{ color: t.ink }}>
-                        {event.name}
-                      </h4>
-                      {event.note ? (
-                        <p className="mt-2 text-sm leading-relaxed" style={{ color: t.body }}>
-                          {event.note}
-                        </p>
-                      ) : (
-                        <Note band={band}>Date, role and what came of it still to add.</Note>
-                      )}
-                      {event.link ? (
-                        <a
-                          href={event.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-3 inline-block text-sm underline-offset-4 hover:underline"
-                          style={{ color: band.accent }}
-                        >
-                          See the post ↗︎
-                        </a>
-                      ) : null}
-                    </div>
-                  </li>
+            <ul className="mt-5 space-y-4">
+              {roles.map((role) => (
+                <Reveal key={`${role.org}-${role.title}`}>
+                  <RoleCard role={role} band={band} />
                 </Reveal>
               ))}
             </ul>
