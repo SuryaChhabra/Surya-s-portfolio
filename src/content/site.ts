@@ -185,31 +185,30 @@ export const site = {
      research image readable to someone outside the field — what the object
      is, which instrument, what the plot shows.
 
-     ⚠️ blurb and captions below are empty. Fill them in; empty ones render
-     nothing rather than something invented.                                */
+     The section's own heading copy lives in bands.ts, not here — there is
+     no blurb field, because nothing rendered one.                          */
   research: {
-    blurb: "",
     images: [
       {
         src: "/research/continuum-stokes-i.webp",
         title: "Continuum image",
         caption:
-          "Continuum image (Stokes I) centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left. Synthesised beam at lower left.",
-        alt: "Millimetre continuum image showing a bright compact double source within a fainter extended envelope.",
+          "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left — the dust morphology the gas kinematics are read against. Synthesised beam at lower left.",
+        alt: "Millimetre continuum image of IRS3B showing a bright compact double source within a fainter extended envelope.",
       },
       {
         src: "/research/pv-keplerian.webp",
         title: "Position–velocity diagram",
         caption:
-          "Position–velocity diagram through the source. The cyan curve is a Keplerian rotation profile overlaid on the line emission, used to constrain the mass of the central object.",
+          "Position–velocity diagram through the source. The cyan curve is the Keplerian rotation profile — the baseline Reynolds et al. establish for IRS3B from molecular-line kinematics, and the component modelled away first, because anything gravity already accounts for is not the part worth looking at.",
         alt: "Position-velocity diagram with a Keplerian rotation curve overlaid on molecular line emission.",
       },
       {
         src: "/research/moment-maps-fit.webp",
         title: "Kinematic fit",
         caption:
-          "Kinematic fit. Top: integrated intensity (moment 0) and the mask applied to it. Bottom: the observed velocity field (moment 1) and the residual after subtracting a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s.",
-        alt: "Four-panel figure: moment 0 map, mask, observed moment 1 velocity field, and observed-minus-model residual.",
+          "Where the question gets answered. Top: integrated intensity (moment 0) and its mask. Bottom: the observed velocity field (moment 1) and what survives a rotating-disk model — inclination 30°, position angle 35°, systemic velocity 4.675 km/s. Residuals near zero mean gravity explained the motion; red and blue patterns that survive mean something else is doing it, which is the evidence for the \"badminton-birdie\" infall pattern.",
+        alt: "Four-panel figure: moment 0 map, mask, observed moment 1 velocity field, and the observed-minus-model residual.",
       },
     ],
   },
@@ -228,7 +227,6 @@ export const site = {
        category — e.g. "Recurve, 70m" / "Compound" / "Barebow"
        result   — e.g. "Gold", "2nd", "Qualified", "Personal best 612"  */
   archery: {
-    blurb: "",
     /* Set image to "" to drop the photo. alt is read by screen readers. */
     image: "/archery/at-full-draw.webp",
     imageAlt:

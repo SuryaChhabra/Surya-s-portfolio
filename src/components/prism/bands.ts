@@ -128,7 +128,10 @@ export const BANDS: Band[] = [
     angle: -50,
     nav: "Research",
     line: "Astronomy.",
-    body: "Continuum imaging, position–velocity diagrams and rotating-disk fits — measuring the mass of a young star from how the gas around it turns.",
+    /* The old line said this was about measuring a star's mass. The mass is
+       a means: the Keplerian fit exists so it can be subtracted, and the
+       result of the project is what refuses to subtract away. */
+    body: "ALMA data for IRS3B, a young multiple star system, imaged in CASA. Observed gas motion minus the rotation gravity predicts leaves whatever else is going on — that residual is the result.",
   },
   {
     id: "sport",
