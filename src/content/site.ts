@@ -27,6 +27,17 @@ export const site = {
        accent serif italic, e.g. "I build *momentum*" */
     /* Drawn from your own LinkedIn post — edit freely, it is your voice. */
     lines: ["I jump in,", "*figure it out,*", "and ship v1"],
+
+    /* ── The two lines under your name on the opening screen. ──────────
+       `lead` is the one that has to land: who you are, in your voice, in
+       one breath. `sub` is the job, said plainly.
+
+       Swap `lead` for any of these without touching anything else:
+         "I jump in, figure it out, and make the thing."
+         "I'd rather make it than wait until I know how."
+         "I don't specialise. I finish."                                */
+    lead: "I figure things out by making them.",
+    sub: "Growth and creative work for startups — whatever the idea actually needs.",
     blurb:
       "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
     /* Stated, not requested. "Looking for work" as a headline reads as

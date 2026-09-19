@@ -130,9 +130,9 @@ function Stage({ progress, active, lite = false }: Props) {
     state.camera.position.x =
       (narrow ? 2.05 : -0.4) + Math.sin(time * 0.1) * 0.18;
     state.camera.position.y =
-      (narrow ? -3.2 : 0) + Math.cos(time * 0.08) * 0.12;
+      (narrow ? -2.3 : 0) + Math.cos(time * 0.08) * 0.12;
     state.camera.position.z = narrow ? 16.5 : 9.5;
-    state.camera.lookAt(narrow ? 2 : 0.3, narrow ? -3.2 : 0, 0);
+    state.camera.lookAt(narrow ? 2 : 0.3, narrow ? -2.3 : 0, 0);
   });
 
   return (

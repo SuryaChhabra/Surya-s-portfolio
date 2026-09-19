@@ -14,18 +14,6 @@ const PrismIntro = dynamic(
 const RUNWAY_VH = 420;
 
 /**
- * The opening's three claims. Each one is evidenced further down the page —
- * the reach by the LinkedIn analytics on the OFF/BEAT post, the projects by
- * three live links, the archery by the record in the violet band. Nothing
- * here is a round number someone would have to take on trust.
- */
-const PROOF = [
-  { value: "208K", label: "reached, one post", color: "#ffd23d" },
-  { value: "3", label: "shipped side projects", color: "#4ade80" },
-  { value: "5\u00d7", label: "national archer", color: "#a78bfa" },
-];
-
-/**
  * The opening act: a glass prism held in the frame while you scroll through
  * it. The scroll does three things in order — the prism turns, a white beam
  * arrives and gets through the glass, and the spectrum opens out. When the
@@ -161,54 +149,22 @@ export function PrismAct() {
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
-              <p
-                className="label flex items-center gap-2.5"
-                style={{ color: "rgba(255,255,255,0.6)" }}
-              >
-                <span
-                  aria-hidden="true"
-                  className="block h-1.5 w-1.5 rounded-full"
-                  style={{ backgroundColor: "#4ade80" }}
-                />
-                {site.hero.availability}
-              </p>
-
-              <h1 className="mt-4 text-[clamp(2.6rem,6.4vw,4.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white">
+              <h1 className="text-[clamp(2.6rem,6.4vw,4.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white">
                 {site.name}
               </h1>
 
-              <p
-                className="mt-5 text-[clamp(1.05rem,1.5vw,1.25rem)] leading-[1.55]"
-                style={{ color: "rgba(255,255,255,0.82)" }}
-              >
-                I combine tools, taste and storytelling to make things feel
-                alive — brand growth, AI video, molecular-line astronomy and
-                the discipline competitive archery beats into you. I would
-                rather ship version one than wait until I know everything.
+              {/* Two lines and nothing else. The range is the page's job to
+                  show — six sections, six colours — not this paragraph's job
+                  to list, and a list here would read as a CV anyway. */}
+              <p className="mt-5 text-[clamp(1.3rem,2.1vw,1.7rem)] font-medium leading-[1.2] tracking-[-0.025em] text-white">
+                {site.hero.lead}
               </p>
-
-              {/* Three claims, all of them checkable further down the page. */}
-              <dl className="mt-7 flex flex-wrap gap-x-8 gap-y-3">
-                {PROOF.map((item) => (
-                  <div key={item.label} className="flex items-baseline gap-2">
-                    <dt className="sr-only">{item.label}</dt>
-                    <dd className="flex items-baseline gap-2">
-                      <span
-                        className="text-lg font-medium tracking-[-0.03em]"
-                        style={{ color: item.color }}
-                      >
-                        {item.value}
-                      </span>
-                      <span
-                        className="text-sm"
-                        style={{ color: "rgba(255,255,255,0.6)" }}
-                      >
-                        {item.label}
-                      </span>
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+              <p
+                className="mt-3 text-[1.02rem] leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.7)" }}
+              >
+                {site.hero.sub}
+              </p>
 
               <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
                 <a
