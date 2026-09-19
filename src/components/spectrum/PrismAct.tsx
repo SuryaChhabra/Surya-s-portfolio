@@ -153,15 +153,17 @@ export function PrismAct() {
                 {site.name}
               </h1>
 
-              {/* Two lines and nothing else. The range is the page's job to
-                  show — six sections, six colours — not this paragraph's job
-                  to list, and a list here would read as a CV anyway. */}
-              <p className="mt-5 text-[clamp(1.3rem,2.1vw,1.7rem)] font-medium leading-[1.2] tracking-[-0.025em] text-white">
+              {/* Two lines and nothing else. The first says what the work
+                  is, because that is what someone is here to find out; the
+                  second says how it gets done. The range is the page's job
+                  to show — six sections, six colours — not this paragraph's
+                  job to list, and a list here would read as a CV anyway. */}
+              <p className="mt-5 text-[clamp(1.55rem,2.7vw,2.15rem)] font-medium leading-[1.15] tracking-[-0.03em] text-white">
                 {site.hero.lead}
               </p>
               <p
-                className="mt-3 text-[1.02rem] leading-relaxed"
-                style={{ color: "rgba(255,255,255,0.7)" }}
+                className="mt-3 text-[1.08rem] leading-relaxed"
+                style={{ color: "rgba(255,255,255,0.82)" }}
               >
                 {site.hero.sub}
               </p>

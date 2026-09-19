@@ -29,15 +29,16 @@ export const site = {
     lines: ["I jump in,", "*figure it out,*", "and ship v1"],
 
     /* ── The two lines under your name on the opening screen. ──────────
-       `lead` is the one that has to land: who you are, in your voice, in
-       one breath. `sub` is the job, said plainly.
+       `lead` is set in large type directly under the name, so it holds the
+       thing you want someone to know first — the work you are looking for.
+       `sub` sits under it and says how you go about it.
 
-       Swap `lead` for any of these without touching anything else:
+       Swap either without touching anything else. Alternates for `sub`:
          "I jump in, figure it out, and make the thing."
          "I'd rather make it than wait until I know how."
          "I don't specialise. I finish."                                */
-    lead: "I figure things out by making them.",
-    sub: "Growth and creative work for startups — whatever the idea actually needs.",
+    lead: "Growth & creative for startups.",
+    sub: "I figure things out by making them.",
     blurb:
       "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive — and I would rather make version one happen than wait until I know everything.",
     /* Stated, not requested. "Looking for work" as a headline reads as
