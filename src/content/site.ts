@@ -114,20 +114,19 @@ export const site = {
       link: "",
     },
     {
-      /* The mirror of the Creator to Business row. There the company's name
-         had to come off, because the project was not theirs. Here it goes
-         on, because the whole point is who it was made for.
-         "A lot of time" is deliberately not written down: effort claimed is
-         worth nothing, effort shown is worth something, so the line counts
-         the screens instead. Seven is the count in the prototype's own nav
-         — Home, Matching, Chat, Dashboard, Parent Dashboard, Trust & Safety,
-         How It Works. */
+      /* The features carry this row, not the backstory. An earlier version
+         opened on "built for them unasked" and counted screens, which is a
+         claim about effort; the graded safety ladder is the thing that
+         actually shows the work, because nobody builds four tiers of
+         language handling for a weekend demo. Who it was for still matters
+         and still gets said — at the end, where it lands as context rather
+         than as the pitch. */
       title: "Lumiere",
       kicker: "Spec build",
       tone: "violet" as const,
       image: "/work/shot-lumiere.webp",
       summary:
-        "Built for Lumiere Education without being asked, to show the founders what I would bring to it. Seven screens of working prototype — student–mentor team matching, a moderated team chat, the parent view, and the trust-and-safety rules underneath them.",
+        "Matches high-school students into research teams of three to five, balanced across grade, skill and research interest. The moderated team chat is where the care went: profanity, slurs and contact details are blocked outright, rudeness gets a gentler nudge, a blocked message stays in the box with an explanation so it can be fixed and resent, and repeated attempts escalate to a parent. Built for Lumiere Education unasked, to show the founders what I would bring.",
       metrics: [],
       tags: [],
       link: "https://lumiere-flax.vercel.app/",
