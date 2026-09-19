@@ -185,17 +185,27 @@ export function PrismAct() {
                 </a>
               </div>
 
+              {/* The premise, said once, at the size of something that
+                  matters. The spectrum sits beside it rather than in the
+                  sentence: six colours shown is a shorter way of saying
+                  six colours than listing what each one is. */}
               <p
-                className="mt-7 flex items-center gap-2 text-sm"
-                style={{ color: "rgba(255,255,255,0.45)" }}
+                className="mt-8 flex items-start gap-3 text-[clamp(0.95rem,1.2vw,1.1rem)] leading-snug"
+                style={{ color: "rgba(255,255,255,0.68)" }}
               >
                 <span
-                  className="inline-block h-4 w-[1px]"
-                  style={{ backgroundColor: "rgba(255,255,255,0.45)" }}
-                />
-                {mode === "still"
-                  ? "Six colours, six sections — keep scrolling"
-                  : "Scroll to split the light"}
+                  aria-hidden="true"
+                  className="mt-[0.5em] flex h-1.5 w-16 shrink-0 overflow-hidden rounded-full"
+                >
+                  {BANDS.map((b) => (
+                    <span
+                      key={b.id}
+                      className="flex-1"
+                      style={{ backgroundColor: b.color }}
+                    />
+                  ))}
+                </span>
+                {mode === "still" ? site.hero.cueStill : site.hero.cue}
               </p>
             </div>
           </div>
