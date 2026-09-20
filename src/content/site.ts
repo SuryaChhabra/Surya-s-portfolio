@@ -321,10 +321,13 @@ export const site = {
   events: [
     {
       name: "Antler Founders: Illinois Entrepreneurs",
-      role: "",
+      role: "Head of Exploration, Founders",
+      /* ⚠️ The only thing still missing on this card. The role and what it
+         was both come from your own Head of Exploration notes; the month
+         does not. */
       date: "",
       people: "",
-      note: "",
+      note: "Brought Antler to campus: workshops, a fireside and networking that put 100+ students in direct contact with pre-seed VC.",
       link: "https://lnkd.in/p/g6eXxFDd",
       images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
@@ -455,8 +458,12 @@ export const site = {
            Exploring Entrepreneurship, a team recruited each semester, and
            4x participation. The multiplier wins the large slot because it
            is the only one that describes a change rather than a count. */
+        /* No Antler here. It has the photographs and the full description at
+           the top of this same section, and saying it twice in one band
+           makes the role look thinner than it was rather than fuller. What
+           is left is the part nothing else covers. */
         detail:
-          "Brought Antler investors to campus for workshops and firesides, and built an accessibility vertical so non-startup majors could see entrepreneurship as a career.",
+          "Recruited a cross-disciplinary team to launch new projects each semester, and built the Exploring Entrepreneurship series for non-startup majors.",
         metrics: [{ value: "4×", label: "growth in participation" }] as {
           value: string;
           label: string;

@@ -378,6 +378,13 @@ export function LeadingBand() {
                     >
                       {event.name}
                     </h3>
+                    {/* Role and date were in the data and rendered nowhere,
+                        so filling them in changed nothing on the page. */}
+                    {event.role || event.date ? (
+                      <p className="mt-1.5 text-sm" style={{ color: t.muted }}>
+                        {[event.role, event.date].filter(Boolean).join(" · ")}
+                      </p>
+                    ) : null}
                     {event.note ? (
                       <p
                         className="mt-3 max-w-3xl text-[1.02rem] leading-relaxed"
