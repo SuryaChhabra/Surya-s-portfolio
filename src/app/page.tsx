@@ -12,7 +12,7 @@ import {
   CloseBand,
 } from "@/components/spectrum/Sections";
 import { site } from "@/content/site";
-import { BANDS, CLOSING, spectrumRamp, tones } from "@/components/prism/bands";
+import { BANDS, CLOSING, tones } from "@/components/prism/bands";
 
 /**
  * White light in, a spectrum out, and then one section per wavelength.
@@ -43,9 +43,14 @@ export default function Home() {
       </main>
 
       {/* The footer shares the closing field, so it is dark ink on white
-          like the section above it, and the spectrum runs along the very
-          bottom edge — the last thing on the page is the seven colours the
-          whole thing was about. */}
+          like the section above it.
+
+          It used to end on a full-width bar of the spectrum. That was the
+          widest the seven ever got, and putting it edge to edge across a
+          white field is the one arrangement that reads as a flag no matter
+          how continuous the ramp is — width was doing what hard edges used
+          to. The page now ends on the work and the address, which is what
+          the last screen is for anyway. */}
       <footer
         className="relative z-10"
         style={{ color: tones(CLOSING).ink }}
@@ -90,16 +95,6 @@ export default function Home() {
             </nav>
           </div>
         </div>
-
-        {/* One ramp, not seven blocks — see `spectrumRamp`. This is the
-            last thing on the page and the widest the spectrum ever gets,
-            which made it the most flag-shaped object on the site after the
-            link preview. */}
-        <div
-          aria-hidden="true"
-          className="h-2 w-full"
-          style={{ background: spectrumRamp(90) }}
-        />
       </footer>
     </div>
   );
