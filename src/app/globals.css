@@ -468,6 +468,17 @@ body:has(.spectrum-page) {
   color: #ffffff;
 }
 
+/* The grain blends for the theme the *browser* is in, which is the wrong
+   question on this page: the spectrum page is dark whatever the operating
+   system prefers. In light mode that meant `multiply`, and multiplying a
+   grey noise texture over the white closing field is, precisely, dirt —
+   the field was #ffffff and rendered at 246-250, unevenly. Screen is the
+   blend the dark fields want anyway, and screen against white is a no-op,
+   so the closing section comes out actually white. */
+body:has(.spectrum-page).grain::after {
+  mix-blend-mode: screen;
+}
+
 /* ---------------------------------------------------------------------------
  * The scroll cue.
  *

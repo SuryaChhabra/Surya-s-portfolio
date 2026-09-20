@@ -37,12 +37,6 @@ export type Band = {
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
   /**
-   * How hard this band's spotlights burn, as a multiplier. Only the closing
-   * field sets it: white has no hue to fall off with, so at the strength
-   * that suits a coloured band it lifts the whole frame to grey.
-   */
-  glow?: number;
-  /**
    * Where this colour actually sits in the visible spectrum, in nanometres.
    *
    * Not decoration: `spectrumRamp` spaces its stops by this, which is what
@@ -188,18 +182,20 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
   Record<string, Band>;
 
 /**
- * The closing field: the same space as everywhere else, lit white.
+ * The closing field: white, because that is what the seven make when you
+ * put them back together.
  *
- * White is still the argument — it is what the seven make when you put them
- * back together — but it is now the *light* rather than the field. This was
- * an off-white panel, and once every other section became dark space with
- * coloured light in it, ending on a bright flat rectangle was the one
- * remaining place the page stopped being a place and became a swatch. It
- * read as a different website bolted onto the end.
+ * Properly white, and that is the whole point of this entry. It was
+ * `#f6f5f1`, a cream, and the background painted its washes over the top —
+ * including a large black radial that exists to protect the headings on
+ * the dark bands and did nothing here but smear the corner grey. Seven
+ * saturated sections and then a dirty off-white is not a resolution; it
+ * looks like a rendering fault.
  *
- * Lit rather than painted, the recombination actually happens: the seven
- * spotlights you have been walking down are replaced by two white ones,
- * which is precisely what white light is.
+ * So this field gets no light on it at all. Everywhere else the colour
+ * arrives as spotlights against the dark; here there is nothing to light,
+ * because white is already all of it. The background knows to leave it
+ * alone — see `plain` in SpectrumBackground.
  *
  * Deliberately not in BANDS. It is not a wavelength, so it gets no ray out
  * of the prism, no nav link and no dot on the rail — only a field, which is
@@ -208,13 +204,9 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
 export const CLOSING: Band = {
   id: "close",
   color: "#ffffff",
-  /* Neutral near-black: no hue to tint it with, because it is all of them. */
-  deep: "#090a0f",
-  accent: "#ffffff",
-  tone: "dark",
-  /* White at the other bands' strength washes the field out to grey, since
-     nothing is absorbing it. Half power keeps it light rather than fog. */
-  glow: 0.5,
+  deep: "#ffffff",
+  accent: "#1a1a1f",
+  tone: "light",
   angle: 0,
   /* White is every wavelength at once, so no single number is right. This
      is the midpoint of the visible band, and nothing reads it: CLOSING is

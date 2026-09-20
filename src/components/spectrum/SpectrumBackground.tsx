@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { BANDS, FIELD_BY_ID, VOID_DEEP, tones, visibleBands, type Band } from "@/components/prism/bands";
+import { BANDS, CLOSING, FIELD_BY_ID, VOID_DEEP, tones, visibleBands, type Band } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
@@ -50,6 +50,13 @@ export function SpectrumBackground() {
   }, []);
 
   const deep = band?.deep ?? VOID_DEEP;
+  /* The closing field takes no light. Every other section is dark space
+     with colour thrown across it; this one is the white those colours add
+     back up to, so there is nothing left to light it with. Painting the
+     usual washes over it — in particular the big black radial that keeps
+     the headings readable on the dark bands — only ever made a clean white
+     look like a dirty one. */
+  const plain = band?.id === CLOSING.id;
   const t = band ? tones(band) : null;
 
   /* The header and footer are fixed on top of whatever field is current, so
@@ -101,12 +108,13 @@ export function SpectrumBackground() {
         <div
           className="absolute inset-0"
           style={{
-            background: band
-              ? `radial-gradient(70% 78% at -6% ${lift(band.angle, 16, 62)}%, ${glow(band, 0.36)}, transparent 66%),
-                 radial-gradient(64% 72% at 106% ${lift(band.angle, 86, 34)}%, ${glow(band, 0.26)}, transparent 64%),
-                 radial-gradient(86% 62% at 26% 52%, rgba(0,0,0,0.58), transparent 72%)`
-              : "none",
-            opacity: band ? 1 : 0,
+            background:
+              band && !plain
+                ? `radial-gradient(70% 78% at -6% ${lift(band.angle, 16, 62)}%, ${band.color}5c, transparent 66%),
+                   radial-gradient(64% 72% at 106% ${lift(band.angle, 86, 34)}%, ${band.color}42, transparent 64%),
+                   radial-gradient(86% 62% at 26% 52%, rgba(0,0,0,0.58), transparent 72%)`
+                : "none",
+            opacity: band && !plain ? 1 : 0,
             transition: "opacity 900ms linear, background 900ms linear",
           }}
         />
@@ -139,7 +147,7 @@ export function SpectrumBackground() {
                      transparent 100%)`
                 : "none",
               filter: "blur(34px)",
-              opacity: band ? 1 : 0,
+              opacity: band && !plain ? 1 : 0,
               transition:
                 "opacity 900ms linear, transform 900ms cubic-bezier(0.2,0.7,0.2,1), background 900ms linear",
             }}
@@ -156,7 +164,7 @@ export function SpectrumBackground() {
                when the prism act does. They used to fade to almost nothing
                the moment a saturated field came up; now the field is the
                same space the glass was in, so they carry straight on. */
-            opacity: band ? 0.38 : 0.5,
+            opacity: plain ? 0 : band ? 0.38 : 0.5,
             transition: "opacity 900ms linear",
           }}
         />
@@ -165,17 +173,6 @@ export function SpectrumBackground() {
       <SpectrumRail active={band} />
     </>
   );
-}
-
-/**
- * One spotlight's colour at a given strength, scaled by the band's own
- * `glow`. Spelt as rgba rather than an eight-digit hex suffix so the alpha
- * can be a number rather than a hand-written pair of hex digits.
- */
-function glow(band: Band, alpha: number) {
-  const n = parseInt(band.color.slice(1), 16);
-  const a = (alpha * (band.glow ?? 1)).toFixed(3);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
 }
 
 /**
