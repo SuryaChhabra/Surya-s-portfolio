@@ -369,6 +369,17 @@ export const site = {
         kind: "",
         period: "Jul – Sep 2026",
         place: "San Francisco Bay Area",
+        /* The company's numbers, so they sit in `context` and not in
+           `metrics`. Metrics render in the accent colour as yours; context
+           renders muted behind a rule as theirs. $9M and 500k daily actives
+           on a growth card without that separation reads as a claim on
+           both, which is the one way to make real numbers work against you.
+           ⚠️ Check the investor's name. You wrote "Streamline Ventures";
+           the firm usually written up in this space is Streamlined
+           Ventures. An investor's name spelt wrong is the worst kind of
+           small mistake on a growth CV. */
+        context:
+          "TwinMind has raised $9M from Streamline Ventures, Sequoia and Wolfram, and serves 500,000 daily active users.",
         /* GEO is in the CV bullet and deliberately not here: you asked for
            SEO only, so the acronym goes and the substance stays as plain
            discoverability. */
