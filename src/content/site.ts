@@ -327,7 +327,12 @@ export const site = {
          does not. */
       date: "",
       people: "",
-      note: "Brought Antler to campus: workshops, a fireside and networking that put 100+ students in direct contact with pre-seed VC.",
+      /* The logistics are the point, not a footnote to it. "Brought Antler
+         to campus" on its own reads like an introduction someone made;
+         naming the room bookings and the stickers is what says the whole
+         thing was run rather than attended. The unglamorous end of the
+         range does the work, which is why it ends on stickers. */
+      note: "Brought Antler to campus and ran it end to end, from room bookings to the dinner guest list to the stickers. Workshops, office hours and a fireside put 100+ students in direct contact with pre-seed VC.",
       link: "https://lnkd.in/p/g6eXxFDd",
       images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
