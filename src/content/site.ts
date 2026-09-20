@@ -14,7 +14,7 @@ export const site = {
      page. Empty renders nothing — an link to a file that is not there is
      worse than no link, because it fails in front of the one person who
      wanted it enough to click. */
-  resumeUrl: "",
+  resumeUrl: "/resume.pdf",
 
   /* The photo at the end of the page. It is the one place a face belongs:
      the seven colours have just come back together into white, and the
