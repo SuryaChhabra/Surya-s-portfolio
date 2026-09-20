@@ -411,8 +411,13 @@ export const site = {
          an oversight: say the word and they come back, at the cost of the
          row lining up. */
       {
-        title: "Secretary",
-        org: "Hindu YUVA, UIUC",
+        /* The body goes in the title, as it does on the card beside this
+           one: "Secretary" alone says the post and not what it was
+           secretary of, and the org line underneath was carrying the
+           half of it that matters. Leaves UIUC in the org slot on both,
+           which is what the two have in common. */
+        title: "Secretary, Hindu YUVA",
+        org: "UIUC",
         kind: "",
         period: "Sep 2024 – Aug 2026",
         place: "",
