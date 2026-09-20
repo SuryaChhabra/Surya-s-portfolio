@@ -26,6 +26,19 @@ export const site = {
     alt: "Surya Chhabra, with the Sleeping Beauty castle in the background.",
   },
 
+  /* The same photograph cropped to head and shoulders, for the opening
+     screen and the link preview — the two places that need a face at a
+     small size rather than a picture at a large one. At this crop the
+     castle is just soft blue stonework, which is the point: it reads as a
+     portrait taken outdoors rather than as a holiday snap.
+     ⚠️ It is still a holiday snap underneath. A proper headshot is the
+     single cheapest upgrade left on this page, and this is the spot where
+     it would show. */
+  headshot: {
+    src: "/me/headshot.webp",
+    alt: "Surya Chhabra.",
+  },
+
   /* Shown in the browser tab + link previews */
   meta: {
     title: "Surya Chhabra",
@@ -52,9 +65,16 @@ export const site = {
        just a nice object; with it, the whole page has a premise before
        anyone has scrolled a pixel. `cueStill` is the same thing for
        visitors who have motion turned off and never see it happen. */
+    /* These used to count the colours out loud — "Seven colours, seven
+       sections" — which is the design explaining itself to you. A prism
+       that has to be captioned is not working, and the caption was
+       spending the one line below the fold on the mechanism instead of on
+       the work. `cue` keeps the instruction because a page that does
+       nothing until you scroll has to say so once; `cueSub` now names what
+       is actually down there, which is the thing that earns the scroll. */
     cue: "Scroll to split the light",
-    cueStill: "Seven colours, seven sections",
-    cueSub: "Seven colours, one for each side of what I do.",
+    cueStill: "Start with the work",
+    cueSub: "Growth, video, and the things I\u2019ve shipped.",
   },
 
   /* — Headline numbers ——————————————————————————————————————————
@@ -218,7 +238,12 @@ export const site = {
     {
       /* The file is named 0712.mp4; the piece is the Soulful Vybes spot. */
       title: "Soulful Vybes: car perfume",
-      note: "My first freelance job: a spot for an Indian brand about to move into a new segment, car perfumes.",
+      /* Not "my first freelance job", which is what this said. The work is
+         the same either way, but that phrasing is a claim about employment
+         rather than about the film, and on an F1 it is the one line on this
+         page somebody could screenshot and read as running a business on
+         the side. The brief is the interesting part anyway. */
+      note: "A spot for an Indian brand about to move into a new segment: car perfumes.",
       tags: [],
       poster: "/work/video-vybe.webp",
       file: "0712.mp4",
