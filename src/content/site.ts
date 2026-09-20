@@ -9,6 +9,13 @@ export const site = {
   name: "Surya Chhabra",
   email: "suryachhabra@gmail.com",
 
+  /* Drop the file in public/ and name it here, e.g. "/resume.pdf", and a
+     download pill appears beside LinkedIn and GitHub at the end of the
+     page. Empty renders nothing — an link to a file that is not there is
+     worse than no link, because it fails in front of the one person who
+     wanted it enough to click. */
+  resumeUrl: "",
+
   /* The photo at the end of the page. It is the one place a face belongs:
      the seven colours have just come back together into white, and the
      thing they recombine into is a person. Cropped 3:4 rather than to a

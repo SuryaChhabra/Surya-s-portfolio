@@ -976,6 +976,21 @@ export function CloseBand() {
                   {s.label} ↗︎
                 </a>
               ))}
+
+              {/* Last, because it is the thing someone reaches for once the
+                  rest of the page has done its job. Down rather than the
+                  diagonal the profile links use: this one fetches a file
+                  instead of opening a page, and the arrow should say so. */}
+              {site.resumeUrl ? (
+                <a
+                  href={site.resumeUrl}
+                  download
+                  className="r-pill border px-5 py-2.5 text-sm transition-colors"
+                  style={{ borderColor: t.rule, color: t.ink }}
+                >
+                  Résumé ↓︎
+                </a>
+              ) : null}
             </div>
           ) : null}
 
