@@ -443,10 +443,13 @@ export const site = {
            is the specific thing a founder scanning this page will notice
            is missing. What the job argued for still matters, so it stays,
            one clause further down.
+           Landed, not onboarded: onboarding is what happens to a client
+           who has already said yes, and it was the winning of them that
+           was the work.
            ⚠️ The client is unnamed. Naming it is materially stronger than
-           "largest", if it is yours to name. */
+           "biggest", if it is yours to name. */
         detail:
-          "Onboarded the studio's biggest client in North America. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
+          "Landed the studio's biggest client in North America and ran it end to end. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
         metrics: [] as { value: string; label: string }[],
         skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
