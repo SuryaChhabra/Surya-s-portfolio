@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { SPECTRUM_STOPS, visibleBands } from "@/components/prism/bands";
+import { visibleBands } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
@@ -67,43 +67,40 @@ export function TopBar() {
           className="pointer-events-auto flex shrink-0 items-center gap-2.5 text-[1.02rem] font-medium tracking-[-0.01em]"
           style={{ color: "var(--band-ink, #ffffff)" }}
         >
-          {/* The mark: a prism, with the spectrum inside it.
+          {/* The mark.
 
-              This was a rounded square filled with the seven colours as
-              stacked horizontal stripes, fixed to the top left of every
-              screen on the site. At 16px that is not a spectrum and it is
-              not a logo — it is a flag, in the one spot a logo is supposed
-              to say who you are, and it was the most-seen object on the
-              page because the header never leaves.
+              Two versions preceded this one and both failed the same test,
+              which is that a logo has to survive being 20 pixels wide. The
+              first was a rounded square filled with the seven colours as
+              stacked stripes — at that size not a spectrum but a flag, in
+              the one spot on a page reserved for saying who you are. The
+              second was a triangle with the spectrum inside it, which was
+              honest about the premise and still turned to coloured mush at
+              the size it actually gets rendered.
 
-              A triangle says the thing the square could not. The colours
-              are the same and in the same order, but now they are coming
-              out of something, and the something is the whole premise of
-              the site. It also finally makes the mark a mark rather than a
-              swatch: at this size a triangle is a silhouette you can
-              recognise, and a square of colour is not. */}
-          <svg
+              A letter does not turn to mush. It is also the one mark that
+              cannot be misread as being about anything except the person
+              whose name is set immediately to the right of it.
+
+              Set in the site's own display face rather than a generic
+              serif: Instrument Serif is already loaded for the headings,
+              so this costs nothing and ties the mark to the typography
+              instead of floating free of it. Everything takes
+              `currentColor`, which the anchor above binds to `--band-ink`,
+              so the mark inverts by itself on the light closing field —
+              the previous two were fixed light-on-dark and would have
+              disappeared down there. */}
+          <span
             aria-hidden="true"
-            viewBox="0 0 16 16"
-            className="h-4 w-4 shrink-0"
-            fill="none"
+            className="grid h-5 w-5 shrink-0 place-items-center rounded-[0.4rem] border pt-px text-[0.92rem] leading-none"
+            style={{
+              fontFamily: "var(--font-display)",
+              borderColor: "color-mix(in srgb, currentColor 32%, transparent)",
+            }}
           >
-            <defs>
-              {/* Raked, not axis-aligned: light leaves a prism at an angle,
-                  and an angle is the other thing stripes never have. */}
-              <linearGradient id="prism-mark" x1="0.1" y1="0" x2="0.9" y2="1">
-                {SPECTRUM_STOPS.map((stop, i) => (
-                  <stop
-                    key={i}
-                    offset={stop.at}
-                    stopColor={stop.color}
-                    stopOpacity={stop.opacity}
-                  />
-                ))}
-              </linearGradient>
-            </defs>
-            <path d="M8 1.4 L15 14.6 L1 14.6 Z" fill="url(#prism-mark)" />
-          </svg>
+            S
+          </span>
+
           {site.name}
         </a>
 

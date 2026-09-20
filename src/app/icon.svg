@@ -1,5 +1,16 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
-  <rect width="64" height="64" rx="16" fill="#d0603a"/>
-  <text x="32" y="43" font-family="Georgia, serif" font-style="italic"
-        font-size="34" fill="#f3ede3" text-anchor="middle">S</text>
+  <!-- The same monogram as the header mark, at tab size.
+
+       It was a cream S on an orange tile, which matched nothing on the
+       site once the fields went dark. Now it is the site's own space with
+       the site's own letter in it.
+
+       The hairline ring is not decoration: the tile is near-black, and a
+       near-black square in a dark browser tab strip has no edge at all.
+       The ring is what keeps it a shape. -->
+  <rect width="64" height="64" rx="15" fill="#0a0b10"/>
+  <rect x="1.6" y="1.6" width="60.8" height="60.8" rx="13.4"
+        fill="none" stroke="#ffffff" stroke-opacity="0.24" stroke-width="2.4"/>
+  <text x="32" y="44" font-family="Georgia, 'Times New Roman', serif"
+        font-size="35" fill="#ffffff" text-anchor="middle">S</text>
 </svg>
