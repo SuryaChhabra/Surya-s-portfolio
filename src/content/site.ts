@@ -291,11 +291,15 @@ export const site = {
       note: "My school's highest sporting honour.",
     },
 
-    results: [
-      { date: "", event: "", level: "", category: "", result: "" },
-      { date: "", event: "", level: "", category: "", result: "" },
-      { date: "", event: "", level: "", category: "", result: "" },
-    ],
+    /* Empty on purpose. Add a row and the table appears under the record;
+       the shape each row takes is documented at the top of this block. */
+    results: [] as {
+      date: string;
+      event: string;
+      level: string;
+      category: string;
+      result: string;
+    }[],
   },
 
   /* — Events ————————————————————————————————————————————————————————
