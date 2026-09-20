@@ -172,13 +172,16 @@ export const site = {
      stack and left the other three looking like they were made with
      nothing. A card's own `tags` are now only for what is unique to it. */
   videoToolkit: [
-    /* Drop a square mark in public/logos/ and set it here; without one the
-       pill is just the name, which still reads fine. */
-    { name: "Suno", logo: "" },
-    { name: "Runway", logo: "" },
-    { name: "CapCut", logo: "" },
-    { name: "Claude", logo: "" },
-  ] as { name: string; logo?: string }[],
+    /* Drop a mark in public/logos/ and set it here; without one the pill is
+       just the name, which still reads fine.
+       `wordmark` is for a brand whose mark is its own name: the image runs
+       at its natural width and the text is dropped, because a pill reading
+       "SUNO Suno" says it twice. */
+    { name: "Suno", logo: "/logos/tool-suno.webp", wordmark: true },
+    { name: "Runway", logo: "/logos/tool-runway.webp" },
+    { name: "CapCut", logo: "/logos/tool-capcut.webp" },
+    { name: "Claude", logo: "/logos/tool-claude.webp" },
+  ] as { name: string; logo?: string; wordmark?: boolean }[],
 
   videos: [
     {
