@@ -23,7 +23,7 @@ export const site = {
   meta: {
     title: "Surya Chhabra",
     description:
-      "Growth and creative work, AI video, astronomy research and competitive archery.",
+      "Growth and creative work for startups. I figure things out by making them, moving between brand, video and product, picking up whatever tool each one needs.",
     url: "https://suryachhabra.com",
   },
 
@@ -177,6 +177,7 @@ export const site = {
     { name: "Suno", logo: "" },
     { name: "Runway", logo: "" },
     { name: "CapCut", logo: "" },
+    { name: "Claude", logo: "" },
   ] as { name: string; logo?: string }[],
 
   videos: [
@@ -200,7 +201,7 @@ export const site = {
     {
       title: "Permute: product demo",
       note: "A UIUC alum's startup, and my first B2B SaaS video. It opens in a different style of AI animation, then becomes a product demo built with Claude: the right features, pitched with the right movements.",
-      tags: ["Claude"],
+      tags: [],
       poster: "/work/video-permute.webp",
       file: "permute.mp4",
     },
@@ -233,7 +234,7 @@ export const site = {
         caption:
           "The dust around the system: two bright cores inside a wider envelope, with a stream of material reaching off to one side.",
         detail:
-          "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left. That dust morphology is what the gas kinematics are read against. Synthesised beam at lower left.",
+          "IRS3B in continuum (Stokes I), centred near RA 03:25:35.7, Dec +30:45:08. Imaged in CASA with multiscale tclean; the masking and the Briggs and uv-taper choices decide how much of the envelope survives. A compact double source sits inside an extended envelope, with filamentary emission reaching toward the upper left. That dust morphology is what the gas kinematics are read against. Synthesised beam at lower left.",
         alt: "Millimetre continuum image of IRS3B showing a bright compact double source within a fainter extended envelope.",
       },
       {
@@ -308,10 +309,7 @@ export const site = {
     {
       name: "Antler Founders: Illinois Entrepreneurs",
       role: "Head of Exploration, Founders",
-      /* ⚠️ The only thing still missing on this card. The role and what it
-         was both come from your own Head of Exploration notes; the month
-         does not. */
-      date: "",
+      date: "September 2025",
       /* Outcome first, ownership after. The two sentences that matter are
          who brought Antler there and what it was worth to the people in
          the room; the scope of the job is real and belongs on the card,
@@ -420,9 +418,9 @@ export const site = {
         skills: [] as string[],
       },
       {
-        /* ⚠️ Descriptive, not official — replace with the title Illinois
-           actually gives the role. An invented job title is the one thing
-           on this page that cannot survive being asked about. */
+        /* Descriptive by necessity: Illinois gives this no official title,
+           it is simply a course someone leads a section of, which is why
+           the line below names the course rather than the post. */
         title: "Section lead, LAS 101",
         /* Short form, like the card beside it. The full name is already the
            heading of the education band; spelt out here it wrapped to two
@@ -432,7 +430,7 @@ export const site = {
         period: "Aug 2025 – Dec 2025",
         place: "",
         detail:
-          "Ran the college's first-year experience course start to finish, sessions and material, for students in their first semester.",
+          "Taught Design Your First-Year Experience, the one-credit graded course that gets new students through their first semester at Illinois.",
         metrics: [{ value: "25", label: "students in my section" }] as {
           value: string;
           label: string;

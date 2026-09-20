@@ -452,12 +452,17 @@ export function VideoBand() {
 
   return (
     <BandSection band={band}>
-      {/* Stated once, at the top, because these three made all four films.
-          On a single card they read as that card's stack. */}
+      {/* Stated once, at the top, rather than on whichever card happened to
+          use each one: under a single film they read as that film's stack
+          and leave the other three looking like they were made with
+          nothing. The label is "made with", not "on every film here" as it
+          was — Claude built the Permute demo and not the other three, so
+          the stronger claim stopped being true the moment it joined the
+          row. */}
       <Reveal>
         <div className="mb-12">
           <p className="label" style={{ color: t.muted }}>
-            On every film here
+            Made with
           </p>
           {/* Filled, not outlined, and set at body size rather than caption
               size: these are three of the four things this section is
