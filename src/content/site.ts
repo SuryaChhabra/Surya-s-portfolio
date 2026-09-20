@@ -327,12 +327,13 @@ export const site = {
          does not. */
       date: "",
       people: "",
-      /* Two sentences, both yours. Everything I tried to add between them
-         — the logistics, then the decisions behind them — made the card
-         longer without making the claim stronger. The photographs above
-         already show the room; the line only has to say who brought it
-         there and what it was worth to the people in it. */
-      note: "Brought Antler to campus. Workshops and a fireside put 100+ students in direct contact with pre-seed VC.",
+      /* Outcome first, ownership after. The two sentences that matter are
+         who brought Antler there and what it was worth to the people in
+         the room; the scope of the job is real and belongs on the card,
+         but it reads as detail once the result has landed, and as a list
+         of tasks when it comes first. The items are the ones that took a
+         decision rather than an afternoon. */
+      note: "Brought Antler to campus. Workshops and a fireside put 100+ students in direct contact with pre-seed VC. Ran it end to end: the programme, the investor office hours, the guest list for the dinner.",
       link: "https://lnkd.in/p/g6eXxFDd",
       images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
