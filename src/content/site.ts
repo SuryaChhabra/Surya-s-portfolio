@@ -7,11 +7,7 @@
 export const site = {
   /* — Identity ———————————————————————————————————————————————————— */
   name: "Surya Chhabra",
-  initials: "SC",
-  role: "Growth & creative",
-  location: "New Delhi, IN",
   email: "suryachhabra@gmail.com",
-  resumeUrl: "/resume.pdf",
 
   /* The photo at the end of the page. It is the one place a face belongs:
      the seven colours have just come back together into white, and the
@@ -28,16 +24,11 @@ export const site = {
     title: "Surya Chhabra",
     description:
       "Growth and creative work, AI video, astronomy research and competitive archery.",
-    url: "https://example.com",
+    url: "https://suryachhabra.com",
   },
 
   /* — Hero ———————————————————————————————————————————————————————— */
   hero: {
-    /* Each string is a line. Wrap a word in *asterisks* to render it in the
-       accent serif italic, e.g. "I build *momentum*" */
-    /* Drawn from your own LinkedIn post — edit freely, it is your voice. */
-    lines: ["I jump in,", "*figure it out,*", "and ship v1"],
-
     /* ── The two lines under your name on the opening screen. ──────────
        `lead` is set in large type directly under the name, so it holds the
        thing you want someone to know first — the work you are looking for.
@@ -57,11 +48,6 @@ export const site = {
     cue: "Scroll to split the light",
     cueStill: "Seven colours, seven sections",
     cueSub: "Seven colours, one for each side of what I do.",
-    blurb:
-      "A little bit of brand growth, a little bit of founder chaos, a little bit of space research, a little bit of archery discipline. I combine tools, taste and storytelling to make things feel alive, and I would rather make version one happen than wait until I know everything.",
-    /* Stated, not requested. "Looking for work" as a headline reads as
-       asking; naming the work you do reads as choosing. Same fact. */
-    availability: "Growth and creative work, at startups.",
   },
 
   /* — Headline numbers ——————————————————————————————————————————
@@ -326,7 +312,6 @@ export const site = {
          was both come from your own Head of Exploration notes; the month
          does not. */
       date: "",
-      people: "",
       /* Outcome first, ownership after. The two sentences that matter are
          who brought Antler there and what it was worth to the people in
          the room; the scope of the job is real and belongs on the card,
@@ -566,7 +551,6 @@ export const site = {
       "It shows up across everything here: AI video made with whatever gets the idea across, side projects shipped instead of planned, molecular-line astronomy, and the discipline competitive archery beats into you.",
       "Expert nahi, par ready hoon.",
     ],
-    toolkit: ["Suno", "Runway", "CapCut", "Next.js", "Python", "CARTA"],
   },
 
   /* — Links ——————————————————————————————————————————————————————— */
