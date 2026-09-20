@@ -102,8 +102,8 @@ export function SpectrumBackground() {
           className="absolute inset-0"
           style={{
             background: band
-              ? `radial-gradient(70% 78% at -6% ${lift(band.angle, 16, 62)}%, ${band.color}5c, transparent 66%),
-                 radial-gradient(64% 72% at 106% ${lift(band.angle, 86, 34)}%, ${band.color}42, transparent 64%),
+              ? `radial-gradient(70% 78% at -6% ${lift(band.angle, 16, 62)}%, ${glow(band, 0.36)}, transparent 66%),
+                 radial-gradient(64% 72% at 106% ${lift(band.angle, 86, 34)}%, ${glow(band, 0.26)}, transparent 64%),
                  radial-gradient(86% 62% at 26% 52%, rgba(0,0,0,0.58), transparent 72%)`
               : "none",
             opacity: band ? 1 : 0,
@@ -165,6 +165,17 @@ export function SpectrumBackground() {
       <SpectrumRail active={band} />
     </>
   );
+}
+
+/**
+ * One spotlight's colour at a given strength, scaled by the band's own
+ * `glow`. Spelt as rgba rather than an eight-digit hex suffix so the alpha
+ * can be a number rather than a hand-written pair of hex digits.
+ */
+function glow(band: Band, alpha: number) {
+  const n = parseInt(band.color.slice(1), 16);
+  const a = (alpha * (band.glow ?? 1)).toFixed(3);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${a})`;
 }
 
 /**

@@ -948,7 +948,7 @@ export function CloseBand() {
             <a
               href={email.href}
               className="mt-10 inline-block max-w-full break-words text-[clamp(1.5rem,4.2vw,2.6rem)] font-medium leading-tight tracking-[-0.035em] underline decoration-[0.06em] underline-offset-[0.18em] transition-colors"
-              style={{ color: t.ink, textDecorationColor: "rgba(20,20,24,0.25)" }}
+              style={{ color: t.ink, textDecorationColor: "rgba(255,255,255,0.32)" }}
             >
               {email.href.replace("mailto:", "")}
             </a>
@@ -1007,7 +1007,10 @@ export function CloseBand() {
               className="relative aspect-[3/4] overflow-hidden rounded-[1.5rem] border"
               style={{
                 borderColor: t.rule,
-                boxShadow: "0 24px 60px -28px rgba(20,20,24,0.45)",
+                /* A drop shadow does nothing on a near-black field. What
+                   lifts the photograph off it is the opposite: a soft glow
+                   in the white light the section is lit by. */
+                boxShadow: "0 24px 70px -30px rgba(255,255,255,0.22)",
               }}
             >
               <Image

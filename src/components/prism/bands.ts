@@ -37,6 +37,12 @@ export type Band = {
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
   /**
+   * How hard this band's spotlights burn, as a multiplier. Only the closing
+   * field sets it: white has no hue to fall off with, so at the strength
+   * that suits a coloured band it lifts the whole frame to grey.
+   */
+  glow?: number;
+  /**
    * Where this colour actually sits in the visible spectrum, in nanometres.
    *
    * Not decoration: `spectrumRamp` spaces its stops by this, which is what
@@ -182,8 +188,18 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
   Record<string, Band>;
 
 /**
- * The closing field: white, because that is what the seven make when you put
- * them back together.
+ * The closing field: the same space as everywhere else, lit white.
+ *
+ * White is still the argument — it is what the seven make when you put them
+ * back together — but it is now the *light* rather than the field. This was
+ * an off-white panel, and once every other section became dark space with
+ * coloured light in it, ending on a bright flat rectangle was the one
+ * remaining place the page stopped being a place and became a swatch. It
+ * read as a different website bolted onto the end.
+ *
+ * Lit rather than painted, the recombination actually happens: the seven
+ * spotlights you have been walking down are replaced by two white ones,
+ * which is precisely what white light is.
  *
  * Deliberately not in BANDS. It is not a wavelength, so it gets no ray out
  * of the prism, no nav link and no dot on the rail — only a field, which is
@@ -192,9 +208,13 @@ export const BAND_BY_ID = Object.fromEntries(BANDS.map((b) => [b.id, b])) as
 export const CLOSING: Band = {
   id: "close",
   color: "#ffffff",
-  deep: "#f6f5f1",
-  accent: "#1a1a1f",
-  tone: "light",
+  /* Neutral near-black: no hue to tint it with, because it is all of them. */
+  deep: "#090a0f",
+  accent: "#ffffff",
+  tone: "dark",
+  /* White at the other bands' strength washes the field out to grey, since
+     nothing is absorbing it. Half power keeps it light rather than fog. */
+  glow: 0.5,
   angle: 0,
   /* White is every wavelength at once, so no single number is right. This
      is the midpoint of the visible band, and nothing reads it: CLOSING is
