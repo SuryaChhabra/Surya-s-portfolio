@@ -430,14 +430,12 @@ export const site = {
         skills: [] as string[],
       },
       {
-        /* Descriptive by necessity: Illinois gives this no official title,
-           it is simply a course someone leads a section of, which is why
-           the line below names the course rather than the post. */
-        title: "Section lead, LAS 101",
-        /* Short form, like the card beside it. The full name is already the
-           heading of the education band; spelt out here it wrapped to two
-           lines and nothing else in the row did. */
-        org: "UIUC",
+        title: "Instructor",
+        /* The course sits here rather than in the title, because Illinois
+           gives the post no official name and "Instructor" is the honest
+           one. UIUC stays short: spelt out it wrapped to two lines and
+           nothing else in the row did. */
+        org: "LAS 101, UIUC",
         kind: "",
         period: "Aug 2025 – Dec 2025",
         place: "",
