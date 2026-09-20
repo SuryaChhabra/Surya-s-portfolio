@@ -436,8 +436,17 @@ export const site = {
         kind: "",
         period: "Jan – May 2026",
         place: "",
+        /* Outcome first. This opened on "worked at the intersection of
+           entrepreneurship and community impact", which is the vaguest
+           sentence the site had and was sitting in the one position a
+           reader actually reads — and a growth role with no outcome in it
+           is the specific thing a founder scanning this page will notice
+           is missing. What the job argued for still matters, so it stays,
+           one clause further down.
+           ⚠️ The client is unnamed. Naming it is materially stronger than
+           "largest", if it is yours to name. */
         detail:
-          "Worked at the intersection of entrepreneurship and community impact, arguing for revenue-driven models to support artisan livelihoods rather than charity. Grew an early-stage studio through market research, new revenue channels, partnerships and brand storytelling.",
+          "Onboarded the studio's biggest client in North America. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
         metrics: [] as { value: string; label: string }[],
         skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
