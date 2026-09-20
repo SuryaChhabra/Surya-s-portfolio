@@ -237,35 +237,31 @@ function SpectrumRail({ active }: { active: Band | null }) {
             >
               {b.id}
             </span>
-            {/* Only the band you are on takes a colour. The rest are
-                neutral.
+            {/* Every dot carries its own wavelength again.
 
-                Every dot used to carry its own wavelength, which made the
-                rail a column of seven rainbow dots fixed to the edge of the
-                screen for the entire page — simultaneous, stacked and
-                spectral, which is the arrangement that reads as a flag
-                rather than as light. It was also doing its actual job
-                badly: if all seven are lit, colour cannot be what tells you
-                which one you are on, and the height change was carrying the
-                whole signal alone.
+                These were briefly neutral, back when each section painted
+                the page a saturated colour: a stacked column of seven
+                rainbow dots against those flat panels was one more thing
+                reading as stripes. The fields are dark now, and against
+                the dark a row of small coloured points reads as what it
+                is — light, at seven wavelengths, which is the page's whole
+                subject. Stripes need to touch; these do not.
 
-                Neutral inactive, coloured active. The rail stops being a
-                spectrum and becomes what it always claimed to be — a
-                position indicator — and the one dot that is lit is lit in
-                the colour of the field you are actually standing on.
-
-                The active band's own vivid colour sits at about 2.3:1 on
-                its own field, so the marker takes `accent`, not `color`. */}
+                Colour is therefore free to say *which* band, and size says
+                which one you are *on*: the active marker grows to 26px and
+                takes `accent`, because a band's vivid colour sits at about
+                2.3:1 on its own field — enough to be seen as a shape, not
+                enough to be read as a marker. */}
             <span
               className="block rounded-full transition-all duration-300"
               style={{
                 width: 6,
                 height: on ? 26 : 6,
-                backgroundColor: on ? b.accent : t?.muted ?? "rgba(255,255,255,0.55)",
+                backgroundColor: on ? b.accent : b.color,
                 /* Same reason as the nav: on its own field a band's colour
                    is invisible, so every mark carries a hairline. */
                 boxShadow: `0 0 0 1px ${t?.rule ?? "rgba(255,255,255,0.2)"}`,
-                opacity: on ? 1 : 0.42,
+                opacity: on ? 1 : 0.6,
               }}
             />
           </a>

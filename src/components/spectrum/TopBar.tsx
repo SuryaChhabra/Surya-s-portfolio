@@ -123,10 +123,18 @@ export function TopBar() {
                 aria-hidden="true"
                 className="block h-2 w-2 rounded-full transition-all group-hover:scale-150"
                 style={{
-                  backgroundColor:
-                    b.id === active ? b.color : "var(--band-ink, #ffffff)",
-                  opacity: b.id === active ? 1 : 0.32,
-                  boxShadow: "0 0 0 1px var(--band-rule, rgba(255,255,255,0.28))",
+                  backgroundColor: b.color,
+                  /* Colour says which section; weight says which one you
+                     are in. The dot you are on goes to full strength and
+                     picks up a halo of its own light, the rest sit back.
+                     Doing it with opacity rather than by draining the
+                     colour out keeps the nav legible as a set. */
+                  opacity: b.id === active ? 1 : 0.5,
+                  boxShadow:
+                    b.id === active
+                      ? `0 0 0 1px var(--band-rule, rgba(255,255,255,0.28)), 0 0 9px ${b.color}`
+                      : "0 0 0 1px var(--band-rule, rgba(255,255,255,0.28))",
+                  transform: b.id === active ? "scale(1.25)" : "scale(1)",
                 }}
               />
               {b.nav}

@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { BANDS, spectrumRamp } from "@/components/prism/bands";
+import { BANDS } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 const PrismIntro = dynamic(
@@ -249,26 +249,6 @@ export function PrismAct() {
                   {site.hero.cueSub}
                 </span>
 
-                {/* The spectrum, shown rather than named, with a sheen
-                    travelling along it so the instruction moves.
-
-                    One ramp rather than seven blocks: see `spectrumRamp`.
-                    Not rounded any more either — a pill of colour is a
-                    badge, and the point is a beam. Squared off and faded at
-                    both ends it reads as light lying on the field. */}
-                <span
-                  aria-hidden="true"
-                  className="relative mt-3.5 block h-2 w-[min(22rem,60vw)] overflow-hidden"
-                  style={{ background: spectrumRamp(90) }}
-                >
-                  <span
-                    className={`absolute inset-y-0 w-1/3 ${mode === "still" ? "" : "cue-sweep"}`}
-                    style={{
-                      background:
-                        "linear-gradient(90deg, transparent, rgba(255,255,255,0.85), transparent)",
-                    }}
-                  />
-                </span>
               </span>
             </div>
           </div>
