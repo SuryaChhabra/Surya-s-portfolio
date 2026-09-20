@@ -327,12 +327,15 @@ export const site = {
          does not. */
       date: "",
       people: "",
-      /* The logistics are the point, not a footnote to it. "Brought Antler
-         to campus" on its own reads like an introduction someone made;
-         naming the room bookings and the stickers is what says the whole
-         thing was run rather than attended. The unglamorous end of the
-         range does the work, which is why it ends on stickers. */
-      note: "Brought Antler to campus and ran it end to end, from room bookings to the dinner guest list to the stickers. Workshops, office hours and a fireside put 100+ students in direct contact with pre-seed VC.",
+      /* "Brought Antler to campus" alone reads like an introduction someone
+         made, so the line has to say the whole thing was run. An earlier
+         version proved that with room bookings, the guest list and the
+         stickers, on the theory that the humblest item shows the range.
+         It does not work when every item is humble: three errands in a row
+         read as errands. The items named now are the ones that took
+         judgment rather than effort, which is the same ownership said by
+         someone senior enough to have it. */
+      note: "Brought Antler to campus and ran it end to end: the programme, the investor office hours, the guest list for the dinner. Workshops and a fireside put 100+ students in direct contact with pre-seed VC.",
       link: "https://lnkd.in/p/g6eXxFDd",
       images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
