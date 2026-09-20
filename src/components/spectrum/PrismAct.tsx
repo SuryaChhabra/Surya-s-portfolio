@@ -171,8 +171,15 @@ export function PrismAct() {
               </p>
 
               <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
+                {/* The first band, not a favourite one. This pointed at
+                    #video while the films were the newest thing here, and
+                    the effect was that the one button on the opening screen
+                    skipped the first section of the page: growth is the
+                    longest-running work and the reason the rest exists, and
+                    anyone who took the shortcut never saw it. The button
+                    means "start", so it goes to the start. */}
                 <a
-                  href="#video"
+                  href="#growth"
                   className="r-pill px-7 py-3.5 text-[0.95rem] font-medium text-[#0b0b10] transition-transform hover:-translate-y-0.5"
                   style={{ backgroundColor: "#ffffff" }}
                 >
