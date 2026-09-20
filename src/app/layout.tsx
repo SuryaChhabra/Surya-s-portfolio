@@ -41,14 +41,39 @@ const grotesk = Space_Grotesk({
   display: "swap",
 });
 
+/**
+ * Where absolute URLs in the metadata point.
+ *
+ * `site.meta.url` is still the scaffold value, and a preview card whose
+ * image is served from example.com is worse than no card at all. Until a
+ * real domain is set, fall back to the deployment's own URL, which Vercel
+ * puts in VERCEL_URL at build time — so the tile resolves on a preview or
+ * a *.vercel.app deployment without anyone having to remember this.
+ * Set site.meta.url and it takes precedence again.
+ */
+const PLACEHOLDER_HOST = /(^|\.)example\.com$/;
+
+function siteUrl() {
+  try {
+    const declared = new URL(site.meta.url);
+    if (!PLACEHOLDER_HOST.test(declared.hostname)) return declared;
+  } catch {
+    /* fall through to the deployment URL */
+  }
+  const deployed = process.env.VERCEL_PROJECT_PRODUCTION_URL || process.env.VERCEL_URL;
+  return new URL(deployed ? `https://${deployed}` : site.meta.url);
+}
+
+const BASE = siteUrl();
+
 export const metadata: Metadata = {
-  metadataBase: new URL(site.meta.url),
+  metadataBase: BASE,
   title: site.meta.title,
   description: site.meta.description,
   openGraph: {
     title: site.meta.title,
     description: site.meta.description,
-    url: site.meta.url,
+    url: BASE.toString(),
     siteName: site.name,
     type: "website",
   },
