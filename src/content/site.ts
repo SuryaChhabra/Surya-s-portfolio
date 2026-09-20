@@ -402,17 +402,23 @@ export const site = {
     ],
 
     leadership: [
+      /* Three cards in one row, so all three carry the same four slots:
+         title, org and dates, one number set large, one line of what the
+         job was. `context` is gone from every card — it explained the
+         organisation rather than the work, and two paragraphs a card is
+         what made this section unreadable.
+         ⚠️ That means Hindu YUVA's four P's are no longer on the site. You
+         said they were essential, so this is a deliberate cut rather than
+         an oversight: say the word and they come back, at the cost of the
+         row lining up. */
       {
         title: "Secretary",
         org: "Hindu YUVA, UIUC",
         kind: "",
-        /* ⚠️ Which academic year? */
-        period: "",
+        period: "Sep 2024 – Aug 2026",
         place: "",
-        context:
-          "Hindu YUVA runs on four P's: preserve, practice, promote and protect Hindu Dharma. It brings Hindu students together on campuses across North America.",
         detail:
-          "Ran all internal and external communications for the year, and led events end to end: a Ganesha celebration that drew over 500 people, where I handled food, decor and the programme, plus Hindu New Year and Guru Vandana, the teachers' appreciation evening.",
+          "Ran the year's internal and external communications, and led events end to end: Ganesha, Hindu New Year and Guru Vandana.",
         metrics: [{ value: "500+", label: "at the Ganesha celebration" }] as {
           value: string;
           label: string;
@@ -421,19 +427,18 @@ export const site = {
       },
       {
         /* ⚠️ Descriptive, not official — replace with the title Illinois
-           actually gives the role (peer instructor, course assistant,
-           whichever it is). An invented job title is the one thing on this
-           page that cannot survive being asked about. */
+           actually gives the role. An invented job title is the one thing
+           on this page that cannot survive being asked about. */
         title: "Section lead, LAS 101",
-        org: "University of Illinois Urbana-Champaign",
+        /* Short form, like the card beside it. The full name is already the
+           heading of the education band; spelt out here it wrapped to two
+           lines and nothing else in the row did. */
+        org: "UIUC",
         kind: "",
-        /* ⚠️ Which term? */
-        period: "",
+        period: "Aug 2025 – Dec 2025",
         place: "",
-        context:
-          "LAS 101 is the college's first-year experience course: the one that gets new students through the first semester on a campus of 56,000.",
         detail:
-          "Taught a section of 25 first-year students, running it start to finish: the sessions, the material and the part that actually matters, which is the students working out how to live somewhere new.",
+          "Ran the college's first-year experience course start to finish, sessions and material, for students in their first semester.",
         metrics: [{ value: "25", label: "students in my section" }] as {
           value: string;
           label: string;
@@ -446,12 +451,20 @@ export const site = {
         kind: "",
         period: "Sep 2024 – Dec 2025",
         place: "",
+        /* Four numbers were on offer here — 100+ students reached, 200+ at
+           Exploring Entrepreneurship, a team recruited each semester, and
+           4x participation. The multiplier wins the large slot because it
+           is the only one that describes a change rather than a count. */
         detail:
-          "Led a student innovation team focused on strengthening the campus startup ecosystem through speaker events, founder conversations, and a podcast for student entrepreneurs.",
-        metrics: [] as { value: string; label: string }[],
+          "Brought Antler investors to campus for workshops and firesides, and built an accessibility vertical so non-startup majors could see entrepreneurship as a career.",
+        metrics: [{ value: "4×", label: "growth in participation" }] as {
+          value: string;
+          label: string;
+        }[],
         skills: [] as string[],
       },
     ],
+
   },
 
   /* — Education ——————————————————————————————————————————————————

@@ -150,7 +150,7 @@ export function GrowthBand() {
   );
 }
 
-/* — 02 Orange — education ——————————————————————————————————————————— */
+/* — 03 Yellow — education ——————————————————————————————————————————— */
 
 export function EducationBand() {
   const base = BAND_BY_ID.education;
@@ -271,7 +271,63 @@ export function EducationBand() {
   );
 }
 
-/* — 03 Yellow — leading, and the rooms it happened in ———————————————— */
+/**
+ * One leading role, in a column rather than a row.
+ *
+ * The growth band's RoleCard runs full width with the logo on the left;
+ * three of those stacked is what made this section unreadable. This one
+ * carries four slots and nothing else — title, org and dates, one number,
+ * one line — so three side by side line up instead of each ending wherever
+ * its copy happens to stop.
+ */
+function LeadCard({ role, band }: { role: Role; band: Band }) {
+  const t = tones(band);
+  const fact = role.metrics[0];
+
+  return (
+    <div className={`flex h-full flex-col px-6 py-7 ${t.pane}`}>
+      <h4 className="text-lg font-medium tracking-[-0.02em]" style={{ color: t.ink }}>
+        {role.title}
+      </h4>
+      {/* Two lines' worth of room whether the org wraps or not. Without it
+          the number starts wherever this paragraph happens to end, and the
+          three cards put their figures at three different heights. */}
+      <p className="mt-1.5 min-h-[2.7rem] text-sm" style={{ color: t.muted }}>
+        {[role.org, role.period].filter(Boolean).join(" · ")}
+      </p>
+
+      {fact ? (
+        <div className="mt-6">
+          <span
+            className="block text-[clamp(1.9rem,3.2vw,2.5rem)] font-medium leading-none tracking-[-0.045em]"
+            style={{ color: band.accent }}
+          >
+            {fact.value}
+          </span>
+          <span className="mt-2 block text-sm leading-snug" style={{ color: t.body }}>
+            {fact.label}
+          </span>
+        </div>
+      ) : null}
+
+      {role.detail ? (
+        <p className="mt-5 text-sm leading-relaxed" style={{ color: t.body }}>
+          {role.detail}
+        </p>
+      ) : (
+        <div className="mt-5">
+          <Note band={band}>One line on what the job was.</Note>
+        </div>
+      )}
+
+      {/* Takes up the slack at the foot of a shorter card, so the three
+          stay the same height without stretching anything inside them. */}
+      <div className="flex-1" />
+    </div>
+  );
+}
+
+/* — 04 Green — leading, and the rooms it happened in ———————————————— */
 
 export function LeadingBand() {
   const band = BAND_BY_ID.leading;
@@ -354,17 +410,23 @@ export function LeadingBand() {
           </ul>
         ) : null}
 
-        {/* The roles follow, and keep a label now that they are no longer
-            the first thing in the section. */}
+        {/* Three across, not three stacked. Every card holds the same four
+            slots, which is what lets the row read as a row. */}
         {roles.length ? (
           <div>
             <h3 className="label" style={{ color: t.muted }}>
               Roles
             </h3>
-            <ul className="mt-5 space-y-4">
-              {roles.map((role) => (
-                <Reveal key={`${role.org}-${role.title}`}>
-                  <RoleCard role={role} band={band} />
+            <ul className="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {roles.map((role, i) => (
+                <Reveal
+                  key={`${role.org}-${role.title}`}
+                  delay={i * 0.06}
+                  className="h-full"
+                >
+                  <li className="h-full">
+                    <LeadCard role={role} band={band} />
+                  </li>
                 </Reveal>
               ))}
             </ul>
@@ -375,7 +437,7 @@ export function LeadingBand() {
   );
 }
 
-/* — 04 Green — AI video ————————————————————————————————————————————— */
+/* — 02 Orange — AI video ————————————————————————————————————————————— */
 
 export function VideoBand() {
   const band = BAND_BY_ID.video;
