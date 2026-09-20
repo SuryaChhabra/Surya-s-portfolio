@@ -82,7 +82,7 @@ function RoleCard({ role, band }: { role: Role; band: Band }) {
       ) : null}
 
       {role.detail ? (
-        <p className="mt-3 text-[0.98rem] leading-relaxed" style={{ color: t.body }}>
+        <p className="mt-3 text-base leading-relaxed" style={{ color: t.body }}>
           {role.detail}
         </p>
       ) : (
@@ -189,7 +189,7 @@ export function EducationBand() {
                   {degree}
                 </p>
                 {majors ? (
-                  <p className="mt-1.5 text-[0.98rem]" style={{ color: band.accent }}>
+                  <p className="mt-1.5 text-base" style={{ color: band.accent }}>
                     {majors}
                   </p>
                 ) : null}
@@ -218,7 +218,7 @@ export function EducationBand() {
                       </span>
                       {h.detail ? (
                         <span
-                          className="mt-0.5 block text-sm leading-relaxed"
+                          className="mt-0.5 block text-base leading-relaxed"
                           style={{ color: t.body }}
                         >
                           {h.detail}
@@ -311,7 +311,7 @@ function LeadCard({ role, band }: { role: Role; band: Band }) {
       ) : null}
 
       {role.detail ? (
-        <p className="mt-5 text-sm leading-relaxed" style={{ color: t.body }}>
+        <p className="mt-5 text-base leading-relaxed" style={{ color: t.body }}>
           {role.detail}
         </p>
       ) : (
@@ -387,7 +387,7 @@ export function LeadingBand() {
                     ) : null}
                     {event.note ? (
                       <p
-                        className="mt-3 max-w-3xl text-[1.02rem] leading-relaxed"
+                        className="mt-3 max-w-3xl text-base leading-relaxed"
                         style={{ color: t.body }}
                       >
                         {event.note}
@@ -544,7 +544,7 @@ export function VideoBand() {
                   {video.title}
                 </h3>
                 {video.note ? (
-                  <p className="mt-2 text-sm leading-relaxed" style={{ color: t.body }}>
+                  <p className="mt-2 text-base leading-relaxed" style={{ color: t.body }}>
                     {video.note}
                   </p>
                 ) : (
@@ -638,7 +638,7 @@ export function BuiltBand() {
                   </span>
 
                   {project.summary ? (
-                    <span className="mt-2.5 block max-w-2xl text-sm leading-relaxed" style={{ color: t.body }}>
+                    <span className="mt-2.5 block max-w-2xl text-base leading-relaxed" style={{ color: t.body }}>
                       {project.summary}
                     </span>
                   ) : SHOW_NOTES ? (
@@ -727,7 +727,7 @@ export function ResearchBand() {
                   <span className="label block" style={{ color: band.accent }}>
                     {image.title}
                   </span>
-                  <span className="mt-2 block text-sm leading-relaxed" style={{ color: t.body }}>
+                  <span className="mt-2 block text-base leading-relaxed" style={{ color: t.body }}>
                     {image.caption}
                   </span>
                   {/* This is not an astronomy portfolio, so the card says
@@ -831,7 +831,7 @@ export function SportBand() {
                   {award.name}
                 </p>
                 {award.note ? (
-                  <p className="mt-2 text-sm" style={{ color: t.body }}>
+                  <p className="mt-2 text-base" style={{ color: t.body }}>
                     {award.note}
                   </p>
                 ) : null}
@@ -932,7 +932,7 @@ export function CloseBand() {
             Tell me what you&rsquo;re building.
           </h2>
           <p
-            className="mt-5 max-w-xl text-[1.02rem] leading-relaxed"
+            className="mt-5 max-w-xl text-[1.125rem] leading-relaxed"
             style={{ color: t.body }}
           >
             {site.hero.lead} If something here looks like the kind of thing you

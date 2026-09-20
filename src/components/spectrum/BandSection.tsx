@@ -100,7 +100,7 @@ export function BandSection({
             </div>
             {band.body ? (
               <p
-                className="mt-5 text-[1.02rem] leading-relaxed"
+                className="mt-5 text-[1.125rem] leading-relaxed"
                 style={{ color: t.body }}
               >
                 {band.body}
