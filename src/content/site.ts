@@ -327,15 +327,12 @@ export const site = {
          does not. */
       date: "",
       people: "",
-      /* "Brought Antler to campus" alone reads like an introduction someone
-         made, so the line has to say the whole thing was run. An earlier
-         version proved that with room bookings, the guest list and the
-         stickers, on the theory that the humblest item shows the range.
-         It does not work when every item is humble: three errands in a row
-         read as errands. The items named now are the ones that took
-         judgment rather than effort, which is the same ownership said by
-         someone senior enough to have it. */
-      note: "Brought Antler to campus and ran it end to end: the programme, the investor office hours, the guest list for the dinner. Workshops and a fireside put 100+ students in direct contact with pre-seed VC.",
+      /* Two sentences, both yours. Everything I tried to add between them
+         — the logistics, then the decisions behind them — made the card
+         longer without making the claim stronger. The photographs above
+         already show the room; the line only has to say who brought it
+         there and what it was worth to the people in it. */
+      note: "Brought Antler to campus. Workshops and a fireside put 100+ students in direct contact with pre-seed VC.",
       link: "https://lnkd.in/p/g6eXxFDd",
       images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
     },
