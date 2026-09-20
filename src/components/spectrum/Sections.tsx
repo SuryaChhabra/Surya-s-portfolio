@@ -8,7 +8,7 @@ import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
 import { Parallax } from "@/components/Parallax";
-import { BANDS, BAND_BY_ID, CLOSING, tones, type Band } from "@/components/prism/bands";
+import { BAND_BY_ID, CLOSING, tones, type Band } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
 /* Cards, rules and text colours all come from `tones(band)`. A band only
@@ -928,14 +928,6 @@ export function CloseBand() {
           {/* The seven, recombined. The page opened on white light going into
               glass; it closes by putting the colours back where they came
               from, which is the one thing the spectrum has not said yet. */}
-          <span aria-hidden="true" className="flex h-2 w-40 overflow-hidden rounded-full">
-            {BANDS.map((b) => (
-              <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
-            ))}
-          </span>
-          <p className="label mt-4" style={{ color: t.muted }}>
-            All seven, back together
-          </p>
 
           <h2
             className="mt-4 max-w-2xl text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
@@ -1025,17 +1017,6 @@ export function CloseBand() {
                 sizes="(min-width: 1024px) 21rem, 17rem"
                 className="object-cover"
               />
-              {/* The spectrum runs along the bottom edge, so the light the
-                  page spent seven sections splitting ends up underneath the
-                  person it belongs to. */}
-              <span
-                aria-hidden="true"
-                className="absolute inset-x-0 bottom-0 flex h-[6px]"
-              >
-                {BANDS.map((b) => (
-                  <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
-                ))}
-              </span>
             </div>
           </figure>
         </Reveal>

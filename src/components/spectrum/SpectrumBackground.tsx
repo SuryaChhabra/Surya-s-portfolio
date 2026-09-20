@@ -218,19 +218,35 @@ function SpectrumRail({ active }: { active: Band | null }) {
             >
               {b.id}
             </span>
-            {/* The active band's own vivid colour sits at about 2.3:1 on its
-                own field — visible as a shape, useless as a marker. The light
-                tint is what actually tells you where you are. */}
+            {/* Only the band you are on takes a colour. The rest are
+                neutral.
+
+                Every dot used to carry its own wavelength, which made the
+                rail a column of seven rainbow dots fixed to the edge of the
+                screen for the entire page — simultaneous, stacked and
+                spectral, which is the arrangement that reads as a flag
+                rather than as light. It was also doing its actual job
+                badly: if all seven are lit, colour cannot be what tells you
+                which one you are on, and the height change was carrying the
+                whole signal alone.
+
+                Neutral inactive, coloured active. The rail stops being a
+                spectrum and becomes what it always claimed to be — a
+                position indicator — and the one dot that is lit is lit in
+                the colour of the field you are actually standing on.
+
+                The active band's own vivid colour sits at about 2.3:1 on
+                its own field, so the marker takes `accent`, not `color`. */}
             <span
               className="block rounded-full transition-all duration-300"
               style={{
                 width: 6,
                 height: on ? 26 : 6,
-                backgroundColor: on ? b.accent : b.color,
+                backgroundColor: on ? b.accent : t?.muted ?? "rgba(255,255,255,0.55)",
                 /* Same reason as the nav: on its own field a band's colour
                    is invisible, so every mark carries a hairline. */
                 boxShadow: `0 0 0 1px ${t?.rule ?? "rgba(255,255,255,0.2)"}`,
-                opacity: on ? 1 : 0.6,
+                opacity: on ? 1 : 0.42,
               }}
             />
           </a>

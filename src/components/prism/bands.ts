@@ -36,6 +36,15 @@ export type Band = {
   tone: "dark" | "light";
   /** Angle of this band below the incoming beam, in degrees. */
   angle: number;
+  /**
+   * Where this colour actually sits in the visible spectrum, in nanometres.
+   *
+   * Not decoration: `spectrumRamp` spaces its stops by this, which is what
+   * makes the ramp uneven the way real dispersion is uneven — a wide red,
+   * a sliver of yellow, indigo and violet crowded together at the short
+   * end. Equal-width bands are a flag; unequal ones are light.
+   */
+  nm: number;
   /** What this band is called in the nav — the subject, not the wavelength. */
   nav: string;
   line: string;
@@ -52,6 +61,7 @@ export const BANDS: Band[] = [
     accent: "#ffa7a2",
     tone: "dark",
     angle: -10,
+    nm: 660,
     nav: "Growth",
     line: "Growth.",
     /* Not a list of the three companies — the three cards under this are
@@ -77,6 +87,7 @@ export const BANDS: Band[] = [
     accent: "#5c2600",
     tone: "light",
     angle: -18,
+    nm: 610,
     nav: "Video",
     line: "AI video.",
     /* This used to be OFF/BEAT's story, which was fine while OFF/BEAT was
@@ -92,6 +103,7 @@ export const BANDS: Band[] = [
     accent: "#6b4a00",
     tone: "light",
     angle: -26,
+    nm: 580,
     nav: "Education",
     line: "",
     body: "",
@@ -104,6 +116,7 @@ export const BANDS: Band[] = [
     accent: "#65e393",
     tone: "dark",
     angle: -34,
+    nm: 540,
     nav: "Leading",
     line: "Leading, and the rooms it happened in.",
     body: "",
@@ -115,6 +128,7 @@ export const BANDS: Band[] = [
     accent: "#5fd0fb",
     tone: "dark",
     angle: -42,
+    nm: 480,
     nav: "Built",
     line: "Things I've shipped.",
     /* Not a list of the rows underneath, which is what it was before
@@ -130,6 +144,7 @@ export const BANDS: Band[] = [
     accent: "#a9abf7",
     tone: "dark",
     angle: -50,
+    nm: 445,
     nav: "Research",
     line: "Astronomy.",
     /* Question first, instruments second. An earlier version opened on
@@ -147,6 +162,7 @@ export const BANDS: Band[] = [
     accent: "#e5b3ff",
     tone: "dark",
     angle: -58,
+    nm: 415,
     nav: "Archery",
     line: "Competitive archery.",
     body: "The discipline underneath everything else here. Same draw, same anchor, every arrow.",
@@ -180,10 +196,78 @@ export const CLOSING: Band = {
   accent: "#1a1a1f",
   tone: "light",
   angle: 0,
+  /* White is every wavelength at once, so no single number is right. This
+     is the midpoint of the visible band, and nothing reads it: CLOSING is
+     never in BANDS, which is the only place `nm` is used. */
+  nm: 545,
   nav: "Close",
   line: "",
   body: "",
 };
+
+/**
+ * The edges of what an eye can see, in nanometres. Outside this there is
+ * still light; there is just nobody to see it.
+ */
+const VISIBLE = { lo: 390, hi: 700 };
+
+/**
+ * The spectrum as one continuous ramp, for the places that show all seven
+ * at once without a section attached to them.
+ *
+ * These were all seven hard-edged blocks of equal width, and a viewer
+ * coming to the page cold read that as the pride flag rather than as a
+ * spectrum — the colours stopped saying "dispersion" and started saying
+ * something about the author that the author had not set out to say. Three
+ * things separate the two, and this does all three:
+ *
+ *   1. No edges. Refracted light is a continuum; a flag is stripes.
+ *   2. Unequal spacing. Stops are positioned by `nm`, so the ramp is as
+ *      lopsided as the real thing — red sprawls, yellow is a sliver,
+ *      indigo and violet pile up at the short end. A flag is even.
+ *   3. It dies at both ends. The stops run from 390nm to 700nm and fade to
+ *      zero alpha outside the seven, because that is where the eye gives
+ *      out. Flags run edge to edge; light does not.
+ *
+ * Faded with the end colours at zero alpha rather than the `transparent`
+ * keyword, which interpolates through transparent *black* and leaves a grey
+ * bruise across the first and last tenth of the bar on a light field.
+ *
+ * The 3D scene is deliberately untouched. It was never the problem — a
+ * beam, a piece of glass and a fan of rays read as optics on sight. Only
+ * the flattened-out summaries of it in the chrome ever did.
+ */
+export const SPECTRUM_STOPS: { at: number; color: string; opacity: number }[] =
+  (() => {
+    const at = (nm: number) =>
+      (VISIBLE.hi - nm) / (VISIBLE.hi - VISIBLE.lo);
+    return [
+      { at: 0, color: BANDS[0].color, opacity: 0 },
+      ...BANDS.map((b) => ({ at: at(b.nm), color: b.color, opacity: 1 })),
+      { at: 1, color: BANDS[BANDS.length - 1].color, opacity: 0 },
+    ];
+  })();
+
+export function spectrumRamp(deg = 90) {
+  const stops = SPECTRUM_STOPS.map(
+    (s) => `${rgba(s.color, s.opacity)} ${(s.at * 100).toFixed(1)}%`,
+  );
+  return `linear-gradient(${deg}deg, ${stops.join(", ")})`;
+}
+
+/**
+ * `#rrggbb` plus an alpha, as `rgba()`.
+ *
+ * Spelt out rather than using eight-digit hex because this string also has
+ * to survive Satori, which renders the link preview and whose CSS parser is
+ * a good deal narrower than a browser's — it already silently dropped a
+ * radial gradient and an `inset` shorthand on this page. `rgba()` is the
+ * form both agree on.
+ */
+function rgba(hex: string, alpha: number) {
+  const n = parseInt(hex.slice(1), 16);
+  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
+}
 
 /** Every field the page can sit on, wavelength or not. */
 export const FIELD_BY_ID: Record<string, Band> = {

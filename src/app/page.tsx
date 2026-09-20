@@ -12,7 +12,7 @@ import {
   CloseBand,
 } from "@/components/spectrum/Sections";
 import { site } from "@/content/site";
-import { BANDS, CLOSING, tones } from "@/components/prism/bands";
+import { BANDS, CLOSING, spectrumRamp, tones } from "@/components/prism/bands";
 
 /**
  * White light in, a spectrum out, and then one section per wavelength.
@@ -75,7 +75,7 @@ export default function Home() {
                   <span
                     aria-hidden="true"
                     className="block h-1.5 w-1.5 rounded-full transition-transform group-hover:scale-150"
-                    style={{ backgroundColor: b.color }}
+                    style={{ backgroundColor: tones(CLOSING).muted, opacity: 0.55 }}
                   />
                   {b.nav}
                 </a>
@@ -91,11 +91,15 @@ export default function Home() {
           </div>
         </div>
 
-        <div aria-hidden="true" className="flex h-2 w-full">
-          {BANDS.map((b) => (
-            <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
-          ))}
-        </div>
+        {/* One ramp, not seven blocks — see `spectrumRamp`. This is the
+            last thing on the page and the widest the spectrum ever gets,
+            which made it the most flag-shaped object on the site after the
+            link preview. */}
+        <div
+          aria-hidden="true"
+          className="h-2 w-full"
+          style={{ background: spectrumRamp(90) }}
+        />
       </footer>
     </div>
   );

@@ -1,23 +1,43 @@
+import { readFileSync } from "node:fs";
+import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { BANDS, VOID_DEEP } from "@/components/prism/bands";
+import { VOID_DEEP, spectrumRamp } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
  * The card a shared link renders as.
  *
- * Built from the same BANDS array that drives the prism, the fields and the
- * nav, so it cannot drift out of step with the site: change a wavelength in
- * bands.ts and the preview changes with it.
+ * This is the first thing anyone sees — it is what LinkedIn puts in the
+ * feed, at about 300px wide, before a single pixel of the site has loaded.
+ * Two things were wrong with the version that used to be here, and they
+ * were the same two things wrong with the page in miniature:
  *
- * Deliberately flat. The opening act is a glass prism refracting light in
- * real time, and no still can be that, so this does not try — it shows the
- * result instead: the seven colours, the name, and the one line that says
- * what the work is. It also has to survive being 300px wide in a LinkedIn
- * feed, which rules out anything with detail in it.
+ *   1. It led with a rounded square of seven hard, equal, horizontal
+ *      stripes. At thumbnail size that is not a spectrum, it is a flag —
+ *      a reader coming to it cold said so, unprompted. Nothing else in the
+ *      card was doing enough work to argue otherwise.
+ *   2. Nobody in that thread could tell who they were looking at. A name
+ *      in a feed is not a person until there is a face attached.
+ *
+ * A face fixes both at once: it takes the slot the stripes were in, and it
+ * answers the question the stripes were distracting from. The spectrum
+ * stays, but as one continuous ramp along the bottom edge — present, and
+ * no longer the subject.
+ *
+ * Deliberately flat otherwise. The opening act is a glass prism refracting
+ * light in real time, and no still can be that, so this does not try.
  */
 export const alt = `${site.name}, ${site.hero.lead}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
+
+/* Read off disk rather than fetched over HTTP: this route is prerendered at
+   build time, when there is no server to fetch from yet. JPEG rather than
+   the .webp the site itself serves, because Satori's image decoding does
+   not cover webp — the card would render with a hole where the face is. */
+const HEADSHOT =
+  "data:image/jpeg;base64," +
+  readFileSync(join(process.cwd(), "src/app/headshot-og.jpg")).toString("base64");
 
 export default function OpengraphImage() {
   return new ImageResponse(
@@ -26,12 +46,10 @@ export default function OpengraphImage() {
         style={{
           position: "relative",
           display: "flex",
-          flexDirection: "column",
-          justifyContent: "space-between",
           width: "100%",
           height: "100%",
           backgroundColor: VOID_DEEP,
-          padding: "78px 82px 96px",
+          padding: "72px 82px",
           fontFamily: "sans-serif",
         }}
       >
@@ -56,63 +74,82 @@ export default function OpengraphImage() {
           }}
         />
 
-        {/* The whole spectrum stacked, which is the site's own mark. */}
+        {/* Text left, face right, both vertically centred.
+
+            The first version of this kept the old column layout and simply
+            dropped the face into the slot the stripe square had occupied,
+            top left. It rendered, but the card had a hole through the
+            middle of it and the face came out at 38px in a LinkedIn
+            thumbnail, which is too small to register as anybody. Side by
+            side uses the width the card actually has, and the portrait gets
+            to be the size a portrait needs to be. */}
         <div
           style={{
             display: "flex",
-            flexDirection: "column",
-            width: 104,
-            height: 104,
-            borderRadius: 26,
-            overflow: "hidden",
+            alignItems: "center",
+            justifyContent: "space-between",
+            width: "100%",
+            height: "100%",
+            gap: 64,
           }}
         >
-          {BANDS.map((b) => (
-            <div key={b.id} style={{ display: "flex", flex: 1, backgroundColor: b.color }} />
-          ))}
+          <div style={{ display: "flex", flexDirection: "column" }}>
+            <div
+              style={{
+                display: "flex",
+                fontSize: 100,
+                fontWeight: 600,
+                letterSpacing: "-0.045em",
+                color: "#ffffff",
+                lineHeight: 1,
+              }}
+            >
+              {site.name}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                marginTop: 28,
+                fontSize: 42,
+                letterSpacing: "-0.02em",
+                color: "rgba(255,255,255,0.74)",
+              }}
+            >
+              {site.hero.lead}
+            </div>
+          </div>
+
+          {/* Circular and ringed, so it reads as a person rather than as a
+              photograph that happens to be in the corner. */}
+          <img
+            src={HEADSHOT}
+            width={300}
+            height={300}
+            style={{
+              width: 300,
+              height: 300,
+              flexShrink: 0,
+              borderRadius: 150,
+              objectFit: "cover",
+              border: "4px solid rgba(255,255,255,0.22)",
+            }}
+          />
         </div>
 
-        <div style={{ display: "flex", flexDirection: "column" }}>
-          <div
-            style={{
-              display: "flex",
-              fontSize: 104,
-              fontWeight: 600,
-              letterSpacing: "-0.045em",
-              color: "#ffffff",
-              lineHeight: 1,
-            }}
-          >
-            {site.name}
-          </div>
-          <div
-            style={{
-              display: "flex",
-              marginTop: 26,
-              fontSize: 40,
-              letterSpacing: "-0.02em",
-              color: "rgba(255,255,255,0.74)",
-            }}
-          >
-            {site.hero.lead}
-          </div>
-        </div>
-
-        {/* The same seven-colour edge the page ends on. */}
+        {/* The same edge the page ends on: one continuous ramp, spaced by
+            wavelength and faded out at both ends. See `spectrumRamp` for
+            why it is no longer seven blocks. */}
         <div
           style={{
             position: "absolute",
             left: 0,
-            right: 0,
             bottom: 0,
-            height: 18,
+            width: "100%",
+            height: 14,
             display: "flex",
+            backgroundImage: spectrumRamp(90),
           }}
-        >
-          {BANDS.map((b) => (
-            <div key={b.id} style={{ display: "flex", flex: 1, backgroundColor: b.color }} />
-          ))}
-        </div>
+        />
       </div>
     ),
     { ...size },

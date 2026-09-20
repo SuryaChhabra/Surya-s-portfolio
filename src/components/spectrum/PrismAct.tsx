@@ -2,7 +2,7 @@
 
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
-import { BANDS } from "@/components/prism/bands";
+import { BANDS, spectrumRamp } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 const PrismIntro = dynamic(
@@ -249,15 +249,18 @@ export function PrismAct() {
                   {site.hero.cueSub}
                 </span>
 
-                {/* Seven colours, shown rather than named, with a sheen
-                    travelling along them so the instruction moves. */}
+                {/* The spectrum, shown rather than named, with a sheen
+                    travelling along it so the instruction moves.
+
+                    One ramp rather than seven blocks: see `spectrumRamp`.
+                    Not rounded any more either — a pill of colour is a
+                    badge, and the point is a beam. Squared off and faded at
+                    both ends it reads as light lying on the field. */}
                 <span
                   aria-hidden="true"
-                  className="relative mt-3.5 flex h-2 w-[min(22rem,60vw)] overflow-hidden rounded-full"
+                  className="relative mt-3.5 block h-2 w-[min(22rem,60vw)] overflow-hidden"
+                  style={{ background: spectrumRamp(90) }}
                 >
-                  {BANDS.map((b) => (
-                    <span key={b.id} className="flex-1" style={{ backgroundColor: b.color }} />
-                  ))}
                   <span
                     className={`absolute inset-y-0 w-1/3 ${mode === "still" ? "" : "cue-sweep"}`}
                     style={{
@@ -276,28 +279,33 @@ export function PrismAct() {
           className="pointer-events-none absolute inset-x-0 bottom-0"
           style={{ opacity: outroIn, transition: "opacity 400ms linear" }}
         >
+          {/* This was a legend: seven coloured rules, each labelled with
+              its band name, over "Each colour below is a section." It was
+              the worst thing on the page twice over. As copy it explained
+              the device instead of trusting it, and a prism that needs a
+              key is not working. As a shape it was seven equal stripes in
+              spectral order with nothing around them to say they were
+              light, which is the single most flag-like object the site
+              had — and it appeared at full width, at the exact moment the
+              act handed over.
+
+              What replaces it does the handoff instead of narrating it:
+              the first band's own colour, and the name of what is next. */}
           <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-16">
-            <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-              {BANDS.map((b) => (
-                <span key={b.id} className="flex items-center gap-2">
-                  <span
-                    className="block h-1.5 w-8 rounded-full"
-                    style={{ backgroundColor: b.color }}
-                  />
-                  <span
-                    className="label"
-                    style={{ color: "rgba(255,255,255,0.55)" }}
-                  >
-                    {b.id}
-                  </span>
-                </span>
-              ))}
+            <div className="flex items-center gap-3">
+              <span
+                aria-hidden="true"
+                className="block h-[3px] w-10"
+                style={{ backgroundColor: BANDS[0].color }}
+              />
+              <span className="label" style={{ color: "rgba(255,255,255,0.62)" }}>
+                First
+              </span>
             </div>
             <p
-              className="mt-4 text-sm"
-              style={{ color: "rgba(255,255,255,0.45)" }}
+              className="mt-3 text-[clamp(1.15rem,1.7vw,1.45rem)] font-medium leading-tight tracking-[-0.02em] text-white"
             >
-              Each colour below is a section. Keep going.
+              {BANDS[0].line}
             </p>
           </div>
         </div>
