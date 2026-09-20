@@ -446,10 +446,15 @@ export const site = {
            Landed, not onboarded: onboarding is what happens to a client
            who has already said yes, and it was the winning of them that
            was the work.
+           "End to end" is deliberately not here. It was, and it made four
+           on one page — three of them in the same shape, "X end to end:
+           a, b, c". Said four times it stops being a claim and starts
+           being a tic. It is kept where a list immediately proves it
+           (TwinMind, Antler) and varied where it was only asserted.
            ⚠️ The client is unnamed. Naming it is materially stronger than
            "biggest", if it is yours to name. */
         detail:
-          "Landed the studio's biggest client in North America and ran it end to end. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
+          "Landed the studio's biggest client in North America and ran the account myself. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
         metrics: [] as { value: string; label: string }[],
         skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
@@ -477,7 +482,7 @@ export const site = {
         period: "Sep 2024 – Aug 2026",
         place: "",
         detail:
-          "Ran the year's internal and external communications, and led events end to end: Ganesha, Hindu New Year and Guru Vandana.",
+          "Ran the year's internal and external communications, and led events start to finish: Ganesha, Hindu New Year and Guru Vandana.",
         metrics: [{ value: "500+", label: "at the Ganesha celebration" }] as {
           value: string;
           label: string;
