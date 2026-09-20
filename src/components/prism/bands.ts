@@ -57,7 +57,7 @@ export const BANDS: Band[] = [
   {
     id: "growth",
     color: "#ff3b30",
-    deep: "#8f1109",
+    deep: "#240d0f",
     accent: "#ffa7a2",
     tone: "dark",
     angle: -10,
@@ -83,9 +83,9 @@ export const BANDS: Band[] = [
        under the red band it read as another red. So it inverts too — a
        bright orange field with near-black ink. The warm middle of a real
        spectrum is its brightest part, which is what this now looks like. */
-    deep: "#ff8a2b",
-    accent: "#5c2600",
-    tone: "light",
+    deep: "#24170f",
+    accent: "#ffc08a",
+    tone: "dark",
     angle: -18,
     nm: 610,
     nav: "Video",
@@ -99,9 +99,9 @@ export const BANDS: Band[] = [
   {
     id: "education",
     color: "#ffd23d",
-    deep: "#ffd23d",
-    accent: "#6b4a00",
-    tone: "light",
+    deep: "#241f11",
+    accent: "#ffe38a",
+    tone: "dark",
     angle: -26,
     nm: 580,
     nav: "Education",
@@ -112,7 +112,7 @@ export const BANDS: Band[] = [
   {
     id: "leading",
     color: "#4ade80",
-    deep: "#0d5c2e",
+    deep: "#0e2119",
     accent: "#65e393",
     tone: "dark",
     angle: -34,
@@ -124,7 +124,7 @@ export const BANDS: Band[] = [
   {
     id: "built",
     color: "#38bdf8",
-    deep: "#0a4a6b",
+    deep: "#0c1d27",
     accent: "#5fd0fb",
     tone: "dark",
     angle: -42,
@@ -140,7 +140,7 @@ export const BANDS: Band[] = [
   {
     id: "research",
     color: "#6366f1",
-    deep: "#262a7a",
+    deep: "#111227",
     accent: "#a9abf7",
     tone: "dark",
     angle: -50,
@@ -158,7 +158,7 @@ export const BANDS: Band[] = [
   {
     id: "sport",
     color: "#c084fc",
-    deep: "#5c2478",
+    deep: "#1c1628",
     accent: "#e5b3ff",
     tone: "dark",
     angle: -58,

@@ -73,33 +73,38 @@ export function SpectrumBackground() {
           transition: "background-color 900ms cubic-bezier(0.2,0.7,0.2,1)",
         }}
       >
-        {/* The wavelength itself, as a wash rather than a flat fill — the
-            light is still coming from the prism, off to the upper left.
+        {/* Two spotlights, and otherwise the dark.
 
-            The first layer is the one that makes a field look lit instead of
-            painted. Its direction is the band's own angle out of the glass:
-            CSS measures clockwise from "to top", so a ray travelling left and
-            `angle` degrees below the horizontal points at 270 + angle, which
-            is 260deg for red at the top of the fan and 212deg for violet at
-            the bottom. Seven fields, seven different directions of light, all
-            of it already described by the same number that aims the rays in
-            the 3D scene. */}
+            Each section used to paint the whole page its own saturated
+            colour — a red field, then an orange one, then a bright gold
+            one. Three things were wrong with that. It made the page a
+            sequence of flat colour panels, which is the loudest possible
+            reading of a spectrum and the one closest to a flag. It broke
+            the premise, because the opening is glass in space and then the
+            space abruptly stopped. And two of the seven could not be both
+            dark and recognisably themselves, so yellow and orange had to
+            invert to bright fields with black ink — a special case that
+            every other part of the page had to know about.
+
+            Lighting the dark instead of painting it fixes all three at
+            once. The field stays near-black the whole way down, barely
+            tinted with the band's hue; the colour arrives as light, from
+            two sources off opposite edges. Nothing is ever a colour panel,
+            every band is dark so nothing has to invert, and the space the
+            prism is floating in simply continues.
+
+            The two are deliberately not symmetric, and they move: the pair
+            pivots with `angle`, so red is lit from high left and low right
+            and violet from low left and high right. Seven sections, seven
+            different lighting setups, all of it already described by the
+            number that aims the rays in the 3D scene. */}
         <div
           className="absolute inset-0"
           style={{
-            /* Light still arriving from the prism, off past the top right.
-               It is kept out of the left half on purpose: that is where the
-               headings sit, and lifting the field under them is what would
-               cost the white text its contrast. */
             background: band
-              ? `linear-gradient(${270 + band.angle}deg, ${band.color}10, transparent 48%),
-                 radial-gradient(85% 70% at 100% 0%, ${band.color}33, transparent 58%),
-                 radial-gradient(70% 55% at 88% 100%, ${band.color}1f, transparent 62%),
-                 radial-gradient(120% 100% at 10% 55%, ${
-                   band.tone === "light"
-                     ? "rgba(255,255,255,0.26)"
-                     : "rgba(0,0,0,0.34)"
-                 }, transparent 70%)`
+              ? `radial-gradient(70% 78% at -6% ${lift(band.angle, 16, 62)}%, ${band.color}5c, transparent 66%),
+                 radial-gradient(64% 72% at 106% ${lift(band.angle, 86, 34)}%, ${band.color}42, transparent 64%),
+                 radial-gradient(86% 62% at 26% 52%, rgba(0,0,0,0.58), transparent 72%)`
               : "none",
             opacity: band ? 1 : 0,
             transition: "opacity 900ms linear, background 900ms linear",
@@ -147,9 +152,11 @@ export function SpectrumBackground() {
           className="absolute inset-0"
           style={{
             background: STARS,
-            /* Pinpoints belong in the dark. On a lit field they are just
-               speckle, so they fade out as the colour comes up. */
-            opacity: band ? 0.18 : 0.5,
+            /* Pinpoints belong in the dark, and the dark no longer ends
+               when the prism act does. They used to fade to almost nothing
+               the moment a saturated field came up; now the field is the
+               same space the glass was in, so they carry straight on. */
+            opacity: band ? 0.38 : 0.5,
             transition: "opacity 900ms linear",
           }}
         />
@@ -158,6 +165,18 @@ export function SpectrumBackground() {
       <SpectrumRail active={band} />
     </>
   );
+}
+
+/**
+ * Maps a band's angle out of the prism onto a position, so the two
+ * spotlights pivot as the page descends the spectrum.
+ *
+ * `angle` runs -10 at red to -58 at violet. `from` is where red puts the
+ * light and `to` is where violet does; everything between interpolates.
+ */
+function lift(angle: number, from: number, to: number) {
+  const t = Math.min(1, Math.max(0, (Math.abs(angle) - 10) / 48));
+  return (from + (to - from) * t).toFixed(1);
 }
 
 /** A handful of fixed pinpoints, cheap enough to sit behind everything. */
