@@ -804,30 +804,32 @@ export function CloseBand() {
           the section is for. */}
       <div className="mx-auto grid w-full max-w-6xl items-center gap-14 lg:grid-cols-[minmax(0,1fr)_minmax(0,21rem)] lg:gap-20">
         <Reveal>
-          {/* The seven, recombined. The page opened on white light going into
-              glass; it closes by putting the colours back where they came
-              from, which is the one thing the spectrum has not said yet. */}
-
           <h2
             className="mt-4 max-w-2xl text-[clamp(2rem,4.6vw,3.2rem)] font-medium leading-[1.02] tracking-[-0.04em]"
             style={{ color: t.ink }}
           >
             Tell me what you&rsquo;re building.
           </h2>
+          {/* No line about availability at all, which took three goes.
+
+              It said "if something here looks like the kind of thing you
+              need made" — a project-by-project pitch, on the one screen
+              where the ask is a role, and the exact thing an F1 student
+              should not put in writing. Replacing that with "if you're
+              hiring" fixed the visa problem and created a worse one: it
+              is a sentence written from below, and the page above it has
+              spent six sections earning the opposite posture.
+
+              So it goes. The heading already asks the only question worth
+              asking, and the address underneath is the size of a door.
+              Stating that you are one message away, directly above an
+              address in 40px type, is telling somebody the obvious in the
+              voice of somebody who needs them to notice. */}
           <p
             className="mt-5 max-w-xl text-[1.125rem] leading-relaxed"
             style={{ color: t.body }}
           >
-            {/* "the kind of thing you need made" was services language —
-                the sentence of somebody selling work by the project, on the
-                one screen where the ask is supposed to be a job. It is also
-                the exact signal an F1 student should not be putting in
-                writing. "Hiring" says employment and nothing else, and it
-                is the ask this whole page is building towards: the page
-                wants a founder to finish it thinking they want this person
-                on the team, so the last line should say that out loud. */}
-            {site.hero.lead} If you&rsquo;re hiring for that, I&rsquo;m one
-            message away.
+            {site.hero.lead}
           </p>
 
           {/* The address at the size of the thing the page is for. */}
