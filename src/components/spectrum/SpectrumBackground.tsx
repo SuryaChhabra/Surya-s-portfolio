@@ -15,6 +15,16 @@ import { site } from "@/content/site";
  */
 export function SpectrumBackground() {
   const [band, setBand] = useState<Band | null>(null);
+  /**
+   * How far the field has travelled towards the next band, 0 to 1, and
+   * which band that is.
+   *
+   * Separate from `band` on purpose. `band` is discrete and has to be:
+   * it decides the ink, the rail and the pane edges, and those cannot be
+   * halfway between two values. The field can, and this is what lets it
+   * be.
+   */
+  const [blend, setBlend] = useState<{ to: Band; t: number } | null>(null);
 
   useEffect(() => {
     const sections = Array.from(
@@ -22,17 +32,62 @@ export function SpectrumBackground() {
     );
     let queued = 0;
 
+    /* How much scroll the handover takes, in pixels either side of the
+       boundary between two sections. Sections carry 128px of padding top
+       and bottom, so a 300px reach puts almost exactly the empty stretch
+       between one section's last line and the next section's first one
+       inside the transition — which is the whole point. Sections are 800
+       to 1800px tall, so two windows can never overlap. */
+    const REACH = 300;
+
     const measure = () => {
       queued = 0;
       /* Whichever section is over the middle of the screen owns the colour.
          The middle, not the top: it is where someone is actually reading. */
       const mid = window.scrollY + window.innerHeight / 2;
-      const hit = sections.find(
+      const i = sections.findIndex(
         (el) => mid >= el.offsetTop && mid < el.offsetTop + el.offsetHeight,
       );
-      const id = hit?.dataset.band;
-      const next = id ? (FIELD_BY_ID[id] ?? null) : null;
-      setBand((current) => (current?.id === next?.id ? current : next));
+      const here = i < 0 ? null : FIELD_BY_ID[sections[i].dataset.band!] ?? null;
+      setBand((current) => (current?.id === here?.id ? current : here));
+
+      /* Near a boundary, say how far across it we are, so the field can be
+         a mix of the two rather than one or the other.
+
+         The colour used to change on a 900ms timer that started when the
+         midpoint crossed a boundary. That made the handover independent of
+         scrolling: you would cross into 250px of empty field, nothing would
+         happen for a moment, then the page would repaint itself at its own
+         pace whether you were still moving or not. It read as a gap between
+         two pages rather than one page changing colour.
+
+         The closing field is left out of this. Every other band is dark
+         with light on it, so any mix of two of them is still dark and the
+         white text holds. Ramping from the last dark band to a white one
+         would pass through mid-grey, where neither white nor dark ink is
+         readable — that one stays a discrete crossfade. */
+      const el = i < 0 ? null : sections[i];
+      let next: { to: Band; t: number } | null = null;
+      if (el && here && here.id !== CLOSING.id) {
+        const start = el.offsetTop;
+        const end = start + el.offsetHeight;
+        const prev = i > 0 ? FIELD_BY_ID[sections[i - 1].dataset.band!] : null;
+        const after =
+          i < sections.length - 1
+            ? FIELD_BY_ID[sections[i + 1].dataset.band!]
+            : null;
+        if (prev && prev.id !== CLOSING.id && mid < start + REACH) {
+          /* Second half of the ramp that began in the section above. */
+          next = { to: prev, t: 1 - (mid - (start - REACH)) / (2 * REACH) };
+        } else if (after && after.id !== CLOSING.id && mid > end - REACH) {
+          next = { to: after, t: (mid - (end - REACH)) / (2 * REACH) };
+        }
+      }
+      setBlend((cur) =>
+        cur?.to.id === next?.to.id && Math.abs((cur?.t ?? 0) - (next?.t ?? 0)) < 0.004
+          ? cur
+          : next,
+      );
     };
 
     const onScroll = () => {
@@ -49,7 +104,19 @@ export function SpectrumBackground() {
     };
   }, []);
 
-  const deep = band?.deep ?? VOID_DEEP;
+  /* The field's actual colours: the current band's, pulled part of the way
+     towards its neighbour's whenever the midpoint is near a boundary. */
+  const field = band
+    ? blend
+      ? {
+          color: mixHex(band.color, blend.to.color, blend.t),
+          deep: mixHex(band.deep, blend.to.deep, blend.t),
+          angle: band.angle + (blend.to.angle - band.angle) * blend.t,
+        }
+      : { color: band.color, deep: band.deep, angle: band.angle }
+    : null;
+
+  const deep = field?.deep ?? VOID_DEEP;
   /* The closing field takes no light. Every other section is dark space
      with colour thrown across it; this one is the white those colours add
      back up to, so there is nothing left to light it with. Painting the
@@ -182,6 +249,24 @@ export function SpectrumBackground() {
  * `angle` runs -10 at red to -58 at violet. `from` is where red puts the
  * light and `to` is where violet does; everything between interpolates.
  */
+/**
+ * Two `#rrggbb` colours, `t` of the way from the first to the second.
+ *
+ * Mixed in plain sRGB. A perceptual space would hold the midpoint
+ * brighter, but every field here is a near-black a few percent off the
+ * same base, so there is no hue rotation to protect against and the cheap
+ * version runs on every scroll frame without being thought about.
+ */
+function mixHex(a: string, b: string, t: number) {
+  const x = parseInt(a.slice(1), 16);
+  const y = parseInt(b.slice(1), 16);
+  const c = (sh: number) => {
+    const v = Math.round((((x >> sh) & 255) * (1 - t)) + (((y >> sh) & 255) * t));
+    return Math.max(0, Math.min(255, v)).toString(16).padStart(2, "0");
+  };
+  return `#${c(16)}${c(8)}${c(0)}`;
+}
+
 function lift(angle: number, from: number, to: number) {
   const t = Math.min(1, Math.max(0, (Math.abs(angle) - 10) / 48));
   return (from + (to - from) * t).toFixed(1);
