@@ -72,6 +72,17 @@ export const site = {
        the work. `cue` keeps the instruction because a page that does
        nothing until you scroll has to say so once; `cueSub` now names what
        is actually down there, which is the thing that earns the scroll. */
+    /* The one line on the closing screen, under "Tell me what you're
+       building".
+
+       It used to reprint `lead` — the same words as the opening screen.
+       By the time anybody reaches the bottom they have read six sections
+       of what you do, so restating it there was the most redundant
+       sentence on the page, and it was competing with the heading for the
+       job of setting the tone. This says how you want to work instead,
+       which is the one thing the six sections above cannot show. */
+    closing: "Curious to learn and grow together.",
+
     cue: "Scroll to split the light",
     cueStill: "Start with the work",
     cueSub: "Growth, video, and the things I\u2019ve shipped.",

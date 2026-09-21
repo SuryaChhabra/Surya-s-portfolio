@@ -829,7 +829,7 @@ export function CloseBand() {
             className="mt-5 max-w-xl text-[1.125rem] leading-relaxed"
             style={{ color: t.body }}
           >
-            {site.hero.lead}
+            {site.hero.closing}
           </p>
 
           {/* The address at the size of the thing the page is for. */}
