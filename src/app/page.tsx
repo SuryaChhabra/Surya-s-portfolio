@@ -33,9 +33,9 @@ export default function Home() {
         <PrismAct />
         <GrowthBand />
         <VideoBand />
-        <EducationBand />
-        <LeadingBand />
         <BuiltBand />
+        <LeadingBand />
+        <EducationBand />
         <ResearchBand />
         <CloseBand />
       </main>

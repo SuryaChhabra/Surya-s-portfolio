@@ -96,18 +96,41 @@ export const BANDS: Band[] = [
        card was introducing the wrong film. */
     body: "It started as an experiment: one application video, made with tools I had not used before. Now it is how I make the case for a thing, whether that thing is a product, a brand or me.",
   },
+  /* Built sits third and education fifth, which is the other way round
+     from how this page first read.
+
+     The order is the argument. A founder scanning this decides in the
+     first three sections whether to keep going, and those three should
+     all be work: what the growth roles produced, the films, then the
+     things shipped. Education was sitting in the third slot — a degree
+     and a list of course titles, in the one position on the page where
+     momentum is worth the most. It is the least persuasive section here
+     and it was placed as though it were the most.
+
+     Credentials are not persuasion; they are verification, and people
+     verify after they are interested. So education moves down to sit
+     with the research, where somebody already convinced goes to check
+     who they are dealing with.
+
+     The wavelengths stay where they are — the spectrum has to run red to
+     violet down the page whatever occupies each band — so the two
+     sections swap colours along with positions. Built is the gold band
+     now and education the blue one. */
   {
-    id: "education",
+    id: "built",
     color: "#ffd23d",
     deep: "#241f11",
     accent: "#ffe38a",
     tone: "dark",
     angle: -26,
     nm: 580,
-    nav: "Education",
-    line: "",
-    body: "",
-    compact: true,
+    nav: "Built",
+    line: "Things I've shipped.",
+    /* Not a list of the rows underneath, which is what it was before
+       Collectiv arrived and immediately made it wrong. The split it names
+       now — one thing judged, three things nobody asked for — is the thing
+       the rows cannot say for themselves. */
+    body: "First place at a product hackathon, and three things nobody asked me to make. Built, deployed, live. Version one beats a plan every time.",
   },
   {
     id: "leading",
@@ -122,20 +145,17 @@ export const BANDS: Band[] = [
     body: "",
   },
   {
-    id: "built",
+    id: "education",
     color: "#38bdf8",
     deep: "#0c1d27",
     accent: "#5fd0fb",
     tone: "dark",
     angle: -42,
     nm: 480,
-    nav: "Built",
-    line: "Things I've shipped.",
-    /* Not a list of the rows underneath, which is what it was before
-       Collectiv arrived and immediately made it wrong. The split it names
-       now — one thing judged, three things nobody asked for — is the thing
-       the rows cannot say for themselves. */
-    body: "First place at a product hackathon, and three things nobody asked me to make. Built, deployed, live. Version one beats a plan every time.",
+    nav: "Education",
+    line: "",
+    body: "",
+    compact: true,
   },
   {
     id: "research",
