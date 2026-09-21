@@ -70,7 +70,7 @@ export function PrismAct() {
       progress.current = t;
 
       /* The band the light is currently on, once it is through the glass. */
-      const into = Math.max(0, (t - 0.25) / 0.6);
+      const into = Math.max(0, (t - 0.15) / 0.45);
       active.current = Math.min(BANDS.length - 1, Math.floor(into * BANDS.length));
 
       /* Quantised so the copy crossfades in steps rather than on every pixel. */
@@ -117,7 +117,12 @@ export function PrismAct() {
      page said Growth twice on one screen. The spectrum flooding to full
      brightness is the climax; putting a caption on top of it is the one
      way to make a climax feel like a slide. */
-  const introOut = clamp((phase - 0.2) / 0.22);
+  /* The copy clears as the turn completes, so the order a visitor sees is
+     the one the act is about: the glass turns, the words step aside, the
+     light comes out, the glass shrinks back. It used to clear at 20%, long
+     before anything had happened, which left two thirds of the act with an
+     empty frame and no reason given for it. */
+  const introOut = clamp((phase - 0.3) / 0.2);
 
   return (
     <section

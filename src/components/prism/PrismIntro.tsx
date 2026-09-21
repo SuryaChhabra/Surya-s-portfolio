@@ -98,26 +98,37 @@ function Stage({ progress, active, lite = false }: Props) {
 
     if (prism.current) {
       /* The scroll turns the glass — that is the whole gesture, so most of
-         the turn is driven by scroll position. It covers about 150 degrees
-         across the act — it passes edge-on around halfway and comes back to
-         a full triangle by the end, so the turn reads as a turn rather than
-         an ease and never parks on the flat view. The clock keeps it moving
-         while nobody is scrolling. */
-      const spin = -0.55 + t * 3.4 + time * 0.09;
+         the turn is driven by scroll position. It covers about 150 degrees:
+         it passes edge-on partway through and comes back to a full triangle,
+         so the turn reads as a turn rather than an ease and never parks on
+         the flat view. The clock keeps it moving while nobody is scrolling.
+
+         The turn finishes at 55% of the act rather than at the end of it.
+         It used to run the full length, which meant the glass was still
+         rotating while the spectrum was flooding and while the frame was
+         handing over — three things arriving at once, and the payoff
+         landing on the last pixel of scroll a visitor had any reason to
+         spend. Finishing it early lets the rest of the act be the
+         consequence: light out, then the glass stepping back, then the
+         page moving on. */
+      const turn = Math.min(1, t / 0.55);
+      const spin = -0.55 + turn * 3.4 + time * 0.09;
       prism.current.rotation.y = spin;
       spinRef.current = spin;
       prism.current.rotation.x = Math.sin(time * 0.18) * 0.05;
       prism.current.rotation.z = -0.06 + Math.sin(time * 0.13) * 0.03;
 
-      /* At the very end the glass has done its job: it drifts back and
-         thins out so the spectrum, not the object, is the last thing seen. */
-      const exit = THREE.MathUtils.clamp((t - 0.86) / 0.14, 0, 1);
+      /* Once the light is out the glass has done its job: it drifts back
+         and thins out so the spectrum, not the object, is the last thing
+         seen — and so the shrinking happens while the first section is
+         already rising into the frame beneath it, rather than after. */
+      const exit = THREE.MathUtils.clamp((t - 0.7) / 0.3, 0, 1);
       prism.current.position.z = -exit * 3.2;
       prism.current.scale.setScalar(1 - exit * 0.18);
     }
 
     if (beam.current) {
-      const arrive = THREE.MathUtils.clamp((t - 0.04) / 0.14, 0, 1);
+      const arrive = THREE.MathUtils.clamp((t - 0.03) / 0.12, 0, 1);
       beam.current.scale.x = Math.max(arrive, 0.0001);
       (beam.current.material as THREE.MeshBasicMaterial).opacity = arrive * 0.9;
     }
