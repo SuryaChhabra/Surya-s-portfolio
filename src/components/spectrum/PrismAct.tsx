@@ -163,10 +163,15 @@ export function PrismAct() {
               <Image
                 src={site.headshot.src}
                 alt={site.headshot.alt}
-                width={112}
-                height={112}
+                width={144}
+                height={144}
                 priority
-                className="mx-auto mb-5 h-[5.5rem] w-[5.5rem] rounded-full object-cover sm:h-28 sm:w-28"
+                /* Bigger on a wide screen than on a phone, and not by a
+                   little. On the desktop frame there is room beside the
+                   glass for the portrait to be a presence rather than a
+                   token; on a phone the glass is directly above it and
+                   every extra pixel closes the gap to its bottom edge. */
+                className="mx-auto mb-5 h-[5.5rem] w-[5.5rem] rounded-full object-cover sm:mb-6 sm:h-36 sm:w-36"
                 style={{
                   border: "1px solid rgba(255,255,255,0.26)",
                   boxShadow: "0 14px 40px -16px rgba(0,0,0,0.8)",
