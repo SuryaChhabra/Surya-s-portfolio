@@ -463,6 +463,35 @@ body {
  * would otherwise flash cream on overscroll, at the bounce at either end of
  * the scroll, and behind the fixed colour layer before it mounts.
  * ------------------------------------------------------------------------- */
+/* ---------------------------------------------------------------------------
+ * How far you scroll through the opening act.
+ *
+ * This was 420vh — four and a bit screens of scrolling before the first
+ * section of actual work appeared, and every one of those screens scrolls
+ * without the page advancing, because the frame is pinned. That combination
+ * is not "long", it is confusing: scrolling stops doing the thing scrolling
+ * does, and a visitor cannot tell whether the page is broken or whether
+ * they are meant to keep going.
+ *
+ * Shorter, and shorter again on a phone, where the scene is the cheap
+ * version anyway and where people give up fastest. The act performs exactly
+ * the same three beats — the glass turns, the beam gets through, the
+ * spectrum opens — in less scrolling.
+ *
+ * Done in CSS rather than from the `mode` state so the height is right on
+ * the very first paint: deciding it in JavaScript would mean rendering one
+ * height and then jumping to another once the effect had run.
+ * ------------------------------------------------------------------------- */
+.prism-runway {
+  height: 240vh;
+}
+
+@media (max-width: 820px) {
+  .prism-runway {
+    height: 170vh;
+  }
+}
+
 body:has(.spectrum-page) {
   background-color: #05060a;
   color: #ffffff;

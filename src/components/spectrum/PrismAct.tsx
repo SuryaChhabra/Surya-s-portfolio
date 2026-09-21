@@ -11,9 +11,6 @@ const PrismIntro = dynamic(
   { ssr: false },
 );
 
-/** How tall the act is, in viewport heights, including the pinned frame. */
-const RUNWAY_VH = 420;
-
 /**
  * The opening act: a glass prism held in the frame while you scroll through
  * it. The scroll does three things in order — the prism turns, a white beam
@@ -118,8 +115,11 @@ export function PrismAct() {
     <section
       ref={section}
       aria-label="Introduction"
-      style={{ height: mode === "still" ? "100svh" : `${RUNWAY_VH}vh` }}
-      className="relative"
+      /* The runway lives in CSS — see `.prism-runway` in globals.css — so
+         it can differ by screen size without a first-paint jump. With no
+         scene to scroll through there is nothing to pin, so that case
+         collapses to a single screen. */
+      className={mode === "still" ? "relative h-[100svh]" : "prism-runway relative"}
     >
       <div ref={frame} className="sticky top-0 h-[100svh] overflow-hidden">
         {mode === "full" || mode === "lite" ? (
