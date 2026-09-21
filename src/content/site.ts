@@ -146,7 +146,9 @@ export const site = {
          where the idea should be. */
       summary:
         "Group the orders on a street and last-mile delivery stops being the cost that keeps small local stores off the internet. Built in 24 hours with no code at UIUC Product Space, with two teammates I met the day before.",
-      metrics: [],
+      /* The idea was on the card and the result was not, which left the
+         only judged thing in this section arguing from plausibility. */
+      metrics: [{ value: "~60%", label: "lower cost per order" }],
       tags: [],
       /* ⚠️ No link yet. The LinkedIn post announcing it would do — without
          one this row is the only project on the page that opens nothing. */
@@ -341,7 +343,11 @@ export const site = {
          decision rather than an afternoon. */
       note: "Brought Antler to campus. Workshops and a fireside put 100+ students in direct contact with pre-seed VC. Ran it end to end: the programme, the investor office hours, the guest list for the dinner.",
       link: "https://lnkd.in/p/g6eXxFDd",
-      images: ["/events/antler-stage.jpg", "/events/antler-interview.webp"],
+      /* The second photo was the fireside: two speakers on stools, neither
+         of them you, filling the largest frame in the section about what
+         you led. It proved the event happened and said nothing about who
+         ran it. This one has you in the room. */
+      images: ["/events/antler-stage.jpg", "/events/antler-with-surya.webp"],
     },
   ],
 

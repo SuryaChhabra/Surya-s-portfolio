@@ -663,6 +663,28 @@ export function BuiltBand() {
                     </span>
                   ) : null}
 
+                  {/* Every project carried a `metrics` field and nothing
+                      rendered it, so a result could be written down and
+                      still never reach the page. In the band's own accent,
+                      the same treatment the growth cards give a number. */}
+                  {project.metrics.length ? (
+                    <span className="mt-3 flex flex-wrap items-baseline gap-x-2 gap-y-1">
+                      {project.metrics.map((m) => (
+                        <span key={m.label} className="flex items-baseline gap-2">
+                          <span
+                            className="text-lg font-medium tracking-[-0.03em]"
+                            style={{ color: band.accent }}
+                          >
+                            {m.value}
+                          </span>
+                          <span className="text-sm" style={{ color: t.muted }}>
+                            {m.label}
+                          </span>
+                        </span>
+                      ))}
+                    </span>
+                  ) : null}
+
                   {project.link ? (
                     <span
                       className="mt-3 inline-block text-sm transition-transform group-hover:translate-x-1"
