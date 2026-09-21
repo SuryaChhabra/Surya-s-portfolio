@@ -375,9 +375,15 @@ export const site = {
           "Made a short film that became an anchor of the 2.0 launch. Turned user interviews into a design prototype the team took straight into the product. Led growth across SEO, content, web and brand, from campaigns to product storytelling to social distribution.",
         /* The number goes here rather than into the sentence, because this
            is the one slot on the card that renders in the band's own accent
-           colour — and because twelve hours from suggestion to shipped is
-           the most checkable thing on this page. */
-        metrics: [{ value: "12 hrs", label: "prototype to implemented" }] as {
+           colour — and because twelve hours from suggestion to live is the
+           most checkable thing on this page.
+           "prototype to implemented" was the first wording and it claimed
+           too much: engineers implemented it. The prototype and the
+           interviews behind it are the part that is yours, and the twelve
+           hours is remarkable precisely because someone else moved that
+           fast on it — so the label names the boundary rather than blurring
+           it. */
+        metrics: [{ value: "12 hrs", label: "from my prototype to live" }] as {
           value: string;
           label: string;
         }[],
