@@ -474,24 +474,17 @@ export function VideoBand() {
                 style={{ color: t.ink, boxShadow: "0 6px 18px -10px rgba(60,30,0,0.45)" }}
               >
                 {tool.logo ? (
-                  <span
-                    className={`relative block h-6 shrink-0 overflow-hidden rounded-[6px] ${
-                      tool.wordmark ? "w-[3.4rem]" : "w-6"
-                    }`}
-                  >
+                  <span className="relative block h-6 w-6 shrink-0 overflow-hidden rounded-[6px]">
                     <Image
                       src={tool.logo}
-                      alt={tool.wordmark ? tool.name : ""}
+                      alt=""
                       fill
-                      sizes="56px"
+                      sizes="24px"
                       className="object-contain"
                     />
                   </span>
                 ) : null}
-                {/* A wordmark already says the name, so the label would be
-                    the second time. It keeps the name in alt text, where a
-                    screen reader still gets it. */}
-                {tool.wordmark ? null : tool.name}
+                {tool.name}
               </span>
             ))}
           </div>

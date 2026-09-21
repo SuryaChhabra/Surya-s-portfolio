@@ -200,15 +200,19 @@ export const site = {
      nothing. A card's own `tags` are now only for what is unique to it. */
   videoToolkit: [
     /* Drop a mark in public/logos/ and set it here; without one the pill is
-       just the name, which still reads fine.
-       `wordmark` is for a brand whose mark is its own name: the image runs
-       at its natural width and the text is dropped, because a pill reading
-       "SUNO Suno" says it twice. */
-    { name: "Suno", logo: "/logos/tool-suno.webp", wordmark: true },
+       just the name, which still reads fine — which is what Suno now does.
+       The asset available for Suno is a wide banner with SUNO set across a
+       gradient, not a square mark like the other three. At the 24px these
+       pills run at, its lettering is about three pixels tall: unreadable,
+       and next to three legible chips it reads as a broken image rather
+       than as a logo. Cropping it to a square gives "SU" cut off mid-word,
+       which is worse. A name set in the page's own type is not a
+       compromise here; it is the only version anybody can actually read. */
+    { name: "Suno" },
     { name: "Runway", logo: "/logos/tool-runway.webp" },
     { name: "CapCut", logo: "/logos/tool-capcut.webp" },
     { name: "Claude", logo: "/logos/tool-claude.webp" },
-  ] as { name: string; logo?: string; wordmark?: boolean }[],
+  ] as { name: string; logo?: string }[],
 
   videos: [
     {
