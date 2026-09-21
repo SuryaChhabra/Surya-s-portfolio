@@ -103,15 +103,14 @@ function Stage({ progress, active, lite = false }: Props) {
          so the turn reads as a turn rather than an ease and never parks on
          the flat view. The clock keeps it moving while nobody is scrolling.
 
-         The turn finishes at 55% of the act rather than at the end of it.
-         It used to run the full length, which meant the glass was still
-         rotating while the spectrum was flooding and while the frame was
-         handing over — three things arriving at once, and the payoff
-         landing on the last pixel of scroll a visitor had any reason to
-         spend. Finishing it early lets the rest of the act be the
-         consequence: light out, then the glass stepping back, then the
-         page moving on. */
-      const turn = Math.min(1, t / 0.55);
+         The turn finishes at 40% of the act. Everything after it is
+         consequence: the light comes out, the words step aside, the glass
+         backs off, the page moves on. Running the turn the full length —
+         which it once did — meant the glass was still rotating while the
+         spectrum flooded and while the frame handed over, three things
+         landing at once on the last pixel of scroll anybody had a reason
+         to spend. */
+      const turn = Math.min(1, t / 0.4);
       const spin = -0.55 + turn * 3.4 + time * 0.09;
       prism.current.rotation.y = spin;
       spinRef.current = spin;
@@ -122,7 +121,7 @@ function Stage({ progress, active, lite = false }: Props) {
          and thins out so the spectrum, not the object, is the last thing
          seen — and so the shrinking happens while the first section is
          already rising into the frame beneath it, rather than after. */
-      const exit = THREE.MathUtils.clamp((t - 0.7) / 0.3, 0, 1);
+      const exit = THREE.MathUtils.clamp((t - 0.72) / 0.28, 0, 1);
       prism.current.position.z = -exit * 3.2;
       prism.current.scale.setScalar(1 - exit * 0.18);
     }

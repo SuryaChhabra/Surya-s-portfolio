@@ -63,14 +63,14 @@ export function SpectrumFan({ progress, active, spin, length = 9.5 }: Props) {
     const time = state.clock.elapsedTime;
 
     /* The fan opens once the beam is through the glass. */
-    const emerge = THREE.MathUtils.clamp((t - 0.12) / 0.28, 0, 1);
+    const emerge = THREE.MathUtils.clamp((t - 0.1) / 0.22, 0, 1);
     /* Every wavelength out at full strength, and done by 72% of the act
        rather than on its final pixel. The climax used to be the last thing
        that happened before the frame released, which asked a visitor to
        scroll the whole way through on faith that something was coming. It
        now lands with a third of the act still to run, and that third is
        the glass receding while the first section arrives. */
-    const flood = THREE.MathUtils.clamp((t - 0.55) / 0.17, 0, 1);
+    const flood = THREE.MathUtils.clamp((t - 0.38) / 0.2, 0, 1);
 
     /* Follow the exit edge, or the rainbow detaches from the glass every
        time the prism turns far enough to change its silhouette. */
