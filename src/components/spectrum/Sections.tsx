@@ -7,7 +7,6 @@ import { site } from "@/content/site";
 import { Reveal } from "@/components/Reveal";
 import { VideoPlayer } from "@/components/VideoPlayer";
 import { Lightbox } from "@/components/Lightbox";
-import { Parallax } from "@/components/Parallax";
 import { BAND_BY_ID, CLOSING, tones, type Band } from "@/components/prism/bands";
 import { BandSection, Note, Pending, SHOW_NOTES } from "./BandSection";
 
@@ -777,119 +776,6 @@ export function ResearchBand() {
           onClose={() => setOpen(null)}
         />
       ) : null}
-    </BandSection>
-  );
-}
-
-/* — 07 Violet — archery ————————————————————————————————————————————— */
-
-export function SportBand() {
-  const band = BAND_BY_ID.sport;
-  const t = tones(band);
-  const { honours, award, image, imageAlt } = site.archery;
-  const results = site.archery.results.filter((r) => r.event);
-
-  return (
-    <BandSection band={band}>
-      <div className="space-y-12 sm:space-y-14">
-        {/* Full width, and landscape, because that is the shape of the
-            photograph: the archer is hard left and the rest of the frame is
-            the empty ground the arrow has to cross. Cropping it to a portrait
-            card to sit beside the numbers would take out both the distance
-            and, at 4:5, the archer's head. */}
-        {image ? (
-          <Reveal>
-            {/* Camera movement, not motion in the subject. The frame slides
-                over the photograph as you pass it, which is honest about
-                what a still is; a drawn arrow or a zoom on the release
-                would claim something the frame does not show. */}
-            <Parallax
-              className={`relative aspect-[3/2] overflow-hidden sm:aspect-[16/9] ${t.pane}`}
-            >
-              <Image
-                src={image}
-                alt={imageAlt}
-                fill
-                sizes="(max-width: 1152px) 100vw, 1152px"
-                className="object-cover"
-              />
-            </Parallax>
-          </Reveal>
-        ) : null}
-
-        <div className="space-y-10">
-          <Reveal delay={0.08}>
-            <dl className="grid grid-cols-3 gap-6">
-              {honours.map((h) => (
-                <div key={h.label}>
-                  <dt className="sr-only">{h.label}</dt>
-                  <dd>
-                    <span
-                      className="block text-[clamp(2rem,4.4vw,3rem)] font-medium leading-none tracking-[-0.045em]"
-                      style={{ color: band.accent }}
-                    >
-                      {h.value}
-                    </span>
-                    <span className="mt-2 block text-sm leading-snug" style={{ color: t.body }}>
-                      {h.label}
-                    </span>
-                  </dd>
-                </div>
-              ))}
-            </dl>
-          </Reveal>
-
-          {award?.name ? (
-            <Reveal delay={0.16}>
-              <div className={`px-6 py-6 ${t.pane}`}>
-                <p className="label" style={{ color: t.muted }}>
-                  Award
-                </p>
-                <p className="mt-2 text-lg font-medium leading-snug" style={{ color: t.ink }}>
-                  {award.name}
-                </p>
-                {award.note ? (
-                  <p className="mt-2 text-base" style={{ color: t.body }}>
-                    {award.note}
-                  </p>
-                ) : null}
-              </div>
-            </Reveal>
-          ) : null}
-
-          {/* Per-competition detail, if it is ever filled in. The record
-              above already stands on its own without it. */}
-          {results.length ? (
-            <Reveal delay={0.24}>
-              <table className="w-full text-left text-sm">
-                <thead>
-                  <tr className="border-b" style={{ borderColor: t.rule, color: t.muted }}>
-                    <th className="py-3 font-normal">Date</th>
-                    <th className="py-3 font-normal">Competition</th>
-                    <th className="py-3 font-normal">Category</th>
-                    <th className="py-3 font-normal">Result</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {results.map((r) => (
-                    <tr key={`${r.date}-${r.event}`} className="border-b" style={{ borderColor: t.rule }}>
-                      <td className="py-3" style={{ color: t.muted }}>{r.date}</td>
-                      <td className="py-3" style={{ color: t.ink }}>
-                        {r.event}
-                        {r.level ? <span style={{ color: t.muted }}> · {r.level}</span> : null}
-                      </td>
-                      <td className="py-3" style={{ color: t.body }}>{r.category}</td>
-                      <td className="py-3 font-medium" style={{ color: band.accent }}>
-                        {r.result}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </Reveal>
-          ) : null}
-        </div>
-      </div>
     </BandSection>
   );
 }

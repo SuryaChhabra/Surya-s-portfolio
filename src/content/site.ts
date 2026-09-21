@@ -293,46 +293,6 @@ export const site = {
     ],
   },
 
-  /* — Archery ———————————————————————————————————————————————————————
-     The record, then the detail.
-
-     `honours` is the headline — the three or four things worth knowing
-     before anything else. `award` is a single named honour, or null.
-     `results` is optional per-competition detail: fill a row per
-     competition and the table appears, leave them empty and it does not.
-
-       date     — "Mar 2026" or just "2025"
-       event    — the competition name
-       level    — e.g. "National", "State", "University", "Club"
-       category — e.g. "Recurve, 70m" / "Compound" / "Barebow"
-       result   — e.g. "Gold", "2nd", "Qualified", "Personal best 612"  */
-  archery: {
-    /* Set image to "" to drop the photo. alt is read by screen readers. */
-    image: "/archery/at-full-draw.webp",
-    imageAlt:
-      "At full draw with a recurve bow on an outdoor range, target butts at the left of frame.",
-
-    honours: [
-      { value: "5×", label: "National player" },
-      { value: "3×", label: "Delhi State champion" },
-      { value: "150K+", label: "Arrows shot" },
-    ],
-
-    award: {
-      name: "Shri M.N. Kapoor Award for Excellence in Sports",
-      note: "My school's highest sporting honour.",
-    },
-
-    /* Empty on purpose. Add a row and the table appears under the record;
-       the shape each row takes is documented at the top of this block. */
-    results: [] as {
-      date: string;
-      event: string;
-      level: string;
-      category: string;
-      result: string;
-    }[],
-  },
 
   /* — Events ————————————————————————————————————————————————————————
      Real events only. An entry with no `name` is skipped, and the section
@@ -616,7 +576,7 @@ export const site = {
   about: {
     paragraphs: [
       "I combine tools, taste and storytelling to make things feel alive. That is the actual skill, not any single tool, and not waiting until I am an expert in one.",
-      "It shows up across everything here: AI video made with whatever gets the idea across, side projects shipped instead of planned, molecular-line astronomy, and the discipline competitive archery beats into you.",
+      "It shows up across everything here: AI video made with whatever gets the idea across, side projects shipped instead of planned, and molecular-line astronomy.",
       "Expert nahi, par ready hoon.",
     ],
   },

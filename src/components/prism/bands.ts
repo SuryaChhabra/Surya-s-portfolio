@@ -139,12 +139,19 @@ export const BANDS: Band[] = [
   },
   {
     id: "research",
-    color: "#6366f1",
-    deep: "#111227",
-    accent: "#a9abf7",
+    /* Indigo and violet, averaged.
+       Archery was the violet band and it has been taken off the site, so
+       the spectrum would otherwise have stopped at indigo and left the
+       short end missing. Rather than pretend six bands were always the
+       plan, this band now carries both wavelengths — colour, angle and
+       nanometres are each the midpoint of the two it replaces, so the fan
+       still reaches the end of what an eye can see. */
+    color: "#9275f7",
+    deep: "#171427",
+    accent: "#c6b4fb",
     tone: "dark",
-    angle: -50,
-    nm: 445,
+    angle: -54,
+    nm: 430,
     nav: "Research",
     line: "Astronomy.",
     /* Question first, instruments second. An earlier version opened on
@@ -154,18 +161,6 @@ export const BANDS: Band[] = [
        four proper nouns in one paragraph is where the first version went
        wrong, and the imaging craft belongs beside the panels, not here. */
     body: "Gravity predicts how gas should spin around a forming star. Subtract that from what the telescope sees, and whatever refuses to cancel out is the interesting part. I track that residual with Python and statistics, on ALMA radio-interferometry data for IRS3B, a triple protostar system.",
-  },
-  {
-    id: "sport",
-    color: "#c084fc",
-    deep: "#1c1628",
-    accent: "#e5b3ff",
-    tone: "dark",
-    angle: -58,
-    nm: 415,
-    nav: "Archery",
-    line: "Competitive archery.",
-    body: "The discipline underneath everything else here. Same draw, same anchor, every arrow.",
   },
 ];
 

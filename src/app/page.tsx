@@ -8,7 +8,6 @@ import {
   LeadingBand,
   BuiltBand,
   ResearchBand,
-  SportBand,
   CloseBand,
 } from "@/components/spectrum/Sections";
 import { site } from "@/content/site";
@@ -38,7 +37,6 @@ export default function Home() {
         <LeadingBand />
         <BuiltBand />
         <ResearchBand />
-        <SportBand />
         <CloseBand />
       </main>
 
