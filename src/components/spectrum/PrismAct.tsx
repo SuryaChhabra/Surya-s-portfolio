@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { BANDS } from "@/components/prism/bands";
@@ -147,11 +148,32 @@ export function PrismAct() {
         >
           {/* The cue is pinned to the floor now, so the copy has to clear it
                 rather than sit where it used to. */}
-            <div className="mx-auto w-full max-w-6xl px-5 pb-40 sm:px-10 sm:pb-[25vh]">
+            <div className="mx-auto w-full max-w-6xl px-5 pb-32 sm:px-10 sm:pb-[19vh]">
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
-            <div className="max-w-md">
-              <h1 className="text-[clamp(2.6rem,6.4vw,4.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white">
+            {/* Centred inside the text column, not inside the viewport.
+                The glass sits centre-right of the frame; a block centred on
+                the screen would land on top of it. */}
+            <div className="max-w-md text-center">
+              {/* Circular, and a circle is the reason this can be centred
+                  at all: a rounded rectangle above a line of type reads as
+                  an app icon sitting on the page, while a circle above a
+                  name is the oldest arrangement there is for saying that a
+                  person is speaking. */}
+              <Image
+                src={site.headshot.src}
+                alt={site.headshot.alt}
+                width={112}
+                height={112}
+                priority
+                className="mx-auto mb-5 h-[5.5rem] w-[5.5rem] rounded-full object-cover sm:h-28 sm:w-28"
+                style={{
+                  border: "1px solid rgba(255,255,255,0.26)",
+                  boxShadow: "0 14px 40px -16px rgba(0,0,0,0.8)",
+                }}
+              />
+
+              <h1 className="text-[clamp(2.2rem,5.4vw,3.8rem)] font-medium leading-[0.98] tracking-[-0.045em] text-white">
                 {site.name}
               </h1>
 
@@ -160,17 +182,17 @@ export function PrismAct() {
                   second says how it gets done. The range is the page's job
                   to show — seven sections, seven colours — not this paragraph's
                   job to list, and a list here would read as a CV anyway. */}
-              <p className="mt-5 text-[clamp(1.55rem,2.7vw,2.15rem)] font-medium leading-[1.15] tracking-[-0.03em] text-white">
+              <p className="mt-4 text-[clamp(1.3rem,2.2vw,1.8rem)] font-medium leading-[1.18] tracking-[-0.028em] text-white">
                 {site.hero.lead}
               </p>
               <p
-                className="mt-4 text-[clamp(1.08rem,1.4vw,1.28rem)] leading-[1.5]"
+                className="mt-3.5 text-[clamp(1rem,1.25vw,1.14rem)] leading-[1.55]"
                 style={{ color: "rgba(255,255,255,0.84)" }}
               >
                 {site.hero.sub}
               </p>
 
-              <div className="pointer-events-auto mt-8 flex flex-wrap items-center gap-3">
+              <div className="pointer-events-auto mt-7 flex flex-wrap items-center justify-center gap-3">
                 {/* The first band, not a favourite one. This pointed at
                     #video while the films were the newest thing here, and
                     the effect was that the one button on the opening screen
