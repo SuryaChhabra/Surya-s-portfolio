@@ -365,12 +365,22 @@ export const site = {
            small mistake on a growth CV. */
         context:
           "TwinMind has raised $9M from Streamline Ventures, Sequoia and Wolfram, and serves 500,000 daily active users.",
-        /* GEO is in the CV bullet and deliberately not here: you asked for
+        /* Two outcomes first, remit last — the card used to open on the
+           remit and never said what came out of it, which on the first
+           card a reader meets is the worst place for that gap.
+           GEO is in the CV bullet and deliberately not here: you asked for
            SEO only, so the acronym goes and the substance stays as plain
            discoverability. */
         detail:
-          "Led growth across SEO, content, web and brand, making TwinMind easier to find. Ran experiments and launches end to end: website, creative campaigns, product storytelling, video, social distribution and user research.",
-        metrics: [] as { value: string; label: string }[],
+          "Made a short film that became an anchor of the 2.0 launch. Turned user interviews into a design prototype the team took straight into the product. Led growth across SEO, content, web and brand, from campaigns to product storytelling to social distribution.",
+        /* The number goes here rather than into the sentence, because this
+           is the one slot on the card that renders in the band's own accent
+           colour — and because twelve hours from suggestion to shipped is
+           the most checkable thing on this page. */
+        metrics: [{ value: "12 hrs", label: "prototype to implemented" }] as {
+          value: string;
+          label: string;
+        }[],
         skills: ["SEO", "Content", "Brand", "User Research"],
       },
       {
