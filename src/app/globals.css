@@ -478,17 +478,26 @@ body {
  * the same three beats — the glass turns, the beam gets through, the
  * spectrum opens — in less scrolling.
  *
+ * Cut twice. 420 became 240 and 240 became this, because the first cut
+ * fixed the arithmetic and not the feeling: a pinned frame is one screen
+ * tall no matter what, so of the 240 a full 100 was the finished scene
+ * sliding away with nothing left to watch. Only the remainder was ever
+ * the animation. At 180 the glass turns across 80vh rather than 140, so
+ * the same rotation reads as quicker without a single value in the scene
+ * changing — the spin is driven by scroll position, so shortening the
+ * runway is what speeds it up.
+ *
  * Done in CSS rather than from the `mode` state so the height is right on
  * the very first paint: deciding it in JavaScript would mean rendering one
  * height and then jumping to another once the effect had run.
  * ------------------------------------------------------------------------- */
 .prism-runway {
-  height: 240vh;
+  height: 180vh;
 }
 
 @media (max-width: 820px) {
   .prism-runway {
-    height: 170vh;
+    height: 140vh;
   }
 }
 
