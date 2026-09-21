@@ -368,11 +368,12 @@ export const site = {
         /* Two outcomes first, remit last — the card used to open on the
            remit and never said what came out of it, which on the first
            card a reader meets is the worst place for that gap.
-           GEO is in the CV bullet and deliberately not here: you asked for
-           SEO only, so the acronym goes and the substance stays as plain
-           discoverability. */
+           No search acronyms here at all: the CV bullet has GEO, an
+           earlier version of this card had SEO, and neither is on the card
+           now. What the work did is in the sentences; three letters a
+           reader has to decode are not what earns the next paragraph. */
         detail:
-          "Made a short film that became an anchor of the 2.0 launch. Turned user interviews into a design prototype the team took straight into the product. Led growth across SEO, content, web and brand, from campaigns to product storytelling to social distribution.",
+          "Made a short film that became an anchor of the 2.0 launch. Turned user interviews into a design prototype the team took straight into the product. Led growth across content, web and brand, from campaigns to product storytelling to social distribution.",
         /* The number goes here rather than into the sentence, because this
            is the one slot on the card that renders in the band's own accent
            colour — and because twelve hours from suggestion to live is the
@@ -387,7 +388,7 @@ export const site = {
           value: string;
           label: string;
         }[],
-        skills: ["SEO", "Content", "Brand", "User Research"],
+        skills: ["Content", "Brand", "User Research"],
       },
       {
         title: "Growth",
