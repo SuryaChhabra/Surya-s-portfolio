@@ -818,8 +818,16 @@ export function CloseBand() {
             className="mt-5 max-w-xl text-[1.125rem] leading-relaxed"
             style={{ color: t.body }}
           >
-            {site.hero.lead} If something here looks like the kind of thing you
-            need made, I am one message away.
+            {/* "the kind of thing you need made" was services language —
+                the sentence of somebody selling work by the project, on the
+                one screen where the ask is supposed to be a job. It is also
+                the exact signal an F1 student should not be putting in
+                writing. "Hiring" says employment and nothing else, and it
+                is the ask this whole page is building towards: the page
+                wants a founder to finish it thinking they want this person
+                on the team, so the last line should say that out loud. */}
+            {site.hero.lead} If you&rsquo;re hiring for that, I&rsquo;m one
+            message away.
           </p>
 
           {/* The address at the size of the thing the page is for. */}
