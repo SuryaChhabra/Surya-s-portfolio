@@ -107,9 +107,17 @@ export function PrismAct() {
   }, []);
 
   /* Intro copy owns the frame at the start and clears out as the light
-     builds, so nothing is ever competing with the spectrum. */
+     builds, so nothing is ever competing with the spectrum.
+
+     There used to be a second card fading in at the other end, over the
+     finished spectrum: a rule, the word FIRST, and the first band's own
+     heading. It was the third thing in this act to narrate the act. Worse,
+     the heading it showed was "Growth." — the exact words of the section
+     heading that arrives a moment later, so for most of the handover the
+     page said Growth twice on one screen. The spectrum flooding to full
+     brightness is the climax; putting a caption on top of it is the one
+     way to make a climax feel like a slide. */
   const introOut = clamp((phase - 0.2) / 0.22);
-  const outroIn = clamp((phase - 0.82) / 0.14);
 
   return (
     <section
@@ -281,41 +289,6 @@ export function PrismAct() {
           </div>
         </div>
 
-        {/* Once the spectrum is out, the frame hands over to the sections. */}
-        <div
-          className="pointer-events-none absolute inset-x-0 bottom-0"
-          style={{ opacity: outroIn, transition: "opacity 400ms linear" }}
-        >
-          {/* This was a legend: seven coloured rules, each labelled with
-              its band name, over "Each colour below is a section." It was
-              the worst thing on the page twice over. As copy it explained
-              the device instead of trusting it, and a prism that needs a
-              key is not working. As a shape it was seven equal stripes in
-              spectral order with nothing around them to say they were
-              light, which is the single most flag-like object the site
-              had — and it appeared at full width, at the exact moment the
-              act handed over.
-
-              What replaces it does the handoff instead of narrating it:
-              the first band's own colour, and the name of what is next. */}
-          <div className="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-10 sm:pb-16">
-            <div className="flex items-center gap-3">
-              <span
-                aria-hidden="true"
-                className="block h-[3px] w-10"
-                style={{ backgroundColor: BANDS[0].color }}
-              />
-              <span className="label" style={{ color: "rgba(255,255,255,0.62)" }}>
-                First
-              </span>
-            </div>
-            <p
-              className="mt-3 text-[clamp(1.15rem,1.7vw,1.45rem)] font-medium leading-tight tracking-[-0.02em] text-white"
-            >
-              {BANDS[0].line}
-            </p>
-          </div>
-        </div>
       </div>
     </section>
   );
