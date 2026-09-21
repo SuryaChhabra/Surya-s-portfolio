@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import dynamic from "next/dynamic";
 import { useEffect, useRef, useState } from "react";
 import { BANDS } from "@/components/prism/bands";
@@ -152,40 +151,6 @@ export function PrismAct() {
             {/* Narrow on purpose: the glass owns the right of the
                 frame, and a wider column runs underneath it. */}
             <div className="max-w-md">
-              {/* A face, before anything else.
-
-                  The only photograph on the site used to be at the very
-                  bottom, which meant the opening screen — the one frame
-                  everybody sees and most people see only — was a name, a
-                  claim and a piece of glass, with no evidence a person was
-                  behind any of it. A reader who saw this page cold could
-                  not tell whose it was.
-
-                  Small on purpose. The prism is the argument and it owns
-                  the right of the frame; a portrait big enough to compete
-                  would win, and winning here costs the page the one thing
-                  nobody else's portfolio has. At this size it does its job
-                  in the first half-second and then gets out of the way —
-                  it fades with the rest of the intro copy as the light
-                  builds, because by then the glass is saying more than a
-                  photograph can.
-
-                  The head-and-shoulders crop, not the full picture: at
-                  80px the wide frame is a person too small to read, sitting
-                  in front of scenery. */}
-              <Image
-                src={site.headshot.src}
-                alt={site.headshot.alt}
-                width={96}
-                height={96}
-                priority
-                className="mb-6 h-20 w-20 rounded-[1.15rem] object-cover sm:h-24 sm:w-24"
-                style={{
-                  border: "1px solid rgba(255,255,255,0.22)",
-                  boxShadow: "0 12px 34px -14px rgba(0,0,0,0.75)",
-                }}
-              />
-
               <h1 className="text-[clamp(2.6rem,6.4vw,4.6rem)] font-medium leading-[0.96] tracking-[-0.05em] text-white">
                 {site.name}
               </h1>
