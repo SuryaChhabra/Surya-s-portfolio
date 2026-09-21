@@ -1,7 +1,7 @@
 import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import { ImageResponse } from "next/og";
-import { VOID_DEEP, spectrumRamp } from "@/components/prism/bands";
+import { VOID_DEEP } from "@/components/prism/bands";
 import { site } from "@/content/site";
 
 /**
@@ -20,9 +20,14 @@ import { site } from "@/content/site";
  *      in a feed is not a person until there is a face attached.
  *
  * A face fixes both at once: it takes the slot the stripes were in, and it
- * answers the question the stripes were distracting from. The spectrum
- * stays, but as one continuous ramp along the bottom edge — present, and
- * no longer the subject.
+ * answers the question the stripes were distracting from.
+ *
+ * The spectrum survived here longest, as a thin ramp along the bottom
+ * edge, after being taken off every other part of the site. It is gone
+ * now too. A strip of rainbow running the full width of a card is the
+ * arrangement this whole exercise has been about, and the card is the one
+ * image that gets reposted, cropped and shown at thumbnail size where
+ * nothing around it can explain what it is. Face, name, one line.
  *
  * Deliberately flat otherwise. The opening act is a glass prism refracting
  * light in real time, and no still can be that, so this does not try.
@@ -136,20 +141,6 @@ export default function OpengraphImage() {
           />
         </div>
 
-        {/* The same edge the page ends on: one continuous ramp, spaced by
-            wavelength and faded out at both ends. See `spectrumRamp` for
-            why it is no longer seven blocks. */}
-        <div
-          style={{
-            position: "absolute",
-            left: 0,
-            bottom: 0,
-            width: "100%",
-            height: 14,
-            display: "flex",
-            backgroundImage: spectrumRamp(90),
-          }}
-        />
       </div>
     ),
     { ...size },

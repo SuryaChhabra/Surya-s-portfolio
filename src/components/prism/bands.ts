@@ -39,10 +39,12 @@ export type Band = {
   /**
    * Where this colour actually sits in the visible spectrum, in nanometres.
    *
-   * Not decoration: `spectrumRamp` spaces its stops by this, which is what
-   * makes the ramp uneven the way real dispersion is uneven — a wide red,
-   * a sliver of yellow, indigo and violet crowded together at the short
-   * end. Equal-width bands are a flag; unequal ones are light.
+   * Nothing renders from this any more — it drove the spacing of the
+   * continuous ramp, and every ramp has now been taken off the page. It
+   * stays because it is the record that keeps the order honest: the bands
+   * have to descend in wavelength for the fan to mean anything, and when
+   * archery was removed it is what said what colour astronomy should take
+   * to cover both of the wavelengths it now stands for.
    */
   nm: number;
   /** What this band is called in the nav — the subject, not the wavelength. */
@@ -231,70 +233,6 @@ export const CLOSING: Band = {
   line: "",
   body: "",
 };
-
-/**
- * The edges of what an eye can see, in nanometres. Outside this there is
- * still light; there is just nobody to see it.
- */
-const VISIBLE = { lo: 390, hi: 700 };
-
-/**
- * The spectrum as one continuous ramp, for the places that show all seven
- * at once without a section attached to them.
- *
- * These were all seven hard-edged blocks of equal width, and a viewer
- * coming to the page cold read that as the pride flag rather than as a
- * spectrum — the colours stopped saying "dispersion" and started saying
- * something about the author that the author had not set out to say. Three
- * things separate the two, and this does all three:
- *
- *   1. No edges. Refracted light is a continuum; a flag is stripes.
- *   2. Unequal spacing. Stops are positioned by `nm`, so the ramp is as
- *      lopsided as the real thing — red sprawls, yellow is a sliver,
- *      indigo and violet pile up at the short end. A flag is even.
- *   3. It dies at both ends. The stops run from 390nm to 700nm and fade to
- *      zero alpha outside the seven, because that is where the eye gives
- *      out. Flags run edge to edge; light does not.
- *
- * Faded with the end colours at zero alpha rather than the `transparent`
- * keyword, which interpolates through transparent *black* and leaves a grey
- * bruise across the first and last tenth of the bar on a light field.
- *
- * The 3D scene is deliberately untouched. It was never the problem — a
- * beam, a piece of glass and a fan of rays read as optics on sight. Only
- * the flattened-out summaries of it in the chrome ever did.
- */
-export const SPECTRUM_STOPS: { at: number; color: string; opacity: number }[] =
-  (() => {
-    const at = (nm: number) =>
-      (VISIBLE.hi - nm) / (VISIBLE.hi - VISIBLE.lo);
-    return [
-      { at: 0, color: BANDS[0].color, opacity: 0 },
-      ...BANDS.map((b) => ({ at: at(b.nm), color: b.color, opacity: 1 })),
-      { at: 1, color: BANDS[BANDS.length - 1].color, opacity: 0 },
-    ];
-  })();
-
-export function spectrumRamp(deg = 90) {
-  const stops = SPECTRUM_STOPS.map(
-    (s) => `${rgba(s.color, s.opacity)} ${(s.at * 100).toFixed(1)}%`,
-  );
-  return `linear-gradient(${deg}deg, ${stops.join(", ")})`;
-}
-
-/**
- * `#rrggbb` plus an alpha, as `rgba()`.
- *
- * Spelt out rather than using eight-digit hex because this string also has
- * to survive Satori, which renders the link preview and whose CSS parser is
- * a good deal narrower than a browser's — it already silently dropped a
- * radial gradient and an `inset` shorthand on this page. `rgba()` is the
- * form both agree on.
- */
-function rgba(hex: string, alpha: number) {
-  const n = parseInt(hex.slice(1), 16);
-  return `rgba(${(n >> 16) & 255}, ${(n >> 8) & 255}, ${n & 255}, ${alpha})`;
-}
 
 /** Every field the page can sit on, wavelength or not. */
 export const FIELD_BY_ID: Record<string, Band> = {
