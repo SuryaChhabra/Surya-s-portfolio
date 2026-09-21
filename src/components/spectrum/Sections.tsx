@@ -495,6 +495,11 @@ export function VideoBand() {
           they describe they are evidence, and at the top of the page they
           would just be a claim. */}
       <Reveal>
+        {/* Above the grid, not below it: a reader who takes the numbers at
+            face value and scrolls on has already passed a footnote. */}
+        <p className="label mb-3" style={{ color: t.muted }}>
+          {site.statsSource}
+        </p>
         <dl className={`mb-12 grid grid-cols-2 gap-px overflow-hidden sm:grid-cols-4 ${t.pane}`}>
           {site.stats.map((stat) => (
             <div key={stat.label} className="px-5 py-6">

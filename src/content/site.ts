@@ -90,9 +90,18 @@ export const site = {
 
   /* — Headline numbers ——————————————————————————————————————————
      All four are from LinkedIn's own analytics on the OFF/BEAT
-     application-video post — one piece of work, not a career total. The
-     labels no longer say so, but the section they sit in does: they are
-     inside the video band, directly above the film they came from.     */
+     application-video post: one piece of work, not a career total.
+
+     `statsSource` says so on the page, and it is not a disclaimer — it is
+     the stronger version of the claim. Unattributed, 310K reads as a
+     career tally a reader has no way to check, and the first question it
+     invites in an interview is the one that deflates it. Attributed, it
+     is one film reaching 310K people, which is a specific thing you did
+     once and could do again. Relying on the section to imply it was not
+     enough: most people read the big numbers and never reach the note
+     under the film.                                                    */
+  statsSource: "From one post: the OFF/BEAT application video.",
+
   stats: [
     { value: "310K", label: "impressions" },
     { value: "208K", label: "people reached" },
