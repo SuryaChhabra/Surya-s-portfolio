@@ -87,7 +87,7 @@ export const site = {
        so it is addressed to the people it is for and nobody else. */
     closing: "Hiring for growth? Email me.",
 
-    cue: "Scroll to split the light",
+    cue: "Scroll down",
     cueStill: "Start with the work",
     cueSub: "Growth, video, and the things I\u2019ve shipped.",
   },

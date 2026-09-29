@@ -75,7 +75,7 @@ export const BANDS: Band[] = [
        and so do the audiences, and a storefront's shoppers, a health
        movement's followers and a craft studio's buyers are not reached by
        one playbook. Claiming they are makes three roles look like one. */
-    body: "Three growth roles, not the same job three times. A Bay Area startup, India's largest health movement, an early-stage craft studio. No two share an audience, and the work followed the audience.",
+    body: "Three growth roles: a Bay Area startup, India's largest health movement, an early-stage craft studio. Completely different audiences, so completely different work each time.",
   },
   {
     id: "video",
@@ -96,7 +96,7 @@ export const BANDS: Band[] = [
        the only card with any copy on it. It is not any more: the section
        now opens with a client brief, so a heading describing the second
        card was introducing the wrong film. */
-    body: "It started as an experiment: one application video, made with tools I had not used before. Now it is how I make the case for a thing, whether that thing is a product, a brand or me.",
+    body: "It started with one application video, made with tools I had never used. Now it is how I pitch things — a product, a brand, or myself.",
   },
   /* Built sits third and education fifth, which is the other way round
      from how this page first read.
@@ -132,7 +132,7 @@ export const BANDS: Band[] = [
        Collectiv arrived and immediately made it wrong. The split it names
        now — one thing judged, three things nobody asked for — is the thing
        the rows cannot say for themselves. */
-    body: "First place at a product hackathon, and three things nobody asked me to make. Built, deployed, live. Version one beats a plan every time.",
+    body: "First place at a product hackathon, and three things nobody asked me to make. All of them built, deployed and live.",
   },
   {
     id: "leading",
