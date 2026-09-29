@@ -75,13 +75,17 @@ export const site = {
     /* The one line on the closing screen, under "Tell me what you're
        building".
 
-       It used to reprint `lead` — the same words as the opening screen.
-       By the time anybody reaches the bottom they have read six sections
-       of what you do, so restating it there was the most redundant
-       sentence on the page, and it was competing with the heading for the
-       job of setting the tone. This says how you want to work instead,
-       which is the one thing the six sections above cannot show. */
-    closing: "Curious to learn and grow together.",
+       Third version, and the first that asks for anything. It reprinted
+       `lead` once — the same words as the opening screen, which by the
+       bottom of the page is the most redundant sentence on the site. Then
+       it was "Curious to learn and grow together", which reads off a
+       LinkedIn headline: it could be said by anyone, about anything, and
+       it asks for nothing.
+
+       This names the job and the action in five words. Directness is not
+       the same as begging — "hiring for growth?" puts a condition on it,
+       so it is addressed to the people it is for and nobody else. */
+    closing: "Hiring for growth? Email me.",
 
     cue: "Scroll to split the light",
     cueStill: "Start with the work",
