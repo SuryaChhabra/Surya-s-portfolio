@@ -382,7 +382,7 @@ export const site = {
         org: "TwinMind",
         logo: "/logos/twinmind.webp",
         kind: "",
-        period: "Jul – Sep 2026",
+        period: "Jul – Aug 2026",
         place: "San Francisco Bay Area",
         /* The company's numbers, so they sit in `context` and not in
            `metrics`. Metrics render in the accent colour as yours; context
@@ -426,7 +426,7 @@ export const site = {
         org: "Satvic Movement",
         logo: "/logos/satvic.webp",
         kind: "",
-        period: "Mar – May 2026",
+        period: "May – Jul 2026",
         place: "",
         detail:
           "Drove e-commerce setup and growth strategy for India's largest community-driven health platform, designing high-conversion Shopify pages in Replo, Shogun and Figma to turn audience scale into revenue.",
@@ -441,7 +441,7 @@ export const site = {
         org: "Ocher Studio",
         logo: "/logos/ocher.webp",
         kind: "",
-        period: "Jan – May 2026",
+        period: "Dec 2025 – Jan 2026",
         place: "",
         /* Outcome first. This opened on "worked at the intersection of
            entrepreneurship and community impact", which is the vaguest
