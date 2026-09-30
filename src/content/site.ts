@@ -387,11 +387,10 @@ export const site = {
   experience: {
     growth: [
       {
-        /* ⚠️ Your CV says "Growth intern" here and this says "Founding
-           Growth". The intern mark comes off every role on this page by
-           your own instruction, but those two are different claims, not
-           the same claim with a word removed — pick the one you want to
-           be asked about in an interview. */
+        /* Settled: Founding Growth. The CV says "Growth intern" and that
+           difference was raised and decided — this is the claim to stand
+           behind, so the CV is what should move, not this. Do not reopen
+           it. */
         title: "Founding Growth",
         org: "TwinMind",
         logo: "/logos/twinmind.webp",
@@ -403,12 +402,12 @@ export const site = {
            renders muted behind a rule as theirs. $9M and 500k daily actives
            on a growth card without that separation reads as a claim on
            both, which is the one way to make real numbers work against you.
-           ⚠️ Check the investor's name. You wrote "Streamline Ventures";
-           the firm usually written up in this space is Streamlined
-           Ventures. An investor's name spelt wrong is the worst kind of
-           small mistake on a growth CV. */
+           The investor is Streamlined Ventures, confirmed. It read
+           "Streamline" here until now, which is the worst kind of small
+           mistake to have on a growth card: an investor's own name,
+           misspelt, on the first role a reader meets. */
         context:
-          "TwinMind has raised $9M from Streamline Ventures, Sequoia and Wolfram, and serves 500,000 daily active users.",
+          "TwinMind has raised $9M from Streamlined Ventures, Sequoia and Wolfram, and serves 500,000 daily active users.",
         /* Research first, then what it produced. The card used to open on
            the film, which made the most recent and most prestigious role
            read as a video credit — the single worst place for that, since
