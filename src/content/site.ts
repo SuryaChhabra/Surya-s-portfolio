@@ -141,9 +141,11 @@ export const site = {
      Real, shipped, linked. tone picks the card's hue from the spectrum:
      "red" | "orange" | "amber" | "green" | "cyan" | "blue" | "violet" | "pink"
 
-     ⚠️ summary, metrics and tags are intentionally empty. Fill them with
-     what each project actually is — a card with no description still reads
-     as honest; an invented one does not. Empty fields render nothing.     */
+     All four rows now carry a summary. Only Collectiv carries a metric,
+     and that is deliberate: the other three are spec and side builds whose
+     traffic numbers would be small, and a small number is worse than none.
+     Being live and linked is the evidence there. Empty fields render
+     nothing, so leaving them empty stays the honest default.              */
   work: [
     {
       /* First, because it is the only thing in this section somebody else
@@ -226,8 +228,10 @@ export const site = {
      Posters are real frames you picked, cropped to 16:9 and re-encoded.
      Replace one by dropping a new file in public/work/ and pointing at it.
 
-     ⚠️ Three of the four notes are still empty. Say what each piece is and
-     who it was for; invented descriptions are worse than none.            */
+     All four notes are written now. What is still missing is whether the
+     work was used: did Permute ship theirs, did the Soulful Vybes spot
+     run as their listing creative. That is not a number but for a section
+     this spec-heavy it is worth more than one.                            */
   videoBase: "https://pub-5db4afe057a34843946065c529eba471.r2.dev",
 
   /* The three behind every film here. They belong to the section, not to
@@ -525,8 +529,9 @@ export const site = {
            "biggest", if it is yours to name — a reader can check neither
            who they are nor how big, so the superlative is carrying two
            unverifiable claims at once.
-           "Dhokra" keeps its name and gains a gloss beside it, the same
-           fix "Exploring Entrepreneurship" needed further down the page.
+           "Dhokra" keeps its name and gains a gloss beside it, confirmed
+           accurate by Surya. Same fix "Exploring Entrepreneurship" needed
+           further down the page.
            Replacing the word with a generic description would have been
            the easy version and the wrong one: the term is the specific
            thing being sold, and a reader who meets it once here can
@@ -734,9 +739,10 @@ export const site = {
   },
 
   /* — Links ——————————————————————————————————————————————————————— */
-  /* ⚠️ Anything still pointing at example.com or /username is scaffold and
-     is hidden on the live site rather than rendered as a dead link. Replace
-     the href and it appears. */
+  /* No scaffold left here; every href below is real. The guard still
+     stands if a placeholder is ever added back: anything pointing at
+     example.com or /username is hidden on the live site rather than
+     rendered as a dead link. */
   socials: [
     { label: "Email", href: "mailto:suryachhabra@gmail.com" },
     { label: "LinkedIn", href: "https://www.linkedin.com/in/surya-chhabra/" },
