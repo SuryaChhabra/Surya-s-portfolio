@@ -96,7 +96,7 @@ export const BANDS: Band[] = [
        the only card with any copy on it. It is not any more: the section
        now opens with a client brief, so a heading describing the second
        card was introducing the wrong film. */
-    body: "It started with one application video, made with tools I had never used. Now it is how I pitch things — a product, a brand, or myself.",
+    body: "It started with one application video, made with tools I had never used. Now it is how I pitch things: a product, a brand, or myself.",
   },
   /* Built sits third and education fifth, which is the other way round
      from how this page first read.

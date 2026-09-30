@@ -525,16 +525,19 @@ export const site = {
            "biggest", if it is yours to name — a reader can check neither
            who they are nor how big, so the superlative is carrying two
            unverifiable claims at once.
-           ⚠️ "Dhokra" is unglossed. To a reader in San Francisco it is a
-           word to skip past; four words placing it (the Bastar metal
-           craft) would fix that, but only Surya can confirm the wording.
+           "Dhokra" keeps its name and gains a gloss beside it, the same
+           fix "Exploring Entrepreneurship" needed further down the page.
+           Replacing the word with a generic description would have been
+           the easy version and the wrong one: the term is the specific
+           thing being sold, and a reader who meets it once here can
+           recognise it anywhere afterwards.
            The other number here is that they source 100% of their Dhokra
            from the studio, and it stays in the sentence above rather than
            going in `metrics` beside the sixty. It is already said there in
            better words, and running it in both places would be the skill
            chips all over again: one fact, two formats. */
         detail:
-          "Landed the studio's biggest client in North America, a global sourcing house for Indian art forms, and ran the account myself. They now source all their Dhokra from the studio. Made the case for revenue models that pay artisans rather than charity.",
+          "Landed the studio's biggest client in North America, a global sourcing house for Indian art forms, and ran the account myself. Their Dhokra, the lost-wax brass casting Bastar is known for, now comes entirely from Ocher. Made the case for revenue models that pay artisans rather than charity.",
         /* The only top-of-funnel number on the site, and the one that makes
            the win above read as a pipeline result rather than luck: sixty
            approaches out, the studio's biggest account back. Every one of
