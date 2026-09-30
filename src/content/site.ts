@@ -619,9 +619,16 @@ export const site = {
         /* "Exploring Entrepreneurship" means nothing outside Illinois, so
            the sentence says what it is rather than leaving a reader to
            guess at a proper noun. That also frees the metric label to stay
-           at two words: what the participation was in is right above it. */
+           at two words: what the participation was in is right above it.
+           Two wrong versions preceded this one. "For non-startup majors"
+           and then "for students with no startup background" both defined
+           the audience by what it lacked, which describes nothing and
+           talks down at the people who turned up. The series was not
+           remedial. The idea was that a founder who had come out of your
+           own major makes the career look available in a way no general
+           talk can, so the line names the mechanism instead. */
         detail:
-          "Recruited a cross-disciplinary team to launch new projects each semester, and built Exploring Entrepreneurship, a series for students with no startup background.",
+          "Recruited a cross-disciplinary team to launch new projects each semester, and built Exploring Entrepreneurship: founders from the majors least likely to produce them, in front of students from those same majors.",
         metrics: [{ value: "50 to 200+", label: "in participation" }] as {
           value: string;
           label: string;
