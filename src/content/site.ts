@@ -399,26 +399,49 @@ export const site = {
            small mistake on a growth CV. */
         context:
           "TwinMind has raised $9M from Streamline Ventures, Sequoia and Wolfram, and serves 500,000 daily active users.",
-        /* Two outcomes first, remit last — the card used to open on the
-           remit and never said what came out of it, which on the first
-           card a reader meets is the worst place for that gap.
+        /* Research first, then what it produced. The card used to open on
+           the film, which made the most recent and most prestigious role
+           read as a video credit — the single worst place for that, since
+           this is the first card anyone meets. The interviews are the
+           spine: they drove both the film and the prototype, so they go at
+           the front and the outputs hang off them.
+           Cut: "Led growth across content, web and brand, from campaigns
+           to product storytelling to social distribution." That was the
+           remit in the offer, not the job — the founders narrowed it to a
+           single brief — and it was the broadest claim on the page, the
+           one an interviewer would open with and find nothing behind.
+           Cut too: "became an anchor of the 2.0 launch". Past tense for
+           something TwinMind has not shipped. "The founders' brief for the
+           2.0 launch" is true whatever they end up doing with it.
            No search acronyms here at all: the CV bullet has GEO, an
            earlier version of this card had SEO, and neither is on the card
            now. What the work did is in the sentences; three letters a
            reader has to decode are not what earns the next paragraph. */
         detail:
-          "Made a short film that became an anchor of the 2.0 launch. Turned user interviews into a design prototype the team took straight into the product. Led growth across content, web and brand, from campaigns to product storytelling to social distribution.",
-        /* The number goes here rather than into the sentence, because this
-           is the one slot on the card that renders in the band's own accent
-           colour — and because twelve hours from suggestion to live is the
-           most checkable thing on this page.
-           "prototype to implemented" was the first wording and it claimed
-           too much: engineers implemented it. The prototype and the
-           interviews behind it are the part that is yours, and the twelve
-           hours is remarkable precisely because someone else moved that
-           fast on it — so the label names the boundary rather than blurring
-           it. */
-        metrics: [{ value: "12 hrs", label: "from my prototype to live" }] as {
+          "Ran user interviews to find out how people actually saw the brand. That research drove everything I made there: the film that explains TwinMind, the founders' brief for the 2.0 launch, and a design prototype the team took straight into the product.",
+        /* Numbers live here rather than in the sentences, because this is
+           the one slot on the card that renders in the band's own accent
+           colour — the page's signal for "this one is mine".
+           Twenty interviews is the growth number on this card. It is the
+           research that drove both outputs, and it is the only thing
+           anywhere on this page backing the User Research tag below.
+           Effort numbers from the film — hours spent, storyboards,
+           character-consistency passes — stay in the video section on
+           purpose. On a growth card they say what the work cost rather
+           than what it did, and they re-file a growth hire as a craft one.
+           There is no third metric to add: the film is still unreleased,
+           nothing ran on TwinMind's channels, and there was no unique
+           link, so no reach or signup number exists to claim.
+           "prototype to implemented" was the first wording for the second
+           metric and it claimed too much: engineers implemented it. The
+           prototype and the interviews behind it are the part that is
+           yours, and the twelve hours is remarkable precisely because
+           someone else moved that fast on it — so the label names the
+           boundary rather than blurring it. */
+        metrics: [
+          { value: "20", label: "user interviews on positioning" },
+          { value: "12 hrs", label: "from my prototype to live" },
+        ] as {
           value: string;
           label: string;
         }[],
