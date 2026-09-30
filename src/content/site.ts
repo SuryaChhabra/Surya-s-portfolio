@@ -611,9 +611,13 @@ export const site = {
            slot reads as a span, not as growth.
            So the multiple keeps the slot, which is the only shape that
            says "this got bigger" at a glance, and the figures move into
-           the sentence above at body size, where they read as something
-           that happened rather than as a bracket. Adjacency anchors the
-           4x without the label having to carry it. */
+           the sentence at body size, where they read as something that
+           happened rather than as a bracket.
+           They open the paragraph rather than closing it. A reader who
+           stops after one line should still leave with the result, which
+           is the same reason the TwinMind card leads on what the research
+           produced. The series named itself in that first sentence too,
+           so "it" has something to refer to. */
         /* No Antler here. It has the photographs and the full description at
            the top of this same section, and saying it twice in one band
            makes the role look thinner than it was rather than fuller. What
@@ -630,7 +634,7 @@ export const site = {
            failed the only test that matters: nobody says that out loud.
            This is Surya's own sentence, barely moved. */
         detail:
-          "Recruited a cross-disciplinary team to launch new projects each semester, and built Exploring Entrepreneurship: I brought in founders from majors that do not usually start companies, so students in those majors could see it was an option. It grew from 50 people in the room to over 200.",
+          "Exploring Entrepreneurship grew from 50 people in the room to over 200. I built it to bring in founders from majors that do not usually start companies, so students in those majors could see it was an option. Also recruited a cross-disciplinary team to launch new projects each semester.",
         metrics: [{ value: "4×", label: "in participation" }] as {
           value: string;
           label: string;
