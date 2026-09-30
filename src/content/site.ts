@@ -608,15 +608,19 @@ export const site = {
            is the only one that describes a change rather than a count.
            The label carries the baseline now. A bare multiple is the shape
            of number people write when the starting point was three, and a
-           reader who cannot check it discounts it. Fifty to two hundred is
-           the same fact with nothing left to doubt. */
+           reader who cannot check it discounts it. Fifty to two hundred
+           plus is the same fact with nothing left to doubt.
+           The multiple stays at 4x rather than following the plus upward.
+           Understating a number you are already proving is free; the
+           reader can do the arithmetic and find it conservative, which is
+           the direction you want to be wrong in. */
         /* No Antler here. It has the photographs and the full description at
            the top of this same section, and saying it twice in one band
            makes the role look thinner than it was rather than fuller. What
            is left is the part nothing else covers. */
         detail:
           "Recruited a cross-disciplinary team to launch new projects each semester, and built the Exploring Entrepreneurship series for non-startup majors.",
-        metrics: [{ value: "4×", label: "participation, 50 to 200" }] as {
+        metrics: [{ value: "4×", label: "participation, 50 to 200+" }] as {
           value: string;
           label: string;
         }[],
