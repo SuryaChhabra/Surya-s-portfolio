@@ -519,12 +519,22 @@ export const site = {
            ⚠️ "Dhokra" is unglossed. To a reader in San Francisco it is a
            word to skip past; four words placing it (the Bastar metal
            craft) would fix that, but only Surya can confirm the wording.
-           ⚠️ `metrics` is still empty — the only growth role on the page
-           without a number. Either the outreach count behind this win, or
-           the fact that they source 100% of their Dhokra here. */
+           The other number here is that they source 100% of their Dhokra
+           from the studio, and it stays in the sentence above rather than
+           going in `metrics` beside the sixty. It is already said there in
+           better words, and running it in both places would be the skill
+           chips all over again: one fact, two formats. */
         detail:
           "Landed the studio's biggest client in North America, a global sourcing house for Indian art forms, and ran the account myself. They now source all their Dhokra from the studio. Made the case for revenue models that pay artisans rather than charity.",
-        metrics: [] as { value: string; label: string }[],
+        /* The only top-of-funnel number on the site, and the one that makes
+           the win above read as a pipeline result rather than luck: sixty
+           approaches out, the studio's biggest account back. Every one of
+           the sixty is Surya's own outreach and accountable to him, which
+           is what earns it the accent colour. */
+        metrics: [{ value: "60", label: "brands in the outreach" }] as {
+          value: string;
+          label: string;
+        }[],
         skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
     ],
