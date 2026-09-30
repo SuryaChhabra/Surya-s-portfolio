@@ -96,7 +96,7 @@ export const BANDS: Band[] = [
        the only card with any copy on it. It is not any more: the section
        now opens with a client brief, so a heading describing the second
        card was introducing the wrong film. */
-    body: "It started with one application video, made with tools I had never used. Now it is how I pitch things: a product, a brand, or myself.",
+    body: "It started with one application video, made with tools I had never used. Now it is how I pitch things.",
   },
   /* Built sits third and education fifth, which is the other way round
      from how this page first read.
@@ -132,7 +132,7 @@ export const BANDS: Band[] = [
        Collectiv arrived and immediately made it wrong. The split it names
        now — one thing judged, three things nobody asked for — is the thing
        the rows cannot say for themselves. */
-    body: "First place at a product hackathon, and three things nobody asked me to make. All of them built, deployed and live.",
+    body: "First place at a product hackathon, and three personal projects. All of them built, deployed and live.",
   },
   {
     id: "leading",
