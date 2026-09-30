@@ -604,14 +604,16 @@ export const site = {
         kind: "",
         period: "Sep 2024 – Dec 2025",
         place: "",
-        /* The range is the metric, not the multiple. "4x" held the accent
-           colour and the large size while "50 to 200+" sat in the muted
-           14px label — the smallest type on the card carrying the only
-           number anyone asked to see. Straight swap.
-           No multiple at all now. A reader who works out that 50 to 200+
-           is four times over trusts it more for having done the
-           arithmetic, and a bare multiple is the shape of number people
-           write when the starting point was three. */
+        /* Third arrangement of this one number, and the first that works.
+           "4x" alone floated. "4x / participation, 50 to 200+" buried the
+           real figures in 14px muted type. "50 to 200+" in the value slot
+           fixed the size and broke the meaning: a range in the big accent
+           slot reads as a span, not as growth.
+           So the multiple keeps the slot, which is the only shape that
+           says "this got bigger" at a glance, and the figures move into
+           the sentence above at body size, where they read as something
+           that happened rather than as a bracket. Adjacency anchors the
+           4x without the label having to carry it. */
         /* No Antler here. It has the photographs and the full description at
            the top of this same section, and saying it twice in one band
            makes the role look thinner than it was rather than fuller. What
@@ -620,16 +622,16 @@ export const site = {
            the sentence says what it is rather than leaving a reader to
            guess at a proper noun. That also frees the metric label to stay
            at two words: what the participation was in is right above it.
-           Two wrong versions preceded this one. "For non-startup majors"
-           and then "for students with no startup background" both defined
+           Three wrong versions preceded this one. "For non-startup
+           majors" and "for students with no startup background" defined
            the audience by what it lacked, which describes nothing and
-           talks down at the people who turned up. The series was not
-           remedial. The idea was that a founder who had come out of your
-           own major makes the career look available in a way no general
-           talk can, so the line names the mechanism instead. */
+           talks down at the people who turned up. "Founders from the
+           majors least likely to produce them" fixed the meaning and
+           failed the only test that matters: nobody says that out loud.
+           This is Surya's own sentence, barely moved. */
         detail:
-          "Recruited a cross-disciplinary team to launch new projects each semester, and built Exploring Entrepreneurship: founders from the majors least likely to produce them, in front of students from those same majors.",
-        metrics: [{ value: "50 to 200+", label: "in participation" }] as {
+          "Recruited a cross-disciplinary team to launch new projects each semester, and built Exploring Entrepreneurship: I brought in founders from majors that do not usually start companies, so students in those majors could see it was an option. It grew from 50 people in the room to over 200.",
+        metrics: [{ value: "4×", label: "in participation" }] as {
           value: string;
           label: string;
         }[],
