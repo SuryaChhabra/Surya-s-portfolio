@@ -455,9 +455,30 @@ export const site = {
         kind: "",
         period: "May – Jul 2026",
         place: "",
+        /* Their scale, so it sits here and not in `metrics` — the same
+           separation the TwinMind card makes for the $9M and the 500k
+           daily actives. It used to render as "8M+ subscriber base" in the
+           band's accent colour, directly under a metric of yours, which
+           made an audience you did not build read as a number you moved.
+           Muted behind a rule it still shows the scale you worked at. */
+        context:
+          "The Satvic Movement is India's largest community-driven health platform, with a subscriber base of over 8 million.",
+        /* "Drove e-commerce setup and growth strategy ... designing
+           high-conversion Shopify pages" was not wrong so much as vague,
+           and vague in the one place where the specifics are the whole
+           point. Nobody gets called about driving growth strategy; they
+           get called about finding where pages lose people and rebuilding
+           them.
+           "high-conversion" is gone outright. There is no conversion data
+           on these pages, so the word asserted a result that cannot be
+           shown — the same class of claim as the TwinMind remit line. */
         detail:
-          "Drove e-commerce setup and growth strategy for India's largest community-driven health platform, designing high-conversion Shopify pages in Replo, Shogun and Figma to turn audience scale into revenue.",
-        metrics: [{ value: "8M+", label: "subscriber base" }] as {
+          "Went through analytics, click data and user interviews to find where the old pages were losing people, then wrote the design brief for the rebuild and built the pages in Replo and Shogun.",
+        /* Nine pages, live and countable on their store — their own site is
+           the proof, which is what makes this worth the accent colour. The
+           label says "live" rather than "built" on purpose: shipped and
+           customer-facing is the part that matters. */
+        metrics: [{ value: "9", label: "pages live on their Shopify store" }] as {
           value: string;
           label: string;
         }[],
