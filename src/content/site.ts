@@ -502,14 +502,28 @@ export const site = {
            who has already said yes, and it was the winning of them that
            was the work.
            "End to end" is deliberately not here. It was, and it made four
-           on one page — three of them in the same shape, "X end to end:
-           a, b, c". Said four times it stops being a claim and starts
+           on one page. Said four times it stops being a claim and starts
            being a tic. It is kept where a list immediately proves it
            (TwinMind, Antler) and varied where it was only asserted.
+           The trailing list of disciplines came out because it repeated
+           the skill chips rendered directly below this card, word for
+           word, and made this the longest of the three growth cards by
+           twenty words.
+           What the client actually is now says itself: a sourcing house
+           that buys all of its Dhokra here. That is category ownership
+           inside their business, which is a harder fact than "biggest".
            ⚠️ The client is unnamed. Naming it is materially stronger than
-           "biggest", if it is yours to name. */
+           "biggest", if it is yours to name — a reader can check neither
+           who they are nor how big, so the superlative is carrying two
+           unverifiable claims at once.
+           ⚠️ "Dhokra" is unglossed. To a reader in San Francisco it is a
+           word to skip past; four words placing it (the Bastar metal
+           craft) would fix that, but only Surya can confirm the wording.
+           ⚠️ `metrics` is still empty — the only growth role on the page
+           without a number. Either the outreach count behind this win, or
+           the fact that they source 100% of their Dhokra here. */
         detail:
-          "Landed the studio's biggest client in North America and ran the account myself. Grew an early-stage craft studio through market research, new revenue channels, partnerships and brand storytelling, making the case for revenue-driven models that support artisan livelihoods rather than charity.",
+          "Landed the studio's biggest client in North America, a global sourcing house for Indian art forms, and ran the account myself. They now source all their Dhokra from the studio. Made the case for revenue models that pay artisans rather than charity.",
         metrics: [] as { value: string; label: string }[],
         skills: ["Market Research", "Partnerships", "Brand Storytelling"],
       },
