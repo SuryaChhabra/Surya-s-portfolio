@@ -17,23 +17,33 @@ export const site = {
   resumeUrl: "/resume.pdf",
 
   /* The photo at the end of the page. It is the one place a face belongs:
-     the seven colours have just come back together into white, and the
-     thing they recombine into is a person. Cropped 3:4 rather than to a
-     circle on purpose — a circle would take the castle out, and the
-     background is half of why this photo is this photo. */
+     the colours have just come back together into white, and the thing
+     they recombine into is a person.
+     This used to be a photograph taken in front of the Sleeping Beauty
+     castle, sundress and sneakers, the 70th-anniversary bunting still in
+     shot. It was the last image on the page and it sat directly above
+     "Hiring for growth? Email me." Three growth roles with real numbers,
+     and then a theme-park holiday snap. Whatever the rest of the page had
+     earned, that picture spent. */
   portrait: {
     src: "/me/portrait.webp",
-    alt: "Surya Chhabra, with the Sleeping Beauty castle in the background.",
+    alt: "Surya Chhabra, seated at a table in a white shirt.",
   },
 
   /* The same photograph cropped to head and shoulders, for the opening
      screen and the link preview — the two places that need a face at a
-     small size rather than a picture at a large one. At this crop the
-     castle is just soft blue stonework, which is the point: it reads as a
-     portrait taken outdoors rather than as a holiday snap.
-     ⚠️ It is still a holiday snap underneath. A proper headshot is the
-     single cheapest upgrade left on this page, and this is the spot where
-     it would show. */
+     small size rather than a picture at a large one.
+     The crop is tight for a reason. In the previous photo the face landed
+     at roughly 44px inside a 144px circle, small enough that the opening
+     screen showed a person you could not quite make out, against busy
+     blue stonework. Here the face fills the circle and the wall behind it
+     is flat grey, so it survives being shrunk.
+     Both slots run the same source photograph now, cropped two ways. The
+     repetition is a real cost and it is worth paying: the alternative was
+     keeping the castle at the bottom of the page.
+     ⚠️ It is still a snapshot, not a photograph anyone sat for. A proper
+     headshot remains the cheapest upgrade left on this page, and these
+     are the two spots where it would show. */
   headshot: {
     src: "/me/headshot.webp",
     alt: "Surya Chhabra.",
