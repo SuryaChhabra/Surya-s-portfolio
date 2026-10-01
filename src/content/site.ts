@@ -418,6 +418,12 @@ export const site = {
            this is the first card anyone meets. The interviews are the
            spine: they drove both the film and the prototype, so they go at
            the front and the outputs hang off them.
+           The opening line carries the whole loop in one sentence, because
+           the research is the growth claim on this card and "ran user
+           interviews" on its own reads as having had some conversations.
+           Collect, then analyse, then the finding: went through all of
+           them, for the pattern. Twenty interviews only count for anything
+           if somebody went back through them looking for what repeated.
            Cut: "Led growth across content, web and brand, from campaigns
            to product storytelling to social distribution." That was the
            remit in the offer, not the job — the founders narrowed it to a
@@ -431,7 +437,7 @@ export const site = {
            now. What the work did is in the sentences; three letters a
            reader has to decode are not what earns the next paragraph. */
         detail:
-          "Ran user interviews to find out how people actually saw the brand. That research drove everything I made there: the film that explains TwinMind, the founders' brief for the 2.0 launch, and a design prototype the team took straight into the product.",
+          "Ran user interviews and went through all of them for the pattern in how people actually saw the brand. That research drove everything I made there: the film that explains TwinMind, the founders' brief for the 2.0 launch, and a design prototype the team took straight into the product.",
         /* Numbers live here rather than in the sentences, because this is
            the one slot on the card that renders in the band's own accent
            colour — the page's signal for "this one is mine".
