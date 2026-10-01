@@ -53,7 +53,7 @@ export const site = {
   meta: {
     title: "Surya Chhabra",
     description:
-      "Growth and creative work for startups. I figure things out by making them, moving between brand, video and product, picking up whatever tool each one needs.",
+      "Growth for startups. I figure things out by making them, moving between brand, video and product, picking up whatever tool each one needs.",
     url: "https://suryachhabra.com",
   },
 
@@ -68,7 +68,7 @@ export const site = {
          "I jump in, figure it out, and make the thing."
          "I'd rather make it than wait until I know how."
          "I don't specialise. I finish."                                */
-    lead: "Growth & creative for startups.",
+    lead: "Growth for startups.",
     sub: "I figure things out by making them, moving between brand, video and product, picking up whatever tool each one needs.",
 
     /* The line that says what the prism is for. Without it the glass is
